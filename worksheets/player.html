@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.13 (2026-11-02): 문제지 제목 아래 "💡 관련 학습 팁" 상자 추가 — data/tips.json에서 단원 태그(units)가 문제지 제목·단원에 들어 있고 학년(grades)이 맞는 팁을 최대 3개 보여줌. 임베드 없이 제목·선생님 메모·Instagram 원본 링크만(풀이 화면을 가볍게 유지) -->
 <!-- v2.12 (2026-11-02): AI 튜터 추가 — 문제 카드마다 "🤖 AI 튜터" 패널(힌트만 / 내 답 어디가 틀렸나요 / 자유 질문). backend action:'aiTutor'(gas-ai-agent-addon.gs)가 Claude 에이전트로 답하고, 필요하면 같은 유형 기존 문제를 찾아 링크로 추천. 정답 잠김 상태에선 힌트만 허용. 채점 결과 화면에 "🤖 AI 복습 세트 만들기" 추가 — action:'aiMakeReviewSet'이 오답 기반 변형 문제를 만들고 스키마 검사 후 검토 대기열(data/_pending)에 올림(선생님 승인 후 공개) -->
 <!-- v2.6 (2026-10-03): 주관식 채점 보정 — 정답의 LaTeX·단위(°, cm, %)·근호·분수 표기와 학생 입력("30", "2√5", "루트5", "15/2")을 같은 모양으로 맞춰 비교. 단위·기호를 안 쓴 답은 정답 처리하되 안내 문구를 보여주고 별도 목록(unitNotes, localStorage unit_notes_*)에 모음 -->
 <!-- v1.1 (2026-08-06): normalizeProblem() 어댑터 추가(구 스키마 number/difficulty/mcq/short/answer/explanation 자동 변환), 선택지 이중 LaTeX 래핑 버그 수정 -->
@@ -667,6 +668,13 @@
   }
   .home-btn:hover{ opacity:0.9; }
 
+  /* ===== v2.13 관련 학습 팁 ===== */
+  .tips-box{ margin-top:10px; padding:10px 14px; background:#fff8e6; border:1px solid #ecd9a6; border-radius:10px; font-size:13.5px; }
+  .tips-box .tips-head{ font-weight:700; margin-bottom:4px; }
+  .tips-box .tip-row{ margin:4px 0; line-height:1.5; }
+  .tips-box .tip-row a{ color:#33578c; font-weight:700; }
+  .tips-box .tip-note{ color:var(--num); font-size:12.5px; }
+
   /* ===== v2.12 AI 튜터 ===== */
   .ai-toggle{
     font-family:inherit; font-size:12.5px; font-weight:700;
@@ -764,6 +772,7 @@
 <header>
   <h1 id="setTitle">불러오는 중...</h1>
   <div class="sub" id="setSub"></div>
+  <div class="tips-box" id="relatedTips" style="display:none;"></div>
 </header>
 
 
@@ -2611,6 +2620,33 @@
   }
 
   // ============================================================
+  // ===== v2.13 관련 학습 팁 (data/tips.json) =====
+  // 팁의 단원 태그가 문제지 제목/단원에 들어 있으면 보여준다. 실패해도 풀이에는 영향 없음.
+  // ============================================================
+  const TIP_URL_RE = /^https:\/\/www\.instagram\.com\/(p|reel)\/[A-Za-z0-9_-]+\/$/;
+
+  async function renderRelatedTips(data){
+    const box = document.getElementById('relatedTips');
+    if(!box) return;
+    try{
+      const res = await fetch('../data/tips.json', { cache: 'no-store' });
+      const tips = (await res.json()).tips || [];
+      const haystack = [data.title, data.unit].join(' ');
+      const gm = String(WORKSHEET_ID).match(/(?:^|_)(m[0-2])_/);   // m1_2604_… / 2604_m1_… 둘 다
+      const grade = gm ? gm[1] : '';
+      const matched = tips.filter(t => t && TIP_URL_RE.test(t.url || '') && t.title
+        && (t.units || []).some(u => u && haystack.indexOf(u) >= 0)
+        && (!t.grades || t.grades.length === 0 || t.grades.indexOf(grade) >= 0)).slice(0, 3);
+      if(matched.length === 0) return;
+      box.innerHTML = '<div class="tips-head">💡 관련 학습 팁</div>' + matched.map(t =>
+        `<div class="tip-row"><a href="${attrSafe(t.url)}" target="_blank" rel="noopener">${escapeHtml(t.title)} ↗</a>`
+        + (t.account ? ` <span class="tip-note">${escapeHtml(t.account)}</span>` : '')
+        + (t.summary ? `<div class="tip-note">${escapeHtml(t.summary)}</div>` : '') + '</div>').join('');
+      box.style.display = 'block';
+    } catch(e){ /* 팁은 부가 기능 — 조용히 건너뜀 */ }
+  }
+
+  // ============================================================
   // ===== v2.12 AI 튜터 / AI 복습 세트 (backend action:'aiTutor' / 'aiMakeReviewSet') =====
   // ============================================================
 
@@ -2994,6 +3030,7 @@
     document.title = (data.title || '문제풀이') + ' — 학생용';
     document.getElementById('setTitle').textContent = data.title || '문제풀이';
     WORKSHEET_UNIT = data.unit || '';
+    renderRelatedTips(data);
     const pageCount = Math.ceil(data.problems.length / PAGE_SIZE);
     document.getElementById('setSub').textContent =
       (data.unit ? data.unit + ' · ' : '') + `전체 ${data.problems.length}문제 · ${pageCount}페이지(한 페이지당 ${PAGE_SIZE}문항) · 시작을 누르고 풀어보세요`;

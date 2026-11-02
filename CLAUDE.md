@@ -19,6 +19,7 @@
 | `data/*.json`, `data/seanmath32/*.json` | 문제지 |
 | `data/worksheets-manifest.json` | 학생에게 보이는 문제지 목록. **루트 `manifest.json`은 PWA용이라 별개** |
 | `data/study-plan.json`, `data/exam-ranges.json`, `data/publishers.json` | 학습 계획, 시험 범위, 출판사 |
+| `data/tips.json` | Instagram 학습 팁(링크·요약·단원 태그·학년). `tools/admin-tips.html` → GAS `saveTips`로 저장 |
 | `data/_pending/` | 승인 전 검토 대기(GAS가 GitHub에 직접 씀) |
 | `gas-*.gs` | GAS 애드온. 기본 스크립트(`doPost`, `jsonResponse_`, `ghGetFile_`, `ghPutFile_`, `ocrAnswer` 등)는 **이 저장소에 없음** — Apps Script 편집기에 있음 |
 | `normalize_and_register.py` | 새 문제지 diff 한글→영문, id=파일명, manifest 등록 |
@@ -56,7 +57,8 @@
 ## 작업 규칙
 
 - **HTML 수정 시 파일 맨 위에 버전 주석을 추가**한다: `<!-- vX.Y (YYYY-MM-DD): 무엇을 왜 바꿨는지 -->`. 기존 주석은 지우지 않는다.
-- 빌드·번들러·npm 의존성을 들이지 않는다. 외부 라이브러리는 기존처럼 cdnjs(KaTeX 0.16.9)만.
+- 빌드·번들러·npm 의존성을 들이지 않는다. 외부 라이브러리는 기존처럼 cdnjs(KaTeX 0.16.9)만. 예외: 홈 "학습 팁" 탭의 Instagram 공식 `embed.js`(탭을 열 때만 로드).
+- 학습 팁은 **링크만** 저장한다. Instagram 게시물 이미지·본문을 내려받아 저장소에 넣지 않는다(저작권). 링크 형식은 `https://www.instagram.com/(p|reel)/코드/` — `gas-tips-addon.gs`, `index_mathc1.html`, `player.html`, 검증 스크립트가 같은 규칙을 쓴다.
 - 문제 텍스트를 `innerHTML`에 넣을 땐 `escapeHtml()`, 속성에는 `attrSafe()`/`escapeAttr()` — LaTeX의 `<`, `>`, `\`가 깨지는 버그가 반복됐다.
 - `TEST_MODE_UNLOCK_SOLUTIONS`(player.html)는 테스트 기간 임시 `true`. 함부로 바꾸지 말고 사용자에게 확인.
 - GAS 코드 변경은 `gas-*.gs` 파일로만 전달한다(사용자가 Apps Script 편집기에 붙여넣고 재배포). 새 `action`을 만들면 파일 상단 주석에 `doPost` 분기 코드를 적는다.

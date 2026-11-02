@@ -26,13 +26,16 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
 MANIFEST = os.path.join(DATA, "worksheets-manifest.json")
 STUDY_PLAN = os.path.join(DATA, "study-plan.json")
+TIPS = os.path.join(DATA, "tips.json")
+# gas-tips-addon.gs의 TIPS_URL_RE와 같은 규칙
+TIP_URL_RE = re.compile(r"^https://www\.instagram\.com/(p|reel)/[A-Za-z0-9_-]+/$")
 
 VALID_DIFF = {"low", "mid", "midhigh", "high", "top"}
 LEGACY_DIFF = {"최상", "상", "중상", "중", "하"}
 VALID_TYPE = {"mc", "mc_multi", "fillin", "subjective", "essay", "discussion", "game"}
 LEGACY_TYPE = {"mcq", "short"}
 # data/ 안에 있지만 문제지가 아닌 파일
-NON_WORKSHEET = {"exam-ranges.json", "publishers.json", "study-plan.json", "worksheets-manifest.json", "_index.json"}
+NON_WORKSHEET = {"exam-ranges.json", "publishers.json", "study-plan.json", "worksheets-manifest.json", "_index.json", "tips.json"}
 
 
 class Report:
@@ -211,6 +214,34 @@ def check_study_plan(rep, manifest_ids):
                 rep.err(f"{rel(STUDY_PLAN)} {d.get('date')}", f"from {t['from']} > to {t['to']}")
 
 
+def check_tips(rep):
+    if not os.path.exists(TIPS):
+        return
+    data = load_json(TIPS, rep)
+    if data is None:
+        return
+    where = rel(TIPS)
+    seen = set()
+    for i, t in enumerate(data.get("tips", [])):
+        w = f"{where} tips[{i}]"
+        if not isinstance(t, dict):
+            rep.err(w, "객체가 아님")
+            continue
+        url = t.get("url", "")
+        if not TIP_URL_RE.match(url):
+            rep.err(w, f"Instagram 게시물 링크 형식이 아님: '{url}' (https://www.instagram.com/p/코드/)")
+        if url in seen:
+            rep.err(w, "같은 게시물 중복")
+        seen.add(url)
+        if not str(t.get("title", "")).strip():
+            rep.err(w, "title(한 줄 요약) 없음")
+        bad = [g for g in t.get("grades", []) if g not in ("m0", "m1", "m2")]
+        if bad:
+            rep.err(w, f"grades 값 {bad} — m0/m1/m2만")
+        if not t.get("units"):
+            rep.warn(w, "units 태그 없음 — 풀이 화면 '관련 학습 팁'에 안 나옴")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("files", nargs="*", help="검사할 파일(없으면 전체)")
@@ -225,6 +256,8 @@ def main():
             name = os.path.basename(full)
             if name == "worksheets-manifest.json":
                 check_manifest(rep, {w: check_worksheet(w, Report()) for w in worksheet_files()})
+            elif name == "tips.json":
+                check_tips(rep)
             elif name == "study-plan.json":
                 ids = {s.get("id") for s in (load_json(MANIFEST, rep) or {}).get("sets", [])}
                 check_study_plan(rep, ids)
@@ -236,6 +269,7 @@ def main():
         worksheets = {os.path.normpath(w): check_worksheet(w, rep) for w in worksheet_files()}
         ids = check_manifest(rep, worksheets)
         check_study_plan(rep, ids)
+        check_tips(rep)
 
     for e in rep.errors:
         print("ERROR", e)
