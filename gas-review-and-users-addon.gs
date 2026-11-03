@@ -50,7 +50,7 @@ function findUserByPhone_(phone) {
   const rows = sheet.getDataRange().getValues();
   for (let i = 1; i < rows.length; i++) {
     if (normalizePhone_(rows[i][4]) === phone) {
-      return { rowIndex: i + 1, studentId: rows[i][0], name: rows[i][1], school: rows[i][2], grade: rows[i][3], phone: rows[i][4], passwordHash: rows[i][5] };
+      return { rowIndex: i + 1, studentId: rows[i][0], name: rows[i][1], school: rows[i][2], grade: rows[i][3], phone: rows[i][4], passwordHash: rows[i][5], role: String(rows[i][7] || '') === 'admin' ? 'admin' : 'student' };
     }
   }
   return null;
@@ -61,7 +61,7 @@ function findUserById_(studentId) {
   const rows = sheet.getDataRange().getValues();
   for (let i = 1; i < rows.length; i++) {
     if (String(rows[i][0]) === String(studentId)) {
-      return { rowIndex: i + 1, studentId: rows[i][0], name: rows[i][1], school: rows[i][2], grade: rows[i][3], phone: rows[i][4], passwordHash: rows[i][5] };
+      return { rowIndex: i + 1, studentId: rows[i][0], name: rows[i][1], school: rows[i][2], grade: rows[i][3], phone: rows[i][4], passwordHash: rows[i][5], role: String(rows[i][7] || '') === 'admin' ? 'admin' : 'student' };
     }
   }
   return null;
@@ -92,7 +92,7 @@ function handleRegisterUser_(payload) {
   const sheet = getUsersSheet_();
   sheet.appendRow([studentId, name, school, grade, phone, passwordHash, new Date()]);
 
-  return { status: 'ok', studentId: studentId, name: name, school: school, grade: grade };
+  return { status: 'ok', studentId: studentId, name: name, school: school, grade: grade, role: 'student' };
 }
 
 /**
@@ -110,7 +110,8 @@ function handleLoginUser_(payload) {
   if (hashPassword_(password) !== user.passwordHash) {
     return { status: 'error', message: '비밀번호가 틀렸어요.' };
   }
-  return { status: 'ok', studentId: user.studentId, name: user.name, school: user.school, grade: user.grade };
+  // role을 돌려줘야 관리자 화면(review/admin-*)이 열린다(Users 시트 H열)
+  return { status: 'ok', studentId: user.studentId, name: user.name, school: user.school, grade: user.grade, role: user.role };
 }
 
 /**
@@ -239,8 +240,9 @@ function handleListPending_() {
 
 /**
  * action: 'approveWorksheet'
- * payload: { id }
+ * payload: { id, visibility:'all'|'owner' }
  * data/_pending/<file> → data/<file>로 옮기고 manifest에 반영, pending에서는 제거.
+ * visibility가 'owner'면 manifest에 visibility/studentId를 넣어 등록한 학생에게만 보이게 한다(index·compose가 걸러냄).
  */
 function handleApproveWorksheet_(payload) {
   const token = PropertiesService.getScriptProperties().getProperty('GITHUB_TOKEN');
@@ -270,6 +272,10 @@ function handleApproveWorksheet_(payload) {
       id: entry.id, file: entry.file, category: entry.category, title: entry.title,
       unit: entry.unit, count: entry.count, group: entry.group, grade: entry.grade, source: entry.source
     };
+    if (payload.visibility === 'owner') {
+      newEntry.visibility = 'owner';
+      newEntry.studentId = entry.studentId;
+    }
     const idx = manifest.sets.findIndex(s => s.id === entry.id);
     if (idx >= 0) manifest.sets[idx] = newEntry;
     else manifest.sets.push(newEntry);

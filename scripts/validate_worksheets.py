@@ -50,7 +50,10 @@ class Report:
 
 
 def rel(path):
-    return os.path.relpath(path, ROOT).replace("\\", "/")
+    try:
+        return os.path.relpath(path, ROOT).replace("\\", "/")
+    except ValueError:   # 다른 드라이브(D:\ 등)의 파일은 상대경로를 만들 수 없다 → 절대경로로 표시
+        return os.path.abspath(path).replace("\\", "/")
 
 
 def load_json(path, rep):

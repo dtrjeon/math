@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.14 (2026-11-02): 풀이 기록의 학생 이름 버그 수정 — 기록 저장(logAttempt·updateReason·결과 저장)이 어디서도 설정되지 않는 localStorage 키(complex56_student_name)를 읽어서 항상 '학생'으로 저장되던 문제. 로그인 세션(mathapp_session)의 이름을 쓰도록 currentStudentName()으로 통일 — 홈 '이어서 풀기'가 본인 기록을 찾을 수 있게 됨 -->
 <!-- v2.13 (2026-11-02): 문제지 제목 아래 "💡 관련 학습 팁" 상자 추가 — data/tips.json에서 단원 태그(units)가 문제지 제목·단원에 들어 있고 학년(grades)이 맞는 팁을 최대 3개 보여줌. 임베드 없이 제목·선생님 메모·Instagram 원본 링크만(풀이 화면을 가볍게 유지) -->
 <!-- v2.12 (2026-11-02): AI 튜터 추가 — 문제 카드마다 "🤖 AI 튜터" 패널(힌트만 / 내 답 어디가 틀렸나요 / 자유 질문). backend action:'aiTutor'(gas-ai-agent-addon.gs)가 Claude 에이전트로 답하고, 필요하면 같은 유형 기존 문제를 찾아 링크로 추천. 정답 잠김 상태에선 힌트만 허용. 채점 결과 화면에 "🤖 AI 복습 세트 만들기" 추가 — action:'aiMakeReviewSet'이 오답 기반 변형 문제를 만들고 스키마 검사 후 검토 대기열(data/_pending)에 올림(선생님 승인 후 공개) -->
 <!-- v2.6 (2026-10-03): 주관식 채점 보정 — 정답의 LaTeX·단위(°, cm, %)·근호·분수 표기와 학생 입력("30", "2√5", "루트5", "15/2")을 같은 모양으로 맞춰 비교. 단위·기호를 안 쓴 답은 정답 처리하되 안내 문구를 보여주고 별도 목록(unitNotes, localStorage unit_notes_*)에 모음 -->
@@ -915,6 +916,15 @@
   const OCR_SPACE_KEY = 'K83219514388957';
   const STUDENT_NAME_KEY = 'complex56_student_name';
   let WORKSHEET_ID = '';
+
+  // 로그인한 학생 이름(홈 화면 기록 조회가 session.name으로 거르므로 같은 값으로 저장해야 한다)
+  function currentStudentName(){
+    try{
+      const s = JSON.parse(localStorage.getItem('mathapp_session') || 'null');
+      if(s && s.name) return s.name;
+    }catch(e){}
+    return localStorage.getItem(STUDENT_NAME_KEY) || '학생';
+  }
   let WORKSHEET_UNIT = '';
 
   const WRONG_REASONS = ['계산 실수', '개념 부족', '부호 실수', '조건 누락', '풀이 전략 오류', '시간 부족'];
@@ -937,7 +947,7 @@
     if(SHEET_WEBHOOK_URL.indexOf('PASTE_YOUR') === 0) return;
     const prob = (currentProblemsData || []).find(pp => String(pp.num) === String(n));
     const problemId = prob && prob.problemId ? prob.problemId : (WORKSHEET_ID + '#' + n);
-    const studentName = localStorage.getItem(STUDENT_NAME_KEY) || '학생';
+    const studentName = currentStudentName();
 
     const payload = { action: 'updateReason', studentName: studentName, problemId: problemId, reason: reason };
 
@@ -1034,7 +1044,7 @@
     if(SHEET_WEBHOOK_URL.indexOf('PASTE_YOUR') === 0) return;
     const prob = (currentProblemsData || []).find(pp => String(pp.num) === String(n));
     const problemId = prob && prob.problemId ? prob.problemId : (WORKSHEET_ID + '#' + n);
-    const studentName = localStorage.getItem(STUDENT_NAME_KEY) || '학생';
+    const studentName = currentStudentName();
 
     const payload = {
       action: 'logAttempt',
@@ -1586,7 +1596,7 @@
       }
     });
 
-    const studentName = localStorage.getItem(STUDENT_NAME_KEY) || '학생';
+    const studentName = currentStudentName();
     const payload = {
       studentName: studentName,
       worksheetId: WORKSHEET_ID,
@@ -1629,7 +1639,7 @@
       };
     });
 
-    const studentName = localStorage.getItem(STUDENT_NAME_KEY) || '학생';
+    const studentName = currentStudentName();
 
     fetch(SHEET_WEBHOOK_URL, {
       method: 'POST',
