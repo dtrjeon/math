@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- v2.16 (2026-11-03): 문제지·manifest fetch에 cache:'no-store' 추가 — 문제지 JSON을 고쳐 올려도 브라우저가 예전 파일을 계속 보여주던 문제(홈 화면은 v2.8에서 이미 같은 수정을 했고 플레이어만 빠져 있었음) -->
+<!-- v2.15 (2026-11-03): 넓은 그림이 있는 문제 카드가 화면 오른쪽 밖으로 밀려나던 레이아웃 버그 수정 — 2열 그리드가 1fr이라 가장 넓은 내용(그림 원본 폭) 아래로 줄어들지 못했음. minmax(0,1fr) + .pcard min-width:0으로 열 폭 고정, 한 줄로 긴 블록 수식은 그 자리에서 가로 스크롤 -->
 <!-- v2.14 (2026-11-02): 풀이 기록의 학생 이름 버그 수정 — 기록 저장(logAttempt·updateReason·결과 저장)이 어디서도 설정되지 않는 localStorage 키(complex56_student_name)를 읽어서 항상 '학생'으로 저장되던 문제. 로그인 세션(mathapp_session)의 이름을 쓰도록 currentStudentName()으로 통일 — 홈 '이어서 풀기'가 본인 기록을 찾을 수 있게 됨 -->
 <!-- v2.13 (2026-11-02): 문제지 제목 아래 "💡 관련 학습 팁" 상자 추가 — data/tips.json에서 단원 태그(units)가 문제지 제목·단원에 들어 있고 학년(grades)이 맞는 팁을 최대 3개 보여줌. 임베드 없이 제목·선생님 메모·Instagram 원본 링크만(풀이 화면을 가볍게 유지) -->
 <!-- v2.12 (2026-11-02): AI 튜터 추가 — 문제 카드마다 "🤖 AI 튜터" 패널(힌트만 / 내 답 어디가 틀렸나요 / 자유 질문). backend action:'aiTutor'(gas-ai-agent-addon.gs)가 Claude 에이전트로 답하고, 필요하면 같은 유형 기존 문제를 찾아 링크로 추천. 정답 잠김 상태에선 힌트만 허용. 채점 결과 화면에 "🤖 AI 복습 세트 만들기" 추가 — action:'aiMakeReviewSet'이 오답 기반 변형 문제를 만들고 스키마 검사 후 검토 대기열(data/_pending)에 올림(선생님 승인 후 공개) -->
@@ -268,12 +270,13 @@
     box-shadow:0 2px 10px rgba(32,36,43,0.05);
     padding:22px;
     display:grid;
-    grid-template-columns:1fr;
+    /* minmax(0,1fr): 넓은 그림·긴 수식이 있어도 열이 내용 폭만큼 늘어나 화면 밖으로 밀리지 않게 한다 */
+    grid-template-columns:minmax(0,1fr);
     gap:0;
   }
   @media (min-width:760px){
     .page-grid{
-      grid-template-columns:1fr 1fr;
+      grid-template-columns:minmax(0,1fr) minmax(0,1fr);
       column-gap:32px;
       padding:32px;
     }
@@ -283,7 +286,10 @@
   .pcard{
     padding:22px 0;
     border-bottom:1px solid var(--rule);
+    min-width:0;
   }
+  /* 한 줄로 긴 블록 수식은 카드를 넓히지 않고 그 자리에서 가로 스크롤 */
+  .pquestion .katex-display, .solution-body .katex-display{ overflow-x:auto; overflow-y:hidden; }
   .page-grid > .pcard:nth-last-child(1),
   .page-grid > .pcard:nth-last-child(2){
     border-bottom:none;
@@ -521,6 +527,8 @@
     font-size:14px;
     line-height:1.7;
     white-space:pre-line;
+    overflow-wrap:anywhere;
+    overflow-x:auto;   /* 줄바꿈이 안 되는 긴 수식은 카드 안에서 가로 스크롤 */
   }
   .solution-body.hidden-sol{
     color:transparent;
@@ -3010,7 +3018,7 @@
         // (compose.html이 이미 쓰고 있는 방식과 통일)
         let filePath = setId + '.json'; // manifest에서 못 찾으면 기존 방식으로 폴백
         try{
-          const manifestRes = await fetch('../data/worksheets-manifest.json');
+          const manifestRes = await fetch('../data/worksheets-manifest.json', { cache: 'no-store' });
           if(manifestRes.ok){
             const manifest = await manifestRes.json();
             const entry = manifest.sets.find(s => s.id === setId);
@@ -3019,7 +3027,7 @@
         } catch(manifestErr){
           // manifest를 못 읽어도 기존 방식(평평한 구조)으로 계속 시도
         }
-        const res = await fetch('../data/' + filePath);
+        const res = await fetch('../data/' + filePath, { cache: 'no-store' });
         if(!res.ok) throw new Error(`문제 파일 요청 실패 (status ${res.status}): ../data/${filePath}`);
         data = await res.json();
       } else {

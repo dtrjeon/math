@@ -284,7 +284,7 @@
       "diff": "mid",
       "points": 3,
       "type": "mc",
-      "question": "\\(\\angle\\mathrm{B}=90^\\circ\\) 인 직각삼각형 \\(\\mathrm{ABC}\\) 가 있다. 점 \\(\\mathrm{B}\\) 에서 선분 \\(\\mathrm{AC}\\) 에 내린 수선의 발을 \\(\\mathrm{H}\\) 라 하고, 선분 \\(\\mathrm{AB}\\), 선분 \\(\\mathrm{BC}\\) 의 중점을 각각 \\(\\mathrm{M},\\ \\mathrm{N}\\) 이라 하자. 삼각형 \\(\\mathrm{ABC}\\) 의 넓이가 \\(10\\) 이고 \\(\\overline{\\mathrm{AC}}=2\\sqrt{14}\\) 일 때, \\(\\overline{\\mathrm{MH}}^3+\\overline{\\mathrm{NH}}^3\\) 의 값은?\n\n[그림] 직각삼각형 ABC (A 위, B 왼쪽 아래 직각, C 오른쪽), 선분 BH, MH, NH",
+      "question": "\\(\\angle\\mathrm{B}=90^\\circ\\) 인 직각삼각형 \\(\\mathrm{ABC}\\) 가 있다. 점 \\(\\mathrm{B}\\) 에서 선분 \\(\\mathrm{AC}\\) 에 내린 수선의 발을 \\(\\mathrm{H}\\) 라 하고, 선분 \\(\\mathrm{AB}\\), 선분 \\(\\mathrm{BC}\\) 의 중점을 각각 \\(\\mathrm{M},\\ \\mathrm{N}\\) 이라 하자. 삼각형 \\(\\mathrm{ABC}\\) 의 넓이가 \\(10\\) 이고 \\(\\overline{\\mathrm{AC}}=2\\sqrt{14}\\) 일 때, \\(\\overline{\\mathrm{MH}}^3+\\overline{\\mathrm{NH}}^3\\) 의 값은?",
       "choices": [
         "\\(16\\sqrt{6}\\)",
         "\\(17\\sqrt{6}\\)",
@@ -493,7 +493,7 @@
       "diff": "high",
       "points": 4,
       "type": "mc",
-      "question": "그림과 같이 한 변의 길이가 \\(2\\) 인 정사각형 \\(\\mathrm{ABCD}\\) 에서 선분 \\(\\mathrm{BC}\\) 의 연장선 위에 \\(\\overline{\\mathrm{BF}}=\\overline{\\mathrm{CG}}\\) 가 되도록 두 점 \\(\\mathrm{F},\\ \\mathrm{G}\\) 를 잡는다. 선분 \\(\\mathrm{FG}\\) 를 한 변으로 하고 점 \\(\\mathrm{E}\\) 를 꼭짓점으로 갖는 정삼각형 \\(\\mathrm{EFG}\\) 가 선분 \\(\\mathrm{AD}\\) 와 두 점에서 만난다.\n선분 \\(\\mathrm{EF}\\) 가 선분 \\(\\mathrm{AD}\\), 선분 \\(\\mathrm{AB}\\) 와 만나는 점을 각각 \\(\\mathrm{H},\\ \\mathrm{I}\\) 라 하고, 선분 \\(\\mathrm{EG}\\) 가 선분 \\(\\mathrm{AD}\\), 선분 \\(\\mathrm{CD}\\) 와 만나는 점을 각각 \\(\\mathrm{J},\\ \\mathrm{K}\\) 라 하자.\n삼각형 \\(\\mathrm{EHJ}\\) 의 넓이와 삼각형 \\(\\mathrm{AIH}\\) 의 넓이의 합의 최솟값은? (단, \\(\\dfrac{2\\sqrt{3}}{3}-1<\\overline{\\mathrm{BF}}<\\dfrac{2\\sqrt{3}}{3}\\))\n\n[그림] 정사각형 ABCD와 정삼각형 EFG (F, B, C, G 순서로 한 직선 위), 삼각형 EHJ와 삼각형 AIH 색칠",
+      "question": "그림과 같이 한 변의 길이가 \\(2\\) 인 정사각형 \\(\\mathrm{ABCD}\\) 에서 선분 \\(\\mathrm{BC}\\) 의 연장선 위에 \\(\\overline{\\mathrm{BF}}=\\overline{\\mathrm{CG}}\\) 가 되도록 두 점 \\(\\mathrm{F},\\ \\mathrm{G}\\) 를 잡는다. 선분 \\(\\mathrm{FG}\\) 를 한 변으로 하고 점 \\(\\mathrm{E}\\) 를 꼭짓점으로 갖는 정삼각형 \\(\\mathrm{EFG}\\) 가 선분 \\(\\mathrm{AD}\\) 와 두 점에서 만난다.\n선분 \\(\\mathrm{EF}\\) 가 선분 \\(\\mathrm{AD}\\), 선분 \\(\\mathrm{AB}\\) 와 만나는 점을 각각 \\(\\mathrm{H},\\ \\mathrm{I}\\) 라 하고, 선분 \\(\\mathrm{EG}\\) 가 선분 \\(\\mathrm{AD}\\), 선분 \\(\\mathrm{CD}\\) 와 만나는 점을 각각 \\(\\mathrm{J},\\ \\mathrm{K}\\) 라 하자.\n삼각형 \\(\\mathrm{EHJ}\\) 의 넓이와 삼각형 \\(\\mathrm{AIH}\\) 의 넓이의 합의 최솟값은? (단, \\(\\dfrac{2\\sqrt{3}}{3}-1<\\overline{\\mathrm{BF}}<\\dfrac{2\\sqrt{3}}{3}\\))",
       "choices": [
         "\\(\\dfrac{\\sqrt{3}}{6}\\)",
         "\\(\\dfrac{\\sqrt{3}}{3}\\)",
@@ -753,7 +753,7 @@
       "diff": "high",
       "points": 4,
       "type": "fillin",
-      "question": "그림과 같이 직선 \\(y=k\\) 가 이차함수 \\(f(x)=x^2-2x+2\\) 의 그래프와 서로 다른 두 점 \\(\\mathrm{A},\\ \\mathrm{B}\\) 에서 만나고, 직선 \\(y=k\\) 가 이차함수 \\(g(x)=-x^2+8x-6\\) 의 그래프와 서로 다른 두 점 \\(\\mathrm{C},\\ \\mathrm{D}\\) 에서 만난다. \\(\\overline{\\mathrm{AB}}=2\\overline{\\mathrm{CD}}\\) 를 만족시키는 실수 \\(k\\) 에 대하여 \\(10k\\) 의 값을 구하시오. (단, \\(1<k<10\\))\n\n[그림] 직선 \\(y=k\\) 위에 왼쪽부터 A, C, B, D 순서",
+      "question": "그림과 같이 직선 \\(y=k\\) 가 이차함수 \\(f(x)=x^2-2x+2\\) 의 그래프와 서로 다른 두 점 \\(\\mathrm{A},\\ \\mathrm{B}\\) 에서 만나고, 직선 \\(y=k\\) 가 이차함수 \\(g(x)=-x^2+8x-6\\) 의 그래프와 서로 다른 두 점 \\(\\mathrm{C},\\ \\mathrm{D}\\) 에서 만난다. \\(\\overline{\\mathrm{AB}}=2\\overline{\\mathrm{CD}}\\) 를 만족시키는 실수 \\(k\\) 에 대하여 \\(10k\\) 의 값을 구하시오. (단, \\(1<k<10\\))",
       "answer": "82",
       "solution": [
         "[출제의도] 이차함수 문제 해결하기",

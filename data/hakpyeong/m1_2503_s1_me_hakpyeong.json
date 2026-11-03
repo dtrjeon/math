@@ -74,7 +74,7 @@
       "diff": "mid",
       "points": 3,
       "type": "mc",
-      "question": "그림과 같이 \\(\\angle B=90^\\circ\\) 인 직각삼각형 \\(\\mathrm{ABC}\\) 에서 \\(\\overline{\\mathrm{AB}}=3\\), \\(\\overline{\\mathrm{BC}}=\\sqrt{7}\\) 일 때, \\(\\cos A\\) 의 값은?\n\n[그림] 직각삼각형 ABC: 밑변 \\(\\overline{\\mathrm{AB}}=3\\), 높이 \\(\\overline{\\mathrm{BC}}=\\sqrt{7}\\), \\(\\angle B\\) 가 직각",
+      "question": "그림과 같이 \\(\\angle B=90^\\circ\\) 인 직각삼각형 \\(\\mathrm{ABC}\\) 에서 \\(\\overline{\\mathrm{AB}}=3\\), \\(\\overline{\\mathrm{BC}}=\\sqrt{7}\\) 일 때, \\(\\cos A\\) 의 값은?",
       "choices": [
         "\\(\\dfrac{3}{8}\\)",
         "\\(\\dfrac{1}{2}\\)",
@@ -99,7 +99,7 @@
       "diff": "mid",
       "points": 3,
       "type": "mc",
-      "question": "어느 학급 학생들의 키를 조사하여 나타낸 도수분포다각형이 그림과 같다.\n\n[그림] 도수분포다각형 (계급 크기 5cm). 각 계급의 도수:\n\n키(cm) | 145~150 | 150~155 | 155~160 | 160~165 | 165~170 | 170~175 | 175~180\n--- | --- | --- | --- | --- | --- | --- | ---\n학생 수(명) | 2 | 3 | 5 | 7 | 6 | 5 | 2\n\n이 학생들 중 키가 \\(160\\,\\mathrm{cm}\\) 이상인 학생의 수는?",
+      "question": "어느 학급 학생들의 키를 조사하여 나타낸 도수분포다각형이 그림과 같다.\n\n키(cm) | 145~150 | 150~155 | 155~160 | 160~165 | 165~170 | 170~175 | 175~180\n학생 수(명) | 2 | 3 | 5 | 7 | 6 | 5 | 2\n\n이 학생들 중 키가 \\(160\\,\\mathrm{cm}\\) 이상인 학생의 수는?",
       "choices": [
         "\\(16\\)",
         "\\(18\\)",
@@ -156,7 +156,7 @@
       "diff": "mid",
       "points": 3,
       "type": "mc",
-      "question": "세 모서리의 길이가 \\(x-1,\\ x+1,\\ 2x+1\\) 인 직육면체의 겉넓이는? (단, \\(x>1\\))\n\n[그림] 가로 \\(x-1\\), 세로 \\(x+1\\), 높이 \\(2x+1\\) 인 직육면체",
+      "question": "세 모서리의 길이가 \\(x-1,\\ x+1,\\ 2x+1\\) 인 직육면체의 겉넓이는? (단, \\(x>1\\))",
       "choices": [
         "\\(8x^2+4x-2\\)",
         "\\(8x^2+6x+2\\)",
@@ -179,7 +179,7 @@
       "diff": "mid",
       "points": 3,
       "type": "mc",
-      "question": "그림과 같이 \\(\\overline{\\mathrm{BC}}=12\\) 인 삼각형 \\(\\mathrm{ABC}\\) 의 무게중심을 \\(\\mathrm{G}\\) 라 하자. 점 \\(\\mathrm{G}\\) 를 지나고 선분 \\(\\mathrm{BC}\\) 와 평행한 직선이 선분 \\(\\mathrm{AC}\\) 와 만나는 점을 \\(\\mathrm{D}\\) 라 할 때, 선분 \\(\\mathrm{GD}\\) 의 길이는?\n\n[그림] 삼각형 ABC, 밑변 \\(\\overline{\\mathrm{BC}}=12\\), 무게중심 G에서 BC와 평행하게 그은 선분 GD (D는 AC 위)",
+      "question": "그림과 같이 \\(\\overline{\\mathrm{BC}}=12\\) 인 삼각형 \\(\\mathrm{ABC}\\) 의 무게중심을 \\(\\mathrm{G}\\) 라 하자. 점 \\(\\mathrm{G}\\) 를 지나고 선분 \\(\\mathrm{BC}\\) 와 평행한 직선이 선분 \\(\\mathrm{AC}\\) 와 만나는 점을 \\(\\mathrm{D}\\) 라 할 때, 선분 \\(\\mathrm{GD}\\) 의 길이는?",
       "choices": [
         "\\(\\dfrac{7}{2}\\)",
         "\\(4\\)",
@@ -269,7 +269,7 @@
       "diff": "mid",
       "points": 3,
       "type": "mc",
-      "question": "그림과 같이 \\(\\angle B=30^\\circ\\), \\(\\angle C=90^\\circ\\) 인 직각삼각형 \\(\\mathrm{ABC}\\) 가 있다. 선분 \\(\\mathrm{BC}\\) 위의 점 \\(\\mathrm{D}\\) 와 선분 \\(\\mathrm{AC}\\) 위의 점 \\(\\mathrm{E}\\) 에 대하여 \\(\\overline{\\mathrm{BD}}=12\\sqrt{3}\\), \\(\\overline{\\mathrm{CE}}=15\\), \\(\\angle \\mathrm{CDE}=60^\\circ\\) 일 때, 선분 \\(\\mathrm{AE}\\) 의 길이는?\n\n[그림] 직각삼각형 ABC (∠B = 30°, ∠C = 90°), BC 위의 점 D, AC 위의 점 E, \\(\\overline{\\mathrm{BD}}=12\\sqrt3\\), \\(\\overline{\\mathrm{CE}}=15\\), ∠CDE = 60°",
+      "question": "그림과 같이 \\(\\angle B=30^\\circ\\), \\(\\angle C=90^\\circ\\) 인 직각삼각형 \\(\\mathrm{ABC}\\) 가 있다. 선분 \\(\\mathrm{BC}\\) 위의 점 \\(\\mathrm{D}\\) 와 선분 \\(\\mathrm{AC}\\) 위의 점 \\(\\mathrm{E}\\) 에 대하여 \\(\\overline{\\mathrm{BD}}=12\\sqrt{3}\\), \\(\\overline{\\mathrm{CE}}=15\\), \\(\\angle \\mathrm{CDE}=60^\\circ\\) 일 때, 선분 \\(\\mathrm{AE}\\) 의 길이는?",
       "choices": [
         "\\(\\dfrac{\\sqrt{3}}{2}\\)",
         "\\(1\\)",
@@ -299,7 +299,7 @@
       "diff": "mid",
       "points": 3,
       "type": "mc",
-      "question": "그림과 같이 \\(\\overline{\\mathrm{AB}}=13\\), \\(\\overline{\\mathrm{BC}}=11\\), \\(\\angle \\mathrm{CBA}<90^\\circ\\) 인 평행사변형 \\(\\mathrm{ABCD}\\) 의 두 대각선이 만나는 점을 \\(\\mathrm{E}\\) 라 하자. 삼각형 \\(\\mathrm{BCE}\\) 의 넓이가 \\(33\\) 일 때, 선분 \\(\\mathrm{BD}\\) 의 길이는?\n\n[그림] 평행사변형 ABCD (\\(\\overline{\\mathrm{AB}}=13\\), \\(\\overline{\\mathrm{BC}}=11\\)), 대각선의 교점 E, 삼각형 BCE 색칠",
+      "question": "그림과 같이 \\(\\overline{\\mathrm{AB}}=13\\), \\(\\overline{\\mathrm{BC}}=11\\), \\(\\angle \\mathrm{CBA}<90^\\circ\\) 인 평행사변형 \\(\\mathrm{ABCD}\\) 의 두 대각선이 만나는 점을 \\(\\mathrm{E}\\) 라 하자. 삼각형 \\(\\mathrm{BCE}\\) 의 넓이가 \\(33\\) 일 때, 선분 \\(\\mathrm{BD}\\) 의 길이는?",
       "choices": [
         "\\(16\\)",
         "\\(17\\)",
@@ -339,7 +339,7 @@
       "diff": "mid",
       "points": 3,
       "type": "mc",
-      "question": "[그림 1]과 같이 밑면의 반지름의 길이가 \\(4\\,\\mathrm{cm}\\) 인 원기둥 모양의 그릇에 아랫면에서부터 \\(x\\,\\mathrm{cm}\\) 높이까지 물이 채워져 있다. 이 그릇 안에 반지름의 길이가 \\(3\\,\\mathrm{cm}\\) 인 구 모양의 쇠구슬을 넣었더니 [그림 2]와 같이 쇠구슬이 물에 완전히 잠기고, 그릇의 아랫면에서부터 수면까지의 높이가 \\(8\\,\\mathrm{cm}\\) 가 되었다. \\(x\\) 의 값은? (단, 그릇의 높이는 \\(8\\,\\mathrm{cm}\\) 보다 크고, 그릇의 두께는 생각하지 않는다.)\n\n[그림 1] 반지름 4cm 원기둥, 물 높이 \\(x\\) cm → [그림 2] 반지름 3cm 쇠구슬을 넣은 뒤 물 높이 8cm",
+      "question": "[그림 1]과 같이 밑면의 반지름의 길이가 \\(4\\,\\mathrm{cm}\\) 인 원기둥 모양의 그릇에 아랫면에서부터 \\(x\\,\\mathrm{cm}\\) 높이까지 물이 채워져 있다. 이 그릇 안에 반지름의 길이가 \\(3\\,\\mathrm{cm}\\) 인 구 모양의 쇠구슬을 넣었더니 [그림 2]와 같이 쇠구슬이 물에 완전히 잠기고, 그릇의 아랫면에서부터 수면까지의 높이가 \\(8\\,\\mathrm{cm}\\) 가 되었다. \\(x\\) 의 값은? (단, 그릇의 높이는 \\(8\\,\\mathrm{cm}\\) 보다 크고, 그릇의 두께는 생각하지 않는다.)",
       "choices": [
         "\\(\\dfrac{23}{4}\\)",
         "\\(\\dfrac{25}{4}\\)",
@@ -369,7 +369,7 @@
       "diff": "high",
       "points": 4,
       "type": "mc",
-      "question": "그림과 같이 원 \\(O\\) 에 내접하는 사각형 \\(\\mathrm{ABCD}\\) 가 있다. 이 사각형의 두 대각선이 서로 수직으로 만나고, 원 \\(O\\) 에서 호 \\(\\mathrm{AB}\\) 의 길이와 호 \\(\\mathrm{CD}\\) 의 길이의 비가 \\(3:2\\) 일 때, 각 \\(\\mathrm{ACB}\\) 의 크기는? (단, 호 \\(\\mathrm{AB}\\) 에 대한 중심각의 크기와 호 \\(\\mathrm{CD}\\) 에 대한 중심각의 크기는 모두 \\(180^\\circ\\) 보다 작다.)\n\n[그림] 원 O에 내접하는 사각형 ABCD, 대각선 AC ⊥ BD",
+      "question": "그림과 같이 원 \\(O\\) 에 내접하는 사각형 \\(\\mathrm{ABCD}\\) 가 있다. 이 사각형의 두 대각선이 서로 수직으로 만나고, 원 \\(O\\) 에서 호 \\(\\mathrm{AB}\\) 의 길이와 호 \\(\\mathrm{CD}\\) 의 길이의 비가 \\(3:2\\) 일 때, 각 \\(\\mathrm{ACB}\\) 의 크기는? (단, 호 \\(\\mathrm{AB}\\) 에 대한 중심각의 크기와 호 \\(\\mathrm{CD}\\) 에 대한 중심각의 크기는 모두 \\(180^\\circ\\) 보다 작다.)",
       "choices": [
         "\\(51^\\circ\\)",
         "\\(54^\\circ\\)",
@@ -485,7 +485,7 @@
       "diff": "high",
       "points": 4,
       "type": "mc",
-      "question": "그림과 같이 삼각형 \\(\\mathrm{ABC}\\) 와 이 삼각형의 외접원이 있다. 각 \\(\\mathrm{BAC}\\) 의 이등분선과 이 원이 만나는 점 중 \\(\\mathrm{A}\\) 가 아닌 점을 \\(\\mathrm{D}\\) 라 하고, 직선 \\(\\mathrm{AD}\\) 가 선분 \\(\\mathrm{BC}\\) 와 만나는 점을 \\(\\mathrm{E}\\) 라 하자. \\(\\overline{\\mathrm{AB}}=3\\), \\(\\overline{\\mathrm{AC}}=5\\), \\(\\overline{\\mathrm{AD}}=6\\) 일 때, 선분 \\(\\mathrm{DE}\\) 의 길이는?\n\n[그림] 삼각형 ABC와 외접원, ∠BAC의 이등분선이 BC와 E에서, 원과 D에서 만남",
+      "question": "그림과 같이 삼각형 \\(\\mathrm{ABC}\\) 와 이 삼각형의 외접원이 있다. 각 \\(\\mathrm{BAC}\\) 의 이등분선과 이 원이 만나는 점 중 \\(\\mathrm{A}\\) 가 아닌 점을 \\(\\mathrm{D}\\) 라 하고, 직선 \\(\\mathrm{AD}\\) 가 선분 \\(\\mathrm{BC}\\) 와 만나는 점을 \\(\\mathrm{E}\\) 라 하자. \\(\\overline{\\mathrm{AB}}=3\\), \\(\\overline{\\mathrm{AC}}=5\\), \\(\\overline{\\mathrm{AD}}=6\\) 일 때, 선분 \\(\\mathrm{DE}\\) 의 길이는?",
       "choices": [
         "\\(\\dfrac{19}{6}\\)",
         "\\(\\dfrac{10}{3}\\)",
@@ -518,7 +518,7 @@
       "diff": "high",
       "points": 4,
       "type": "mc",
-      "question": "그림과 같이 평행사변형 \\(\\mathrm{ABCD}\\) 에서 각 \\(\\mathrm{B}\\) 의 이등분선이 선분 \\(\\mathrm{AD}\\) 와 만나는 점을 \\(\\mathrm{E}\\) 라 하자. 선분 \\(\\mathrm{ED}\\) 위의 한 점 \\(\\mathrm{F}\\) 에 대하여 \\(\\angle \\mathrm{FDC}=2\\times\\angle \\mathrm{DCF}\\) 이다. 직선 \\(\\mathrm{BE}\\) 와 직선 \\(\\mathrm{CF}\\) 의 교점을 \\(\\mathrm{G}\\) 라 할 때, \\(\\overline{\\mathrm{EG}}=3\\), \\(\\overline{\\mathrm{FG}}=\\overline{\\mathrm{FD}}=2\\) 이다. 선분 \\(\\mathrm{EF}\\) 의 길이는?\n\n[그림] 평행사변형 ABCD, ∠B의 이등분선 BE를 연장한 직선과 CF를 연장한 직선이 AD 위쪽의 점 G에서 만남. \\(\\overline{\\mathrm{EG}}=3\\), \\(\\overline{\\mathrm{FG}}=2\\), \\(\\overline{\\mathrm{FD}}=2\\)",
+      "question": "그림과 같이 평행사변형 \\(\\mathrm{ABCD}\\) 에서 각 \\(\\mathrm{B}\\) 의 이등분선이 선분 \\(\\mathrm{AD}\\) 와 만나는 점을 \\(\\mathrm{E}\\) 라 하자. 선분 \\(\\mathrm{ED}\\) 위의 한 점 \\(\\mathrm{F}\\) 에 대하여 \\(\\angle \\mathrm{FDC}=2\\times\\angle \\mathrm{DCF}\\) 이다. 직선 \\(\\mathrm{BE}\\) 와 직선 \\(\\mathrm{CF}\\) 의 교점을 \\(\\mathrm{G}\\) 라 할 때, \\(\\overline{\\mathrm{EG}}=3\\), \\(\\overline{\\mathrm{FG}}=\\overline{\\mathrm{FD}}=2\\) 이다. 선분 \\(\\mathrm{EF}\\) 의 길이는?",
       "choices": [
         "\\(3\\)",
         "\\(\\sqrt{10}\\)",
@@ -569,7 +569,7 @@
       "diff": "high",
       "points": 4,
       "type": "mc",
-      "question": "그림과 같이 반비례 관계 \\(y=\\dfrac{a}{x}\\ (a>0)\\) 의 그래프 위에 \\(\\overline{\\mathrm{AB}}=4\\) 를 만족시키는 두 점 \\(\\mathrm{A},\\ \\mathrm{B}\\) 가 있다. 점 \\(\\mathrm{A}\\) 에서 \\(x\\)축에 내린 수선의 발을 \\(\\mathrm{C}\\) 라 할 때, \\(\\overline{\\mathrm{BC}}=3\\), \\(\\angle \\mathrm{ABC}=90^\\circ\\) 이다. 상수 \\(a\\) 의 값은? (단, 두 점 \\(\\mathrm{A},\\ \\mathrm{B}\\) 는 제1사분면 위의 점이다.)\n\n[그림] 곡선 \\(y=\\frac{a}{x}\\) 위의 A(위쪽), B(오른쪽 아래). A에서 \\(x\\)축에 내린 수선의 발 C. \\(\\overline{\\mathrm{AB}}=4\\), \\(\\overline{\\mathrm{BC}}=3\\), ∠ABC = 90°",
+      "question": "그림과 같이 반비례 관계 \\(y=\\dfrac{a}{x}\\ (a>0)\\) 의 그래프 위에 \\(\\overline{\\mathrm{AB}}=4\\) 를 만족시키는 두 점 \\(\\mathrm{A},\\ \\mathrm{B}\\) 가 있다. 점 \\(\\mathrm{A}\\) 에서 \\(x\\)축에 내린 수선의 발을 \\(\\mathrm{C}\\) 라 할 때, \\(\\overline{\\mathrm{BC}}=3\\), \\(\\angle \\mathrm{ABC}=90^\\circ\\) 이다. 상수 \\(a\\) 의 값은? (단, 두 점 \\(\\mathrm{A},\\ \\mathrm{B}\\) 는 제1사분면 위의 점이다.)",
       "choices": [
         "\\(\\dfrac{27}{4}\\)",
         "\\(\\dfrac{29}{4}\\)",
@@ -608,7 +608,7 @@
       "diff": "high",
       "points": 4,
       "type": "mc",
-      "question": "그림과 같이 \\(y\\)좌표가 서로 같고 제1사분면 위에 있는 두 점 \\(\\mathrm{A},\\ \\mathrm{B}\\) 를 지나는 이차함수 \\(y=-ax^2+8ax\\ (a>0)\\) 의 그래프가 있다. 이 이차함수의 그래프의 꼭짓점을 \\(\\mathrm{C}\\) 라 하고, 점 \\(\\mathrm{C}\\) 에서 \\(x\\)축에 내린 수선의 발을 \\(\\mathrm{D}\\) 라 하자. 점 \\(\\mathrm{D}\\) 를 지나고 선분 \\(\\mathrm{BC}\\) 와 평행한 직선이 이 이차함수의 그래프와 만나는 점 중 제4사분면 위에 있는 점을 \\(\\mathrm{E}\\) 라 할 때, 삼각형 \\(\\mathrm{CAB}\\) 의 넓이와 삼각형 \\(\\mathrm{CEB}\\) 의 넓이의 비는 \\(2:5\\) 이다. 삼각형 \\(\\mathrm{AOD}\\) 의 넓이가 \\(12\\) 일 때, 상수 \\(a\\) 의 값은? (단, \\(\\mathrm{O}\\) 는 원점이고, 점 \\(\\mathrm{A}\\) 의 \\(x\\)좌표는 점 \\(\\mathrm{B}\\) 의 \\(x\\)좌표보다 작다.)\n\n[그림] 포물선 \\(y=-ax^2+8ax\\), 꼭짓점 C, C에서 내린 수선의 발 D, 선분 AB는 \\(x\\)축과 평행, D를 지나 BC와 평행한 직선이 포물선과 제4사분면의 E에서 만남, 삼각형 AOD 색칠",
+      "question": "그림과 같이 \\(y\\)좌표가 서로 같고 제1사분면 위에 있는 두 점 \\(\\mathrm{A},\\ \\mathrm{B}\\) 를 지나는 이차함수 \\(y=-ax^2+8ax\\ (a>0)\\) 의 그래프가 있다. 이 이차함수의 그래프의 꼭짓점을 \\(\\mathrm{C}\\) 라 하고, 점 \\(\\mathrm{C}\\) 에서 \\(x\\)축에 내린 수선의 발을 \\(\\mathrm{D}\\) 라 하자. 점 \\(\\mathrm{D}\\) 를 지나고 선분 \\(\\mathrm{BC}\\) 와 평행한 직선이 이 이차함수의 그래프와 만나는 점 중 제4사분면 위에 있는 점을 \\(\\mathrm{E}\\) 라 할 때, 삼각형 \\(\\mathrm{CAB}\\) 의 넓이와 삼각형 \\(\\mathrm{CEB}\\) 의 넓이의 비는 \\(2:5\\) 이다. 삼각형 \\(\\mathrm{AOD}\\) 의 넓이가 \\(12\\) 일 때, 상수 \\(a\\) 의 값은? (단, \\(\\mathrm{O}\\) 는 원점이고, 점 \\(\\mathrm{A}\\) 의 \\(x\\)좌표는 점 \\(\\mathrm{B}\\) 의 \\(x\\)좌표보다 작다.)",
       "choices": [
         "\\(\\dfrac{15}{32}\\)",
         "\\(\\dfrac{17}{32}\\)",
@@ -650,7 +650,7 @@
       "diff": "top",
       "points": 4,
       "type": "mc",
-      "question": "그림과 같이 \\(\\overline{\\mathrm{AB}}=30\\), \\(\\overline{\\mathrm{BC}}=45\\), \\(\\angle \\mathrm{CBA}<90^\\circ\\) 인 평행사변형 \\(\\mathrm{ABCD}\\) 가 있다. 각 \\(\\mathrm{C}\\) 의 이등분선과 직선 \\(\\mathrm{AB}\\) 가 만나는 점을 \\(\\mathrm{E}\\) 라 하고, 직선 \\(\\mathrm{CE}\\) 가 선분 \\(\\mathrm{BD}\\) 와 만나는 점을 \\(\\mathrm{F}\\) 라 하자. 선분 \\(\\mathrm{CD}\\) 위의 \\(\\overline{\\mathrm{DG}}=10\\) 인 점 \\(\\mathrm{G}\\) 에 대하여 직선 \\(\\mathrm{EG}\\) 가 선분 \\(\\mathrm{BD}\\) 와 만나는 점을 \\(\\mathrm{H}\\) 라 하자. 삼각형 \\(\\mathrm{DHG}\\) 의 넓이가 \\(35\\) 일 때, 삼각형 \\(\\mathrm{EFH}\\) 의 넓이는?\n\n[그림] 평행사변형 ABCD (\\(\\overline{\\mathrm{AB}}=30\\), \\(\\overline{\\mathrm{BC}}=45\\)), ∠C의 이등분선이 BA의 연장선과 E에서 만남, BD 위의 F·H, CD 위의 G (\\(\\overline{\\mathrm{DG}}=10\\)), 삼각형 DHG 색칠",
+      "question": "그림과 같이 \\(\\overline{\\mathrm{AB}}=30\\), \\(\\overline{\\mathrm{BC}}=45\\), \\(\\angle \\mathrm{CBA}<90^\\circ\\) 인 평행사변형 \\(\\mathrm{ABCD}\\) 가 있다. 각 \\(\\mathrm{C}\\) 의 이등분선과 직선 \\(\\mathrm{AB}\\) 가 만나는 점을 \\(\\mathrm{E}\\) 라 하고, 직선 \\(\\mathrm{CE}\\) 가 선분 \\(\\mathrm{BD}\\) 와 만나는 점을 \\(\\mathrm{F}\\) 라 하자. 선분 \\(\\mathrm{CD}\\) 위의 \\(\\overline{\\mathrm{DG}}=10\\) 인 점 \\(\\mathrm{G}\\) 에 대하여 직선 \\(\\mathrm{EG}\\) 가 선분 \\(\\mathrm{BD}\\) 와 만나는 점을 \\(\\mathrm{H}\\) 라 하자. 삼각형 \\(\\mathrm{DHG}\\) 의 넓이가 \\(35\\) 일 때, 삼각형 \\(\\mathrm{EFH}\\) 의 넓이는?",
       "choices": [
         "\\(161\\)",
         "\\(168\\)",
@@ -769,7 +769,7 @@
       "diff": "high",
       "points": 4,
       "type": "fillin",
-      "question": "세 수 \\(-\\dfrac{3}{2},\\ -\\dfrac{1}{2},\\ \\dfrac{4}{3}\\) 가 하나씩 적혀 있는 세 장의 카드가 있다. 세 장의 카드 중에서 카드를 한 장씩 세 번 뽑을 때, 뽑힌 카드에 적힌 수를 차례로 \\(a,\\ b,\\ c\\) 라 하자. \\(12\\times\\dfrac{b-c}{a}\\) 의 값으로 가능한 가장 큰 값을 구하시오. (단, 뽑은 카드는 다시 뽑지 않는다.)\n\n[그림] 카드 세 장: \\(-\\frac{3}{2}\\), \\(-\\frac{1}{2}\\), \\(\\frac{4}{3}\\)",
+      "question": "세 수 \\(-\\dfrac{3}{2},\\ -\\dfrac{1}{2},\\ \\dfrac{4}{3}\\) 가 하나씩 적혀 있는 세 장의 카드가 있다. 세 장의 카드 중에서 카드를 한 장씩 세 번 뽑을 때, 뽑힌 카드에 적힌 수를 차례로 \\(a,\\ b,\\ c\\) 라 하자. \\(12\\times\\dfrac{b-c}{a}\\) 의 값으로 가능한 가장 큰 값을 구하시오. (단, 뽑은 카드는 다시 뽑지 않는다.)",
       "answer": "68",
       "solution": [
         "[출제의도] 정수와 유리수의 사칙계산을 이용하여 식의 값으로 가능한 가장 큰 값을 추론한다.",
@@ -793,7 +793,7 @@
       "diff": "high",
       "points": 4,
       "type": "fillin",
-      "question": "그림과 같이 \\(\\overline{\\mathrm{AC}}=\\overline{\\mathrm{BC}}\\) 인 예각삼각형 \\(\\mathrm{ABC}\\) 의 외심을 \\(\\mathrm{O}\\) 라 할 때, \\(\\angle \\mathrm{BAO}=28^\\circ\\) 이다. 선분 \\(\\mathrm{BC}\\) 의 연장선 위에 \\(\\angle \\mathrm{ADC}=40^\\circ\\) 가 되도록 점 \\(\\mathrm{D}\\) 를 잡는다. 삼각형 \\(\\mathrm{ACD}\\) 의 내심을 \\(\\mathrm{I}\\) 라 할 때, \\(\\angle \\mathrm{OAI}=x^\\circ\\) 이다. \\(x\\) 의 값을 구하시오. (단, \\(\\overline{\\mathrm{BD}}>\\overline{\\mathrm{CD}}\\))\n\n[그림] 삼각형 ABC와 외심 O (∠BAO = 28°), BC의 연장선 위의 D (∠ADC = 40°), 삼각형 ACD의 내심 I",
+      "question": "그림과 같이 \\(\\overline{\\mathrm{AC}}=\\overline{\\mathrm{BC}}\\) 인 예각삼각형 \\(\\mathrm{ABC}\\) 의 외심을 \\(\\mathrm{O}\\) 라 할 때, \\(\\angle \\mathrm{BAO}=28^\\circ\\) 이다. 선분 \\(\\mathrm{BC}\\) 의 연장선 위에 \\(\\angle \\mathrm{ADC}=40^\\circ\\) 가 되도록 점 \\(\\mathrm{D}\\) 를 잡는다. 삼각형 \\(\\mathrm{ACD}\\) 의 내심을 \\(\\mathrm{I}\\) 라 할 때, \\(\\angle \\mathrm{OAI}=x^\\circ\\) 이다. \\(x\\) 의 값을 구하시오. (단, \\(\\overline{\\mathrm{BD}}>\\overline{\\mathrm{CD}}\\))",
       "answer": "42",
       "solution": [
         "[출제의도] 삼각형의 외심과 내심의 성질을 이용하여 각의 크기를 구하는 문제를 해결한다.",
@@ -827,7 +827,7 @@
       "diff": "high",
       "points": 4,
       "type": "fillin",
-      "question": "그림과 같이 \\(\\overline{\\mathrm{AC}}=26\\), \\(\\overline{\\mathrm{BC}}=17\\) 인 예각삼각형 \\(\\mathrm{ABC}\\) 가 있다. 삼각형 \\(\\mathrm{ABC}\\) 의 내심을 \\(\\mathrm{I}\\), 점 \\(\\mathrm{A}\\) 에서 변 \\(\\mathrm{BC}\\) 에 내린 수선의 발을 \\(\\mathrm{H}\\) 라 하자. 삼각형 \\(\\mathrm{ABC}\\) 의 넓이가 \\(204\\) 일 때, \\(\\overline{\\mathrm{IH}}^2\\) 의 값을 구하시오.\n\n[그림] 삼각형 ABC (\\(\\overline{\\mathrm{AC}}=26\\), \\(\\overline{\\mathrm{BC}}=17\\)), A에서 BC에 내린 수선의 발 H, 내심 I와 선분 IH",
+      "question": "그림과 같이 \\(\\overline{\\mathrm{AC}}=26\\), \\(\\overline{\\mathrm{BC}}=17\\) 인 예각삼각형 \\(\\mathrm{ABC}\\) 가 있다. 삼각형 \\(\\mathrm{ABC}\\) 의 내심을 \\(\\mathrm{I}\\), 점 \\(\\mathrm{A}\\) 에서 변 \\(\\mathrm{BC}\\) 에 내린 수선의 발을 \\(\\mathrm{H}\\) 라 하자. 삼각형 \\(\\mathrm{ABC}\\) 의 넓이가 \\(204\\) 일 때, \\(\\overline{\\mathrm{IH}}^2\\) 의 값을 구하시오.",
       "answer": "37",
       "solution": [
         "[출제의도] 삼각형의 내심과 피타고라스 정리를 이용하여 선분의 길이를 구하는 문제를 해결한다.",
@@ -874,7 +874,7 @@
       "diff": "top",
       "points": 4,
       "type": "fillin",
-      "question": "이차항의 계수가 음수인 이차함수 \\(y=f(x)\\) 의 그래프는 점 \\(\\mathrm{A}(3,\\ 6)\\) 을 지나고 꼭짓점이 제1사분면 위에 있다. 이차함수 \\(y=f(x)\\) 의 그래프가 \\(y\\)축과 만나는 점을 \\(\\mathrm{B}\\), \\(x\\)축과 만나는 점 중 \\(x\\)좌표가 음수인 점을 \\(\\mathrm{C}\\) 라 하자. 점 \\(\\mathrm{B}\\) 를 지나고 \\(x\\)축과 평행한 직선이 선분 \\(\\mathrm{AC}\\) 와 만나는 점을 \\(\\mathrm{D}\\) 라 할 때, 삼각형 \\(\\mathrm{ABD}\\) 와 삼각형 \\(\\mathrm{BCD}\\) 의 넓이는 각각 \\(\\dfrac{3}{2},\\ \\dfrac{9}{2}\\) 이다. 이차함수 \\(y=f(x)\\) 의 그래프의 꼭짓점의 \\(y\\)좌표가 \\(k\\) 일 때, \\(16k\\) 의 값을 구하시오. (단, 점 \\(\\mathrm{B}\\) 의 \\(y\\)좌표는 \\(0\\) 보다 크고 \\(6\\) 보다 작다.)\n\n[그림] 위로 볼록한 포물선 \\(y=f(x)\\), 점 A(3, 6), \\(y\\)절편 B, 음의 \\(x\\)절편 C, B를 지나는 수평선과 AC의 교점 D",
+      "question": "이차항의 계수가 음수인 이차함수 \\(y=f(x)\\) 의 그래프는 점 \\(\\mathrm{A}(3,\\ 6)\\) 을 지나고 꼭짓점이 제1사분면 위에 있다. 이차함수 \\(y=f(x)\\) 의 그래프가 \\(y\\)축과 만나는 점을 \\(\\mathrm{B}\\), \\(x\\)축과 만나는 점 중 \\(x\\)좌표가 음수인 점을 \\(\\mathrm{C}\\) 라 하자. 점 \\(\\mathrm{B}\\) 를 지나고 \\(x\\)축과 평행한 직선이 선분 \\(\\mathrm{AC}\\) 와 만나는 점을 \\(\\mathrm{D}\\) 라 할 때, 삼각형 \\(\\mathrm{ABD}\\) 와 삼각형 \\(\\mathrm{BCD}\\) 의 넓이는 각각 \\(\\dfrac{3}{2},\\ \\dfrac{9}{2}\\) 이다. 이차함수 \\(y=f(x)\\) 의 그래프의 꼭짓점의 \\(y\\)좌표가 \\(k\\) 일 때, \\(16k\\) 의 값을 구하시오. (단, 점 \\(\\mathrm{B}\\) 의 \\(y\\)좌표는 \\(0\\) 보다 크고 \\(6\\) 보다 작다.)",
       "answer": "121",
       "solution": [
         "[출제의도] 삼각형의 넓이를 이용하여 이차함수의 그래프의 꼭짓점의 좌표를 추론한다.",
@@ -920,7 +920,7 @@
       "diff": "top",
       "points": 4,
       "type": "fillin",
-      "question": "그림과 같이 삼각형 \\(\\mathrm{ABC}\\) 와 원 \\(O\\) 가 점 \\(\\mathrm{A}\\) 를 포함한 서로 다른 5개의 점에서 만난다. 선분 \\(\\mathrm{AB}\\) 와 원 \\(O\\) 가 만나는 점 중 \\(\\mathrm{A}\\) 가 아닌 점을 \\(\\mathrm{D}\\), 선분 \\(\\mathrm{AC}\\) 와 원 \\(O\\) 가 만나는 점 중 \\(\\mathrm{A}\\) 가 아닌 점을 \\(\\mathrm{E}\\) 라 하자. 선분 \\(\\mathrm{BC}\\) 와 원 \\(O\\) 가 만나는 점 중 점 \\(\\mathrm{B}\\) 에 가까운 점을 \\(\\mathrm{F}\\), 점 \\(\\mathrm{C}\\) 에 가까운 점을 \\(\\mathrm{G}\\) 라 하자. \\(\\overline{\\mathrm{DB}}=\\overline{\\mathrm{DF}}=\\overline{\\mathrm{EG}}\\), \\(\\overline{\\mathrm{AG}}=3\\times\\overline{\\mathrm{GC}}\\) 이고, 삼각형 \\(\\mathrm{EGC}\\) 의 넓이가 \\(8\\) 일 때, 삼각형 \\(\\mathrm{ABG}\\) 의 넓이를 \\(S\\), 삼각형 \\(\\mathrm{AGC}\\) 의 넓이를 \\(T\\) 라 하자. \\(S-T\\) 의 값을 구하시오.\n\n[그림] 삼각형 ABC와 원 O (A, D, F, G, E에서 만남), 삼각형 EGC 색칠",
+      "question": "그림과 같이 삼각형 \\(\\mathrm{ABC}\\) 와 원 \\(O\\) 가 점 \\(\\mathrm{A}\\) 를 포함한 서로 다른 5개의 점에서 만난다. 선분 \\(\\mathrm{AB}\\) 와 원 \\(O\\) 가 만나는 점 중 \\(\\mathrm{A}\\) 가 아닌 점을 \\(\\mathrm{D}\\), 선분 \\(\\mathrm{AC}\\) 와 원 \\(O\\) 가 만나는 점 중 \\(\\mathrm{A}\\) 가 아닌 점을 \\(\\mathrm{E}\\) 라 하자. 선분 \\(\\mathrm{BC}\\) 와 원 \\(O\\) 가 만나는 점 중 점 \\(\\mathrm{B}\\) 에 가까운 점을 \\(\\mathrm{F}\\), 점 \\(\\mathrm{C}\\) 에 가까운 점을 \\(\\mathrm{G}\\) 라 하자. \\(\\overline{\\mathrm{DB}}=\\overline{\\mathrm{DF}}=\\overline{\\mathrm{EG}}\\), \\(\\overline{\\mathrm{AG}}=3\\times\\overline{\\mathrm{GC}}\\) 이고, 삼각형 \\(\\mathrm{EGC}\\) 의 넓이가 \\(8\\) 일 때, 삼각형 \\(\\mathrm{ABG}\\) 의 넓이를 \\(S\\), 삼각형 \\(\\mathrm{AGC}\\) 의 넓이를 \\(T\\) 라 하자. \\(S-T\\) 의 값을 구하시오.",
       "answer": "64",
       "solution": [
         "[출제의도] 원의 성질과 삼각형의 닮음을 이용하여 두 삼각형의 넓이를 구하는 문제를 해결한다.",
