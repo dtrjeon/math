@@ -221,6 +221,13 @@ function aiValidateProblems_(problems) {
     }
     const text = [p.question].concat(p.choices || [], p.solution || []).join(' ');
     if ((text.match(/\\\(/g) || []).length !== (text.match(/\\\)/g) || []).length) errors.push(at + '\\( \\) 짝이 안 맞음');
+    // player.html은 solution 줄마다 따로 렌더링 — \[ … \] 블록이 여러 줄로 쪼개지면 글자 그대로 보인다
+    const count = (s, re) => (String(s).match(re) || []).length;
+    (Array.isArray(p.solution) ? p.solution : []).forEach((line, k) => {
+      if (count(line, /\\\[/g) !== count(line, /\\\]/g) || count(line, /\\\(/g) !== count(line, /\\\)/g)) {
+        errors.push(at + 'solution ' + (k + 1) + '번째 줄: 수식 \\[ \\] 또는 \\( \\)가 줄을 넘어감 — 한 줄에 써야 함');
+      }
+    });
   });
   return { errors: errors };
 }

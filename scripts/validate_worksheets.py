@@ -125,6 +125,11 @@ def check_problem(p, where, rep):
         if p.get("answer") in (None, ""):
             rep.warn(where, "단답형 정답(answer) 미입력 — 채점 불가")
 
+    # player.html은 solution 줄마다 따로 렌더링한다 — \[ 와 \] 가 다른 줄에 있으면 수식이 글자 그대로 보인다
+    split = [k + 1 for k, line in enumerate(sol) if not latex_balanced(str(line))]
+    if split:
+        rep.err(where, f"solution {split}번째 줄에서 수식이 여러 줄로 쪼개짐 — \\[ … \\] 블록은 한 줄에 써야 함")
+
     text = " ".join(str(x) for x in [q, *choices, *sol])
     if not latex_balanced(text):
         rep.err(where, "LaTeX \\( \\) 또는 \\[ \\] 짝이 안 맞음")
