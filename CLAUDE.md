@@ -17,11 +17,13 @@
 | `roadmap.html` | 진학 로드맵 |
 | `tools/*.html` | 선생님/관리자 전용(review·admin-users·admin-examrange·json_viewer_edit). 공개 내비에 링크 걸지 않음 |
 | `data/*.json`, `data/seanmath32/*.json` | 문제지 |
+| `data/hakpyeong/*.json` | 고1 전국연합학력평가 11회분(2024.3~2026.9, `me`·`source: hakpyeong`). 그림은 PDF에서 잘라 `images`에 data URL로 들어 있음 |
 | `data/worksheets-manifest.json` | 학생에게 보이는 문제지 목록. **루트 `manifest.json`은 PWA용이라 별개** |
 | `data/study-plan.json`, `data/exam-ranges.json`, `data/publishers.json` | 학습 계획, 시험 범위, 출판사 |
 | `data/tips.json` | Instagram 학습 팁(링크·요약·단원 태그·학년). `tools/admin-tips.html` → GAS `saveTips`로 저장 |
 | `data/_pending/` | 승인 전 검토 대기(GAS가 GitHub에 직접 씀) |
-| `gas-*.gs` | GAS 애드온. 기본 스크립트(`doPost`, `jsonResponse_`, `ghGetFile_`, `ghPutFile_`, `ocrAnswer` 등)는 **이 저장소에 없음** — Apps Script 편집기에 있음 |
+| `Code.gs` | GAS 기본 백엔드: `doGet`/`doPost` 라우터(모든 `action` 목록이 `codeRoute_`에 있음), 풀이 기록(Results·Attempts 탭), GitHub 읽기/쓰기, AI(사진→문제·손글씨·LaTeX), 시험범위, 사용자 관리 |
+| `gas-*.gs` | GAS 애드온(가입·로그인·검토 대기열 / AI 튜터·복습 세트 / 학습 팁). `Code.gs`와 같은 Apps Script 프로젝트에 함께 넣는다 |
 | `normalize_and_register.py` | 새 문제지 diff 한글→영문, id=파일명, manifest 등록 |
 | `scripts/validate_worksheets.py` | 문제지·manifest·study-plan 정합성 검사 |
 
@@ -61,7 +63,7 @@
 - 학습 팁은 **링크만** 저장한다. Instagram 게시물 이미지·본문을 내려받아 저장소에 넣지 않는다(저작권). 링크 형식은 `https://www.instagram.com/(p|reel)/코드/` — `gas-tips-addon.gs`, `index_mathc1.html`, `player.html`, 검증 스크립트가 같은 규칙을 쓴다.
 - 문제 텍스트를 `innerHTML`에 넣을 땐 `escapeHtml()`, 속성에는 `attrSafe()`/`escapeAttr()` — LaTeX의 `<`, `>`, `\`가 깨지는 버그가 반복됐다.
 - `TEST_MODE_UNLOCK_SOLUTIONS`(player.html)는 테스트 기간 임시 `true`. 함부로 바꾸지 말고 사용자에게 확인.
-- GAS 코드 변경은 `gas-*.gs` 파일로만 전달한다(사용자가 Apps Script 편집기에 붙여넣고 재배포). 새 `action`을 만들면 파일 상단 주석에 `doPost` 분기 코드를 적는다.
+- GAS 코드 변경은 `Code.gs`·`gas-*.gs` 파일로 전달한다(사용자가 Apps Script 편집기에 붙여넣고 "배포 관리 → 새 버전"으로 재배포 — 새 배포를 만들면 URL이 바뀜). 새 `action`은 `Code.gs`의 `codeRoute_`에 한 줄 추가한다. 여러 .gs 파일이 전역을 공유하므로 상수·함수 이름은 파일별 접두사(`CODE_`/`code`, `ai`, `tips`)로 겹치지 않게 한다.
 - `SHEET_WEBHOOK_URL`(GAS 배포 URL)과 `OCR_SPACE_KEY`는 이미 공개 저장소에 있는 값이다. 새 비밀값(GitHub 토큰, Anthropic 키)은 절대 HTML/JSON에 넣지 말고 GAS 스크립트 속성에만.
 - 학생 이름·전화번호 등 개인정보를 데이터 파일이나 커밋 메시지에 넣지 않는다.
 - 정답을 바꾸는 수정은 반드시 근거(직접 풀이)와 함께 사용자에게 보고하고 확인받는다.
