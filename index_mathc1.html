@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.14 (2026-11-04): 미래엔 공통수학1 문제지 8개(data/miraen/) 추가에 맞춰 출처 라벨 miraen(📗 미래엔 교과서) 추가 -->
 <!-- v2.13 (2026-11-03): 고1 전국연합학력평가 11회분(2024년 3월~2026년 9월, data/hakpyeong/) 추가에 맞춰 출처 라벨 hakpyeong(📝 전국연합학력평가) 추가 -->
 <!-- v2.12 (2026-11-02): "💡 학습 팁" 메뉴 신설 — data/tips.json(선생님이 tools/admin-tips.html에서 등록한 Instagram 게시물 링크+요약+단원 태그)을 카드로 보여주고, 원본은 Instagram 공식 임베드(embed.js, 탭을 처음 열 때만 로드)로 표시. 학년(grades)으로 고등학교/중학교 필터링, 관리자 바로가기에 "학습 팁 관리" 카드 추가 -->
 <!-- v2.11 (2026-10-03): 시작 화면을 항상 중학교 3-2로 고정, 홈 바로가기에 "📅 오늘의 과제"(today.html) 카드 추가, manifest의 hidden:true 세트는 문제지 목록에서 제외 -->
@@ -987,7 +988,7 @@
   // 레벨(중학교/고등학교)에 맞는 문제지만 걸러서 3개 탭(교과문제/기출·내신/모의고사)을 다시 그린다.
   // tb/peq/me 분류는 학년과 무관하게 항상 같은 3탭이고, 그 안의 "내용"만 학년별로 달라진다.
   // 한 분류 안에 출처(source)가 여러 개면, 인라인 라벨이 아니라 클릭 가능한 출처 서브탭으로 보여준다.
-  const SOURCE_LABELS = { senmath: '📐 쎈수학', self: '📖 자체 복습', hongcheon: '🏫 홍천중', hakpyeong: '📝 전국연합학력평가' };
+  const SOURCE_LABELS = { senmath: '📐 쎈수학', self: '📖 자체 복습', hongcheon: '🏫 홍천중', hakpyeong: '📝 전국연합학력평가', miraen: '📗 미래엔 교과서' };
 
   function applyWorksheetTabsVisibility(){
     const counts = { tb:0, peq:0, me:0 };

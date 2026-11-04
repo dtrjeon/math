@@ -920,6 +920,94 @@
       "group": "2024학년도 고1 전국연합학력평가",
       "grade": "m1",
       "source": "hakpyeong"
+    },
+    {
+      "id": "m1_27_s1_tb_miraen_cm1-01_p012-021",
+      "file": "miraen/m1_27_s1_tb_miraen_cm1-01_p012-021.json",
+      "category": "tb",
+      "title": "공통수학1 Ⅰ-1. 다항식의 연산",
+      "unit": "Ⅰ. 다항식 - 1. 다항식의 연산 (12~21쪽)",
+      "count": 42,
+      "group": "Ⅰ. 다항식",
+      "grade": "m1",
+      "source": "miraen"
+    },
+    {
+      "id": "m1_27_s1_tb_miraen_cm1-02_p024-041",
+      "file": "miraen/m1_27_s1_tb_miraen_cm1-02_p024-041.json",
+      "category": "tb",
+      "title": "공통수학1 Ⅰ-2. 나머지정리와 인수분해",
+      "unit": "Ⅰ. 다항식 - 2. 나머지정리와 인수분해 (24~41쪽)",
+      "count": 79,
+      "group": "Ⅰ. 다항식",
+      "grade": "m1",
+      "source": "miraen"
+    },
+    {
+      "id": "m1_27_s1_tb_miraen_cm1-03_p046-061",
+      "file": "miraen/m1_27_s1_tb_miraen_cm1-03_p046-061.json",
+      "category": "tb",
+      "title": "공통수학1 Ⅱ-1. 복소수와 이차방정식",
+      "unit": "Ⅱ. 방정식과 부등식 - 1. 복소수와 이차방정식 (46~61쪽)",
+      "count": 77,
+      "group": "Ⅱ. 방정식과 부등식",
+      "grade": "m1",
+      "source": "miraen"
+    },
+    {
+      "id": "m1_27_s1_tb_miraen_cm1-04_p064-073",
+      "file": "miraen/m1_27_s1_tb_miraen_cm1-04_p064-073.json",
+      "category": "tb",
+      "title": "공통수학1 Ⅱ-2. 이차방정식과 이차함수",
+      "unit": "Ⅱ. 방정식과 부등식 - 2. 이차방정식과 이차함수 (64~73쪽)",
+      "count": 38,
+      "group": "Ⅱ. 방정식과 부등식",
+      "grade": "m1",
+      "source": "miraen"
+    },
+    {
+      "id": "m1_27_s1_tb_miraen_cm1-05_p076-097",
+      "file": "miraen/m1_27_s1_tb_miraen_cm1-05_p076-097.json",
+      "category": "tb",
+      "title": "공통수학1 Ⅱ-3. 여러 가지 방정식과 부등식",
+      "unit": "Ⅱ. 방정식과 부등식 - 3. 여러 가지 방정식과 부등식 (76~97쪽)",
+      "count": 79,
+      "group": "Ⅱ. 방정식과 부등식",
+      "grade": "m1",
+      "source": "miraen"
+    },
+    {
+      "id": "m1_27_s1_tb_miraen_cm1-06_p102-110",
+      "file": "miraen/m1_27_s1_tb_miraen_cm1-06_p102-110.json",
+      "category": "tb",
+      "title": "공통수학1 Ⅲ-1. 경우의 수 (01~02)",
+      "unit": "Ⅲ. 경우의 수 - 1. 경우의 수 (102~110쪽)",
+      "count": 19,
+      "group": "Ⅲ. 경우의 수",
+      "grade": "m1",
+      "source": "miraen"
+    },
+    {
+      "id": "m1_27_s1_tb_miraen_cm1-07_p111-119",
+      "file": "miraen/m1_27_s1_tb_miraen_cm1-07_p111-119.json",
+      "category": "tb",
+      "title": "공통수학1 Ⅲ-1. 경우의 수 (03 조합·마무리)",
+      "unit": "Ⅲ. 경우의 수 - 1. 경우의 수 (111~119쪽)",
+      "count": 39,
+      "group": "Ⅲ. 경우의 수",
+      "grade": "m1",
+      "source": "miraen"
+    },
+    {
+      "id": "m1_27_s1_tb_miraen_cm1-08_p124-139",
+      "file": "miraen/m1_27_s1_tb_miraen_cm1-08_p124-139.json",
+      "category": "tb",
+      "title": "공통수학1 Ⅳ-1. 행렬",
+      "unit": "Ⅳ. 행렬 - 1. 행렬 (124~139쪽)",
+      "count": 60,
+      "group": "Ⅳ. 행렬",
+      "grade": "m1",
+      "source": "miraen"
     }
   ],
   "categories": {

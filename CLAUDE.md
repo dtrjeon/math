@@ -18,6 +18,7 @@
 | `tools/*.html` | 선생님/관리자 전용(review·admin-users·admin-examrange·json_viewer_edit). 공개 내비에 링크 걸지 않음 |
 | `data/*.json`, `data/seanmath32/*.json` | 문제지 |
 | `data/hakpyeong/*.json` | 고1 전국연합학력평가 11회분(2024.3~2026.9, `me`·`source: hakpyeong`). 그림은 PDF에서 잘라 `images`에 data URL로 들어 있음 |
+| `data/miraen/*.json` | 미래엔 공통수학1 8개 파일(433문항, `tb`·`source: miraen`). 교과서 번호를 문항 앞에 표시, 소문항·복수 답은 문항 분리 |
 | `data/worksheets-manifest.json` | 학생에게 보이는 문제지 목록. **루트 `manifest.json`은 PWA용이라 별개** |
 | `data/study-plan.json`, `data/exam-ranges.json`, `data/publishers.json` | 학습 계획, 시험 범위, 출판사 |
 | `data/tips.json` | Instagram 학습 팁(링크·요약·단원 태그·학년). `tools/admin-tips.html` → GAS `saveTips`로 저장 |
