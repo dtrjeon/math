@@ -9,6 +9,9 @@
     {
       "num": 1,
       "diff": "low",
+      "subject": "중1",
+      "chapter": "소인수분해·정수와 유리수",
+      "topic": "유리수의 사칙계산",
       "points": 2,
       "type": "mc",
       "question": "\\(\\left\\{\\dfrac{4}{3}-\\left(-\\dfrac{1}{3}\\right)\\right\\}\\div\\left(-\\dfrac{1}{9}\\right)\\) 의 값은?",
@@ -28,6 +31,9 @@
     {
       "num": 2,
       "diff": "low",
+      "subject": "중2",
+      "chapter": "식의 계산",
+      "topic": "다항식의 계산",
       "points": 2,
       "type": "mc",
       "question": "다항식 \\(2x(x+3)-(x^2+2x-1)\\) 을 간단히 하였을 때, \\(x\\) 의 계수는?",
@@ -48,6 +54,9 @@
     {
       "num": 3,
       "diff": "low",
+      "subject": "중3",
+      "chapter": "삼각비",
+      "topic": "특수각의 삼각비",
       "points": 2,
       "type": "mc",
       "question": "\\(\\sin30^\\circ\\times\\tan60^\\circ\\) 의 값은?",
@@ -67,6 +76,9 @@
     {
       "num": 4,
       "diff": "mid",
+      "subject": "중3",
+      "chapter": "다항식의 곱셈과 인수분해",
+      "topic": "인수분해",
       "points": 3,
       "type": "mc",
       "question": "두 정수 \\(a,\\ b\\) 에 대하여 다항식 \\((3x-1)(x+2)-x^2-8x\\) 가 \\((2x+a)(x+b)\\) 로 인수분해될 때, \\(a-b\\) 의 값은?",
@@ -88,6 +100,9 @@
     {
       "num": 5,
       "diff": "mid",
+      "subject": "중2",
+      "chapter": "피타고라스 정리",
+      "topic": "피타고라스 정리",
       "points": 3,
       "type": "mc",
       "question": "그림과 같이 \\(\\overline{\\mathrm{AB}}=13\\), \\(\\overline{\\mathrm{BC}}=14\\) 인 예각삼각형 \\(\\mathrm{ABC}\\) 에 대하여 점 \\(\\mathrm{A}\\) 에서 변 \\(\\mathrm{BC}\\) 에 내린 수선의 발을 \\(\\mathrm{H}\\) 라 하자. \\(\\overline{\\mathrm{AH}}=12\\) 일 때, 선분 \\(\\mathrm{AC}\\) 의 길이는?",
@@ -116,6 +131,9 @@
     {
       "num": 6,
       "diff": "mid",
+      "subject": "중1",
+      "chapter": "자료의 정리와 해석",
+      "topic": "줄기와 잎 그림, 상대도수",
       "points": 3,
       "type": "mc",
       "question": "다음은 어느 학교에서 축구부 학생 20명이 1년 동안 넣은 골의 개수를 조사하여 줄기와 잎 그림과 상대도수의 분포표로 나타낸 것이다.\n\n[줄기와 잎 그림] (0|1은 1개)\n\n줄기 | 잎\n0 | 1 8 9\n1 | 2 5 5 6 7 8 9\n2 | 1 3 4 4 7\n3 | 2 5 7 8\n4 | 2\n\n[상대도수의 분포표]\n\n계급(개) | 상대도수\n\\(0^{\\text{이상}}\\sim10^{\\text{미만}}\\) | \\(0.15\\)\n\\(10\\sim20\\) | \\(p\\)\n\\(20\\sim30\\) | \\(q\\)\n\\(30\\sim40\\) | \\(0.2\\)\n\\(40\\sim50\\) | \\(0.05\\)\n합계 | \\(1\\)\n\n\\(p-q\\) 의 값은?",
@@ -145,6 +163,9 @@
     {
       "num": 7,
       "diff": "mid",
+      "subject": "중1",
+      "chapter": "일차방정식",
+      "topic": "일차방정식(사각형 넓이)",
       "points": 3,
       "type": "mc",
       "question": "그림과 같이 \\(\\angle\\mathrm{C}=\\angle\\mathrm{D}=90^\\circ\\) 인 사각형 \\(\\mathrm{ABCD}\\) 가 있다. \\(\\overline{\\mathrm{BC}}=\\overline{\\mathrm{AD}}+\\dfrac{3}{2}\\), \\(\\overline{\\mathrm{CD}}=4\\) 이고 사각형 \\(\\mathrm{ABCD}\\) 의 넓이가 \\(17\\) 일 때, 선분 \\(\\mathrm{AD}\\) 의 길이는?",
@@ -171,6 +192,9 @@
     {
       "num": 8,
       "diff": "mid",
+      "subject": "중3",
+      "chapter": "이차방정식",
+      "topic": "이차방정식의 근",
       "points": 3,
       "type": "mc",
       "question": "양수 \\(a\\) 가 이차방정식 \\(x^2-2ax+2a+3=0\\) 의 한 근일 때, 이차방정식 \\(3x^2+(a-6)x-1=0\\) 의 두 근 중 양수인 근은?",
@@ -202,6 +226,9 @@
     {
       "num": 9,
       "diff": "mid",
+      "subject": "중2",
+      "chapter": "일차함수",
+      "topic": "평행한 직선, x절편",
       "points": 3,
       "type": "mc",
       "question": "두 점 \\(\\mathrm{A}(-1,\\ 4)\\), \\(\\mathrm{B}(2,\\ 3)\\) 을 지나는 직선과 두 점 \\(\\mathrm{C}(-2,\\ 2)\\), \\(\\mathrm{D}(1,\\ a)\\) 를 지나는 직선이 서로 평행하다. 두 점 \\(\\mathrm{C},\\ \\mathrm{D}\\) 를 지나는 직선의 \\(x\\)절편이 \\(b\\) 일 때, 두 상수 \\(a,\\ b\\) 에 대하여 \\(a+b\\) 의 값은?",
@@ -231,6 +258,9 @@
     {
       "num": 10,
       "diff": "mid",
+      "subject": "중3",
+      "chapter": "대푯값·산포도·상관관계",
+      "topic": "산점도와 대푯값",
       "points": 3,
       "type": "mc",
       "question": "다음은 어느 학급 학생 15명의 지난주 컴퓨터 사용 시간과 운동 시간에 대한 산점도이다.\n\n컴퓨터 사용 시간 | 7 | 7 | 8 | 8 | 10 | 10 | 10 | 12 | 12 | 13 | 13 | 15 | 15 | 16 | 18\n운동 시간 | 9 | 5 | 7 | 3 | 6 | 5 | 4 | 8 | 3 | 5 | 1 | 5 | 2 | 3 | 2\n\n위의 산점도에 대하여 운동 시간의 최빈값은 \\(a\\) 시간이고, 컴퓨터 사용 시간이 15시간 이상인 학생들의 운동 시간의 평균은 \\(b\\) 시간이다. \\(a+b\\) 의 값은?",
@@ -270,6 +300,9 @@
     {
       "num": 11,
       "diff": "mid",
+      "subject": "중1",
+      "chapter": "입체도형",
+      "topic": "회전체의 부피",
       "points": 3,
       "type": "mc",
       "question": "그림과 같이 \\(\\angle\\mathrm{B}=90^\\circ\\), \\(\\overline{\\mathrm{AB}}=10\\) 인 삼각형 \\(\\mathrm{ABC}\\) 의 넓이가 \\(30\\) 이고, 선분 \\(\\mathrm{BC}\\) 위의 점 \\(\\mathrm{D}\\) 에 대하여 \\(\\overline{\\mathrm{BD}}=4\\) 이다. 직선 \\(\\mathrm{AB}\\) 를 회전축으로 하여 삼각형 \\(\\mathrm{ADC}\\) 를 1회전시킬 때 생기는 회전체의 부피는?",
@@ -300,6 +333,9 @@
     {
       "num": 12,
       "diff": "midhigh",
+      "subject": "중3",
+      "chapter": "원의 성질",
+      "topic": "원주각과 호의 길이",
       "points": 3,
       "type": "mc",
       "question": "그림과 같이 반지름의 길이가 \\(5\\) 인 원 위의 네 점 \\(\\mathrm{A},\\ \\mathrm{B},\\ \\mathrm{C},\\ \\mathrm{D}\\) 에 대하여 두 직선 \\(\\mathrm{AD},\\ \\mathrm{BC}\\) 는 서로 평행하고 \\(\\angle\\mathrm{DCB}=110^\\circ\\) 이다. 점 \\(\\mathrm{A}\\) 를 포함하지 않는 두 호 \\(\\mathrm{BC},\\ \\mathrm{CD}\\) 의 길이의 비가 \\(4:3\\) 일 때, 점 \\(\\mathrm{B}\\) 를 포함하지 않는 호 \\(\\mathrm{DA}\\) 의 길이는?",
@@ -336,6 +372,9 @@
     {
       "num": 13,
       "diff": "mid",
+      "subject": "중2",
+      "chapter": "일차부등식",
+      "topic": "일차부등식 실생활 활용(요금제)",
       "points": 3,
       "type": "mc",
       "question": "사진 편집 기능을 제공하는 어느 애플리케이션에는 다음과 같은 두 가지 종류의 요금제가 있다.\n\n요금제 | 내용\n요금제 A | • 가입비 15000원 – 가입 시 추가 요금 없이 무제한 편집 가능\n요금제 B | • 가입비 10000원 – 가입 시 추가 요금 없이 50장까지 편집 가능<br>• 51장부터는 추가 1장당 150원\n\n요금제 A에 가입하여 사진 \\(n\\) 장을 편집할 때 지불하는 전체 금액이 요금제 B에 가입하여 사진 \\(n\\) 장을 편집할 때 지불하는 전체 금액보다 더 작게 되도록 하는 자연수 \\(n\\) 의 최솟값은?",
@@ -367,6 +406,9 @@
     {
       "num": 14,
       "diff": "mid",
+      "subject": "중2",
+      "chapter": "확률",
+      "topic": "두 수가 서로소일 확률",
       "points": 4,
       "type": "mc",
       "question": "상자 \\(\\mathrm{A}\\) 에는 숫자 \\(1,\\ 2,\\ 3,\\ 4,\\ 5,\\ 6\\) 이 하나씩 적혀 있는 \\(6\\) 개의 공이 들어 있고, 상자 \\(\\mathrm{B}\\) 에는 숫자 \\(7,\\ 8,\\ 9\\) 가 하나씩 적혀 있는 \\(3\\) 개의 공이 들어 있다. 두 상자 \\(\\mathrm{A},\\ \\mathrm{B}\\) 에서 각각 공을 임의로 한 개씩 꺼낼 때, 꺼낸 공에 적혀 있는 두 자연수가 서로소일 확률은?",
@@ -399,6 +441,9 @@
     {
       "num": 15,
       "diff": "midhigh",
+      "subject": "중2",
+      "chapter": "연립방정식",
+      "topic": "연립방정식 실생활 활용(속력)",
       "points": 4,
       "type": "mc",
       "question": "둘레의 길이가 \\(400\\,\\mathrm{m}\\) 인 원 모양의 산책로를 두 학생 \\(\\mathrm{A},\\ \\mathrm{B}\\) 가 각자 일정한 속력으로 뛰려고 한다. 두 학생 \\(\\mathrm{A},\\ \\mathrm{B}\\) 가 같은 지점에서 동시에 출발하여 서로 반대 방향으로 뛰면 출발한 시각으로부터 1분 30초 후에 처음으로 다시 만나고, 서로 같은 방향으로 뛰면 출발한 시각으로부터 12분 후에 처음으로 다시 만난다. 학생 \\(\\mathrm{A}\\) 의 속력이 학생 \\(\\mathrm{B}\\) 의 속력보다 클 때, 학생 \\(\\mathrm{A}\\) 가 산책로를 한 바퀴 뛰는 데 걸리는 시간은?",
@@ -430,6 +475,9 @@
     {
       "num": 16,
       "diff": "midhigh",
+      "subject": "중3",
+      "chapter": "삼각비",
+      "topic": "삼각비와 정육각형 넓이",
       "points": 4,
       "type": "mc",
       "question": "그림과 같이 한 변의 길이가 \\(1\\) 인 두 정육각형 \\(\\mathrm{ABCDEF}\\), \\(\\mathrm{AGHIJK}\\) 가 있다. 점 \\(\\mathrm{G}\\) 가 정육각형 \\(\\mathrm{ABCDEF}\\) 의 내부에 있고 \\(\\angle\\mathrm{BAG}=45^\\circ\\) 일 때, 사각형 \\(\\mathrm{AGEF}\\) 의 넓이는?",
@@ -463,6 +511,9 @@
     {
       "num": 17,
       "diff": "high",
+      "subject": "중2",
+      "chapter": "일차함수",
+      "topic": "일차함수와 사다리꼴 추론",
       "points": 4,
       "type": "mc",
       "question": "그림과 같이 직선 \\(y=\\dfrac{2}{3}x-5\\) 가 \\(y\\)축과 만나는 점을 \\(\\mathrm{A}\\), 직선 \\(y=-x\\) 와 만나는 점을 \\(\\mathrm{B}\\) 라 하자. 원점 \\(\\mathrm{O}\\) 와 제3사분면에 있는 점 \\(\\mathrm{C}\\) 에 대하여 사각형 \\(\\mathrm{OCAB}\\) 가 사다리꼴이고 넓이가 \\(\\dfrac{25}{2}\\) 가 되도록 하는 모든 점 \\(\\mathrm{C}\\) 의 \\(y\\)좌표의 곱은? (단, 점 \\(\\mathrm{C}\\) 의 \\(y\\)좌표는 \\(-5\\) 보다 크다.)",
@@ -522,6 +573,9 @@
     {
       "num": 18,
       "diff": "high",
+      "subject": "중2",
+      "chapter": "삼각형의 성질",
+      "topic": "내심과 삼각비",
       "points": 4,
       "type": "mc",
       "question": "그림과 같이 \\(\\overline{\\mathrm{AB}}=7\\) 인 삼각형 \\(\\mathrm{ABC}\\) 의 내심을 \\(\\mathrm{I}\\) 라 할 때, 점 \\(\\mathrm{I}\\) 에서 선분 \\(\\mathrm{AC}\\) 에 내린 수선의 발을 \\(\\mathrm{D}\\) 라 하자. \\(\\overline{\\mathrm{AD}}=2\\), \\(\\angle\\mathrm{AIB}=120^\\circ\\) 일 때, 삼각형 \\(\\mathrm{ABC}\\) 의 둘레의 길이는?",
@@ -570,6 +624,9 @@
     {
       "num": 19,
       "diff": "midhigh",
+      "subject": "중2",
+      "chapter": "피타고라스 정리",
+      "topic": "제곱근과 피타고라스(종이접기 빈칸)",
       "points": 4,
       "type": "mc",
       "question": "한 변의 길이가 \\(4\\,\\mathrm{cm}\\) 인 정사각형 모양의 종이를 다음과 같이 차례로 접는다.\n\n단계 | 설명\nⅠ | 점 \\(\\mathrm{A}\\) 와 점 \\(\\mathrm{D}\\) 가 겹쳐지도록 접었다가 펴서 선분 \\(\\mathrm{AD}\\) 의 중점 \\(\\mathrm{M}\\) 과 선분 \\(\\mathrm{BC}\\) 의 중점 \\(\\mathrm{N}\\) 을 잡는다. 점 \\(\\mathrm{A}\\) 와 점 \\(\\mathrm{M}\\) 이 겹쳐지도록 접었다가 펴서 선분 \\(\\mathrm{AM}\\) 의 중점 \\(\\mathrm{E}\\) 와 선분 \\(\\mathrm{BN}\\) 의 중점 \\(\\mathrm{F}\\) 를 잡는다.\nⅡ | 선분 \\(\\mathrm{AB}\\) 위의 한 점 \\(\\mathrm{G}\\) 에 대하여 선분 \\(\\mathrm{CG}\\) 를 접는 선으로 하여 점 \\(\\mathrm{B}\\) 가 선분 \\(\\mathrm{EF}\\) 위에 놓이도록 접는다.\n\n선분 \\(\\mathrm{CG}\\) 의 길이가 \\(a\\,\\mathrm{cm}\\) 일 때, \\(a\\) 의 값은? (단, 종이의 두께는 고려하지 않는다.)",
@@ -613,6 +670,9 @@
     {
       "num": 20,
       "diff": "high",
+      "subject": "중3",
+      "chapter": "이차함수",
+      "topic": "이차함수와 일차함수의 그래프",
       "points": 4,
       "type": "mc",
       "question": "그림과 같이 제4사분면에 있는 점 \\(\\mathrm{A}\\) 를 꼭짓점으로 하고 원점 \\(\\mathrm{O}\\) 를 지나는 이차함수 \\(y=f(x)\\) 의 그래프가 있다. 점 \\(\\mathrm{A}\\) 에서 \\(x\\)축에 내린 수선의 발을 \\(\\mathrm{B}\\) 라 하자. 최고차항의 계수가 음수인 이차함수 \\(y=g(x)\\) 의 그래프는 꼭짓점 \\(\\mathrm{C}\\) 가 \\(y\\)축 위에 있고 점 \\(\\mathrm{B}\\) 를 지난다. 이차함수 \\(y=g(x)\\) 의 그래프가 \\(x\\)축과 만나는 점 중 \\(\\mathrm{B}\\) 가 아닌 점을 \\(\\mathrm{D}\\) 라 할 때, 점 \\(\\mathrm{D}\\) 의 \\(x\\)좌표는 \\(-2\\) 이다. 두 직선 \\(\\mathrm{BC},\\ \\mathrm{OA}\\) 는 점 \\(\\mathrm{E}\\) 에서 만나고, 점 \\(\\mathrm{E}\\) 에서 \\(x\\)축에 내린 수선의 발은 \\(\\mathrm{D}\\) 이다. 사각형 \\(\\mathrm{OABC}\\) 의 넓이가 \\(9\\) 일 때, \\(f(-4)+g(-4)\\) 의 값은?",
@@ -667,6 +727,9 @@
     {
       "num": 21,
       "diff": "top",
+      "subject": "중2",
+      "chapter": "도형의 닮음",
+      "topic": "제곱근과 닮음, 길이",
       "points": 4,
       "type": "mc",
       "question": "그림과 같이 \\(\\angle\\mathrm{B}=90^\\circ\\) 인 직각삼각형 \\(\\mathrm{ABC}\\) 에서 선분 \\(\\mathrm{AB}\\) 위의 점 \\(\\mathrm{D}\\) 와 선분 \\(\\mathrm{AC}\\) 위의 점 \\(\\mathrm{E}\\) 에 대하여 \\(\\overline{\\mathrm{BC}}=\\overline{\\mathrm{BE}}=\\overline{\\mathrm{BD}}\\) 이다. 삼각형 \\(\\mathrm{EAD}\\) 의 넓이가 \\(16\\) 이고 삼각형 \\(\\mathrm{CED}\\) 의 넓이가 \\(4\\) 일 때, 삼각형 \\(\\mathrm{CEB}\\) 의 둘레의 길이는? (단, 점 \\(\\mathrm{E}\\) 는 점 \\(\\mathrm{C}\\) 가 아니다.)",
@@ -723,6 +786,9 @@
     {
       "num": 22,
       "diff": "low",
+      "subject": "중2",
+      "chapter": "일차함수",
+      "topic": "기울기와 y절편",
       "points": 3,
       "type": "fillin",
       "question": "기울기가 \\(2\\) 이고 점 \\((1,\\ 5)\\) 를 지나는 직선의 \\(y\\)절편을 구하시오.",
@@ -738,6 +804,9 @@
     {
       "num": 23,
       "diff": "low",
+      "subject": "중3",
+      "chapter": "제곱근과 실수",
+      "topic": "근호 계산",
       "points": 3,
       "type": "fillin",
       "question": "\\(\\sqrt{3}+\\sqrt{12}=\\sqrt{n}\\) 을 만족시키는 자연수 \\(n\\) 의 값을 구하시오.",
@@ -751,6 +820,9 @@
     {
       "num": 24,
       "diff": "mid",
+      "subject": "중2",
+      "chapter": "식의 계산",
+      "topic": "지수법칙",
       "points": 3,
       "type": "fillin",
       "question": "두 자연수 \\(a,\\ b\\) 에 대하여\n\n\\[\\left(2^a\\times4^a\\times3^b\\right)^n=2^{72}\\times3^{36}\\]\n\n을 만족시키는 자연수 \\(n\\) 의 최댓값을 구하시오.",
@@ -767,6 +839,9 @@
     {
       "num": 25,
       "diff": "mid",
+      "subject": "중2",
+      "chapter": "유리수와 순환소수",
+      "topic": "순환소수를 분수로",
       "points": 3,
       "type": "fillin",
       "question": "순환소수 \\(0.\\dot{0}\\dot{2}\\) 를 분수로 나타내면 \\(\\dfrac{q}{p}\\) 일 때, 자연수 \\(n\\) 에 대하여 \\(\\dfrac{6}{p}\\times n+\\dfrac{q}{11}\\) 가 자연수가 되도록 하는 \\(n\\) 의 최솟값을 구하시오. (단, \\(p\\) 와 \\(q\\) 는 서로소인 자연수이다.)",
@@ -787,6 +862,9 @@
     {
       "num": 26,
       "diff": "mid",
+      "subject": "중3",
+      "chapter": "대푯값·산포도·상관관계",
+      "topic": "중앙값과 분산",
       "points": 4,
       "type": "fillin",
       "question": "다음은 어느 날 6개 지역의 일일 최저 기온을 조사하여 나타낸 자료이다.\n\n(단위: ℃)\n\n\\(-2,\\ 1,\\ 7,\\ 6,\\ -3,\\ a\\)\n\n이 자료의 중앙값이 \\(2\\) 일 때, 분산을 구하시오. (단, \\(a\\) 는 실수이다.)",
@@ -811,6 +889,9 @@
     {
       "num": 27,
       "diff": "midhigh",
+      "subject": "중1",
+      "chapter": "평면도형",
+      "topic": "정다각형의 각의 크기",
       "points": 4,
       "type": "fillin",
       "question": "그림과 같이 정육각형 \\(\\mathrm{ABCDEF}\\) 에 대하여 변 \\(\\mathrm{AB}\\) 를 한 변으로 하는 정사각형과 변 \\(\\mathrm{EF}\\) 를 한 변으로 하는 정오각형이 있다. 이 정사각형에서 꼭짓점 \\(\\mathrm{A}\\) 와 이웃한 꼭짓점 중 \\(\\mathrm{B}\\) 가 아닌 점을 \\(\\mathrm{G}\\), 이 정오각형에서 꼭짓점 \\(\\mathrm{F}\\) 와 이웃한 꼭짓점 중 \\(\\mathrm{E}\\) 가 아닌 점을 \\(\\mathrm{H}\\) 라 하자. 두 선분 \\(\\mathrm{AH},\\ \\mathrm{FG}\\) 가 만나는 점을 \\(\\mathrm{I}\\) 라 할 때, \\(\\angle\\mathrm{AIF}=x^\\circ\\) 이다. \\(x\\) 의 값을 구하시오. (단, 점 \\(\\mathrm{G}\\) 와 점 \\(\\mathrm{H}\\) 는 정육각형 \\(\\mathrm{ABCDEF}\\) 의 외부에 있다.)",
@@ -840,6 +921,9 @@
     {
       "num": 28,
       "diff": "high",
+      "subject": "중1",
+      "chapter": "정비례와 반비례",
+      "topic": "정비례·반비례 그래프 추론",
       "points": 4,
       "type": "fillin",
       "question": "그림과 같이 양수 \\(a\\) 에 대하여 두 반비례 관계 \\(y=\\dfrac{a}{x}\\), \\(y=-\\dfrac{2a}{x}\\) 의 그래프가 있다. 양수 \\(m\\) 에 대하여 정비례 관계 \\(y=mx\\) 의 그래프가 \\(y=\\dfrac{a}{x}\\) 의 그래프와 제1사분면에서 만나는 점을 \\(\\mathrm{A}\\) 라 하고, 점 \\(\\mathrm{A}\\) 를 지나고 \\(x\\)축에 수직인 직선이 \\(y=-\\dfrac{2a}{x}\\) 의 그래프와 만나는 점을 \\(\\mathrm{B}\\) 라 하자. \\(y=mx\\) 의 그래프 위의 점 중 \\(x\\)좌표가 점 \\(\\mathrm{A}\\) 의 \\(x\\)좌표의 \\(\\dfrac{1}{2}\\) 배인 점을 \\(\\mathrm{C}\\) 라 하고, 점 \\(\\mathrm{C}\\) 를 지나고 \\(x\\)축에 수직인 직선이 \\(y=-\\dfrac{2a}{x}\\) 의 그래프와 만나는 점을 \\(\\mathrm{D}\\) 라 하자. 사각형 \\(\\mathrm{ACDB}\\) 의 넓이가 \\(45\\) 일 때, \\(a\\) 의 값을 구하시오.",
@@ -871,6 +955,9 @@
     {
       "num": 29,
       "diff": "high",
+      "subject": "중3",
+      "chapter": "이차함수",
+      "topic": "이차함수 그래프와 넓이 추론",
       "points": 4,
       "type": "fillin",
       "question": "\\(0\\) 이 아닌 실수 \\(a\\) 에 대하여 이차함수\n\n\\[f(x)=ax^2-3ax-4a^2-8a-2\\]\n\n가 있다. 이차함수 \\(y=f(x)\\) 의 그래프의 꼭짓점을 \\(\\mathrm{A}\\) 라 하고, 이 그래프가 \\(y\\)축과 만나는 점을 \\(\\mathrm{B}\\) 라 하자. 세 점 \\(\\mathrm{O},\\ \\mathrm{A},\\ \\mathrm{B}\\) 를 꼭짓점으로 하는 삼각형의 넓이가 \\(\\dfrac{3}{2}\\) 이 되도록 하는 모든 \\(f(x)\\) 에 대하여 \\(f(1)\\) 의 값의 합을 구하시오. (단, \\(\\mathrm{O}\\) 는 원점이고, 점 \\(\\mathrm{B}\\) 는 점 \\(\\mathrm{O}\\) 가 아니다.)",
@@ -902,6 +989,9 @@
     {
       "num": 30,
       "diff": "top",
+      "subject": "중3",
+      "chapter": "삼각비",
+      "topic": "닮음과 원주각을 이용한 삼각비",
       "points": 4,
       "type": "fillin",
       "question": "그림과 같이 \\(\\overline{\\mathrm{AB}}=16\\), \\(\\overline{\\mathrm{BC}}=15\\), \\(\\angle\\mathrm{B}<90^\\circ\\) 인 평행사변형 \\(\\mathrm{ABCD}\\) 의 변 \\(\\mathrm{CD}\\) 위에 \\(\\overline{\\mathrm{CE}}=6\\) 인 점 \\(\\mathrm{E}\\) 가 있다. 직선 \\(\\mathrm{BC}\\) 와 직선 \\(\\mathrm{AE}\\) 의 교점을 \\(\\mathrm{F}\\) 라 할 때, \\(\\overline{\\mathrm{EF}}=9\\) 이다. 삼각형 \\(\\mathrm{ABF}\\) 의 내심을 \\(\\mathrm{I}\\), 선분 \\(\\mathrm{DF}\\) 의 수직이등분선과 직선 \\(\\mathrm{CD}\\) 의 교점을 \\(\\mathrm{J}\\) 라 할 때, 선분 \\(\\mathrm{AE}\\) 위의 점 \\(\\mathrm{K}\\) 는 \\(\\overline{\\mathrm{IJ}}=\\overline{\\mathrm{KJ}}\\) 를 만족시킨다. \\(\\tan(\\angle\\mathrm{FKD})=\\dfrac{q\\sqrt{2}}{p}\\) 일 때, \\(p+q\\) 의 값을 구하시오. (단, \\(p\\) 와 \\(q\\) 는 서로소인 자연수이다.)",

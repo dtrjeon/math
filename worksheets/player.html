@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.18 (2026-11-04): 모의고사 단원별 풀이 모드 추가 — ?mock=월&subject=과목&chapter=단원 으로 열면 그 달 학력평가에서 해당 단원 문항만 모아 보여줌(분석 페이지 종합표에서 연결). 오답 기록은 원래 시험의 문항으로 남겨 오답노트의 "다시 풀기"가 그대로 동작하게 함 -->
 <!-- v2.17 (2026-11-04): 부등식 답 채점 보정 — 키보드에 ≥ ≤ ≠ 키가 없어 학생이 ">=", "<=", "!="로 쓴 맞는 답이 오답 처리되던 문제. 비교 전에 양쪽을 ≥ ≤ ≠로 맞춤(\ge \le \ne 같은 LaTeX 정답도 포함). 마지막 '=' 뒤만 비교하는 예전 방식이 "x>=3"을 "3"으로 읽어 정답 "3"과 같다고 판정하지 않도록, 부등호 변환을 그보다 먼저 적용 -->
 <!-- v2.16 (2026-11-03): 문제지·manifest fetch에 cache:'no-store' 추가 — 문제지 JSON을 고쳐 올려도 브라우저가 예전 파일을 계속 보여주던 문제(홈 화면은 v2.8에서 이미 같은 수정을 했고 플레이어만 빠져 있었음) -->
 <!-- v2.15 (2026-11-03): 넓은 그림이 있는 문제 카드가 화면 오른쪽 밖으로 밀려나던 레이아웃 버그 수정 — 2열 그리드가 1fr이라 가장 넓은 내용(그림 원본 폭) 아래로 줄어들지 못했음. minmax(0,1fr) + .pcard min-width:0으로 열 폭 고정, 한 줄로 긴 블록 수식은 그 자리에서 가로 스크롤 -->
@@ -1058,7 +1059,7 @@
     const payload = {
       action: 'logAttempt',
       studentName: studentName,
-      worksheetId: WORKSHEET_ID,
+      worksheetId: (prob && prob.sourceWorksheetId) || WORKSHEET_ID,
       problemId: problemId,
       correct: correct,
       reason: correct ? '' : (quizState.wrongReasons[n] || '')
@@ -1652,7 +1653,7 @@
       const correct = quizState.answers[n] === 'correct';
       return {
         problemId: prob && prob.problemId ? prob.problemId : (WORKSHEET_ID + '#' + n),
-        worksheetId: WORKSHEET_ID,
+        worksheetId: (prob && prob.sourceWorksheetId) || WORKSHEET_ID,
         correct: correct,
         reason: correct ? '' : (quizState.wrongReasons[n] || '')
       };
@@ -3016,13 +3017,53 @@
     updateFloatNav(1);
   }
 
+  // 모의고사 단원별 풀이: 그 달의 학력평가들에서 subject·chapter가 같은 문항만 모아 세트 하나로 만든다.
+  // 문항 번호는 1부터 다시 매기고, 원래 시험과 번호는 문제 앞에 표시하며 기록용으로 sourceId/sourceNum에 남긴다.
+  async function loadMockUnitSet(month, subject, chapter){
+    const mm = String(month).padStart(2, '0');
+    const manifestRes = await fetch('../data/worksheets-manifest.json', { cache: 'no-store' });
+    if(!manifestRes.ok) throw new Error(`문제지 목록 요청 실패 (status ${manifestRes.status})`);
+    const manifest = await manifestRes.json();
+    const sets = manifest.sets
+      .filter(s => s.source === 'hakpyeong' && !s.hidden && String(s.id).split('_')[1].slice(2) === mm)
+      .sort((a, b) => String(a.id).localeCompare(String(b.id)));
+    const files = await Promise.all(sets.map(async s => {
+      const res = await fetch('../data/' + s.file, { cache: 'no-store' });
+      if(!res.ok) throw new Error(`문제 파일 요청 실패 (status ${res.status}): ../data/${s.file}`);
+      return res.json();
+    }));
+    const problems = [];
+    files.forEach(d => {
+      const yy = String(d.id).split('_')[1].slice(0, 2);
+      d.problems.filter(p => p.subject === subject && p.chapter === chapter).forEach(p => {
+        problems.push(Object.assign({}, p, {
+          num: problems.length + 1,
+          question: `[20${yy}년 ${parseInt(mm, 10)}월 ${p.num}번] ${p.question}`,
+          sourceId: d.id,
+          sourceNum: p.num,
+          sourceWorksheetId: d.id + '-student'
+        }));
+      });
+    });
+    if(problems.length === 0) throw new Error(`${parseInt(mm, 10)}월 모의고사에 해당 단원 문항이 없어요: ${subject} ${chapter}`);
+    return {
+      id: `m1_mock_${mm}_${subject}_${chapter}`.replace(/\s+/g, ''),
+      title: `${parseInt(mm, 10)}월 모의고사 · ${subject} ${chapter}`,
+      unit: `${sets.length}회분 모음`,
+      problems
+    };
+  }
+
   async function loadProblemSet(){
     const params = new URLSearchParams(window.location.search);
     const setId = params.get('set');
+    const mockMonth = params.get('mock');
     let data;
 
     try{
-      if(setId){
+      if(mockMonth){
+        data = await loadMockUnitSet(mockMonth, params.get('subject'), params.get('chapter'));
+      } else if(setId){
         // v1.2: data/ 바로 밑 평평한 구조뿐 아니라 data/senmath32/처럼 하위 폴더에 있는
         // 세트도 찾을 수 있도록, id로 파일명을 직접 조합하는 대신
         // worksheets-manifest.json에서 해당 id의 file 경로를 찾아 그걸로 fetch한다.
@@ -3089,7 +3130,8 @@
       // 없으면 지금 이 세트의 id를 출처로 삼는다.
       const SOURCE_ID = data.id || setId || 'custom';
       data.problems = data.problems.map(p => Object.assign({}, p, {
-        problemId: (p.sourceId || SOURCE_ID) + '#' + p.num
+        // 원래 시험 번호(sourceNum)가 있으면 그 번호로 — 단원별 모음에서 풀어도 원래 시험의 같은 문항으로 기록된다
+        problemId: p.sourceId ? p.sourceId + '#' + (p.sourceNum !== undefined ? p.sourceNum : p.num) : SOURCE_ID + '#' + p.num
       }));
 
       // 재구성 화면에서 "유사문제로 시작"을 선택한 문제는 여기서 실제 변형 문제로 교체
