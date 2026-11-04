@@ -13,6 +13,7 @@
 | `worksheets/compose.html` | 문제지 재구성 |
 | `worksheets/upload.html` | 학생 오답 사진 → AI(`visionExtract`) → JSON → 검토 대기열 제출 |
 | `worksheets/login.html` | 가입/로그인. 세션은 `localStorage.mathapp_session` |
+| `worksheets/mock-analysis.html` | 고1 학력평가 11회분 문항별 범위·난이도 분석(난이도는 공식 정답률이 아닌 추정치). 홈 → 고등학교 → 문제집 모음 → 모의고사 탭 맨 위 카드에서 연결. 회차를 추가하면 표도 함께 고친다 |
 | `today.html`, `worksheets/today.html` | 오늘의 과제(`data/study-plan.json`). **두 파일은 동일 — 고치면 둘 다** |
 | `roadmap.html` | 진학 로드맵 |
 | `tools/*.html` | 선생님/관리자 전용(review·admin-users·admin-examrange·json_viewer_edit). 공개 내비에 링크 걸지 않음 |

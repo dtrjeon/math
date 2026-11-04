@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.15 (2026-11-04): 고등학교 > 문제집 모음 > 모의고사 탭 맨 위에 "문항별 범위·난이도 분석"(worksheets/mock-analysis.html) 카드 추가 — 회차별로 어떤 단원이 어느 난이도로 나왔는지 바로 볼 수 있게 함 -->
 <!-- v2.14 (2026-11-04): 미래엔 공통수학1 문제지 8개(data/miraen/) 추가에 맞춰 출처 라벨 miraen(📗 미래엔 교과서) 추가 -->
 <!-- v2.13 (2026-11-03): 고1 전국연합학력평가 11회분(2024년 3월~2026년 9월, data/hakpyeong/) 추가에 맞춰 출처 라벨 hakpyeong(📝 전국연합학력평가) 추가 -->
 <!-- v2.12 (2026-11-02): "💡 학습 팁" 메뉴 신설 — data/tips.json(선생님이 tools/admin-tips.html에서 등록한 Instagram 게시물 링크+요약+단원 태그)을 카드로 보여주고, 원본은 Instagram 공식 임베드(embed.js, 탭을 처음 열 때만 로드)로 표시. 학년(grades)으로 고등학교/중학교 필터링, 관리자 바로가기에 "학습 팁 관리" 카드 추가 -->
@@ -1041,6 +1042,21 @@
         });
 
         panelEl.innerHTML = tabsHtml + contentHtml;
+      }
+
+      // 고등학교 모의고사 탭 맨 위에 문항별 범위·난이도 분석 링크를 둔다(문제지 수에는 포함하지 않음).
+      if(cat === 'me' && currentLevel !== 'middleschool'){
+        panelEl.insertAdjacentHTML('afterbegin', `<div class="card">
+          <div class="card-top">
+            <div>
+              <div class="card-title">📊 문항별 범위·난이도 분석</div>
+              <div class="card-meta"><span>고1 전국연합학력평가 11회분</span><span>330문항</span></div>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a class="btn btn-primary" href="worksheets/mock-analysis.html">분석 보기</a>
+          </div>
+        </div>`);
       }
 
       document.getElementById('wsCount-' + cat).textContent = counts[cat];
