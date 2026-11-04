@@ -299,7 +299,7 @@
     },
     {
       "num": 12,
-      "diff": "mid",
+      "diff": "midhigh",
       "points": 3,
       "type": "mc",
       "question": "그림과 같이 반지름의 길이가 \\(5\\) 인 원 위의 네 점 \\(\\mathrm{A},\\ \\mathrm{B},\\ \\mathrm{C},\\ \\mathrm{D}\\) 에 대하여 두 직선 \\(\\mathrm{AD},\\ \\mathrm{BC}\\) 는 서로 평행하고 \\(\\angle\\mathrm{DCB}=110^\\circ\\) 이다. 점 \\(\\mathrm{A}\\) 를 포함하지 않는 두 호 \\(\\mathrm{BC},\\ \\mathrm{CD}\\) 의 길이의 비가 \\(4:3\\) 일 때, 점 \\(\\mathrm{B}\\) 를 포함하지 않는 호 \\(\\mathrm{DA}\\) 의 길이는?",
@@ -366,7 +366,7 @@
     },
     {
       "num": 14,
-      "diff": "high",
+      "diff": "mid",
       "points": 4,
       "type": "mc",
       "question": "상자 \\(\\mathrm{A}\\) 에는 숫자 \\(1,\\ 2,\\ 3,\\ 4,\\ 5,\\ 6\\) 이 하나씩 적혀 있는 \\(6\\) 개의 공이 들어 있고, 상자 \\(\\mathrm{B}\\) 에는 숫자 \\(7,\\ 8,\\ 9\\) 가 하나씩 적혀 있는 \\(3\\) 개의 공이 들어 있다. 두 상자 \\(\\mathrm{A},\\ \\mathrm{B}\\) 에서 각각 공을 임의로 한 개씩 꺼낼 때, 꺼낸 공에 적혀 있는 두 자연수가 서로소일 확률은?",
@@ -398,7 +398,7 @@
     },
     {
       "num": 15,
-      "diff": "high",
+      "diff": "midhigh",
       "points": 4,
       "type": "mc",
       "question": "둘레의 길이가 \\(400\\,\\mathrm{m}\\) 인 원 모양의 산책로를 두 학생 \\(\\mathrm{A},\\ \\mathrm{B}\\) 가 각자 일정한 속력으로 뛰려고 한다. 두 학생 \\(\\mathrm{A},\\ \\mathrm{B}\\) 가 같은 지점에서 동시에 출발하여 서로 반대 방향으로 뛰면 출발한 시각으로부터 1분 30초 후에 처음으로 다시 만나고, 서로 같은 방향으로 뛰면 출발한 시각으로부터 12분 후에 처음으로 다시 만난다. 학생 \\(\\mathrm{A}\\) 의 속력이 학생 \\(\\mathrm{B}\\) 의 속력보다 클 때, 학생 \\(\\mathrm{A}\\) 가 산책로를 한 바퀴 뛰는 데 걸리는 시간은?",
@@ -429,7 +429,7 @@
     },
     {
       "num": 16,
-      "diff": "high",
+      "diff": "midhigh",
       "points": 4,
       "type": "mc",
       "question": "그림과 같이 한 변의 길이가 \\(1\\) 인 두 정육각형 \\(\\mathrm{ABCDEF}\\), \\(\\mathrm{AGHIJK}\\) 가 있다. 점 \\(\\mathrm{G}\\) 가 정육각형 \\(\\mathrm{ABCDEF}\\) 의 내부에 있고 \\(\\angle\\mathrm{BAG}=45^\\circ\\) 일 때, 사각형 \\(\\mathrm{AGEF}\\) 의 넓이는?",
@@ -569,7 +569,7 @@
     },
     {
       "num": 19,
-      "diff": "high",
+      "diff": "midhigh",
       "points": 4,
       "type": "mc",
       "question": "한 변의 길이가 \\(4\\,\\mathrm{cm}\\) 인 정사각형 모양의 종이를 다음과 같이 차례로 접는다.\n\n단계 | 설명\nⅠ | 점 \\(\\mathrm{A}\\) 와 점 \\(\\mathrm{D}\\) 가 겹쳐지도록 접었다가 펴서 선분 \\(\\mathrm{AD}\\) 의 중점 \\(\\mathrm{M}\\) 과 선분 \\(\\mathrm{BC}\\) 의 중점 \\(\\mathrm{N}\\) 을 잡는다. 점 \\(\\mathrm{A}\\) 와 점 \\(\\mathrm{M}\\) 이 겹쳐지도록 접었다가 펴서 선분 \\(\\mathrm{AM}\\) 의 중점 \\(\\mathrm{E}\\) 와 선분 \\(\\mathrm{BN}\\) 의 중점 \\(\\mathrm{F}\\) 를 잡는다.\nⅡ | 선분 \\(\\mathrm{AB}\\) 위의 한 점 \\(\\mathrm{G}\\) 에 대하여 선분 \\(\\mathrm{CG}\\) 를 접는 선으로 하여 점 \\(\\mathrm{B}\\) 가 선분 \\(\\mathrm{EF}\\) 위에 놓이도록 접는다.\n\n선분 \\(\\mathrm{CG}\\) 의 길이가 \\(a\\,\\mathrm{cm}\\) 일 때, \\(a\\) 의 값은? (단, 종이의 두께는 고려하지 않는다.)",
@@ -722,7 +722,7 @@
     },
     {
       "num": 22,
-      "diff": "mid",
+      "diff": "low",
       "points": 3,
       "type": "fillin",
       "question": "기울기가 \\(2\\) 이고 점 \\((1,\\ 5)\\) 를 지나는 직선의 \\(y\\)절편을 구하시오.",
@@ -737,7 +737,7 @@
     },
     {
       "num": 23,
-      "diff": "mid",
+      "diff": "low",
       "points": 3,
       "type": "fillin",
       "question": "\\(\\sqrt{3}+\\sqrt{12}=\\sqrt{n}\\) 을 만족시키는 자연수 \\(n\\) 의 값을 구하시오.",
@@ -786,7 +786,7 @@
     },
     {
       "num": 26,
-      "diff": "high",
+      "diff": "mid",
       "points": 4,
       "type": "fillin",
       "question": "다음은 어느 날 6개 지역의 일일 최저 기온을 조사하여 나타낸 자료이다.\n\n(단위: ℃)\n\n\\(-2,\\ 1,\\ 7,\\ 6,\\ -3,\\ a\\)\n\n이 자료의 중앙값이 \\(2\\) 일 때, 분산을 구하시오. (단, \\(a\\) 는 실수이다.)",
@@ -810,7 +810,7 @@
     },
     {
       "num": 27,
-      "diff": "high",
+      "diff": "midhigh",
       "points": 4,
       "type": "fillin",
       "question": "그림과 같이 정육각형 \\(\\mathrm{ABCDEF}\\) 에 대하여 변 \\(\\mathrm{AB}\\) 를 한 변으로 하는 정사각형과 변 \\(\\mathrm{EF}\\) 를 한 변으로 하는 정오각형이 있다. 이 정사각형에서 꼭짓점 \\(\\mathrm{A}\\) 와 이웃한 꼭짓점 중 \\(\\mathrm{B}\\) 가 아닌 점을 \\(\\mathrm{G}\\), 이 정오각형에서 꼭짓점 \\(\\mathrm{F}\\) 와 이웃한 꼭짓점 중 \\(\\mathrm{E}\\) 가 아닌 점을 \\(\\mathrm{H}\\) 라 하자. 두 선분 \\(\\mathrm{AH},\\ \\mathrm{FG}\\) 가 만나는 점을 \\(\\mathrm{I}\\) 라 할 때, \\(\\angle\\mathrm{AIF}=x^\\circ\\) 이다. \\(x\\) 의 값을 구하시오. (단, 점 \\(\\mathrm{G}\\) 와 점 \\(\\mathrm{H}\\) 는 정육각형 \\(\\mathrm{ABCDEF}\\) 의 외부에 있다.)",
@@ -870,7 +870,7 @@
     },
     {
       "num": 29,
-      "diff": "top",
+      "diff": "high",
       "points": 4,
       "type": "fillin",
       "question": "\\(0\\) 이 아닌 실수 \\(a\\) 에 대하여 이차함수\n\n\\[f(x)=ax^2-3ax-4a^2-8a-2\\]\n\n가 있다. 이차함수 \\(y=f(x)\\) 의 그래프의 꼭짓점을 \\(\\mathrm{A}\\) 라 하고, 이 그래프가 \\(y\\)축과 만나는 점을 \\(\\mathrm{B}\\) 라 하자. 세 점 \\(\\mathrm{O},\\ \\mathrm{A},\\ \\mathrm{B}\\) 를 꼭짓점으로 하는 삼각형의 넓이가 \\(\\dfrac{3}{2}\\) 이 되도록 하는 모든 \\(f(x)\\) 에 대하여 \\(f(1)\\) 의 값의 합을 구하시오. (단, \\(\\mathrm{O}\\) 는 원점이고, 점 \\(\\mathrm{B}\\) 는 점 \\(\\mathrm{O}\\) 가 아니다.)",

@@ -71,7 +71,7 @@
     },
     {
       "num": 4,
-      "diff": "mid",
+      "diff": "low",
       "points": 3,
       "type": "mc",
       "question": "그림과 같이 \\(\\angle B=90^\\circ\\) 인 직각삼각형 \\(\\mathrm{ABC}\\) 에서 \\(\\overline{\\mathrm{AB}}=3\\), \\(\\overline{\\mathrm{BC}}=\\sqrt{7}\\) 일 때, \\(\\cos A\\) 의 값은?",
@@ -96,7 +96,7 @@
     },
     {
       "num": 5,
-      "diff": "mid",
+      "diff": "low",
       "points": 3,
       "type": "mc",
       "question": "어느 학급 학생들의 키를 조사하여 나타낸 도수분포다각형이 그림과 같다.\n\n키(cm) | 145~150 | 150~155 | 155~160 | 160~165 | 165~170 | 170~175 | 175~180\n학생 수(명) | 2 | 3 | 5 | 7 | 6 | 5 | 2\n\n이 학생들 중 키가 \\(160\\,\\mathrm{cm}\\) 이상인 학생의 수는?",
@@ -124,7 +124,7 @@
     },
     {
       "num": 6,
-      "diff": "mid",
+      "diff": "low",
       "points": 3,
       "type": "mc",
       "question": "연립방정식\n\n\\[\\begin{cases} x+2y=1 \\\\ 2x-3y=9 \\end{cases}\\]\n\n의 해가 \\(x=a,\\ y=b\\) 일 때, \\(a+b\\) 의 값은?",
@@ -296,7 +296,7 @@
     },
     {
       "num": 12,
-      "diff": "mid",
+      "diff": "midhigh",
       "points": 3,
       "type": "mc",
       "question": "그림과 같이 \\(\\overline{\\mathrm{AB}}=13\\), \\(\\overline{\\mathrm{BC}}=11\\), \\(\\angle \\mathrm{CBA}<90^\\circ\\) 인 평행사변형 \\(\\mathrm{ABCD}\\) 의 두 대각선이 만나는 점을 \\(\\mathrm{E}\\) 라 하자. 삼각형 \\(\\mathrm{BCE}\\) 의 넓이가 \\(33\\) 일 때, 선분 \\(\\mathrm{BD}\\) 의 길이는?",
@@ -366,7 +366,7 @@
     },
     {
       "num": 14,
-      "diff": "high",
+      "diff": "midhigh",
       "points": 4,
       "type": "mc",
       "question": "그림과 같이 원 \\(O\\) 에 내접하는 사각형 \\(\\mathrm{ABCD}\\) 가 있다. 이 사각형의 두 대각선이 서로 수직으로 만나고, 원 \\(O\\) 에서 호 \\(\\mathrm{AB}\\) 의 길이와 호 \\(\\mathrm{CD}\\) 의 길이의 비가 \\(3:2\\) 일 때, 각 \\(\\mathrm{ACB}\\) 의 크기는? (단, 호 \\(\\mathrm{AB}\\) 에 대한 중심각의 크기와 호 \\(\\mathrm{CD}\\) 에 대한 중심각의 크기는 모두 \\(180^\\circ\\) 보다 작다.)",
@@ -396,7 +396,7 @@
     },
     {
       "num": 15,
-      "diff": "high",
+      "diff": "midhigh",
       "points": 4,
       "type": "mc",
       "question": "세 자연수 \\(a,\\ b,\\ c\\) 에 대하여 \\(x\\) 에 대한 두 이차식 \\(x^2+ax+27,\\ x^2+bx-18\\) 의 공통인 인수가 \\(x+c\\) 일 때, \\(a+b+c\\) 의 값은?",
@@ -436,7 +436,7 @@
     },
     {
       "num": 16,
-      "diff": "high",
+      "diff": "midhigh",
       "points": 4,
       "type": "mc",
       "question": "일차함수 \\(y=\\dfrac{1}{2}x+4\\) 의 그래프가 \\(x\\)축, \\(y\\)축과 만나는 점을 각각 \\(\\mathrm{A},\\ \\mathrm{B}\\) 라 하고, 일차함수 \\(y=ax-2a\\ (a>0)\\) 의 그래프가 \\(x\\)축, \\(y\\)축과 만나는 점을 각각 \\(\\mathrm{C},\\ \\mathrm{D}\\) 라 하자. 사각형 \\(\\mathrm{ADCB}\\) 가 사다리꼴이 되도록 하는 모든 상수 \\(a\\) 의 값의 합은?",
@@ -482,7 +482,7 @@
     },
     {
       "num": 17,
-      "diff": "high",
+      "diff": "midhigh",
       "points": 4,
       "type": "mc",
       "question": "그림과 같이 삼각형 \\(\\mathrm{ABC}\\) 와 이 삼각형의 외접원이 있다. 각 \\(\\mathrm{BAC}\\) 의 이등분선과 이 원이 만나는 점 중 \\(\\mathrm{A}\\) 가 아닌 점을 \\(\\mathrm{D}\\) 라 하고, 직선 \\(\\mathrm{AD}\\) 가 선분 \\(\\mathrm{BC}\\) 와 만나는 점을 \\(\\mathrm{E}\\) 라 하자. \\(\\overline{\\mathrm{AB}}=3\\), \\(\\overline{\\mathrm{AC}}=5\\), \\(\\overline{\\mathrm{AD}}=6\\) 일 때, 선분 \\(\\mathrm{DE}\\) 의 길이는?",
@@ -700,7 +700,7 @@
     },
     {
       "num": 22,
-      "diff": "mid",
+      "diff": "low",
       "points": 3,
       "type": "fillin",
       "question": "일차부등식 \\(4x-30>x+7\\) 을 만족시키는 자연수 \\(x\\) 의 최솟값을 구하시오.",
@@ -715,7 +715,7 @@
     },
     {
       "num": 23,
-      "diff": "mid",
+      "diff": "low",
       "points": 3,
       "type": "fillin",
       "question": "분수 \\(\\dfrac{3}{22}\\) 을 소수로 나타낼 때, 소수점 아래 여섯 번째 자리의 숫자를 구하시오.",
@@ -766,7 +766,7 @@
     },
     {
       "num": 26,
-      "diff": "high",
+      "diff": "mid",
       "points": 4,
       "type": "fillin",
       "question": "세 수 \\(-\\dfrac{3}{2},\\ -\\dfrac{1}{2},\\ \\dfrac{4}{3}\\) 가 하나씩 적혀 있는 세 장의 카드가 있다. 세 장의 카드 중에서 카드를 한 장씩 세 번 뽑을 때, 뽑힌 카드에 적힌 수를 차례로 \\(a,\\ b,\\ c\\) 라 하자. \\(12\\times\\dfrac{b-c}{a}\\) 의 값으로 가능한 가장 큰 값을 구하시오. (단, 뽑은 카드는 다시 뽑지 않는다.)",

@@ -67,7 +67,7 @@
     },
     {
       "num": 4,
-      "diff": "mid",
+      "diff": "low",
       "points": 3,
       "type": "mc",
       "question": "등식\n\n\\[x^2+ax-1=(x-1)(x+b)+3x\\]\n\n가 \\(x\\) 에 대한 항등식일 때, \\(a+b\\) 의 값은? (단, \\(a\\) 와 \\(b\\) 는 상수이다.)",
@@ -89,7 +89,7 @@
     },
     {
       "num": 5,
-      "diff": "mid",
+      "diff": "low",
       "points": 3,
       "type": "mc",
       "question": "좌표평면 위의 점 \\((3,\\ a)\\) 를 점 \\((8,\\ 8)\\) 로 옮기는 평행이동에 의하여 점 \\((5,\\ 5)\\) 가 점 \\((b,\\ 2)\\) 로 옮겨질 때, \\(a+b\\) 의 값은?",
@@ -110,7 +110,7 @@
     },
     {
       "num": 6,
-      "diff": "mid",
+      "diff": "low",
       "points": 3,
       "type": "mc",
       "question": "다항식 \\((4x-ay+2)^2\\) 의 전개식에서 \\(x^2\\) 의 계수와 \\(y\\) 의 계수가 같을 때, 상수 \\(a\\) 의 값은?",
@@ -278,7 +278,7 @@
     },
     {
       "num": 13,
-      "diff": "mid",
+      "diff": "midhigh",
       "points": 3,
       "type": "mc",
       "question": "\\(x\\) 에 대한 연립부등식\n\n\\[\\begin{cases} x^2\\ge 4n^2 \\\\ x^2-nx-6n^2\\le 0 \\end{cases}\\]\n\n을 만족시키는 정수 \\(x\\) 의 개수가 \\(10\\) 이 되도록 하는 자연수 \\(n\\) 의 값은?",
@@ -306,7 +306,7 @@
     },
     {
       "num": 14,
-      "diff": "high",
+      "diff": "midhigh",
       "points": 4,
       "type": "mc",
       "question": "좌표평면 위에 두 점 \\(\\mathrm{A}(-3,\\ 2)\\), \\(\\mathrm{B}(2,\\ 6)\\) 이 있다. \\(\\overline{\\mathrm{PQ}}=1\\) 인 \\(x\\)축 위의 두 점 \\(\\mathrm{P},\\ \\mathrm{Q}\\) 에 대하여 \\(\\overline{\\mathrm{AP}}+\\overline{\\mathrm{QB}}\\) 의 최솟값은? (단, 점 \\(\\mathrm{P}\\) 의 \\(x\\)좌표는 점 \\(\\mathrm{Q}\\) 의 \\(x\\)좌표보다 작다.)",
@@ -362,7 +362,7 @@
     },
     {
       "num": 16,
-      "diff": "high",
+      "diff": "midhigh",
       "points": 4,
       "type": "mc",
       "question": "1학년 학생 \\(3\\) 명, 2학년 학생 \\(2\\) 명, 3학년 학생 \\(1\\) 명이 있다. 이 \\(6\\) 명의 학생 중에서 \\(5\\) 명의 학생을 선택하고 이 \\(5\\) 명의 학생이 모두 한 번씩 발표하도록 순서를 정하려고 할 때, 1학년 학생끼리는 연속해서 발표하지 않도록 순서를 정하는 경우의 수는? (단, 발표는 한 명씩 한다.)",
@@ -394,7 +394,7 @@
     },
     {
       "num": 17,
-      "diff": "high",
+      "diff": "midhigh",
       "points": 4,
       "type": "mc",
       "question": "양수 \\(a\\) 에 대하여 \\(0\\le x\\le a\\) 에서 이차함수 \\(f(x)=-2x^2+16x-7\\) 의 최댓값과 최솟값의 합이 \\(0\\) 이 되도록 하는 모든 \\(a\\) 의 값의 합은?",
@@ -590,7 +590,7 @@
     },
     {
       "num": 22,
-      "diff": "mid",
+      "diff": "low",
       "points": 3,
       "type": "fillin",
       "question": "직선 \\(y=(5-2k)x+2\\) 와 직선 \\(y=x+3\\) 이 서로 평행할 때, 상수 \\(k\\) 의 값을 구하시오.",
@@ -603,7 +603,7 @@
     },
     {
       "num": 23,
-      "diff": "mid",
+      "diff": "low",
       "points": 3,
       "type": "fillin",
       "question": "등식 \\({}_n\\mathrm{C}_2={}_3\\mathrm{P}_2\\times n\\) 을 만족시키는 자연수 \\(n\\) 의 값을 구하시오.",
@@ -651,7 +651,7 @@
     },
     {
       "num": 26,
-      "diff": "high",
+      "diff": "midhigh",
       "points": 4,
       "type": "fillin",
       "question": "\\(x\\) 에 대한 사차방정식 \\((2x^2+kx)^2+10(2x^2+kx)+16=0\\) 의 서로 다른 실근의 개수가 \\(2\\) 가 되도록 하는 모든 자연수 \\(k\\) 의 값의 합을 구하시오.",
@@ -729,7 +729,7 @@
     },
     {
       "num": 29,
-      "diff": "top",
+      "diff": "high",
       "points": 4,
       "type": "fillin",
       "question": "그림과 같이 정사각형 \\(\\mathrm{ABCD}\\) 를 밑면으로 하는 직육면체 \\(\\mathrm{ABCD-EFGH}\\) 가 있다. 선분 \\(\\mathrm{AD}\\) 위의 점 \\(\\mathrm{P}\\) 와 선분 \\(\\mathrm{BC}\\) 위의 점 \\(\\mathrm{Q}\\) 를 \\(\\overline{\\mathrm{AP}}=\\overline{\\mathrm{BQ}}=\\overline{\\mathrm{BF}}\\) 가 되도록 잡고, 점 \\(\\mathrm{P}\\) 에서 선분 \\(\\mathrm{EH}\\) 에 내린 수선의 발을 \\(\\mathrm{R}\\), 점 \\(\\mathrm{Q}\\) 에서 선분 \\(\\mathrm{FG}\\) 에 내린 수선의 발을 \\(\\mathrm{S}\\) 라 하자. 직육면체 \\(\\mathrm{ABCD-EFGH}\\) 의 부피를 \\(V_1\\), 직육면체 \\(\\mathrm{ABQP-EFSR}\\) 의 부피를 \\(V_2\\) 라 하자.\n\n\\[(\\overline{\\mathrm{AB}}+\\overline{\\mathrm{BF}})\\times\\overline{\\mathrm{SD}}^2=\\dfrac{35}{4},\\quad V_1+V_2=\\dfrac{15}{4}\\]\n\n일 때, \\((\\overline{\\mathrm{AB}}+\\overline{\\mathrm{BF}})^3=\\dfrac{q}{p}\\) 이다. \\(p+q\\) 의 값을 구하시오. (단, \\(\\overline{\\mathrm{AB}}>\\overline{\\mathrm{BF}}\\) 이고, \\(p\\) 와 \\(q\\) 는 서로소인 자연수이다.)",
