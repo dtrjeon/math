@@ -25,8 +25,7 @@
 | `data/study-plan.json`, `data/exam-ranges.json`, `data/publishers.json` | 학습 계획, 시험 범위, 출판사 |
 | `data/tips.json` | Instagram 학습 팁(링크·요약·단원 태그·학년). `tools/admin-tips.html` → GAS `saveTips`로 저장 |
 | `data/_pending/` | 승인 전 검토 대기(GAS가 GitHub에 직접 씀) |
-| `Code.gs` | GAS 기본 백엔드: `doGet`/`doPost` 라우터(모든 `action` 목록이 `codeRoute_`에 있음), 풀이 기록(Results·Attempts 탭), GitHub 읽기/쓰기, AI(사진→문제·손글씨·LaTeX), 시험범위, 사용자 관리 |
-| `gas-*.gs` | GAS 애드온(가입·로그인·검토 대기열 / AI 튜터·복습 세트 / 학습 팁). `Code.gs`와 같은 Apps Script 프로젝트에 함께 넣는다 |
+| `Code.gs` | GAS 백엔드 전체(이 파일 하나만 Apps Script에 넣는다). 1부: `doGet`/`doPost` 라우터(모든 `action` 목록이 `codeRoute_`에 있음), 풀이 기록(Results·Attempts 탭), GitHub 읽기/쓰기, AI(사진→문제·손글씨·LaTeX), 시험범위, 사용자 관리 / 2부: 가입·로그인·검토 대기열 / 3부: AI 튜터·복습 세트 / 4부: 학습 팁. 예전 주석의 `gas-*.gs`는 2~4부를 뜻한다 |
 | `normalize_and_register.py` | 새 문제지 diff 한글→영문, id=파일명, manifest 등록 |
 | `scripts/validate_worksheets.py` | 문제지·manifest·study-plan 정합성 검사 |
 
@@ -63,10 +62,10 @@
 
 - **HTML 수정 시 파일 맨 위에 버전 주석을 추가**한다: `<!-- vX.Y (YYYY-MM-DD): 무엇을 왜 바꿨는지 -->`. 기존 주석은 지우지 않는다.
 - 빌드·번들러·npm 의존성을 들이지 않는다. 외부 라이브러리는 기존처럼 cdnjs(KaTeX 0.16.9)만. 예외: 홈 "학습 팁" 탭의 Instagram 공식 `embed.js`(탭을 열 때만 로드).
-- 학습 팁은 **링크만** 저장한다. Instagram 게시물 이미지·본문을 내려받아 저장소에 넣지 않는다(저작권). 링크 형식은 `https://www.instagram.com/(p|reel)/코드/` — `gas-tips-addon.gs`, `index_mathc1.html`, `player.html`, 검증 스크립트가 같은 규칙을 쓴다.
+- 학습 팁은 **링크만** 저장한다. Instagram 게시물 이미지·본문을 내려받아 저장소에 넣지 않는다(저작권). 링크 형식은 `https://www.instagram.com/(p|reel)/코드/` — `Code.gs`(4부), `index_mathc1.html`, `player.html`, 검증 스크립트가 같은 규칙을 쓴다.
 - 문제 텍스트를 `innerHTML`에 넣을 땐 `escapeHtml()`, 속성에는 `attrSafe()`/`escapeAttr()` — LaTeX의 `<`, `>`, `\`가 깨지는 버그가 반복됐다.
 - `TEST_MODE_UNLOCK_SOLUTIONS`(player.html)는 테스트 기간 임시 `true`. 함부로 바꾸지 말고 사용자에게 확인.
-- GAS 코드 변경은 `Code.gs`·`gas-*.gs` 파일로 전달한다(사용자가 Apps Script 편집기에 붙여넣고 "배포 관리 → 새 버전"으로 재배포 — 새 배포를 만들면 URL이 바뀜). 새 `action`은 `Code.gs`의 `codeRoute_`에 한 줄 추가한다. 여러 .gs 파일이 전역을 공유하므로 상수·함수 이름은 파일별 접두사(`CODE_`/`code`, `ai`, `tips`)로 겹치지 않게 한다.
+- GAS 코드 변경은 `Code.gs` 파일로 전달한다(사용자가 Apps Script 편집기에 붙여넣고 "배포 관리 → 새 버전"으로 재배포 — 새 배포를 만들면 URL이 바뀜). 새 `action`은 `codeRoute_`에 한 줄 추가한다. 전역 이름이 겹치지 않도록 상수·함수 이름은 영역별 접두사(`CODE_`/`code`, `ai`, `tips`)를 쓴다.
 - `SHEET_WEBHOOK_URL`(GAS 배포 URL)과 `OCR_SPACE_KEY`는 이미 공개 저장소에 있는 값이다. 새 비밀값(GitHub 토큰, Anthropic 키)은 절대 HTML/JSON에 넣지 말고 GAS 스크립트 속성에만.
 - 학생 이름·전화번호 등 개인정보를 데이터 파일이나 커밋 메시지에 넣지 않는다.
 - 정답을 바꾸는 수정은 반드시 근거(직접 풀이)와 함께 사용자에게 보고하고 확인받는다.
@@ -88,7 +87,7 @@ node --check <추출한 스크립트>                   # HTML 인라인 JS 문�
 - `/verify-answers` — 기존 문제지의 정답·풀이를 `math-checker` 서브에이전트로 독립 풀이해 대조
 - `/study-plan` — 시험일·범위로 `data/study-plan.json` 생성/갱신
 
-## 앱 안의 AI 에이전트 (`gas-ai-agent-addon.gs`)
+## 앱 안의 AI 에이전트 (`Code.gs` 3부)
 
 - `aiTutor`: 문제별 힌트/오답 설명/질문 답변. 도구 `find_similar_problems`로 기존 문제 추천.
 - `aiMakeReviewSet`: 오답 → 변형 문제 생성 → `validate_problems`로 자체 검사 → `submit_review_set`으로 `data/_pending` 제출. **선생님이 `tools/review.html`에서 승인해야 공개**.

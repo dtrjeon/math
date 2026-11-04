@@ -13,7 +13,7 @@ Claude Code 훅(.claude/hooks)과 GitHub Actions, 사람이 직접 실행할 때
     ERROR  — player.html이 깨지거나 채점이 틀어지는 문제 (exit 1)
     WARN   — 동작은 하지만 표준 스키마와 다른 것 (구 스키마, id 불일치 등)
 
-문제 단위 규칙은 gas-ai-agent-addon.gs 의 aiValidateProblems_()와 같게 유지할 것.
+문제 단위 규칙은 Code.gs 3부의 aiValidateProblems_()와 같게 유지할 것.
 """
 import argparse
 import glob
@@ -27,7 +27,7 @@ DATA = os.path.join(ROOT, "data")
 MANIFEST = os.path.join(DATA, "worksheets-manifest.json")
 STUDY_PLAN = os.path.join(DATA, "study-plan.json")
 TIPS = os.path.join(DATA, "tips.json")
-# gas-tips-addon.gs의 TIPS_URL_RE와 같은 규칙
+# Code.gs 4부의 TIPS_URL_RE와 같은 규칙
 TIP_URL_RE = re.compile(r"^https://www\.instagram\.com/(p|reel)/[A-Za-z0-9_-]+/$")
 
 VALID_DIFF = {"low", "mid", "midhigh", "high", "top"}
