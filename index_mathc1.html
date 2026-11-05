@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.20 (2026-11-05): 오답노트를 "틀린 문제 → 오답 그룹 → 다시 풀기" 흐름에 맞춤 — (1) wrongStats를 로그인한 학생 이름으로 조회(그동안 모든 학생 오답이 섞여 보였음), (2) 모의고사/교재/중간·기말 그룹으로 나눠 보여주고 "오답 모아 풀기"(startWrongSet)로 오답 문제만 한 세트로 player를 열도록 추가 — 문제마다 sourceId·sourceNum을 달아 원래 문제의 풀이 기록(연속 3회 정답 마스터)으로 쌓임, (3) 문제지 목록에 없는 문제(삭제된 중학교 문제지·예전 재구성 임시 세트)는 오답 목록에서 제외, (4) 행의 "다시 풀기"를 해당 문항부터 여는 링크("문제지에서 풀기", &start=)로 변경 -->
 <!-- v2.19 (2026-11-05): 동작 변경 없는 코드 정리 — 쓰이지 않던 CATEGORY_LABELS 삭제, 오답 반복 필터의 이중 부정 조건을 읽기 쉽게 풀어 씀, tipMatchesLevel → tipIsForHighSchool로 이름 정정(레벨 전환이 없어졌으므로) -->
 <!-- v2.18 (2026-11-05): 쓰이지 않게 된 코드 정리 — 값을 읽는 곳이 없는 GROUP_GRADE, 해당 문제지가 없는 출처 라벨(쎈수학·홍천중) 제거 -->
 <!-- v2.17 (2026-11-05): 중학교 3-2 삭제 — 상단 "고등학교 / 중학교 3-2" 전환 버튼과 레벨(currentLevel) 분기 코드를 모두 제거하고 고등학교 화면만 남김. 중학 문제지·교재·시험범위 데이터를 지운 뒤에도 시작 화면(v2.11에서 중학교 3-2로 고정)이 빈 화면으로 열리던 문제도 함께 해결 -->
@@ -1154,6 +1155,13 @@
   // ===== 오답 반복 =====
   // 아직 마스터(연속 3회 정답)되지 않은 오답 문제들을 백엔드(wrongStats)에서 받아와 보여준다.
   let WRONG_STATS_RAW = [];
+  let WRONG_GROUPS = {}; // key(all/me/tb/peq/etc) → [{ setId, num, title }] — "모아 풀기" 버튼이 쓴다
+  const WRONG_GROUP_DEFS = [
+    { key:'me',  label:'📝 모의고사' },
+    { key:'tb',  label:'📘 교재' },
+    { key:'peq', label:'📚 중간·기말' },
+    { key:'etc', label:'기타' }
+  ];
 
   function renderWrongRepeat(){
     const panel = document.getElementById('mainPanel-wrongrepeat');
@@ -1161,7 +1169,14 @@
       panel.innerHTML = '<div class="ws-loading">⚠️ 기록 저장 서버가 아직 연결되지 않았어요</div>';
       return;
     }
-    fetch(SHEET_WEBHOOK_URL + '?action=wrongStats')
+    // 로그인한 학생 본인의 오답만 가져온다(이름을 안 넘기면 서버가 모든 학생 것을 돌려줌)
+    let studentName = '';
+    try { studentName = (JSON.parse(localStorage.getItem('mathapp_session') || 'null') || {}).name || ''; } catch(e){}
+    if(!studentName){
+      panel.innerHTML = '<div class="ws-loading">로그인 정보를 확인할 수 없어요. 다시 로그인해 주세요</div>';
+      return;
+    }
+    fetch(SHEET_WEBHOOK_URL + '?action=wrongStats&studentName=' + encodeURIComponent(studentName))
       .then(res => res.json())
       .then(list => {
         WRONG_STATS_RAW = list || [];
@@ -1196,34 +1211,120 @@
       return !beforeReset;   // 초기화 시각 이전 기록은 숨김
     });
 
-    document.getElementById('wrongRepeatCount').textContent = list.length;
+    // 문제ID는 "문제지id#번호". 지금 문제지 목록에 없는 것(삭제된 문제지, 예전 재구성 임시 세트)은
+    // 다시 불러올 수 없으므로 목록에서 뺀다.
+    const entries = [];
+    list.forEach(item => {
+      const pid = String(item.problemId);
+      const cut = pid.indexOf('#');
+      if(cut < 0) return;
+      const setId = pid.slice(0, cut);
+      const set = MANIFEST_SETS.find(s => s.id === setId);
+      if(!set) return;
+      entries.push({ item: item, set: set, setId: setId, num: pid.slice(cut + 1), title: set.title || setId });
+    });
+
+    document.getElementById('wrongRepeatCount').textContent = entries.length;
     renderHomeAlerts();
-    if(list.length === 0){
+    if(entries.length === 0){
+      WRONG_GROUPS = {};
       panel.innerHTML = '<div class="ws-loading">아직 반복할 오답이 없어요. 잘하고 있어요! 🎉</div>';
       return;
     }
-    const rows = list.map(item => {
-      const parts = String(item.problemId).split('#');
-      const num = parts[1] || parts[0];
-      const meta = WORKSHEET_META[item.worksheetId] || null;
-      const label = meta ? meta.label.replace(' · 학생풀이','').replace(' · 검토용','') : (item.worksheetId || '-');
-      const playCell = meta
-        ? `<a class="btn btn-secondary" href="worksheets/player.html?set=${meta.group}">다시 풀기</a>`
-        : '-';
-      return `<tr>
-        <td>${label} · ${num}번</td>
-        <td>오답 ${item.totalWrong}회 / 시도 ${item.totalAttempts}회</td>
-        <td>연속정답 ${item.currentStreak}/3</td>
-        <td>${fmtDate(item.lastDate)}</td>
-        <td>${playCell}</td>
+
+    // 시험 종류별 오답 그룹 (manifest의 category 기준)
+    WRONG_GROUPS = { all: entries.map(e => ({ setId: e.setId, num: e.num, title: e.title })) };
+    const buckets = {};
+    entries.forEach(e => {
+      const key = WRONG_GROUP_DEFS.some(g => g.key === e.set.category) ? e.set.category : 'etc';
+      (buckets[key] = buckets[key] || []).push(e);
+    });
+    WRONG_GROUP_DEFS.forEach(g => {
+      if(buckets[g.key]) WRONG_GROUPS[g.key] = buckets[g.key].map(e => ({ setId: e.setId, num: e.num, title: e.title }));
+    });
+
+    const rowHtml = e => `<tr>
+        <td>${tipEscape(e.title)} · ${tipEscape(e.num)}번</td>
+        <td>오답 ${e.item.totalWrong}회 / 시도 ${e.item.totalAttempts}회</td>
+        <td>연속정답 ${e.item.currentStreak}/3</td>
+        <td>${fmtDate(e.item.lastDate)}</td>
+        <td><a class="btn btn-secondary" href="worksheets/player.html?set=${encodeURIComponent(e.setId)}&start=${encodeURIComponent(e.num)}">문제지에서 풀기</a></td>
       </tr>`;
-    }).join('');
-    panel.innerHTML = `<div class="card"><table class="publisher-table">
-        <thead><tr><th>문제</th><th>오답/시도</th><th>연속정답</th><th>최근 풀이</th><th></th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table></div>
-      <p style="font-size:12.5px;color:var(--num);margin-top:10px;">연속 3회 정답이면 이 목록에서 자동으로 빠져요.</p>
+
+    let html = `<div class="card">
+        <div class="card-title">🔁 오답 모아 풀기</div>
+        <div class="card-meta"><span>틀렸던 문제만 한 세트로 모아서 풀어요</span><span>${entries.length}문제</span></div>
+        <div class="card-actions">
+          <button class="btn btn-primary wrong-start-btn" onclick="startWrongSet('all')">전체 ${entries.length}문제 모아 풀기</button>
+        </div>
+      </div>`;
+    WRONG_GROUP_DEFS.forEach(g => {
+      const group = buckets[g.key];
+      if(!group) return;
+      html += `<div class="ws-unit-label">${g.label} · ${group.length}문제</div>
+        <div class="card">
+          <button class="btn btn-secondary wrong-start-btn" style="margin-bottom:10px;" onclick="startWrongSet('${g.key}')">이 그룹 ${group.length}문제 모아 풀기</button>
+          <table class="publisher-table">
+            <thead><tr><th>문제</th><th>오답/시도</th><th>연속정답</th><th>최근 풀이</th><th></th></tr></thead>
+            <tbody>${group.map(rowHtml).join('')}</tbody>
+          </table>
+        </div>`;
+    });
+    html += `<p style="font-size:12.5px;color:var(--num);margin-top:10px;">모아 푼 문제도 원래 문제의 기록으로 쌓이고, 연속 3회 정답이면 이 목록에서 자동으로 빠져요.</p>
       <button class="btn btn-secondary" onclick="resetWrongNotes()">🗑 오답노트 초기화</button>`;
+    panel.innerHTML = html;
+  }
+
+  // 오답 그룹의 문제들을 원래 문제지에서 꺼내 한 세트로 만들어 player로 연다.
+  // 문제마다 원본 id(sourceId)·번호(sourceNum)를 달아 두므로, 푼 결과가 원래 문제의 풀이 기록으로 쌓인다.
+  async function startWrongSet(kind){
+    const entries = WRONG_GROUPS[kind] || [];
+    if(entries.length === 0) return;
+    const buttons = document.querySelectorAll('.wrong-start-btn');
+    buttons.forEach(b => { b.disabled = true; });
+    try{
+      const setIds = Array.from(new Set(entries.map(e => e.setId)));
+      const loaded = {};
+      await Promise.all(setIds.map(async id => {
+        const set = MANIFEST_SETS.find(s => s.id === id);
+        const res = await fetch('data/' + set.file, { cache: 'no-store' });
+        if(!res.ok) throw new Error('문제 파일 요청 실패 (status ' + res.status + '): data/' + set.file);
+        loaded[id] = await res.json();
+      }));
+
+      const problems = [];
+      entries.forEach(e => {
+        const data = loaded[e.setId];
+        const original = ((data && data.problems) || []).find(pp => String(pp.num !== undefined ? pp.num : pp.number) === e.num);
+        if(!original) return;
+        const originalNum = original.num !== undefined ? original.num : original.number;
+        problems.push(Object.assign({}, original, {
+          num: problems.length + 1,
+          question: '[' + e.title + ' ' + originalNum + '번] ' + (original.question == null ? '' : original.question),
+          sourceId: e.setId,
+          sourceNum: originalNum,
+          sourceWorksheetId: e.setId + '-student'
+        }));
+      });
+      if(problems.length === 0) throw new Error('불러올 수 있는 오답 문제가 없어요');
+
+      const def = WRONG_GROUP_DEFS.find(g => g.key === kind);
+      const customSet = {
+        id: 'wrong-' + kind + '-' + Date.now(),
+        title: '오답 모아 풀기 · ' + (def ? def.label : '전체') + ' (' + problems.length + '문제)',
+        unit: '오답노트에서 모은 문제',
+        problems: problems
+      };
+      try{
+        sessionStorage.setItem('customProblemSet', JSON.stringify(customSet));
+      } catch(storageErr){
+        throw new Error('문제가 너무 많아 한 번에 열 수 없어요. 아래 그룹별 버튼으로 나눠서 풀어 주세요');
+      }
+      window.location.href = 'worksheets/player.html';
+    } catch(err){
+      alert('오답 문제를 불러오지 못했어요: ' + (err && err.message ? err.message : err));
+      buttons.forEach(b => { b.disabled = false; });
+    }
   }
 
   // ===== 시험범위 공지 =====
