@@ -92,7 +92,7 @@ node --check <추출한 스크립트>                   # HTML 인라인 JS 문�
 1. `player.html`이 문제를 채점하는 즉시 `logAttempt`로 `Attempts` 시트에 한 줄씩 쌓는다. 문제ID = `문제지id#번호`(재구성·단원별 모음에서는 `sourceId#sourceNum`이라 원래 문제로 기록됨).
 2. `GET ?action=wrongStats&studentName=이름`이 학생·문제ID별로 시도/오답/연속정답을 계산해, 한 번이라도 틀렸고 연속 3회 정답 전인 문제만 돌려준다. **학생 이름을 꼭 넘긴다**(안 넘기면 모든 학생 것이 섞임).
 3. 홈 "오답노트" 탭이 이를 모의고사(`me`)·교재(`tb`)·중간기말(`peq`)로 묶어 보여 주고, `startWrongSet()`이 해당 문제들을 원래 문제지에서 꺼내 `sessionStorage.customProblemSet`으로 `player.html`을 연다. 문제마다 `sourceId`·`sourceNum`·`sourceWorksheetId`를 달아야 푼 결과가 원래 문제 기록으로 쌓인다.
-4. `compose.html`의 맞춤 세트도 같은 규칙. 유사문제(변형)는 원래 문제와 다르므로 `sourceId`를 달지 않는다.
+4. `compose.html`의 맞춤 세트도 같은 규칙. 유사문제(변형)는 원래 문제와 다르므로 `sourceId`를 달지 않는다. "오답노트 문제만" 필터와 "오답" 표시도 홈과 같은 `wrongStats`(학생별, 연속 3회 정답 전, 초기화 반영)를 쓴다 — `WRONG_RESET_AT`은 `index_mathc1.html`과 값이 같아야 한다.
 5. 문제지 목록(manifest)에 없는 문제ID(삭제된 문제지, 예전 임시 세트)는 오답 탭에서 제외한다.
 
 ## 앱 안의 AI 에이전트 (`Code.gs` 3부)
