@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.18 (2026-11-05): 쓰이지 않게 된 코드 정리 — 값을 읽는 곳이 없는 GROUP_GRADE, 해당 문제지가 없는 출처 라벨(쎈수학·홍천중) 제거 -->
 <!-- v2.17 (2026-11-05): 중학교 3-2 삭제 — 상단 "고등학교 / 중학교 3-2" 전환 버튼과 레벨(currentLevel) 분기 코드를 모두 제거하고 고등학교 화면만 남김. 중학 문제지·교재·시험범위 데이터를 지운 뒤에도 시작 화면(v2.11에서 중학교 3-2로 고정)이 빈 화면으로 열리던 문제도 함께 해결 -->
 <!-- v2.16 (2026-11-04): 서버 주소(SHEET_WEBHOOK_URL)를 통합 Code.gs가 올라간 새 Apps Script 배포로 교체 — 이전 배포는 AI 튜터 등 새 기능을 처리하지 못했음 -->
 <!-- v2.15 (2026-11-04): 고등학교 > 문제집 모음 > 모의고사 탭 맨 위에 "문항별 범위·난이도 분석"(worksheets/mock-analysis.html) 카드 추가 — 회차별로 어떤 단원이 어느 난이도로 나왔는지 바로 볼 수 있게 함 -->
@@ -846,8 +847,6 @@
 
   // worksheetId → 문제지 이름 / 카드 그룹 (data/worksheets-manifest.json 기반으로 자동 생성됨)
   let WORKSHEET_META = {};
-  // 원본 문제지 id → grade (m1/m2=고등학교)
-  let GROUP_GRADE = {};
   let WORKSHEET_COUNTS = { tb:0, peq:0, me:0 }; // 홈 대시보드 통계용
   let BOARD_RECORD_COUNT = 0; // 홈 대시보드 통계용
 
@@ -896,7 +895,6 @@
         if(s.reviewUrl){
           WORKSHEET_META[s.id + '-review'] = { label: s.title + ' · 검토용', group: s.id };
         }
-        GROUP_GRADE[s.id] = s.grade;
       });
 
       applyWorksheetTabsVisibility();
@@ -956,7 +954,7 @@
 
   // 문제지를 3개 탭(교과문제/기출·내신/모의고사)으로 나눠 다시 그린다.
   // 한 분류 안에 출처(source)가 여러 개면, 인라인 라벨이 아니라 클릭 가능한 출처 서브탭으로 보여준다.
-  const SOURCE_LABELS = { senmath: '📐 쎈수학', self: '📖 자체 복습', hongcheon: '🏫 홍천중', hakpyeong: '📝 전국연합학력평가', miraen: '📗 미래엔 교과서' };
+  const SOURCE_LABELS = { self: '📖 자체 복습', hakpyeong: '📝 전국연합학력평가', miraen: '📗 미래엔 교과서' };
 
   function applyWorksheetTabsVisibility(){
     const counts = { tb:0, peq:0, me:0 };
