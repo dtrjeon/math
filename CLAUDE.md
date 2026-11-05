@@ -1,6 +1,7 @@
 # math_practices — 전주영 학습 기록판
 
 중·고등 수학 문제풀이 웹앱. 빌드 도구 없는 **정적 HTML(GitHub Pages)** + **Google Apps Script(GAS) 백엔드** + **문제지 JSON**.
+배포 주소: https://dtrjeon.github.io/math/ (저장소 `dtrjeon/math`, GitHub Pages)
 학생은 `worksheets/player.html`에서 문제를 풀고, 풀이 기록은 GAS를 거쳐 Google Sheet에 쌓인다.
 
 ## 구조
