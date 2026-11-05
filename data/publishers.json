@@ -21,27 +21,6 @@
       "author": "확인 중"
     },
     {
-      "school": "홍천중학교",
-      "subject": "수학 3-2",
-      "publisher": "천재교육",
-      "author": "이준열",
-      "materials": [
-        {
-          "label": "04 기하",
-          "url": "data/materials/04 기하.pdf"
-        },
-        {
-          "label": "05 통계 part.1",
-          "url": "data/materials/05 통계 part.1.pdf"
-        },
-        {
-          "label": "05 통계 part.2",
-          "url": "data/materials/05 통계 part.2.pdf"
-        }
-      ],
-      "grade": "m0"
-    },
-    {
       "school": "서원고",
       "subject": "공통수학1 (1학년)",
       "publisher": "미래엔",
