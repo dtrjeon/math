@@ -15,7 +15,8 @@
 | `worksheets/upload.html` | 학생 오답 사진 → AI(`visionExtract`) → JSON → 검토 대기열 제출 |
 | `worksheets/login.html` | 가입/로그인. 세션은 `localStorage.mathapp_session` |
 | `worksheets/mock-analysis.html` | 고1 학력평가 11회분 문항별 범위·난이도 분석(난이도는 공식 정답률이 아닌 추정치). 홈 → 고등학교 → 문제집 모음 → 모의고사 탭 맨 위 카드에서 연결. 회차를 추가하면 표도 함께 고친다. 종합표의 단원 이름은 `player.html?mock=월&subject=과목&chapter=단원`으로 연결되고, 플레이어는 `data/hakpyeong` 문항의 `subject`·`chapter` 값으로 문항을 모은다 |
-| `today.html`, `worksheets/today.html` | 오늘의 과제(`data/study-plan.json`). **두 파일은 동일 — 고치면 둘 다** |
+| `plan.html` | 학습 계획 만들기 — 목표(시험 대비·모의고사 대비·꾸준한 학습)·시험일·하루 문제 수·쉬는 요일·문제집을 고르면 날짜별 계획을 만들어 `localStorage.study_plan_<학생ID>`에 저장(이 기기에만, 서버 저장·자동 완료 체크는 아직 없음). 문제는 manifest `count` 기준으로 1번부터 이어서 배분하고, 시험 대비는 마지막 이틀을 오답 복구 날로 둔다 |
+| `today.html`, `worksheets/today.html` | 오늘의 과제 — 저장된 학습 계획(`study_plan_<학생ID>`)을 우선 보여 주고, 없으면 `data/study-plan.json`, 둘 다 없으면 계획 만들기 안내. 완료 체크는 이 기기(`today_done_<학생ID>`)에만 저장. **두 파일은 동일 — 고치면 둘 다** |
 | `roadmap.html` | 진학 로드맵 |
 | `tools/*.html` | 선생님/관리자 전용(review·admin-users·admin-examrange·json_viewer_edit). 공개 내비에 링크 걸지 않음 |
 | `data/*.json` | 문제지 (중학교 `m0` 자료와 `data/seanmath32/`는 2026-11-05에 삭제) |

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.21 (2026-11-06): 홈 "오늘의 과제" 카드 문구를 "날짜별 학습 계획 · 계획 만들기"로 — 학습 계획(plan.html) 추가에 맞춤 -->
 <!-- v2.20 (2026-11-05): 오답노트를 "틀린 문제 → 오답 그룹 → 다시 풀기" 흐름에 맞춤 — (1) wrongStats를 로그인한 학생 이름으로 조회(그동안 모든 학생 오답이 섞여 보였음), (2) 모의고사/교재/중간·기말 그룹으로 나눠 보여주고 "오답 모아 풀기"(startWrongSet)로 오답 문제만 한 세트로 player를 열도록 추가 — 문제마다 sourceId·sourceNum을 달아 원래 문제의 풀이 기록(연속 3회 정답 마스터)으로 쌓임, (3) 문제지 목록에 없는 문제(삭제된 중학교 문제지·예전 재구성 임시 세트)는 오답 목록에서 제외, (4) 행의 "다시 풀기"를 해당 문항부터 여는 링크("문제지에서 풀기", &start=)로 변경 -->
 <!-- v2.19 (2026-11-05): 동작 변경 없는 코드 정리 — 쓰이지 않던 CATEGORY_LABELS 삭제, 오답 반복 필터의 이중 부정 조건을 읽기 쉽게 풀어 씀, tipMatchesLevel → tipIsForHighSchool로 이름 정정(레벨 전환이 없어졌으므로) -->
 <!-- v2.18 (2026-11-05): 쓰이지 않게 된 코드 정리 — 값을 읽는 곳이 없는 GROUP_GRADE, 해당 문제지가 없는 출처 라벨(쎈수학·홍천중) 제거 -->
@@ -675,7 +676,7 @@
         <a class="quick-card" href="today.html" style="border-color:var(--accent); background:var(--accent-soft);">
           <div class="quick-icon">📅</div>
           <div class="quick-title">오늘의 과제</div>
-          <div class="quick-sub">기말고사까지 날짜별로 풀 분량 확인</div>
+          <div class="quick-sub">날짜별 학습 계획 · 계획 만들기</div>
         </a>
         <a class="quick-card" href="worksheets/upload.html" style="border-color:var(--accent); background:var(--accent-soft);">
           <div class="quick-icon">📷</div>
