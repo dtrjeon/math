@@ -1,3 +1,4 @@
+<!-- v2.23 (2026-11-06): 관리자 계정은 화면 오른쪽 위에 자물쇠 아이콘을 표시 — 누르면 홈의 관리자 바로가기로 이동. 학생 계정에는 보이지 않음. -->
 <!DOCTYPE html>
 <!-- v2.22 (2026-11-06): 홈 화면 개편 — (1) 맨 위 "오늘 할 일" 카드(오늘의 학습 계획 → 오답 복습 → 계획 세우기 순으로 가장 할 일을 하나만 크게), (2) 폰(760px 이하)은 아래 탭 메뉴(홈·문제집·오답노트·더보기), 태블릿·PC는 왼쪽 메뉴를 더 크게, (3) 메뉴 이모지를 선 아이콘으로, (4) 바로가기에서 메뉴와 겹치는 카드(문제집 모음·오답노트) 제거. 이번 주 기록·연속 학습일은 서버 집계가 없어 넣지 않음. -->
 <!-- v2.21 (2026-11-06): 홈 "오늘의 과제" 카드 문구를 "날짜별 학습 계획 · 계획 만들기"로 — 학습 계획(plan.html) 추가에 맞춤 -->
@@ -669,6 +670,14 @@
     .more-item svg{ width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
     .more-item .nav-count{ margin-left:auto; }
   }
+
+  /* v2.23 관리자 자물쇠 */
+  .admin-lock{ display:none; align-items:center; justify-content:center; width:44px; height:44px; border-radius:50%; border:1.5px solid #16302A; background:#16302A; color:#f7f6f2; cursor:pointer; padding:0; }
+  .admin-lock svg{ width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  body.is-admin .admin-lock{ display:flex; position:fixed; top:14px; right:20px; z-index:350; box-shadow:0 2px 8px rgba(32,36,43,.25); }
+  @media (max-width:760px){
+    body.is-admin .admin-lock{ top:10px; right:12px; width:40px; height:40px; }
+  }
 </style>
 </head>
 <body>
@@ -681,6 +690,7 @@
         <div class="brand-title">수학 학습 기록판</div>
         <div class="brand-sub" id="sessionBrandSub">전주영</div>
       </div>
+      <button type="button" class="admin-lock" id="adminLock" onclick="goAdminSection()" aria-label="관리자 메뉴" title="관리자"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
       <button class="refresh-btn" id="refreshBtn" onclick="refreshAllData()" title="새로고침">🔄</button>
     </div>
 
@@ -885,7 +895,16 @@
       const grid = document.getElementById('adminQuickGrid');
       if(label) label.style.display = 'block';
       if(grid) grid.style.display = 'grid';
+      document.body.classList.add('is-admin');
     }
+  }
+  // 자물쇠(관리자) 버튼: 홈의 관리자 바로가기로 이동
+  function goAdminSection(){
+    switchMainTab('home');
+    setTimeout(() => {
+      const label = document.getElementById('adminSectionLabel');
+      if(label) label.scrollIntoView({ behavior:'smooth', block:'start' });
+    }, 60);
   }
   function logoutMathApp(){
     localStorage.removeItem('mathapp_session');
