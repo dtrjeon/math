@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.42 (2026-11-07): 교과과정의 요점노트 링크에 ?v=<시각>을 붙여 열 때마다 최신 파일을 불러오게 함 — 브라우저가 이전 노트를 보여 주던 문제 방지(그림 폭 제한 v2.41이 안 보이던 경우). 노트·플레이어는 동작 변경 없이 번호만 올림 -->
 <!-- v2.41 (2026-11-07): 개념 그림(.fig) 최대 폭을 420px로 제한 — PC 넓은 화면에서 그림이 너무 커지던 문제 수정(이차방정식과 이차함수·여러 가지 방정식과 부등식 노트) -->
 <!-- v2.40 (2026-11-07): 동작 변경 없음 — 절댓값 부등식 그림을 「반드시 암기」 상자 안으로 옮긴 것에 맞춰 번호만 올림 -->
 <!-- v2.39 (2026-11-07): 동작 변경 없음 — 절댓값 부등식 그림 교체에 맞춰 번호만 올림 -->
@@ -737,7 +738,7 @@
       <div class="brand-text">
         <div class="brand-title">수학 학습 기록판</div>
         <div class="brand-sub" id="sessionBrandSub">전주영</div>
-        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.41 · 2026-11-07</div>
+        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.42 · 2026-11-07</div>
       </div>
       <button type="button" class="admin-lock" id="adminLock" onclick="goAdminSection()" aria-label="관리자 메뉴" title="관리자"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
       <button class="refresh-btn" id="refreshBtn" onclick="refreshAllData()" title="새로고침">🔄</button>
@@ -1762,7 +1763,7 @@
             ? lines.map(l => `<p>${currEsc(l)}</p>`).join('')
             : ((Array.isArray(u.links) && u.links.length) ? '' : '<p class="curr-empty">요약정리 준비 중이에요.</p>');
           const links = (Array.isArray(u.links) ? u.links : []).filter(k => k && /^(https:\/\/|[\w][\w\/.-]*\.html$)/.test(k.url || '')).map(k =>
-            `<a class="curr-link" href="${currEsc(k.url)}"${/^https:/.test(k.url) ? ' target="_blank" rel="noopener"' : ''}><div><b>${currEsc(k.title || '자료')}</b>${k.desc ? `<br><span>${currEsc(k.desc)}</span>` : ''}</div></a>`).join('');
+            `<a class="curr-link" href="${currEsc(/^https:/.test(k.url) ? k.url : k.url + '?v=' + Date.now())}"${/^https:/.test(k.url) ? ' target="_blank" rel="noopener"' : ''}><div><b>${currEsc(k.title || '자료')}</b>${k.desc ? `<br><span>${currEsc(k.desc)}</span>` : ''}</div></a>`).join('');
           const linkBox = links ? `<div class="curr-links">${links}</div>` : '';
           return `<details class="curr-unit"><summary><span class="curr-no">${currEsc(u.no)}</span><span class="curr-title">${currEsc(u.title)}</span></summary><div class="curr-body">${body}${linkBox}</div></details>`;
         }).join('');
