@@ -46,7 +46,14 @@
     {
      "no": 4,
      "title": "이차방정식과 이차함수",
-     "summary": []
+     "summary": [],
+     "links": [
+      {
+       "title": "이차방정식과 이차함수 요점노트",
+       "desc": "요점정리 · 난이도별 문제 · 모의고사 출제 문항 · 추가 문제",
+       "url": "worksheets/note-cm1-quad.html"
+      }
+     ]
     },
     {
      "no": 5,
