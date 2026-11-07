@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.23 (2026-11-07): 문제 카드 단순화 — (1) 문제는 항상 한 열 (2) 풀이 도구는 펜·지우개만 보이고 나머지는 ⋯ (3) 단답형은 "내 답 [ ] ✍️ 확인" 한 줄, ✍️를 누르면 손글씨 답 칸이 펼쳐짐 (4) 폰에서도 답 입력 줄이 한 줄 유지 (5) 흐릿한 정답·풀이 박스 제거, 정답·풀이/AI 튜터 버튼은 한 줄 -->
 <!-- v2.22 (2026-11-07): 객관식 보기를 2열로 표시 — 모든 보기가 짧을 때만(수식 기호 제외 14자 이하), 길면 기존처럼 1열 -->
 <!-- v2.21 (2026-11-07): 폰에서 상단 바(시작/종료/타이머/필기 모드)가 화면 밖으로 밀리고 글자가 세로로 꺾이던 문제 수정 — 줄바꿈 허용, 버튼 글자 한 줄 유지, 크기 축소 -->
 <!-- v2.20 (2026-11-04): 서버 주소(SHEET_WEBHOOK_URL)를 통합 Code.gs가 올라간 새 Apps Script 배포로 교체 — 이전 배포는 AI 튜터 등 새 기능을 처리하지 못했음 -->
@@ -286,12 +287,9 @@
     grid-template-columns:minmax(0,1fr);
     gap:0;
   }
+  .page-grid{ max-width:860px; margin-left:auto; margin-right:auto; }
   @media (min-width:760px){
-    .page-grid{
-      grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-      column-gap:32px;
-      padding:32px;
-    }
+    .page-grid{ padding:32px; }
   }
 
   /* ===== 문제 카드 ===== */
@@ -302,18 +300,8 @@
   }
   /* 한 줄로 긴 블록 수식은 카드를 넓히지 않고 그 자리에서 가로 스크롤 */
   .pquestion .katex-display, .solution-body .katex-display{ overflow-x:auto; overflow-y:hidden; }
-  .page-grid > .pcard:nth-last-child(1),
-  .page-grid > .pcard:nth-last-child(2){
+  .page-grid > .pcard:nth-last-child(1){
     border-bottom:none;
-  }
-  @media (min-width:760px){
-    .page-grid > .pcard{
-      border-bottom:1px solid var(--rule);
-    }
-    .page-grid > .pcard:nth-child(5),
-    .page-grid > .pcard:nth-child(6){
-      border-bottom:none;
-    }
   }
   .pcard-head{
     display:flex;
@@ -387,7 +375,23 @@
     gap:6px;
   }
   .wp-label{ font-size:12px; font-weight:700; color:var(--num); }
-  .wp-tools{ display:flex; gap:6px; }
+  .wp-tools{ display:flex; gap:6px; flex-wrap:wrap; }
+  .write-pad:not(.answer-pad) .wp-tools .wp-grow,
+  .write-pad:not(.answer-pad) .wp-tools .wp-shrink,
+  .write-pad:not(.answer-pad) .wp-tools .wp-clear{ display:none; }
+  .write-pad:not(.answer-pad) .wp-tools.open .wp-grow,
+  .write-pad:not(.answer-pad) .wp-tools.open .wp-shrink,
+  .write-pad:not(.answer-pad) .wp-tools.open .wp-clear{ display:inline-block; }
+  .wp-more{ font-family:inherit; font-size:14px; font-weight:800; color:#6b6558; background:#efece2; border:1.5px solid transparent; border-radius:999px; padding:1px 12px; cursor:pointer; line-height:1.4; }
+  .wp-tools.open .wp-more{ background:#fff; border-color:var(--ink); }
+  .answer-pad.collapsed{ display:none; }
+  .answer-check{ flex-wrap:nowrap; }
+  .answer-check .ans-input{ flex:1 1 0; min-width:0; width:auto; max-width:none; }
+  .answer-check .ac-label, .answer-check .ac-btn, .answer-check .ac-hand{ flex:0 0 auto; white-space:nowrap; }
+  .answer-check .ans-feedback{ flex:0 1 auto; }
+  .ans-feedback:empty{ display:none; }
+  .ac-hand{ font-family:inherit; font-size:16px; background:#efece2; border:1.5px solid #d9d3c4; border-radius:8px; padding:4px 10px; cursor:pointer; }
+  .ac-hand.open{ background:#fff; border-color:var(--ink); }
   .wp-mode, .wp-clear, .wp-grow, .wp-shrink{
     font-family:inherit;
     font-size:11.5px;
@@ -518,7 +522,11 @@
   }
 
   /* ===== 정답/풀이 토글 ===== */
-  .solution-wrap{ margin-top:10px; }
+  .solution-wrap{ margin-top:10px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  .solution-wrap .solution-body, .solution-wrap .ai-panel{ flex:1 0 100%; margin-top:0; }
+  .solution-wrap .solution-body{ order:3; }
+  .solution-wrap .ai-panel{ order:4; }
+  .solution-wrap .ai-toggle{ margin-top:0; }
   .solution-toggle{
     font-family:inherit;
     font-size:12.5px;
@@ -544,6 +552,7 @@
     overflow-x:auto;   /* 줄바꿈이 안 되는 긴 수식은 카드 안에서 가로 스크롤 */
   }
   .solution-body.hidden-sol{
+    display:none;
     color:transparent;
     text-shadow:0 0 9px rgba(32,36,43,0.55);
     user-select:none;
@@ -1406,6 +1415,16 @@
       const isCorrect = input.dataset.correct === '1';
       revealAnswerFeedback(input, feedback, isCorrect);
     });
+  }
+
+  // 단답형: ✍️ 버튼으로 손글씨 답 칸을 펼치고 접는다 (펼칠 때 캔버스 크기를 다시 잰다)
+  function toggleAnsPad(n){
+    const pad = document.getElementById('ans-pad-' + n);
+    const btn = document.getElementById('hand-' + n);
+    if(!pad) return;
+    const open = pad.classList.toggle('collapsed') === false;
+    if(btn) btn.classList.toggle('open', open);
+    if(open) window.dispatchEvent(new Event('resize'));
   }
 
   function toggleSol(btn){
@@ -2600,6 +2619,7 @@
             <button class="wp-grow" onclick="growCanvas('canvas-${gid}')">공간 늘리기</button>
             <button class="wp-shrink" onclick="shrinkCanvas('canvas-${gid}')">공간 줄이기</button>
             <button class="wp-clear" onclick="clearCanvas('canvas-${gid}')">전체 지우기</button>
+            <button class="wp-more" type="button" aria-label="더 보기" onclick="this.parentElement.classList.toggle('open')">⋯</button>
           </div>
         </div>
         <canvas class="write-canvas" id="canvas-${gid}"></canvas>
@@ -2615,7 +2635,7 @@
     } else if(spec.type === 'fillin'){
       inner += `
       <div class="answer-check">
-        <span class="ac-label">내 답 입력</span>
+        <span class="ac-label">내 답</span>
         <input type="text" class="ans-input" id="input-${gid}" placeholder="답 입력">
         <button class="ac-btn" data-ans="${attrSafe(spec.answer)}" onclick="checkAnswer(this, this.dataset.ans)">확인</button>
         <span class="ans-feedback" id="feedback-${gid}"></span>
@@ -2940,6 +2960,7 @@
             <button class="wp-grow" onclick="growCanvas('canvas-${n}')">공간 늘리기</button>
             <button class="wp-shrink" onclick="shrinkCanvas('canvas-${n}')">공간 줄이기</button>
             <button class="wp-clear" onclick="clearCanvas('canvas-${n}')">전체 지우기</button>
+            <button class="wp-more" type="button" aria-label="더 보기" onclick="this.parentElement.classList.toggle('open')">⋯</button>
           </div>
         </div>
         <canvas class="write-canvas" id="canvas-${n}"></canvas>
@@ -2954,7 +2975,7 @@
       });
       html += '</div>';
     } else {
-      html += `<div class="write-pad answer-pad">
+      html += `<div class="write-pad answer-pad collapsed" id="ans-pad-${n}">
         <div class="write-pad-head">
           <span class="wp-label">✍️ S펜으로 정답만 쓰기</span>
           <div class="wp-tools">
@@ -2968,8 +2989,9 @@
         <span class="ocr-status" id="ocr-status-${n}"></span>
       </div>
       <div class="answer-check">
-        <span class="ac-label">내 답 입력</span>
-        <input type="text" class="ans-input" id="input-${n}" placeholder="답 입력 (또는 위에서 손글씨 인식)">
+        <span class="ac-label">내 답</span>
+        <input type="text" class="ans-input" id="input-${n}" placeholder="답 입력">
+        <button class="ac-hand" type="button" id="hand-${n}" aria-label="손글씨로 답 쓰기" onclick="toggleAnsPad('${n}')">✍️</button>
         <button class="ac-btn" data-ans="${attrSafe(p.answer)}" onclick="checkAnswer(this, this.dataset.ans)">확인</button>
         <span class="ans-feedback" id="feedback-${n}"></span>
       </div>`;
