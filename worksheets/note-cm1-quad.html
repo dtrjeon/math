@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.41 (2026-11-07): 개념 그림(.fig) 최대 폭을 420px로 제한 — PC 넓은 화면에서 그림이 너무 커지던 문제 수정(이차방정식과 이차함수·여러 가지 방정식과 부등식 노트) -->
 <!-- v2.40 (2026-11-07): 동작 변경 없음 — 절댓값 부등식 그림을 「반드시 암기」 상자 안으로 옮긴 것에 맞춰 번호만 올림 -->
 <!-- v2.39 (2026-11-07): 동작 변경 없음 — 절댓값 부등식 그림 교체에 맞춰 번호만 올림 -->
 <!-- v2.38 (2026-11-07): 동작 변경 없음 — 여러 가지 방정식과 부등식 노트의 부등식 그림 추가에 맞춰 번호만 올림 -->
@@ -216,7 +217,7 @@ a.ext:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border
 .mockd>.mock{margin-top:12px}
 .ver{max-width:960px;margin:24px auto 0;font-size:11px;color:var(--faint);text-align:right}
 .homelink{max-width:960px;margin:0 auto 12px;font-size:14px}
-.ov{text-decoration:overline}.fr{display:inline-block;vertical-align:middle;text-align:center;line-height:1.15;margin:0 .1em}.fr .nu{display:block;border-bottom:1px solid currentColor;padding:0 .15em}.fr .de{display:block;padding:0 .15em}.sq .rad{border-top:1px solid currentColor;padding:0 .08em}.fig{margin:10px 0 12px;padding:8px 8px 6px;background:var(--surface);border:1px solid var(--line);border-radius:10px}.fig svg{width:100%;height:auto;display:block}.fig .ax{stroke:var(--muted);stroke-width:1;fill:none}.fig .cv{stroke:var(--ink);stroke-width:2;fill:none}.fig .ln{stroke:var(--mem);stroke-width:1.6;fill:none}.fig .hl{stroke:var(--mem);stroke-width:3.5;fill:none}.fig .pt{fill:var(--mem)}.fig .ds{stroke:var(--faint);stroke-dasharray:3 3;stroke-width:1}.fig text{fill:var(--muted);font-size:11px;font-family:var(--sans);text-anchor:middle}.fig figcaption{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5}</style>
+.ov{text-decoration:overline}.fr{display:inline-block;vertical-align:middle;text-align:center;line-height:1.15;margin:0 .1em}.fr .nu{display:block;border-bottom:1px solid currentColor;padding:0 .15em}.fr .de{display:block;padding:0 .15em}.sq .rad{border-top:1px solid currentColor;padding:0 .08em}.fig{max-width:420px;margin:10px 0 12px;padding:8px 8px 6px;background:var(--surface);border:1px solid var(--line);border-radius:10px}.fig svg{width:100%;height:auto;display:block}.fig .ax{stroke:var(--muted);stroke-width:1;fill:none}.fig .cv{stroke:var(--ink);stroke-width:2;fill:none}.fig .ln{stroke:var(--mem);stroke-width:1.6;fill:none}.fig .hl{stroke:var(--mem);stroke-width:3.5;fill:none}.fig .pt{fill:var(--mem)}.fig .ds{stroke:var(--faint);stroke-dasharray:3 3;stroke-width:1}.fig text{fill:var(--muted);font-size:11px;font-family:var(--sans);text-anchor:middle}.fig figcaption{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5}</style>
 </head>
 <body>
 <p class="homelink"><a class="ext" href="../index_mathc1.html">← 학습 기록판 · 교과과정</a></p>
@@ -459,7 +460,7 @@ a.ext:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border
 </section>
 <section class="sec" id="check"><header class="sh"><span class="no">✓</span><h2>시험 직전 체크</h2></header><ul class="chk"><li>그래프와 <span class="m"><i>x</i></span>축·직선의 위치 관계 문제에서 식을 <span class="m"><i>a</i><i>x</i><sup>2</sup>+<i>b</i><i>x</i>+<i>c</i>=0</span> 꼴로 정리한 뒤 <span class="m"><i>D</i></span>를 구했는가?</li><li>「접한다」는 <span class="m"><i>D</i>=0</span>, 「만나지 않는다」는 <span class="m"><i>D</i>&lt;0</span>으로 정확히 구분했는가?</li><li>두 교점 사이의 거리·<span class="m"><i>x</i></span>좌표의 차는 근과 계수의 관계(<span class="m">(α−β)<sup>2</sup>=(α+β)<sup>2</sup>−4αβ</span>)로 구했는가?</li><li>최대·최소 문제에서 <span class="m"><i>x</i></span>의 범위를 먼저 확인하고 꼭짓점이 범위 안인지 밖인지 판단했는가?</li><li>제한된 범위에서 양 끝값 <span class="m"><i>f</i>(α)</span>, <span class="m"><i>f</i>(β)</span>를 빠뜨리지 않고 비교했는가?</li><li>도형 문제에서 문자의 범위(변의 길이가 양수)를 구한 뒤 최대·최소를 찾았는가?</li></ul></section>
 </main>
-<p class="ver">v2.40 · 2026-11-07</p>
+<p class="ver">v2.41 · 2026-11-07</p>
 <script>
 (function () {
   var btn = document.getElementById('quizBtn');
