@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.25 (2026-11-07): 요점노트 등 외부 페이지에서 ?back=<claude.ai 아티팩트 주소>를 붙여 열면 왼쪽 아래에 "← 요점노트로" 버튼 표시. 주소는 https://claude.ai/artifact/… 또는 /code/artifact/… 만 허용하고 그 밖의 값은 무시(임의 주소로 보내지 않기 위함). ?back이 없으면 화면은 그대로 -->
 <!-- v2.24 (2026-11-07): 태블릿·PC(760px 이상)에서 "2열 보기" 체크박스 추가 — 기본은 한 열, 선택은 이 기기에 저장(localStorage.player_two_col). 폰에서는 숨김 -->
 <!-- v2.23 (2026-11-07): 문제 카드 단순화 — (1) 문제는 항상 한 열 (2) 풀이 도구는 펜·지우개만 보이고 나머지는 ⋯ (3) 단답형은 "내 답 [ ] ✍️ 확인" 한 줄, ✍️를 누르면 손글씨 답 칸이 펼쳐짐 (4) 폰에서도 답 입력 줄이 한 줄 유지 (5) 흐릿한 정답·풀이 박스 제거, 정답·풀이/AI 튜터 버튼은 한 줄 -->
 <!-- v2.22 (2026-11-07): 객관식 보기를 2열로 표시 — 모든 보기가 짧을 때만(수식 기호 제외 14자 이하), 길면 기존처럼 1열 -->
@@ -707,6 +708,28 @@
   }
   .home-btn:hover{ opacity:0.9; }
 
+  /* ===== v2.25 요점노트로 돌아가기 버튼 (?back= 이 있을 때만 표시) ===== */
+  .back-btn{
+    display:none;
+    position:fixed;
+    left:18px;
+    bottom:calc(18px + env(safe-area-inset-bottom, 0px));
+    z-index:150;
+    align-items:center;
+    gap:6px;
+    min-height:46px;
+    padding:0 18px;
+    border-radius:999px;
+    background:#20242b;
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    box-shadow:0 3px 10px rgba(32,36,43,0.3);
+  }
+  .back-btn.show{ display:flex; }
+  .back-btn:hover{ opacity:0.9; }
+
   /* ===== v2.13 관련 학습 팁 ===== */
   .tips-box{ margin-top:10px; padding:10px 14px; background:#fff8e6; border:1px solid #ecd9a6; border-radius:10px; font-size:13.5px; }
   .tips-box .tips-head{ font-weight:700; margin-bottom:4px; }
@@ -745,6 +768,23 @@
 </head>
 <body>
 <a class="home-btn" href="../index.html" title="홈으로">🏠</a>
+<a class="back-btn" id="backBtn" href="#" title="요점노트로 돌아가기">← 요점노트로</a>
+<script>
+  /* v2.25: ?back=https://claude.ai/artifact/... 일 때만 돌아가기 버튼을 켠다 */
+  (function(){
+    try {
+      var b = new URLSearchParams(window.location.search).get('back');
+      if(!b) return;
+      var u = new URL(b);
+      if(u.protocol !== 'https:' || u.hostname !== 'claude.ai') return;
+      if(!/^\/(code\/)?artifact\//.test(u.pathname)) return;
+      var a = document.getElementById('backBtn');
+      if(!a) return;
+      a.href = u.href;
+      a.classList.add('show');
+    } catch(e){}
+  })();
+</script>
 <div id="sessionBadge" style="position:fixed; bottom:20px; right:74px; z-index:150; font-size:11.5px; background:#fff; border:1.5px solid var(--rule); border-radius:999px; padding:6px 12px; color:var(--num); box-shadow:0 3px 10px rgba(32,36,43,0.12);"></div>
 <script>
   (function(){

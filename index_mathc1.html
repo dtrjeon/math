@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.26 (2026-11-07): 교과과정 탭의 단원에 "links"(자료 링크)를 표시 — data/curriculum.json 단원에 links:[{title,desc,url}]를 넣으면 요약정리 아래에 버튼으로 나온다. 공통수학1 「다항식의 연산」에 요점노트 링크 연결. https 주소만 허용 -->
 <!-- v2.25 (2026-11-07): "교과과정" 탭 추가 — 공통수학1·2, 대수, 미적분Ⅰ, 기하, 확률과 통계, 미적분Ⅱ 서브탭마다 대단원 목록과 요약정리(data/curriculum.json의 summary, 지금은 비어 있어 "준비 중"으로 표시) -->
 <!-- v2.24 (2026-11-06): 화면에 버전 표시(브랜드 아래 "v2.24") — 어떤 버전이 열려 있는지 확인용. -->
 <!-- v2.23 (2026-11-06): 관리자 계정은 화면 오른쪽 위에 자물쇠 아이콘을 표시 — 누르면 홈의 관리자 바로가기로 이동. 학생 계정에는 보이지 않음. -->
@@ -527,6 +528,12 @@
   .curr-body{ padding:2px 18px 16px 56px; font-size:14.5px; line-height:1.7; }
   .curr-body p{ margin:4px 0; }
   .curr-empty{ color:#98a1a9; }
+  .curr-links{ display:flex; flex-direction:column; gap:8px; margin-top:12px; }
+  .curr-link{ display:flex; align-items:center; gap:10px; min-height:48px; padding:10px 14px; border:1px solid #d6dbe0; border-radius:12px; background:#fff; color:inherit; text-decoration:none; }
+  .curr-link:hover{ border-color:#98a1a9; }
+  .curr-link b{ font-size:14.5px; }
+  .curr-link span{ font-size:12.5px; color:#6b747c; }
+  .curr-link::after{ content:'↗'; margin-left:auto; color:#98a1a9; }
   .ws-tab-panel{ display:none; }
   .ws-tab-panel.active{ display:block; }
   .ws-unit-label{
@@ -701,7 +708,7 @@
       <div class="brand-text">
         <div class="brand-title">수학 학습 기록판</div>
         <div class="brand-sub" id="sessionBrandSub">전주영</div>
-        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.25 · 2026-11-07</div>
+        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.26 · 2026-11-07</div>
       </div>
       <button type="button" class="admin-lock" id="adminLock" onclick="goAdminSection()" aria-label="관리자 메뉴" title="관리자"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
       <button class="refresh-btn" id="refreshBtn" onclick="refreshAllData()" title="새로고침">🔄</button>
@@ -1710,8 +1717,11 @@
           const lines = Array.isArray(u.summary) ? u.summary.filter(Boolean) : [];
           const body = lines.length
             ? lines.map(l => `<p>${currEsc(l)}</p>`).join('')
-            : '<p class="curr-empty">요약정리 준비 중이에요.</p>';
-          return `<details class="curr-unit"><summary><span class="curr-no">${currEsc(u.no)}</span><span class="curr-title">${currEsc(u.title)}</span></summary><div class="curr-body">${body}</div></details>`;
+            : ((Array.isArray(u.links) && u.links.length) ? '' : '<p class="curr-empty">요약정리 준비 중이에요.</p>');
+          const links = (Array.isArray(u.links) ? u.links : []).filter(k => k && /^https:\/\//.test(k.url || '')).map(k =>
+            `<a class="curr-link" href="${currEsc(k.url)}" target="_blank" rel="noopener"><div><b>${currEsc(k.title || '자료')}</b>${k.desc ? `<br><span>${currEsc(k.desc)}</span>` : ''}</div></a>`).join('');
+          const linkBox = links ? `<div class="curr-links">${links}</div>` : '';
+          return `<details class="curr-unit"><summary><span class="curr-no">${currEsc(u.no)}</span><span class="curr-title">${currEsc(u.title)}</span></summary><div class="curr-body">${body}${linkBox}</div></details>`;
         }).join('');
         return `<div class="ws-tab-panel${i===0?' active':''}" id="currPanel-${currEsc(s.id)}"><div class="curr-meta">${meta} · 대단원 ${(s.units||[]).length}개</div>${units}</div>`;
       }).join('');
