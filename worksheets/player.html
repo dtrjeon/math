@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.24 (2026-11-07): 태블릿·PC(760px 이상)에서 "2열 보기" 체크박스 추가 — 기본은 한 열, 선택은 이 기기에 저장(localStorage.player_two_col). 폰에서는 숨김 -->
 <!-- v2.23 (2026-11-07): 문제 카드 단순화 — (1) 문제는 항상 한 열 (2) 풀이 도구는 펜·지우개만 보이고 나머지는 ⋯ (3) 단답형은 "내 답 [ ] ✍️ 확인" 한 줄, ✍️를 누르면 손글씨 답 칸이 펼쳐짐 (4) 폰에서도 답 입력 줄이 한 줄 유지 (5) 흐릿한 정답·풀이 박스 제거, 정답·풀이/AI 튜터 버튼은 한 줄 -->
 <!-- v2.22 (2026-11-07): 객관식 보기를 2열로 표시 — 모든 보기가 짧을 때만(수식 기호 제외 14자 이하), 길면 기존처럼 1열 -->
 <!-- v2.21 (2026-11-07): 폰에서 상단 바(시작/종료/타이머/필기 모드)가 화면 밖으로 밀리고 글자가 세로로 꺾이던 문제 수정 — 줄바꿈 허용, 버튼 글자 한 줄 유지, 크기 축소 -->
@@ -288,6 +289,13 @@
     gap:0;
   }
   .page-grid{ max-width:860px; margin-left:auto; margin-right:auto; }
+  .twocol-toggle{ display:none; align-items:center; gap:6px; font-size:13px; font-weight:800; cursor:pointer; white-space:nowrap; }
+  .twocol-toggle input{ width:18px; height:18px; accent-color:var(--accent); }
+  @media (min-width:760px){
+    .twocol-toggle{ display:inline-flex; }
+    body.two-col .page-grid{ max-width:none; grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:32px; }
+    body.two-col .page-grid > .pcard:nth-last-child(2){ border-bottom:none; }
+  }
   @media (min-width:760px){
     .page-grid{ padding:32px; }
   }
@@ -757,6 +765,7 @@
   <div class="quiz-timer" id="quizTimer">00:00</div>
   <button class="quiz-btn scroll-mode" id="scrollModeBtn" onclick="toggleScrollMode()">✏️ 필기 모드</button>
   <button class="quiz-btn pen-settings-btn" id="penSettingsBtn" onclick="togglePenSettings()">⚙️ 필기감</button>
+  <label class="twocol-toggle" title="태블릿·PC에서 문제를 2열로 보기"><input type="checkbox" id="twoColChk" onchange="setTwoCol(this.checked)"> 2열 보기</label>
 
   <div class="pen-settings-panel" id="penSettingsPanel" style="display:none;">
     <div class="ps-title">✏️ S펜 필기감 설정</div>
@@ -1416,6 +1425,20 @@
       revealAnswerFeedback(input, feedback, isCorrect);
     });
   }
+
+  // 태블릿·PC: 문제 2열 보기 (선택은 이 기기에 저장)
+  function setTwoCol(on){
+    document.body.classList.toggle('two-col', !!on);
+    try { localStorage.setItem('player_two_col', on ? '1' : '0'); } catch(e){}
+    window.dispatchEvent(new Event('resize'));
+  }
+  (function(){
+    let on = false;
+    try { on = localStorage.getItem('player_two_col') === '1'; } catch(e){}
+    document.body.classList.toggle('two-col', on);
+    const chk = document.getElementById('twoColChk');
+    if(chk) chk.checked = on;
+  })();
 
   // 단답형: ✍️ 버튼으로 손글씨 답 칸을 펼치고 접는다 (펼칠 때 캔버스 크기를 다시 잰다)
   function toggleAnsPad(n){
