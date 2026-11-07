@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.25 (2026-11-07): "교과과정" 탭 추가 — 공통수학1·2, 대수, 미적분Ⅰ, 기하, 확률과 통계, 미적분Ⅱ 서브탭마다 대단원 목록과 요약정리(data/curriculum.json의 summary, 지금은 비어 있어 "준비 중"으로 표시) -->
 <!-- v2.24 (2026-11-06): 화면에 버전 표시(브랜드 아래 "v2.24") — 어떤 버전이 열려 있는지 확인용. -->
 <!-- v2.23 (2026-11-06): 관리자 계정은 화면 오른쪽 위에 자물쇠 아이콘을 표시 — 누르면 홈의 관리자 바로가기로 이동. 학생 계정에는 보이지 않음. -->
 <!-- v2.22 (2026-11-06): 홈 화면 개편 — (1) 맨 위 "오늘 할 일" 카드(오늘의 학습 계획 → 오답 복습 → 계획 세우기 순으로 가장 할 일을 하나만 크게), (2) 폰(760px 이하)은 아래 탭 메뉴(홈·문제집·오답노트·더보기), 태블릿·PC는 왼쪽 메뉴를 더 크게, (3) 메뉴 이모지를 선 아이콘으로, (4) 바로가기에서 메뉴와 겹치는 카드(문제집 모음·오답노트) 제거. 이번 주 기록·연속 학습일은 서버 집계가 없어 넣지 않음. -->
@@ -516,6 +517,16 @@
     background:var(--ink);
     color:#fff;
   }
+  .curr-meta{ font-size:13px; color:#5b636b; margin:4px 0 12px; }
+  .curr-unit{ background:#fff; border:1px solid #e3e1d8; border-radius:14px; margin-bottom:10px; }
+  .curr-unit > summary{ list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px; min-height:56px; padding:10px 16px; font-size:16px; font-weight:700; }
+  .curr-unit > summary::-webkit-details-marker{ display:none; }
+  .curr-unit > summary::after{ content:''; margin-left:auto; width:9px; height:9px; border-right:2.5px solid #98a1a9; border-top:2.5px solid #98a1a9; transform:rotate(45deg); transition:transform .15s; }
+  .curr-unit[open] > summary::after{ transform:rotate(135deg); }
+  .curr-no{ flex:0 0 auto; width:28px; height:28px; border-radius:50%; background:#16302A; color:#f7f6f2; font-size:13px; display:flex; align-items:center; justify-content:center; }
+  .curr-body{ padding:2px 18px 16px 56px; font-size:14.5px; line-height:1.7; }
+  .curr-body p{ margin:4px 0; }
+  .curr-empty{ color:#98a1a9; }
   .ws-tab-panel{ display:none; }
   .ws-tab-panel.active{ display:block; }
   .ws-unit-label{
@@ -690,7 +701,7 @@
       <div class="brand-text">
         <div class="brand-title">수학 학습 기록판</div>
         <div class="brand-sub" id="sessionBrandSub">전주영</div>
-        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.24 · 2026-11-06</div>
+        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.25 · 2026-11-07</div>
       </div>
       <button type="button" class="admin-lock" id="adminLock" onclick="goAdminSection()" aria-label="관리자 메뉴" title="관리자"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
       <button class="refresh-btn" id="refreshBtn" onclick="refreshAllData()" title="새로고침">🔄</button>
@@ -699,6 +710,7 @@
     <nav class="sidebar-nav">
       <button class="nav-item active" id="mainTab-home" onclick="switchMainTab('home')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg><span>홈</span></button>
       <button class="nav-item" id="mainTab-worksheets" onclick="switchMainTab('worksheets')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg><span>문제집 모음</span></button>
+      <button class="nav-item" id="mainTab-curriculum" onclick="switchMainTab('curriculum')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H4z"/><path d="M20 5h-6a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h6z"/></svg><span>교과과정</span></button>
       <button class="nav-item" id="mainTab-publisher" onclick="switchMainTab('publisher')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-6 9 6"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg><span>학교별 교재출판사</span></button>
       <button class="nav-item" id="mainTab-range" onclick="switchMainTab('range')"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg><span>문제집 범위요약</span></button>
       <button class="nav-item" id="mainTab-wrongrepeat" onclick="switchMainTab('wrongrepeat')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg><span>오답노트</span> <span class="nav-count" id="wrongRepeatCount">0</span></button>
@@ -791,6 +803,12 @@
       </div>
     </section>
 
+    <section class="page" id="mainPanel-curriculum">
+      <div class="unit-label">교과과정</div>
+      <div class="worksheet-tabs" id="currTabs"></div>
+      <div id="currPanels"><div class="ws-loading">교과과정을 불러오는 중...</div></div>
+    </section>
+
     <section class="page" id="mainPanel-range">
       <div class="unit-label">문제집 범위요약</div>
       <div class="worksheet-tabs" id="rangeTabs">
@@ -869,6 +887,7 @@
 <div class="more-sheet" id="moreSheet" onclick="if(event.target===this)toggleMoreSheet(false)">
   <div class="more-panel" role="dialog" aria-label="더보기">
     <h3>더보기</h3>
+    <button type="button" class="more-item" id="more-curriculum" onclick="switchMainTab('curriculum')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H4z"/><path d="M20 5h-6a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h6z"/></svg>교과과정</button>
     <button type="button" class="more-item" id="more-publisher" onclick="switchMainTab('publisher')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-6 9 6"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg>학교별 교재출판사</button>
     <button type="button" class="more-item" id="more-range" onclick="switchMainTab('range')"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>문제집 범위요약</button>
     <button type="button" class="more-item" id="more-examrange" onclick="switchMainTab('examrange')"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>시험범위 공지</button>
@@ -1597,6 +1616,7 @@
     await renderRecentWorksheets();
     await renderRangeSummary();
     await renderPublisherTable();
+    await renderCurriculum();
     await renderExamRanges();
     await renderTips();
     loadBoard();
@@ -1626,7 +1646,7 @@
   })();
 
   function switchMainTab(tab){
-    ['home','worksheets','publisher','range','wrongrepeat','examrange','tips','roadmap','board'].forEach(t => {
+    ['home','worksheets','curriculum','publisher','range','wrongrepeat','examrange','tips','roadmap','board'].forEach(t => {
       document.getElementById('mainTab-' + t).classList.toggle('active', t === tab);
       document.getElementById('mainPanel-' + t).classList.toggle('active', t === tab);
     });
@@ -1642,7 +1662,7 @@
     BN_MAIN.forEach(t => { const b = document.getElementById('bn-' + t); if(b) b.classList.toggle('active', t === tab); });
     const more = document.getElementById('bn-more');
     if(more) more.classList.toggle('active', BN_MAIN.indexOf(tab) < 0);
-    ['publisher','range','examrange','tips','roadmap','board'].forEach(t => {
+    ['curriculum','publisher','range','examrange','tips','roadmap','board'].forEach(t => {
       const m = document.getElementById('more-' + t); if(m) m.classList.toggle('active', t === tab);
     });
     toggleMoreSheet(false);
@@ -1672,6 +1692,36 @@
       document.getElementById(`wsSourcePanel-${cat}-${i}`).classList.toggle('active', isActive);
       i++;
     }
+  }
+
+  // ===== 교과과정: 과목 서브탭 + 대단원 목록 + 요약정리 =====
+  function currEsc(v){ return String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  async function renderCurriculum(){
+    const tabs = document.getElementById('currTabs'), panels = document.getElementById('currPanels');
+    if(!tabs || !panels) return;
+    try{
+      const res = await fetch('data/curriculum.json', { cache: 'no-store' });
+      const data = await res.json();
+      const subs = data.subjects || [];
+      tabs.innerHTML = subs.map((s, i) => `<button class="ws-tab-btn${i===0?' active':''}" id="currTab-${currEsc(s.id)}" onclick="switchCurrTab('${currEsc(s.id)}')">${currEsc(s.title)}</button>`).join('');
+      panels.innerHTML = subs.map((s, i) => {
+        const meta = [s.grade, s.publisher].filter(Boolean).map(currEsc).join(' · ');
+        const units = (s.units || []).map(u => {
+          const lines = Array.isArray(u.summary) ? u.summary.filter(Boolean) : [];
+          const body = lines.length
+            ? lines.map(l => `<p>${currEsc(l)}</p>`).join('')
+            : '<p class="curr-empty">요약정리 준비 중이에요.</p>';
+          return `<details class="curr-unit"><summary><span class="curr-no">${currEsc(u.no)}</span><span class="curr-title">${currEsc(u.title)}</span></summary><div class="curr-body">${body}</div></details>`;
+        }).join('');
+        return `<div class="ws-tab-panel${i===0?' active':''}" id="currPanel-${currEsc(s.id)}"><div class="curr-meta">${meta} · 대단원 ${(s.units||[]).length}개</div>${units}</div>`;
+      }).join('');
+    }catch(e){
+      panels.innerHTML = '<div class="ws-loading">교과과정을 불러오지 못했어요.</div>';
+    }
+  }
+  function switchCurrTab(id){
+    document.querySelectorAll('#currTabs .ws-tab-btn').forEach(b => b.classList.toggle('active', b.id === 'currTab-' + id));
+    document.querySelectorAll('#currPanels .ws-tab-panel').forEach(p => p.classList.toggle('active', p.id === 'currPanel-' + id));
   }
 
   function switchRangeTab(kind){

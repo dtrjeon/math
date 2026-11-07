@@ -10,6 +10,7 @@
 |---|---|
 | `index.html` | `index_mathc1.html`로 리다이렉트만 함 |
 | `index_mathc1.html` | 메인 홈(문제지 목록·탭). 맨 위 "오늘 할 일" 카드(`renderHomeHero`: 오늘의 학습 계획 → 오답 복습 → 계획 세우기 순). 폰(760px 이하)은 아래 탭 메뉴(`.bottom-nav`, 더보기 시트), 태블릿·PC는 왼쪽 메뉴. 관리자 계정(`role==="admin"`)은 오른쪽 위에 자물쇠 버튼(`#adminLock`, 누르면 홈의 관리자 바로가기로 이동)이 보임. 새 탭을 만들면 `switchMainTab` 목록·`syncBottomNav`·더보기 시트에 함께 추가. `index_math.html`, `index_old.html`은 이전 버전 — 수정하지 말 것 |
+| `data/curriculum.json` | 홈 "교과과정" 탭 데이터 — 과목(공통수학1·2, 대수, 미적분Ⅰ, 기하, 확률과 통계, 미적분Ⅱ)별 대단원 목록(서원고 교재 기준, 미적분Ⅱ는 교육과정 기준)과 단원별 `summary`(줄 단위 문자열 배열, 지금은 비어 있어 "준비 중"). 요약정리는 이 파일에 채운다 |
 | `worksheets/player.html` | 문제 풀기(채점·필기 캔버스·손글씨 OCR·오답 유형·AI 튜터). 가장 크고 중요한 파일 |
 | `worksheets/compose.html` | 문제지 재구성 |
 | `worksheets/upload.html` | 학생 오답 사진 → AI(`visionExtract`) → JSON → 검토 대기열 제출 |
