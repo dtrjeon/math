@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v1.1 (2026-11-07): "추가 문제" 칩을 누르면 그 줄 바로 아래에 추가 문제가 펼쳐지도록 변경(전에는 목록 맨 아래 패널로 이동해 보였음). 다른 줄의 칩을 누르면 그 줄 아래로 옮겨서 열고, 같은 줄을 다시 누르면 닫는다 -->
 <!-- v1.0 (2026-11-07): 공통수학1 「다항식의 연산」 요점노트 신설 — 요점정리·난이도별 문제·고1 학력평가 출제 문항(풀기 링크)·추가 문제. 교과과정 탭의 「다항식의 연산」에서 연결. 풀이 화면(player.html)에서는 ?back=으로 이 페이지로 돌아온다 -->
 <html lang="ko">
 <head>
@@ -183,6 +184,10 @@ a.ext:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border
 .mockintro p:first-child { color: var(--muted); font-size: 14px; }
 
 .homelink{max-width:960px;margin:0 auto 12px;font-size:14px}
+
+.xslot{list-style:none;padding:10px 0 14px;border-bottom:1px solid var(--line)}
+.xslot .extra{margin:0}
+@media print{.xslot{padding:6px 0}}
 </style>
 </head>
 <body>
@@ -536,22 +541,44 @@ a.ext:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border
     allBtn.setAttribute('aria-pressed', allOpen ? 'true' : 'false');
     allBtn.textContent = allOpen ? '추가 문제 모두 닫기' : '추가 문제 모두 열기';
   }
+  /* 칩을 누른 줄 바로 아래에 추가 문제를 펼친다(다른 줄 칩을 누르면 그 줄 아래로 옮겨서 연다) */
+  function dock(panel, row) {
+    var old = panel.parentNode && panel.parentNode.classList && panel.parentNode.classList.contains('xslot') ? panel.parentNode : null;
+    var slot = document.createElement('li');
+    slot.className = 'xslot';
+    row.parentNode.insertBefore(slot, row.nextSibling);
+    slot.appendChild(panel);
+    if (old) old.remove();
+  }
+  function undock(panel) {
+    var slot = panel.parentNode;
+    if (slot && slot.classList && slot.classList.contains('xslot')) {
+      slot.parentNode.parentNode.appendChild(panel);
+      slot.remove();
+    }
+  }
   document.querySelectorAll('.xbtn').forEach(function (b) {
     b.addEventListener('click', function () {
       var id = b.getAttribute('data-target');
       var panel = document.getElementById(id);
-      var open = panel.hidden;
-      setPanel(id, open);
-      syncAll();
-      if (open) {
+      var row = b.closest('.erow');
+      var host = panel.parentNode && panel.parentNode.classList.contains('xslot') ? panel.parentNode.previousElementSibling : null;
+      if (!panel.hidden && host === row) {
+        setPanel(id, false);
+        undock(panel);
+      } else {
+        dock(panel, row);
+        setPanel(id, true);
+        document.querySelectorAll('.xbtn[data-target="' + id + '"]').forEach(function (x) { x.setAttribute('aria-expanded', x === b ? 'true' : 'false'); });
         var r = panel.getBoundingClientRect();
-        if (r.top > window.innerHeight * 0.7) panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        if (r.bottom > window.innerHeight || r.top < 0) row.scrollIntoView({ block: 'start', behavior: 'smooth' });
       }
+      syncAll();
     });
   });
   allBtn.addEventListener('click', function () {
     var open = allBtn.getAttribute('aria-pressed') !== 'true';
-    document.querySelectorAll('.extra').forEach(function (p) { setPanel(p.id, open); });
+    document.querySelectorAll('.extra').forEach(function (p) { setPanel(p.id, open); if (!open) undock(p); });
     syncAll();
   });
 })();
