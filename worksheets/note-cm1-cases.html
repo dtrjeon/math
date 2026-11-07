@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.47 (2026-11-08): 요점노트 머리말의 설명 문구(안내 문장·정답 가리기 안내·출처 안내·학력평가 소개)를 삭제하고 범례·버튼·월별 풀기 링크만 남김. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.46 (2026-11-07): 공통수학1 「행렬」 요점노트 신설(행렬의 뜻·같을 조건, 덧셈·뺄셈·실수배, 곱셈·거듭제곱, 종합 / 학력평가 14문항 / 추가 문제 16개) 및 교과과정 링크. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.45 (2026-11-07): 공통수학1 「경우의 수」 요점노트 신설 — 다항식의 연산 노트와 같은 구성(요점·난이도별 문제·학력평가 출제 문항 5개·추가 문제 4개). 교과과정 탭에서 연결 -->
 
@@ -241,15 +242,13 @@ a.ext:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border
 <header class="top">
 <p class="kicker">미래엔 공통수학1 · Ⅲ-1 경우의 수</p>
 <h1>경우의 수 요점노트</h1>
-<p class="lede">모의고사에 자주 나오는 내용만 모았습니다. 단원마다 요점 뒤에 난이도 하·중·중상·상 문제가 한 개씩 붙어 있고, 소단원 아래에는 고1 학력평가 출제 문제(문제와 정답)와 ‘추가 문제’가 접힌 목록으로 붙어 있습니다(눌러서 펼치기).</p>
 <div class="legend">
 <span class="lg"><mark class="mem">빨간 글씨</mark> 반드시 암기</span>
 <span class="lg"><span class="faint">흐린 글씨</span> 문제 출처</span>
 <span class="lg"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span> 난이도 (하 → 상)</span>
 </div>
-<div class="toolbar"><button type="button" id="quizBtn" aria-pressed="false">정답 가리기</button><button type="button" id="mockBtn" aria-pressed="false">모의고사 문제 모두 펼치기</button><span class="tip" id="quizTip">정답 가리기를 켜면 정답 칸을 눌러 하나씩 확인할 수 있습니다.</span></div>
-<p class="fine">문제는 모두 새로 만든 것이고, 출처는 비슷한 교과서 문항의 위치입니다. 모든 정답은 계산으로 검산했습니다.</p>
-<div class="mockintro"><p>소단원마다 고1 전국연합학력평가(2024.3~2026.9, 11회)에서 그 소단원에 해당하는 출제 문항을 붙였습니다. ‘경우의 수’ 단원 문항 중 합의 법칙·곱의 법칙과 관련된 것만 골라 5문항(하 0 · 중 4 · 중상 1 · 상 0)입니다.</p><p class="mlinks"><a class="ext" href="player.html?mock=9&amp;subject=%EA%B3%B5%ED%86%B5%EC%88%98%ED%95%991&amp;chapter=%EA%B2%BD%EC%9A%B0%EC%9D%98%20%EC%88%98&amp;back=note-cm1-cases.html" target="_blank" rel="noopener">9월 모의고사 11문항 풀기 ↗</a><a class="ext" href="player.html?mock=10&amp;subject=%EA%B3%B5%ED%86%B5%EC%88%98%ED%95%991&amp;chapter=%EA%B2%BD%EC%9A%B0%EC%9D%98%20%EC%88%98&amp;back=note-cm1-cases.html" target="_blank" rel="noopener">10월 모의고사 4문항 풀기 ↗</a></p><p class="fine">문항 원문과 정답은 아래 소단원에서 펼쳐 볼 수 있고, 월별 풀기 링크는 사이트 로그인이 되어 있어야 열립니다.</p></div>
+<div class="toolbar"><button type="button" id="quizBtn" aria-pressed="false">정답 가리기</button><button type="button" id="mockBtn" aria-pressed="false">모의고사 문제 모두 펼치기</button><span class="tip" id="quizTip"></span></div>
+<div class="mockintro"><p class="mlinks"><a class="ext" href="player.html?mock=9&amp;subject=%EA%B3%B5%ED%86%B5%EC%88%98%ED%95%991&amp;chapter=%EA%B2%BD%EC%9A%B0%EC%9D%98%20%EC%88%98&amp;back=note-cm1-cases.html" target="_blank" rel="noopener">9월 모의고사 11문항 풀기 ↗</a><a class="ext" href="player.html?mock=10&amp;subject=%EA%B3%B5%ED%86%B5%EC%88%98%ED%95%991&amp;chapter=%EA%B2%BD%EC%9A%B0%EC%9D%98%20%EC%88%98&amp;back=note-cm1-cases.html" target="_blank" rel="noopener">10월 모의고사 4문항 풀기 ↗</a></p></div>
 </header>
 <main>
 <section class="sec" id="s1">
@@ -336,7 +335,7 @@ a.ext:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border
 </section>
 <section class="sec" id="check"><header class="sh"><span class="no">✓</span><h2>시험 직전 체크</h2></header><ul class="chk"><li>&quot;또는&quot;이면 더하고 &quot;그리고&quot;이면 곱했으며, 합의 법칙은 두 사건이 동시에 일어나지 않을 때만 썼는가?</li><li>자릿수 문제에서 맨 앞자리에 0이 오지 않게 하고, 조건이 있는 자리를 먼저 정했는가?</li><li>중복을 허락하는지 확인해서 각 자리의 경우의 수를 정했는가?</li><li>약수의 개수는 소인수분해한 뒤 (지수+1)을 곱했는가?</li><li><span class="m"><i>x</i>+<i>y</i>≤ <i>k</i></span> 꼴의 순서쌍은 한 문자를 고정하고 나누어 센 뒤 더했는가?</li></ul></section>
 </main>
-<p class="ver">v2.46 · 2026-11-07</p>
+<p class="ver">v2.47 · 2026-11-08</p>
 <script>
 (function () {
   var btn = document.getElementById('quizBtn');
