@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.29 (2026-11-07): 홈 "바로가기"에 "교과과정" 카드 추가(누르면 교과과정 탭으로 이동) -->
 <!-- v2.28 (2026-11-07): 동작 변경 없음 — 요점노트 버전에 맞춰 번호만 올림 -->
 <!-- v2.27 (2026-11-07): 교과과정 단원 links에 사이트 안 상대 주소(.html)도 허용(같은 탭에서 열기). 「다항식의 연산」 요점노트를 worksheets/note-cm1-polynomial.html로 사이트에 포함 -->
 <!-- v2.26 (2026-11-07): 교과과정 탭의 단원에 "links"(자료 링크)를 표시 — data/curriculum.json 단원에 links:[{title,desc,url}]를 넣으면 요약정리 아래에 버튼으로 나온다. 공통수학1 「다항식의 연산」에 요점노트 링크 연결. https 주소만 허용 -->
@@ -710,7 +711,7 @@
       <div class="brand-text">
         <div class="brand-title">수학 학습 기록판</div>
         <div class="brand-sub" id="sessionBrandSub">전주영</div>
-        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.28 · 2026-11-07</div>
+        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.29 · 2026-11-07</div>
       </div>
       <button type="button" class="admin-lock" id="adminLock" onclick="goAdminSection()" aria-label="관리자 메뉴" title="관리자"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
       <button class="refresh-btn" id="refreshBtn" onclick="refreshAllData()" title="새로고침">🔄</button>
@@ -745,6 +746,11 @@
 
       <div class="unit-label">바로가기</div>
       <div class="quick-grid">
+        <a class="quick-card" href="#" onclick="switchMainTab('curriculum'); return false;">
+          <div class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H4z"/><path d="M20 5h-6a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h6z"/></svg></div>
+          <div class="quick-title">교과과정</div>
+          <div class="quick-sub">단원별 요점노트·요약정리</div>
+        </a>
         <a class="quick-card" href="today.html">
           <div class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></div>
           <div class="quick-title">학습 계획</div>
