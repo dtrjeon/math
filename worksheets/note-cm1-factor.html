@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.49 (2026-11-08): 「나머지정리와 인수분해」 노트의 조립제법 소단원에 계산표와 단계별 설명 추가. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.48 (2026-11-08): 「여러 가지 방정식」 노트에 조립제법으로 인수분해하는 방법(계산표와 단계 설명) 추가. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.47 (2026-11-08): 요점노트 머리말의 설명 문구(안내 문장·정답 가리기 안내·출처 안내·학력평가 소개)를 삭제하고 범례·버튼·월별 풀기 링크만 남김. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.46 (2026-11-07): 공통수학1 「행렬」 요점노트 신설(행렬의 뜻·같을 조건, 덧셈·뺄셈·실수배, 곱셈·거듭제곱, 종합 / 학력평가 14문항 / 추가 문제 16개) 및 교과과정 링크. 나머지 파일은 동작 변경 없이 번호만 올림 -->
@@ -228,7 +229,7 @@ a.ext:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border
 .mockd>.mock{margin-top:12px}
 .ver{max-width:960px;margin:24px auto 0;font-size:11px;color:var(--faint);text-align:right}
 .homelink{max-width:960px;margin:0 auto 12px;font-size:14px}
-</style>
+.syn{margin:12px 0;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.syn .mt{margin:0 0 6px;font-weight:700}.syn ol{margin:6px 0 0;padding-left:1.3em}.syn li{margin:.25em 0}.synt{border-collapse:collapse;margin:8px auto;font-size:1.05em}.synt td{padding:.28em .8em;text-align:center;min-width:2.2em}.synt td.k{border-right:1.5px solid currentColor}.synt tr.r3 td{border-top:1.5px solid currentColor}.synt td.rem{font-weight:700;color:#b42318}.synt td.dim{opacity:.55}</style>
 </head>
 <body>
 <p class="homelink"><a class="ext" href="../index_mathc1.html">← 학습 기록판 · 교과과정</a></p>
@@ -413,6 +414,14 @@ a.ext:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border
 <header class="sh"><span class="no">4</span><h2>조립제법</h2><span class="ref">교과서 p.29~31</span></header>
 <div class="note">
 <ul class="pts"><li>다항식을 일차식 <span class="m"><i>x</i>−<i>a</i></span>로 나눌 때 <mark class="mem">계수만 사용</mark>해 몫과 나머지를 구하는 방법이다. 일차식으로 나눌 때만 쓸 수 있다.</li><li>차수가 높은 항부터 계수를 쓰고 <mark class="mem">빠진 차수의 항은 0</mark>을 쓴다. 맨 앞 계수를 내리고, <span class="m"><i>a</i></span>를 곱해 다음 계수에 더하는 것을 반복한다.</li><li>마지막 수가 <mark class="mem">나머지</mark>이고, 그 앞의 수들이 몫의 계수(차수는 하나 낮아짐)이다.</li><li><span class="m"><i>a</i><i>x</i>+<i>b</i></span>로 나눌 때는 <span class="m"><i>a</i>(<i>x</i>+<i>b</i>/<i>a</i>)</span>로 보고 <span class="m"><i>x</i>+<i>b</i>/<i>a</i></span>로 조립제법을 한 뒤, <mark class="mem">몫을 <span class="m"><i>a</i></span>로 나눈다</mark>. 나머지는 그대로이다.</li></ul>
+<div class="syn"><p class="mt">조립제법으로 나누기 — 예: <span class="m">(<i>x</i><sup>3</sup>+2<i>x</i>−4)÷(<i>x</i>−1)</span></p>
+<table class="synt" aria-label="조립제법 계산표"><tr><td class="k"><b>1</b></td><td>1</td><td>0</td><td>2</td><td>−4</td></tr><tr><td class="k"></td><td class="dim"></td><td class="dim">1</td><td class="dim">1</td><td class="dim">3</td></tr><tr class="r3"><td class="k"></td><td>1</td><td>1</td><td>3</td><td class="rem">−1</td></tr></table>
+<ol><li><span class="m"><i>x</i>−1</span>이므로 <mark class="mem">나누는 수 <span class="m"><i>a</i>=1</span></mark>을 왼쪽 칸에 쓴다. (<span class="m"><i>x</i>+2</span>로 나누면 <span class="m"><i>a</i>=−2</span>)</li>
+<li>차수가 높은 항부터 계수를 쓴다. <span class="m"><i>x</i><sup>2</sup></span>항이 없으므로 <mark class="mem">0</mark>을 써서 1, 0, 2, −4로 쓴다.</li>
+<li>맨 앞 계수 1을 그대로 아래로 내린다.</li>
+<li>내린 수에 <span class="m"><i>a</i></span>를 곱해 다음 계수 아래에 쓰고 더한다: <span class="m">0+1×1=1</span>, <span class="m">2+1×1=3</span>, <span class="m">−4+1×3=−1</span>.</li>
+<li>마지막 수 <mark class="mem">−1이 나머지</mark>이고, 앞의 수 1, 1, 3이 <mark class="mem">몫의 계수</mark>이다. 3차식을 나누었으므로 몫은 2차식 <span class="m"><i>x</i><sup>2</sup>+<i>x</i>+3</span>이다.</li>
+<li>따라서 <span class="m"><i>x</i><sup>3</sup>+2<i>x</i>−4=(<i>x</i>−1)(<i>x</i><sup>2</sup>+<i>x</i>+3)−1</span>이다. 나머지가 0이면 <span class="m"><i>x</i>−1</span>은 인수이다.</li></ol></div>
 <div class="must"><p class="mt">반드시 암기</p><div class="f"><mark class="mem">조립제법: 계수 내리기 → <span class="m"><i>a</i></span> 곱해 더하기 반복 → 마지막 수가 나머지</mark></div><div class="f"><mark class="mem"><span class="m"><i>a</i><i>x</i>+<i>b</i></span>로 나눌 때: <span class="m"><i>x</i>+<i>b</i>/<i>a</i></span>로 조립제법 한 몫을 <span class="m"><i>a</i></span>로 나눈 것이 구하는 몫, 나머지는 그대로</mark></div></div>
 <p class="warn"><b>주의</b><span class="m"><i>x</i>+2</span>로 나눌 때 쓰는 수는 <mark class="mem"><span class="m">−2</span></mark>이다. 빠진 항의 0을 잊지 않는다.</p>
 </div>
@@ -549,7 +558,7 @@ a.ext:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border
 </section>
 <section class="sec" id="check"><header class="sh"><span class="no">✓</span><h2>시험 직전 체크</h2></header><ul class="chk"><li>항등식 문제에서 계수비교법과 수치대입법 중 더 빠른 방법을 골랐는가?</li><li>나머지정리에서 <span class="m"><i>x</i>+<i>a</i></span>로 나눌 때 <span class="m"><i>f</i>(−<i>a</i>)</span>로 부호를 바꾸어 대입했는가?</li><li>이차식으로 나눈 나머지를 <span class="m"><i>a</i><i>x</i>+<i>b</i></span> 꼴로 놓았는가?</li><li>조립제법에서 빠진 차수에 0을 쓰고, <span class="m"><i>a</i><i>x</i>+<i>b</i></span>로 나눌 때 몫을 <span class="m"><i>a</i></span>로 나누었는가?</li><li>인수분해에서 치환한 문자를 원래 식으로 되돌렸고, 더 분해되는지 확인했는가?</li><li>인수정리로 인수를 찾을 때 상수항의 약수부터 대입했는가?</li></ul></section>
 </main>
-<p class="ver">v2.48 · 2026-11-08</p>
+<p class="ver">v2.49 · 2026-11-08</p>
 <script>
 (function () {
   var btn = document.getElementById('quizBtn');
