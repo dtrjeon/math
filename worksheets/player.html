@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.26 (2026-11-07): ?back= 에 같은 사이트의 .html 주소(예: note-cm1-polynomial.html)도 허용 — 사이트 안 요점노트로 돌아오기 위함. 아래 v2.25 설명 참고 -->
 <!-- v2.25 (2026-11-07): 요점노트 등 외부 페이지에서 ?back=<claude.ai 아티팩트 주소>를 붙여 열면 왼쪽 아래에 "← 요점노트로" 버튼 표시. 주소는 https://claude.ai/artifact/… 또는 /code/artifact/… 만 허용하고 그 밖의 값은 무시(임의 주소로 보내지 않기 위함). ?back이 없으면 화면은 그대로 -->
 <!-- v2.24 (2026-11-07): 태블릿·PC(760px 이상)에서 "2열 보기" 체크박스 추가 — 기본은 한 열, 선택은 이 기기에 저장(localStorage.player_two_col). 폰에서는 숨김 -->
 <!-- v2.23 (2026-11-07): 문제 카드 단순화 — (1) 문제는 항상 한 열 (2) 풀이 도구는 펜·지우개만 보이고 나머지는 ⋯ (3) 단답형은 "내 답 [ ] ✍️ 확인" 한 줄, ✍️를 누르면 손글씨 답 칸이 펼쳐짐 (4) 폰에서도 답 입력 줄이 한 줄 유지 (5) 흐릿한 정답·풀이 박스 제거, 정답·풀이/AI 튜터 버튼은 한 줄 -->
@@ -775,9 +776,10 @@
     try {
       var b = new URLSearchParams(window.location.search).get('back');
       if(!b) return;
-      var u = new URL(b);
-      if(u.protocol !== 'https:' || u.hostname !== 'claude.ai') return;
-      if(!/^\/(code\/)?artifact\//.test(u.pathname)) return;
+      var u = new URL(b, window.location.href);
+      var same = (u.origin === window.location.origin && /\.html$/.test(u.pathname));
+      var art = (u.protocol === 'https:' && u.hostname === 'claude.ai' && /^\/(code\/)?artifact\//.test(u.pathname));
+      if(!same && !art) return;
       var a = document.getElementById('backBtn');
       if(!a) return;
       a.href = u.href;

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<!-- v1.0 (2026-11-07): 공통수학1 「다항식의 연산」 요점노트 신설 — 요점정리·난이도별 문제·고1 학력평가 출제 문항(풀기 링크)·추가 문제. 교과과정 탭의 「다항식의 연산」에서 연결. 풀이 화면(player.html)에서는 ?back=으로 이 페이지로 돌아온다 -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<script>
+  (function(){
+    var session = null;
+    try { session = JSON.parse(localStorage.getItem('mathapp_session') || 'null'); } catch(e){}
+    if(!session || !session.studentId){
+      window.location.replace('login.html?redirect=' + encodeURIComponent(window.location.href));
+    }
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>다항식의 연산 요점노트</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<style>
+/* Layout: one reading column. Each unit = headed block, a notes panel (요점), then four problems stacked from 하 to 상.
+   Crimson is reserved for must-memorize text; everything else stays in ink and gray. */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --fg: #1b2129;
+  --muted: #5d6773;
+  --faint: #8a94a0;
+  --line: #e0e4e9;
+  --ink: #223a5e;
+  --chip: #eef1f5;
+  --mem: #c1272d;
+  --mem-bg: #fde9e8;
+  --mem-line: #f1bbb9;
+  --serif: "STIX Two Text", "Noto Serif KR", "Times New Roman", serif;
+  --sans: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11151a; --surface: #181d24; --fg: #e7eaee; --muted: #a2acb8; --faint: #7a8592;
+    --line: #2a313a; --ink: #9cbbea; --chip: #222932;
+    --mem: #ff8a8f; --mem-bg: #3b2224; --mem-line: #6b3a3d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11151a; --surface: #181d24; --fg: #e7eaee; --muted: #a2acb8; --faint: #7a8592;
+  --line: #2a313a; --ink: #9cbbea; --chip: #222932;
+  --mem: #ff8a8f; --mem-bg: #3b2224; --mem-line: #6b3a3d;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 15px/1.7 var(--sans);
+  padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  -webkit-text-size-adjust: 100%;
+}
+.top, main { max-width: 960px; margin-inline: auto; }
+h1, h2, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+
+/* header */
+.top { display: grid; gap: 12px; margin-bottom: 32px; }
+.kicker { font-size: 13px; color: var(--muted); letter-spacing: .02em; }
+h1 { font-size: clamp(26px, 5vw, 36px); line-height: 1.25; font-weight: 700; color: var(--ink); text-wrap: balance; }
+.lede { color: var(--muted); max-width: 40em; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13.5px; color: var(--muted); align-items: center; }
+.lg { display: inline-flex; gap: 8px; align-items: center; }
+.faint { color: var(--faint); }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.toolbar button {
+  font: 500 14px/1 var(--sans); color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; cursor: pointer;
+}
+.toolbar button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.toolbar button:focus-visible, .ans:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.tip { font-size: 13px; color: var(--faint); }
+.fine { font-size: 13px; color: var(--faint); }
+
+/* must-memorize */
+mark.mem {
+  background: var(--mem-bg); color: var(--mem); font-weight: 600;
+  padding: 1px 4px; border-radius: 3px;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+
+/* math */
+.m { font-family: var(--serif); font-size: 1.06em; letter-spacing: .015em; white-space: normal; }
+.m i { font-style: italic; }
+.m sup { font-size: .72em; line-height: 0; vertical-align: .5em; }
+
+/* difficulty dots */
+.dots { display: inline-flex; gap: 3px; align-items: center; }
+.dot { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; }
+.dot.on { background: var(--ink); }
+
+/* sections */
+.sec { margin-bottom: 44px; }
+.sh { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; padding-bottom: 10px; border-bottom: 2px solid var(--ink); margin-bottom: 14px; }
+.no { font: 700 14px/1 var(--sans); color: var(--surface); background: var(--ink); border-radius: 4px; min-width: 24px; height: 24px; display: inline-grid; place-items: center; transform: translateY(-2px); }
+h2 { font-size: 21px; line-height: 1.3; font-weight: 700; color: var(--ink); text-wrap: balance; }
+.ref { margin-left: auto; font-size: 13px; color: var(--faint); }
+
+.note { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 14px; }
+.pts { display: grid; gap: 8px; }
+.pts li { position: relative; padding-left: 16px; }
+.pts li::before { content: ""; position: absolute; left: 2px; top: .8em; width: 5px; height: 5px; border-radius: 50%; background: var(--muted); }
+.must { border: 1px solid var(--mem-line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 8px; }
+.mt { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; color: var(--mem); }
+.f { line-height: 1.9; }
+.warn { font-size: 14px; color: var(--muted); }
+.warn b { color: var(--ink); margin-right: 8px; font-size: 12.5px; letter-spacing: .04em; border: 1px solid var(--line); background: var(--chip); border-radius: 4px; padding: 1px 6px; }
+
+/* problems */
+.probs { margin-top: 14px; display: grid; gap: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); overflow: hidden; }
+.prob { display: grid; grid-template-columns: 1fr; gap: 8px 16px; padding: 14px 18px; border-top: 1px solid var(--line); }
+.prob:first-child { border-top: 0; }
+.lv { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--ink); }
+.lv b { font-weight: 700; }
+.qb { min-width: 0; display: grid; gap: 4px; }
+.q { overflow-wrap: anywhere; }
+.src { font-size: 12.5px; color: var(--faint); }
+.ans { min-width: 0; background: var(--chip); border-radius: 8px; padding: 10px 12px; font-size: 14.5px; }
+.al b { color: var(--ink); margin-right: 6px; }
+.how { margin-top: 4px; font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+body.quiz .ans { cursor: pointer; }
+body.quiz .ans:not(.open) .ans-in { filter: blur(7px); user-select: none; -webkit-user-select: none; }
+
+@media (min-width: 820px) {
+  .prob { grid-template-columns: 6.2rem minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; }
+}
+
+.chk { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; display: grid; gap: 8px; }
+.chk li { position: relative; padding-left: 26px; }
+.chk li::before { content: ""; position: absolute; left: 0; top: .35em; width: 14px; height: 14px; border: 1.5px solid var(--ink); border-radius: 3px; }
+
+/* 모의고사 출제 문제 */
+.mlinks { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+a.ext { color: var(--ink); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a.ext:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 2px; }
+.xcard { margin-top: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px 16px; display: grid; gap: 10px; }
+.xh { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.xh h3 { margin: 0; font-size: 17px; line-height: 1.35; font-weight: 700; color: var(--ink); display: flex; align-items: baseline; gap: 10px; }
+.xn { font-size: 12.5px; font-weight: 700; letter-spacing: .04em; color: var(--muted); border: 1px solid var(--line); background: var(--chip); border-radius: 4px; padding: 1px 7px; }
+.xc { margin-left: auto; font-size: 13px; color: var(--faint); }
+.xtip { font-size: 14.5px; }
+.erows { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.erow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+.eid b { font-weight: 700; margin-right: 4px; font-variant-numeric: tabular-nums; }
+.ept { color: var(--muted); font-size: 13px; }
+.etopic { color: var(--faint); font-size: 13px; min-width: 0; }
+.elinks { margin-left: auto; display: inline-flex; align-items: center; gap: 14px; }
+.xbtn { display: inline-flex; align-items: center; gap: 6px; font: 500 13.5px/1 var(--sans); color: var(--ink); background: var(--surface); border: 1px solid var(--ink); border-radius: 999px; padding: 8px 12px 8px 10px; cursor: pointer; }
+.xbtn[aria-expanded="true"] { background: var(--ink); color: var(--surface); }
+.xbtn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.extra { display: grid; gap: 8px; }
+.xhd { font-size: 12.5px; font-weight: 700; letter-spacing: .04em; color: var(--muted); }
+
+@media print {
+  .extra[hidden] { display: grid !important; }
+  .xbtn { display: none; }
+  :root, :root:not([data-theme="light"]) { color-scheme: light; }
+  body { background: #fff; padding-block: 0; }
+  .toolbar, .tip { display: none; }
+  body.quiz .ans:not(.open) .ans-in { filter: none; }
+  .sec, .prob { break-inside: avoid; }
+  mark.mem { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ans-in { transition: filter .15s ease; }
+}
+
+/* 소단원 아래 모의고사 출제 문제 */
+.mock { margin-top: 18px; display: grid; gap: 12px; }
+.mock .xcard { margin-top: 0; }
+.mh { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+.mh::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.nomock { margin-top: 14px; font-size: 13px; color: var(--faint); }
+.mockintro { display: grid; gap: 6px; margin-top: 4px; padding-top: 14px; border-top: 1px solid var(--line); }
+.mockintro p:first-child { color: var(--muted); font-size: 14px; }
+
+.homelink{max-width:960px;margin:0 auto 12px;font-size:14px}
+</style>
+</head>
+<body>
+<p class="homelink"><a class="ext" href="../index_mathc1.html">← 학습 기록판 · 교과과정</a></p>
+<header class="top">
+<p class="kicker">미래엔 공통수학1 · Ⅰ-1 다항식의 연산</p>
+<h1>다항식의 연산 요점노트</h1>
+<p class="lede">모의고사에 자주 나오는 내용만 모았습니다. 단원마다 요점 뒤에 난이도 하·중·중상·상 문제가 한 개씩 붙어 있고, 소단원 아래에는 고1 학력평가 출제 문항과 ‘추가 문제’도 붙어 있습니다.</p>
+<div class="legend">
+<span class="lg"><mark class="mem">빨간 글씨</mark> 반드시 암기</span>
+<span class="lg"><span class="faint">흐린 글씨</span> 문제 출처</span>
+<span class="lg"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span> 난이도 (하 → 상)</span>
+</div>
+<div class="toolbar"><button type="button" id="quizBtn" aria-pressed="false">정답 가리기</button><button type="button" id="allBtn" aria-pressed="false">추가 문제 모두 열기</button><span class="tip" id="quizTip">정답 가리기를 켜면 정답 칸을 눌러 하나씩 확인할 수 있습니다.</span></div>
+<p class="fine">문제는 모두 새로 만든 것이고, 출처는 비슷한 교과서 문항의 위치입니다. 모든 정답은 계산으로 검산했습니다.</p>
+<div class="mockintro"><p>소단원마다 고1 전국연합학력평가(2024.3~2026.9, 11회)에서 그 소단원에 해당하는 출제 문항을 붙였습니다. ‘다항식의 연산’ 출제는 모두 24문항(하 8 · 중 4 · 중상 3 · 상 9)입니다.</p><p class="mlinks"><a class="ext" href="player.html?mock=6&amp;subject=%EA%B3%B5%ED%86%B5%EC%88%98%ED%95%991&amp;chapter=%EB%8B%A4%ED%95%AD%EC%8B%9D%EC%9D%98%20%EC%97%B0%EC%82%B0&amp;back=note-cm1-polynomial.html">6월 모의고사 13문항 풀기 ↗</a><a class="ext" href="player.html?mock=9&amp;subject=%EA%B3%B5%ED%86%B5%EC%88%98%ED%95%991&amp;chapter=%EB%8B%A4%ED%95%AD%EC%8B%9D%EC%9D%98%20%EC%97%B0%EC%82%B0&amp;back=note-cm1-polynomial.html">9월 모의고사 5문항 풀기 ↗</a><a class="ext" href="player.html?mock=10&amp;subject=%EA%B3%B5%ED%86%B5%EC%88%98%ED%95%991&amp;chapter=%EB%8B%A4%ED%95%AD%EC%8B%9D%EC%9D%98%20%EC%97%B0%EC%82%B0&amp;back=note-cm1-polynomial.html">10월 모의고사 6문항 풀기 ↗</a></p><p class="fine">문항 원문은 사이트에서 풀며, 링크는 사이트 로그인이 되어 있어야 열립니다.</p></div>
+</header>
+<main>
+<section class="sec" id="s1">
+<header class="sh"><span class="no">1</span><h2>다항식의 정리</h2><span class="ref">교과서 p.12</span></header>
+<div class="note">
+<ul class="pts"><li><mark class="mem">내림차순</mark>은 차수가 높은 항부터, <mark class="mem">오름차순</mark>은 차수가 낮은 항부터 차례로 나타내는 것이다. 다항식은 보통 내림차순으로 정리한다.</li><li>상수항의 차수는 0으로 생각한다.</li><li>문자가 둘 이상이면 <mark class="mem">어느 문자에 대하여 정리하는지</mark>를 먼저 확인한다. 정리하는 문자 이외의 문자는 계수나 상수항으로 본다.</li><li>예) <span class="m">2<i>x</i><i>y</i>−3<i>x</i><sup>3</sup>+<i>x</i><sup>2</sup><i>y</i><sup>2</sup>−<i>y</i>+4</span>를 <span class="m"><i>y</i></span>에 대하여 내림차순으로 정리하면 <span class="m"><i>x</i><sup>2</sup><i>y</i><sup>2</sup>+(2<i>x</i>−1)<i>y</i>−3<i>x</i><sup>3</sup>+4</span></li></ul>
+<p class="warn"><b>주의</b>같은 차수의 항이 여러 개이면 계수를 괄호로 묶어 하나로 만든다. 예) <span class="m"><i>x</i><i>y</i><sup>2</sup>+3<i>y</i><sup>2</sup>=(<i>x</i>+3)<i>y</i><sup>2</sup></span></p>
+</div>
+<div class="probs">
+<article class="prob">
+<div class="lv" title="난이도 하"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></div>
+<div class="qb"><p class="q"><span class="m">3<i>x</i>−5+<i>x</i><sup>3</sup>−2<i>x</i><sup>2</sup></span>을 <span class="m"><i>x</i></span>에 대하여 내림차순으로 정리하시오.</p><p class="src">출처 · 교과서 p.12 보기 ① 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m"><i>x</i><sup>3</sup>−2<i>x</i><sup>2</sup>+3<i>x</i>−5</span></p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 중"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></div>
+<div class="qb"><p class="q"><span class="m">2<i>x</i><i>y</i>−<i>x</i><sup>2</sup>+3<i>y</i><sup>2</sup>−4+<i>x</i><i>y</i><sup>2</sup></span>을 <span class="m"><i>y</i></span>에 대하여 내림차순으로 정리하시오.</p><p class="src">출처 · 교과서 p.12 보기 ② 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">(<i>x</i>+3)<i>y</i><sup>2</sup>+2<i>x</i><i>y</i>−<i>x</i><sup>2</sup>−4</span></p><p class="how"><span class="m"><i>x</i><i>y</i><sup>2</sup>+3<i>y</i><sup>2</sup></span>을 <span class="m"><i>y</i><sup>2</sup></span>의 계수 <span class="m"><i>x</i>+3</span>으로 묶는다.</p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 중상"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></div>
+<div class="qb"><p class="q"><span class="m"><i>x</i><sup>3</sup>+2<i>x</i><sup>2</sup><i>y</i>−<i>x</i><i>y</i><sup>2</sup>+3<i>y</i><sup>3</sup>−2<i>x</i>+<i>y</i></span>를 <span class="m"><i>x</i></span>에 대하여 내림차순으로 정리했을 때, <span class="m"><i>x</i><sup>2</sup></span>의 계수와 상수항을 구하시오.</p><p class="src">출처 · 교과서 p.12 문제 1 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m"><i>x</i><sup>2</sup></span>의 계수 <span class="m">2<i>y</i></span>, 상수항 <span class="m">3<i>y</i><sup>3</sup>+<i>y</i></span></p><p class="how"><span class="m"><i>x</i></span>가 없는 항 <span class="m">3<i>y</i><sup>3</sup>+<i>y</i></span>가 상수항이다.</p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 상"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></div>
+<div class="qb"><p class="q"><span class="m">(<i>x</i>+<i>y</i>)<sup>3</sup>−(<i>x</i>−<i>y</i>)<sup>3</sup></span>을 <span class="m"><i>y</i></span>에 대하여 내림차순으로 정리했을 때, <span class="m"><i>y</i><sup>2</sup></span>의 계수와 <span class="m"><i>y</i></span>의 계수의 합을 구하시오.</p><p class="src">출처 · 자체 제작</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">6<i>x</i><sup>2</sup></span></p><p class="how">전개하면 <span class="m">2<i>y</i><sup>3</sup>+6<i>x</i><sup>2</sup><i>y</i></span>. <span class="m"><i>y</i><sup>2</sup></span>의 계수는 0, <span class="m"><i>y</i></span>의 계수는 <span class="m">6<i>x</i><sup>2</sup></span>.</p></div></div>
+</article>
+</div>
+<p class="nomock">고1 학력평가에서 이 소단원으로 분류된 출제 문항은 없습니다.</p>
+</section>
+<section class="sec" id="s2">
+<header class="sh"><span class="no">2</span><h2>덧셈과 뺄셈</h2><span class="ref">교과서 p.13~14</span></header>
+<div class="note">
+<ul class="pts"><li>덧셈은 <mark class="mem">동류항끼리 모아서</mark> 정리한다. 동류항은 문자와 차수가 각각 같은 항이다.</li><li>뺄셈은 <mark class="mem">빼는 식의 각 항의 부호를 바꾸어서 더한다</mark>.</li><li><span class="m"><i>A</i>+<i>B</i></span>와 <span class="m"><i>A</i>−<i>B</i></span>(또는 <span class="m"><i>A</i>+<i>B</i></span>와 <span class="m">2<i>A</i>−<i>B</i></span>)가 주어지면 두 식을 더하거나 빼서 <span class="m"><i>A</i></span>, <span class="m"><i>B</i></span>를 구한다.</li></ul>
+<div class="must"><p class="mt">반드시 암기</p><div class="f"><mark class="mem"><span class="m"><i>A</i>−<i>B</i>=<i>A</i>+(−<i>B</i>)</span></mark></div><div class="f"><mark class="mem">교환법칙 <span class="m"><i>A</i>+<i>B</i>=<i>B</i>+<i>A</i></span></mark></div><div class="f"><mark class="mem">결합법칙 <span class="m">(<i>A</i>+<i>B</i>)+<i>C</i>=<i>A</i>+(<i>B</i>+<i>C</i>)</span></mark></div></div>
+<p class="warn"><b>주의</b>괄호 앞의 −는 괄호 안 모든 항의 부호를 바꾼다. 계산 실수가 가장 많이 나는 곳이다. 겹괄호는 안쪽부터 푼다.</p>
+</div>
+<div class="probs">
+<article class="prob">
+<div class="lv" title="난이도 하"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></div>
+<div class="qb"><p class="q"><span class="m"><i>A</i>=2<i>x</i>+3, <i>B</i>=<i>x</i>−1</span>일 때 <span class="m"><i>A</i>−<i>B</i></span>를 구하시오.</p><p class="src">출처 · 교과서 p.13 예제 1 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m"><i>x</i>+4</span></p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 중"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></div>
+<div class="qb"><p class="q"><span class="m"><i>A</i>=<i>x</i><sup>2</sup>−3<i>x</i>+2, <i>B</i>=2<i>x</i><sup>2</sup>+<i>x</i>−5</span>일 때 <span class="m">2<i>A</i>−<i>B</i></span>를 구하시오.</p><p class="src">출처 · 중단원 p.20 02 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">−7<i>x</i>+9</span></p><p class="how"><span class="m">2<i>A</i>=2<i>x</i><sup>2</sup>−6<i>x</i>+4</span>에서 <span class="m"><i>B</i></span>를 뺀다.</p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 중상"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></div>
+<div class="qb"><p class="q"><span class="m"><i>A</i>=<i>x</i><sup>2</sup>+<i>x</i><i>y</i>−<i>y</i><sup>2</sup></span>, <span class="m"><i>B</i>=2<i>x</i><sup>2</sup>−3<i>x</i><i>y</i>+<i>y</i><sup>2</sup></span>일 때 <span class="m"><i>A</i>−2{<i>B</i>−(<i>A</i>−2<i>B</i>)}</span>를 구하시오.</p><p class="src">출처 · 중단원 p.20 02 (2) 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">−9<i>x</i><sup>2</sup>+21<i>x</i><i>y</i>−9<i>y</i><sup>2</sup></span></p><p class="how">안쪽부터: <span class="m"><i>A</i>−2<i>B</i>=−3<i>x</i><sup>2</sup>+7<i>x</i><i>y</i>−3<i>y</i><sup>2</sup></span>, <span class="m"><i>B</i>−(<i>A</i>−2<i>B</i>)=5<i>x</i><sup>2</sup>−10<i>x</i><i>y</i>+4<i>y</i><sup>2</sup></span>.</p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 상"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></div>
+<div class="qb"><p class="q"><span class="m"><i>A</i>+<i>B</i>=3<i>x</i><sup>2</sup>−2<i>x</i>+1</span>, <span class="m"><i>A</i>−<i>B</i>=<i>x</i><sup>2</sup>+4<i>x</i>−5</span>일 때 <span class="m"><i>A</i></span>, <span class="m"><i>B</i></span>를 구하시오.</p><p class="src">출처 · 중단원 p.21 05 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m"><i>A</i>=2<i>x</i><sup>2</sup>+<i>x</i>−2</span>, <span class="m"><i>B</i>=<i>x</i><sup>2</sup>−3<i>x</i>+3</span></p><p class="how">두 식을 더하면 <span class="m">2<i>A</i>=4<i>x</i><sup>2</sup>+2<i>x</i>−4</span>.</p></div></div>
+</article>
+</div>
+<div class="mock"><p class="mh">모의고사 출제 문제 · 고1 학력평가</p><div class="xcard">
+<div class="xh"><h3>덧셈·뺄셈 계산</h3><span class="xc">출제 6문항</span></div>
+<p class="xtip"><mark class="mem">동류항끼리 정리</mark>하고, 뺄셈은 <mark class="mem">빼는 식의 모든 항의 부호를 바꾼다</mark>. 1~2번(2점)에 나오는 가장 쉬운 유형이다.</p>
+<ul class="erows">
+<li class="erow"><span class="eid"><b>2024.6</b> 2번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></span><span class="ept">2점</span><span class="etopic">다항식의 뺄셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2406_s1_me_hakpyeong&amp;start=2&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x1" aria-expanded="false" aria-controls="x1"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2024.9</b> 1번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></span><span class="ept">2점</span><span class="etopic">다항식의 덧셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2409_s2_me_hakpyeong&amp;start=1&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x1" aria-expanded="false" aria-controls="x1"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2024.10</b> 1번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></span><span class="ept">2점</span><span class="etopic">다항식의 뺄셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2410_s2_me_hakpyeong&amp;start=1&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x1" aria-expanded="false" aria-controls="x1"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2025.9</b> 1번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></span><span class="ept">2점</span><span class="etopic">다항식의 덧셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2509_s2_me_hakpyeong&amp;start=1&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x1" aria-expanded="false" aria-controls="x1"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2025.10</b> 1번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></span><span class="ept">2점</span><span class="etopic">다항식의 뺄셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2510_s2_me_hakpyeong&amp;start=1&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x1" aria-expanded="false" aria-controls="x1"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2026.9</b> 1번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></span><span class="ept">2점</span><span class="etopic">다항식의 덧셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2609_s2_me_hakpyeong&amp;start=1&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x1" aria-expanded="false" aria-controls="x1"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+</ul>
+<div class="extra" id="x1" hidden><p class="xhd">추가 문제 · 덧셈·뺄셈 계산 (하·중·중상·상)</p><div class="probs">
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></div><div class="qb"><p class="q"><span class="m"><i>A</i>=4<i>x</i><sup>2</sup>−<i>x</i>+6</span>, <span class="m"><i>B</i>=<i>x</i><sup>2</sup>+2<i>x</i>−3</span>일 때 <span class="m"><i>A</i>−<i>B</i></span>를 구하시오.</p><p class="src">출처 · 덧셈·뺄셈 계산 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">3<i>x</i><sup>2</sup>−3<i>x</i>+9</span></p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></div><div class="qb"><p class="q"><span class="m"><i>A</i>=2<i>x</i><sup>2</sup>+<i>x</i><i>y</i>−3<i>y</i><sup>2</sup></span>, <span class="m"><i>B</i>=<i>x</i><sup>2</sup>−2<i>x</i><i>y</i>+<i>y</i><sup>2</sup></span>일 때 <span class="m">2<i>A</i>−3<i>B</i></span>를 구하시오.</p><p class="src">출처 · 덧셈·뺄셈 계산 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m"><i>x</i><sup>2</sup>+8<i>x</i><i>y</i>−9<i>y</i><sup>2</sup></span></p><p class="how"><span class="m">2<i>A</i>=4<i>x</i><sup>2</sup>+2<i>x</i><i>y</i>−6<i>y</i><sup>2</sup></span>에서 <span class="m">3<i>B</i>=3<i>x</i><sup>2</sup>−6<i>x</i><i>y</i>+3<i>y</i><sup>2</sup></span>을 뺀다.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></div><div class="qb"><p class="q"><span class="m"><i>A</i>=<i>x</i><sup>2</sup>+2<i>x</i><i>y</i>−<i>y</i><sup>2</sup></span>, <span class="m"><i>B</i>=2<i>x</i><sup>2</sup>−<i>x</i><i>y</i>+3<i>y</i><sup>2</sup></span>, <span class="m"><i>C</i>=−<i>x</i><sup>2</sup>+4<i>x</i><i>y</i>−2<i>y</i><sup>2</sup></span>일 때 <span class="m">3<i>A</i>−(<i>B</i>−2<i>C</i>)</span>를 구하시오.</p><p class="src">출처 · 덧셈·뺄셈 계산 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">−<i>x</i><sup>2</sup>+15<i>x</i><i>y</i>−10<i>y</i><sup>2</sup></span></p><p class="how"><span class="m"><i>B</i>−2<i>C</i>=4<i>x</i><sup>2</sup>−9<i>x</i><i>y</i>+7<i>y</i><sup>2</sup></span>, <span class="m">3<i>A</i>=3<i>x</i><sup>2</sup>+6<i>x</i><i>y</i>−3<i>y</i><sup>2</sup></span>.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></div><div class="qb"><p class="q"><span class="m"><i>A</i>+<i>B</i>=5<i>x</i><sup>2</sup>−<i>x</i>+2</span>, <span class="m">2<i>A</i>−<i>B</i>=<i>x</i><sup>2</sup>−2<i>x</i>−5</span>일 때 <span class="m"><i>A</i>−2<i>B</i></span>를 구하시오.</p><p class="src">출처 · 덧셈·뺄셈 계산 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">−4<i>x</i><sup>2</sup>−<i>x</i>−7</span></p><p class="how">두 식을 더하면 <span class="m">3<i>A</i>=6<i>x</i><sup>2</sup>−3<i>x</i>−3</span>이므로 <span class="m"><i>A</i>=2<i>x</i><sup>2</sup>−<i>x</i>−1</span>, <span class="m"><i>B</i>=3<i>x</i><sup>2</sup>+3</span>.</p></div></div></article>
+</div></div></div></div>
+</section>
+<section class="sec" id="s3">
+<header class="sh"><span class="no">3</span><h2>곱셈과 곱셈 공식</h2><span class="ref">교과서 p.15~17</span></header>
+<div class="note">
+<ul class="pts"><li>곱셈은 <mark class="mem">분배법칙</mark>으로 전개한 뒤 동류항끼리 정리한다. 지수법칙 <span class="m"><i>x</i><sup><i>m</i></sup><i>x</i><sup><i>n</i></sup>=<i>x</i><sup><i>m</i>+<i>n</i></sup></span>을 쓴다.</li><li>곱셈의 성질: 교환법칙 <span class="m"><i>A</i><i>B</i>=<i>B</i><i>A</i></span>, 결합법칙 <span class="m">(<i>A</i><i>B</i>)<i>C</i>=<i>A</i>(<i>B</i><i>C</i>)</span>, 분배법칙 <span class="m"><i>A</i>(<i>B</i>+<i>C</i>)=<i>A</i><i>B</i>+<i>A</i><i>C</i></span></li><li>공통부분이 있으면 한 문자로 치환한다. 예) <span class="m">(<i>x</i><sup>2</sup>−2<i>x</i>−3)(<i>x</i><sup>2</sup>−2<i>x</i>−2)</span>는 <span class="m"><i>x</i><sup>2</sup>−2<i>x</i>=<i>t</i></span>로 놓는다.</li><li>공식이 연달아 나오면 앞에서부터 묶는다. 예) <span class="m">(<i>a</i>−1)(<i>a</i>+1)(<i>a</i><sup>2</sup>+1)(<i>a</i><sup>4</sup>+1)=<i>a</i><sup>8</sup>−1</span></li></ul>
+<div class="must"><p class="mt">반드시 암기</p><div class="f"><mark class="mem"><span class="m">(<i>a</i>+<i>b</i>+<i>c</i>)<sup>2</sup>=<i>a</i><sup>2</sup>+<i>b</i><sup>2</sup>+<i>c</i><sup>2</sup>+2<i>a</i><i>b</i>+2<i>b</i><i>c</i>+2<i>c</i><i>a</i></span></mark></div><div class="f"><mark class="mem"><span class="m">(<i>a</i>+<i>b</i>)<sup>3</sup>=<i>a</i><sup>3</sup>+3<i>a</i><sup>2</sup><i>b</i>+3<i>a</i><i>b</i><sup>2</sup>+<i>b</i><sup>3</sup></span></mark></div><div class="f"><mark class="mem"><span class="m">(<i>a</i>−<i>b</i>)<sup>3</sup>=<i>a</i><sup>3</sup>−3<i>a</i><sup>2</sup><i>b</i>+3<i>a</i><i>b</i><sup>2</sup>−<i>b</i><sup>3</sup></span></mark></div><div class="f"><mark class="mem"><span class="m">(<i>a</i>+<i>b</i>)(<i>a</i><sup>2</sup>−<i>a</i><i>b</i>+<i>b</i><sup>2</sup>)=<i>a</i><sup>3</sup>+<i>b</i><sup>3</sup></span></mark></div><div class="f"><mark class="mem"><span class="m">(<i>a</i>−<i>b</i>)(<i>a</i><sup>2</sup>+<i>a</i><i>b</i>+<i>b</i><sup>2</sup>)=<i>a</i><sup>3</sup>−<i>b</i><sup>3</sup></span></mark></div><div class="f"><mark class="mem">중학교 공식: <span class="m">(<i>a</i>±<i>b</i>)<sup>2</sup>=<i>a</i><sup>2</sup>±2<i>a</i><i>b</i>+<i>b</i><sup>2</sup></span>, <span class="m">(<i>a</i>+<i>b</i>)(<i>a</i>−<i>b</i>)=<i>a</i><sup>2</sup>−<i>b</i><sup>2</sup></span></mark></div><div class="f"><mark class="mem"><span class="m">(<i>x</i>+<i>a</i>)(<i>x</i>+<i>b</i>)=<i>x</i><sup>2</sup>+(<i>a</i>+<i>b</i>)<i>x</i>+<i>a</i><i>b</i></span>, <span class="m">(<i>a</i><i>x</i>+<i>b</i>)(<i>c</i><i>x</i>+<i>d</i>)=<i>a</i><i>c</i><i>x</i><sup>2</sup>+(<i>a</i><i>d</i>+<i>b</i><i>c</i>)<i>x</i>+<i>b</i><i>d</i></span></mark></div></div>
+<p class="warn"><b>주의</b>세제곱 합·차 공식은 첫째 괄호의 부호가 결과의 부호와 같고, 둘째 괄호에서 <span class="m"><i>a</i><i>b</i></span>의 부호만 반대이며 <span class="m"><i>b</i><sup>2</sup></span>은 항상 +이다.</p>
+</div>
+<div class="probs">
+<article class="prob">
+<div class="lv" title="난이도 하"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></div>
+<div class="qb"><p class="q"><span class="m">(<i>x</i>+2)(<i>x</i><sup>2</sup>−2<i>x</i>+4)</span>를 전개하시오.</p><p class="src">출처 · 교과서 p.17 예제 2 (2) 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m"><i>x</i><sup>3</sup>+8</span></p><p class="how"><span class="m"><i>a</i>=<i>x</i></span>, <span class="m"><i>b</i>=2</span>인 합의 세제곱 공식.</p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 중"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></div>
+<div class="qb"><p class="q"><span class="m">(<i>x</i>−2<i>y</i>+3)<sup>2</sup></span>을 전개하시오.</p><p class="src">출처 · 교과서 p.17 문제 3 (1) 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m"><i>x</i><sup>2</sup>+4<i>y</i><sup>2</sup>+9−4<i>x</i><i>y</i>+6<i>x</i>−12<i>y</i></span></p><p class="how"><span class="m">(<i>a</i>+<i>b</i>+<i>c</i>)<sup>2</sup></span> 공식에서 <span class="m"><i>b</i>=−2<i>y</i></span>.</p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 중상"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></div>
+<div class="qb"><p class="q"><span class="m">(<i>x</i>+1)(<i>x</i>+2)(<i>x</i>+3)(<i>x</i>+4)</span>를 전개하시오.</p><p class="src">출처 · 중단원 p.21 06 (1) 유형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m"><i>x</i><sup>4</sup>+10<i>x</i><sup>3</sup>+35<i>x</i><sup>2</sup>+50<i>x</i>+24</span></p><p class="how"><span class="m">(<i>x</i>+1)(<i>x</i>+4)</span>와 <span class="m">(<i>x</i>+2)(<i>x</i>+3)</span>을 묶고 <span class="m"><i>x</i><sup>2</sup>+5<i>x</i>=<i>t</i></span>로 치환하면 <span class="m">(<i>t</i>+4)(<i>t</i>+6)</span>.</p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 상"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></div>
+<div class="qb"><p class="q"><span class="m">(<i>a</i>+<i>b</i>)(<i>a</i>−<i>b</i>)(<i>a</i><sup>2</sup>+<i>a</i><i>b</i>+<i>b</i><sup>2</sup>)(<i>a</i><sup>2</sup>−<i>a</i><i>b</i>+<i>b</i><sup>2</sup>)</span>을 전개하시오.</p><p class="src">출처 · 중단원 p.21 06 (2) 유형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m"><i>a</i><sup>6</sup>−<i>b</i><sup>6</sup></span></p><p class="how"><span class="m">(<i>a</i>−<i>b</i>)(<i>a</i><sup>2</sup>+<i>a</i><i>b</i>+<i>b</i><sup>2</sup>)=<i>a</i><sup>3</sup>−<i>b</i><sup>3</sup></span>, <span class="m">(<i>a</i>+<i>b</i>)(<i>a</i><sup>2</sup>−<i>a</i><i>b</i>+<i>b</i><sup>2</sup>)=<i>a</i><sup>3</sup>+<i>b</i><sup>3</sup></span>을 곱한다.</p></div></div>
+</article>
+</div>
+<div class="mock"><p class="mh">모의고사 출제 문제 · 고1 학력평가</p><div class="xcard">
+<div class="xh"><h3>전개식의 계수</h3><span class="xc">출제 2문항</span></div>
+<p class="xtip"><mark class="mem">곱셈 공식으로 전개</mark>한 뒤 구하는 항의 계수만 읽는다. <span class="m">(<i>a</i>+<i>b</i>+<i>c</i>)<sup>2</sup></span>의 교차항 계수는 2배이다.</p>
+<ul class="erows">
+<li class="erow"><span class="eid"><b>2024.6</b> 22번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></span><span class="ept">3점</span><span class="etopic">전개식의 계수</span><span class="elinks"><a class="ext" href="player.html?set=m1_2406_s1_me_hakpyeong&amp;start=22&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x2" aria-expanded="false" aria-controls="x2"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2025.10</b> 6번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></span><span class="ept">3점</span><span class="etopic">전개식의 계수</span><span class="elinks"><a class="ext" href="player.html?set=m1_2510_s2_me_hakpyeong&amp;start=6&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x2" aria-expanded="false" aria-controls="x2"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+</ul>
+<div class="extra" id="x2" hidden><p class="xhd">추가 문제 · 전개식의 계수 (하·중·중상·상)</p><div class="probs">
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></div><div class="qb"><p class="q"><span class="m">(<i>x</i>+3<i>y</i>)<sup>3</sup></span>의 전개식에서 <span class="m"><i>x</i><sup>2</sup><i>y</i></span>의 계수를 구하시오.</p><p class="src">출처 · 전개식의 계수 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">9</span></p><p class="how"><span class="m">(<i>a</i>+<i>b</i>)<sup>3</sup></span>에서 <span class="m">3<i>a</i><sup>2</sup><i>b</i>=3·<i>x</i><sup>2</sup>·3<i>y</i>=9<i>x</i><sup>2</sup><i>y</i></span>.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></div><div class="qb"><p class="q"><span class="m">(3<i>x</i>−2<i>y</i>+1)<sup>2</sup></span>의 전개식에서 <span class="m"><i>x</i><sup>2</sup></span>의 계수와 <span class="m"><i>x</i><i>y</i></span>의 계수의 합을 구하시오.</p><p class="src">출처 · 전개식의 계수 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">−3</span></p><p class="how"><span class="m"><i>x</i><sup>2</sup></span>의 계수는 9, <span class="m"><i>x</i><i>y</i></span>의 계수는 <span class="m">2·3·(−2)=−12</span>.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></div><div class="qb"><p class="q"><span class="m">(<i>x</i><sup>2</sup>+<i>a</i><i>x</i>+<i>b</i>)(<i>x</i><sup>2</sup>−2<i>x</i>+3)</span>의 전개식에서 <span class="m"><i>x</i><sup>3</sup></span>의 계수가 <span class="m">−1</span>, <span class="m"><i>x</i></span>의 계수가 <span class="m">−3</span>일 때 <span class="m"><i>a</i><i>b</i></span>의 값을 구하시오.</p><p class="src">출처 · 전개식의 계수 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">3</span></p><p class="how"><span class="m"><i>x</i><sup>3</sup></span>의 계수 <span class="m"><i>a</i>−2=−1</span>에서 <span class="m"><i>a</i>=1</span>, <span class="m"><i>x</i></span>의 계수 <span class="m">3<i>a</i>−2<i>b</i>=−3</span>에서 <span class="m"><i>b</i>=3</span>.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></div><div class="qb"><p class="q"><span class="m">(<i>x</i>+1)<sup>3</sup>(<i>x</i>−1)<sup>3</sup></span>의 전개식에서 <span class="m"><i>x</i><sup>2</sup></span>의 계수와 상수항의 합을 구하시오.</p><p class="src">출처 · 전개식의 계수 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">2</span></p><p class="how"><span class="m">(<i>x</i>+1)(<i>x</i>−1)=<i>x</i><sup>2</sup>−1</span>이므로 <span class="m">(<i>x</i><sup>2</sup>−1)<sup>3</sup>=<i>x</i><sup>6</sup>−3<i>x</i><sup>4</sup>+3<i>x</i><sup>2</sup>−1</span>.</p></div></div></article>
+</div></div></div></div>
+</section>
+<section class="sec" id="s4">
+<header class="sh"><span class="no">4</span><h2>곱셈 공식의 변형</h2><span class="ref">교과서 p.17</span></header>
+<div class="note">
+<ul class="pts"><li>풀이 순서: <mark class="mem">합과 곱을 먼저 구하고</mark> 변형 공식에 대입한다.</li><li>값이 주어지면 합과 곱부터 구한다. 예) <span class="m"><i>x</i>=√2+1</span>, <span class="m"><i>y</i>=√2−1</span>이면 <span class="m"><i>x</i>+<i>y</i>=2√2</span>, <span class="m"><i>x</i><i>y</i>=1</span>이므로 <span class="m"><i>x</i><sup>3</sup>+<i>y</i><sup>3</sup>=(2√2)<sup>3</sup>−3·1·2√2=10√2</span></li><li>직육면체의 가로·세로·높이를 <span class="m"><i>a</i>, <i>b</i>, <i>c</i></span>라 하면 겉넓이와 대각선 조건에서 <span class="m">(<i>a</i>+<i>b</i>+<i>c</i>)<sup>2</sup></span>으로 연결한다.</li></ul>
+<div class="must"><p class="mt">반드시 암기</p><div class="f"><mark class="mem"><span class="m"><i>a</i><sup>2</sup>+<i>b</i><sup>2</sup>=(<i>a</i>+<i>b</i>)<sup>2</sup>−2<i>a</i><i>b</i>=(<i>a</i>−<i>b</i>)<sup>2</sup>+2<i>a</i><i>b</i></span></mark></div><div class="f"><mark class="mem"><span class="m"><i>a</i><sup>3</sup>+<i>b</i><sup>3</sup>=(<i>a</i>+<i>b</i>)<sup>3</sup>−3<i>a</i><i>b</i>(<i>a</i>+<i>b</i>)</span></mark></div><div class="f"><mark class="mem"><span class="m"><i>a</i><sup>3</sup>−<i>b</i><sup>3</sup>=(<i>a</i>−<i>b</i>)<sup>3</sup>+3<i>a</i><i>b</i>(<i>a</i>−<i>b</i>)</span></mark></div><div class="f"><mark class="mem"><span class="m"><i>a</i><sup>2</sup>+<i>b</i><sup>2</sup>+<i>c</i><sup>2</sup>=(<i>a</i>+<i>b</i>+<i>c</i>)<sup>2</sup>−2(<i>a</i><i>b</i>+<i>b</i><i>c</i>+<i>c</i><i>a</i>)</span></mark></div><div class="f"><mark class="mem"><span class="m"><i>x</i>+1/<i>x</i>=<i>k</i></span>이면 <span class="m"><i>x</i><sup>2</sup>+1/<i>x</i><sup>2</sup>=<i>k</i><sup>2</sup>−2</span>, <span class="m"><i>x</i><sup>3</sup>+1/<i>x</i><sup>3</sup>=<i>k</i><sup>3</sup>−3<i>k</i></span></mark></div><div class="f"><mark class="mem">직육면체: 겉넓이 <span class="m">=2(<i>a</i><i>b</i>+<i>b</i><i>c</i>+<i>c</i><i>a</i>)</span>, 대각선의 길이 <span class="m">=√(<i>a</i><sup>2</sup>+<i>b</i><sup>2</sup>+<i>c</i><sup>2</sup>)</span></mark></div></div>
+<p class="warn"><b>주의</b><span class="m"><i>a</i><sup>3</sup>−<i>b</i><sup>3</sup></span> 변형은 <span class="m">+3<i>a</i><i>b</i>(<i>a</i>−<i>b</i>)</span>이다. 부호가 <span class="m"><i>a</i><sup>3</sup>+<i>b</i><sup>3</sup></span> 변형(<span class="m">−3<i>a</i><i>b</i>(<i>a</i>+<i>b</i>)</span>)과 반대인 점을 헷갈리지 않는다.</p>
+</div>
+<div class="probs">
+<article class="prob">
+<div class="lv" title="난이도 하"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></div>
+<div class="qb"><p class="q"><span class="m"><i>a</i>+<i>b</i>=3</span>, <span class="m"><i>a</i><i>b</i>=1</span>일 때 <span class="m"><i>a</i><sup>2</sup>+<i>b</i><sup>2</sup></span>의 값을 구하시오.</p><p class="src">출처 · 자체 제작</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">7</span></p><p class="how"><span class="m">3<sup>2</sup>−2×1</span></p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 중"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></div>
+<div class="qb"><p class="q"><span class="m"><i>a</i>+<i>b</i>=4</span>, <span class="m"><i>a</i><i>b</i>=2</span>일 때 <span class="m"><i>a</i><sup>3</sup>+<i>b</i><sup>3</sup></span>의 값을 구하시오.</p><p class="src">출처 · 교과서 p.17 예제 3 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">40</span></p><p class="how"><span class="m">4<sup>3</sup>−3×2×4</span></p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 중상"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></div>
+<div class="qb"><p class="q"><span class="m"><i>x</i>−<i>y</i>=2</span>, <span class="m"><i>x</i><i>y</i>=3</span>일 때 <span class="m"><i>x</i><sup>3</sup>−<i>y</i><sup>3</sup></span>의 값을 구하시오.</p><p class="src">출처 · 교과서 p.17 문제 4 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">26</span></p><p class="how"><span class="m">2<sup>3</sup>+3×3×2</span></p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 상"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></div>
+<div class="qb"><p class="q"><span class="m"><i>x</i><sup>2</sup>−3<i>x</i>+1=0</span>일 때 <span class="m"><i>x</i><sup>3</sup>+1/<i>x</i><sup>3</sup></span>의 값을 구하시오.</p><p class="src">출처 · 자체 제작</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">18</span></p><p class="how"><span class="m"><i>x</i>≠0</span>이므로 양변을 <span class="m"><i>x</i></span>로 나누면 <span class="m"><i>x</i>+1/<i>x</i>=3</span>. <span class="m">3<sup>3</sup>−3×3=18</span></p></div></div>
+</article>
+</div>
+<div class="mock"><p class="mh">모의고사 출제 문제 · 고1 학력평가</p><div class="xcard">
+<div class="xh"><h3>곱셈 공식의 변형</h3><span class="xc">출제 2문항</span></div>
+<p class="xtip"><mark class="mem">합·곱을 먼저 구한 뒤 변형 공식에 대입</mark>한다. 세 문자는 <span class="m">(<i>a</i>+<i>b</i>+<i>c</i>)<sup>2</sup></span>를 전개한 식에서 <span class="m"><i>a</i><sup>2</sup>+<i>b</i><sup>2</sup>+<i>c</i><sup>2</sup></span>만 남긴다. <span class="m"><i>k</i>−3/<i>k</i></span> 꼴은 두 항의 곱이 상수인 점을 이용한다.</p>
+<ul class="erows">
+<li class="erow"><span class="eid"><b>2024.6</b> 6번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></span><span class="ept">3점</span><span class="etopic">곱셈 공식의 변형</span><span class="elinks"><a class="ext" href="player.html?set=m1_2406_s1_me_hakpyeong&amp;start=6&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x3" aria-expanded="false" aria-controls="x3"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2025.6</b> 24번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></span><span class="ept">3점</span><span class="etopic">곱셈 공식의 변형</span><span class="elinks"><a class="ext" href="player.html?set=m1_2506_s1_me_hakpyeong&amp;start=24&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x3" aria-expanded="false" aria-controls="x3"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+</ul>
+<div class="extra" id="x3" hidden><p class="xhd">추가 문제 · 곱셈 공식의 변형 (하·중·중상·상)</p><div class="probs">
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></div><div class="qb"><p class="q"><span class="m"><i>a</i>+<i>b</i>+<i>c</i>=6</span>, <span class="m"><i>a</i><i>b</i>+<i>b</i><i>c</i>+<i>c</i><i>a</i>=11</span>일 때 <span class="m"><i>a</i><sup>2</sup>+<i>b</i><sup>2</sup>+<i>c</i><sup>2</sup></span>의 값을 구하시오.</p><p class="src">출처 · 곱셈 공식의 변형 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">14</span></p><p class="how"><span class="m">6<sup>2</sup>−2×11</span></p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></div><div class="qb"><p class="q"><span class="m"><i>a</i>+<i>b</i>−<i>c</i>=4</span>, <span class="m"><i>a</i><i>b</i>−<i>b</i><i>c</i>−<i>c</i><i>a</i>=3</span>일 때 <span class="m"><i>a</i><sup>2</sup>+<i>b</i><sup>2</sup>+<i>c</i><sup>2</sup></span>의 값을 구하시오.</p><p class="src">출처 · 곱셈 공식의 변형 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">10</span></p><p class="how"><span class="m">(<i>a</i>+<i>b</i>−<i>c</i>)<sup>2</sup>=<i>a</i><sup>2</sup>+<i>b</i><sup>2</sup>+<i>c</i><sup>2</sup>+2(<i>a</i><i>b</i>−<i>b</i><i>c</i>−<i>c</i><i>a</i>)</span>이므로 <span class="m">16−6</span>.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></div><div class="qb"><p class="q"><span class="m"><i>k</i>−2/<i>k</i>=3</span>일 때 <span class="m"><i>k</i><sup>3</sup>−8/<i>k</i><sup>3</sup></span>의 값을 구하시오.</p><p class="src">출처 · 곱셈 공식의 변형 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">45</span></p><p class="how"><span class="m"><i>k</i>·(2/<i>k</i>)=2</span>이므로 <span class="m">(<i>k</i>−2/<i>k</i>)<sup>3</sup>+3×2×(<i>k</i>−2/<i>k</i>)=3<sup>3</sup>+3×2×3</span>.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></div><div class="qb"><p class="q"><span class="m"><i>x</i>−<i>y</i>=3</span>, <span class="m"><i>x</i><sup>2</sup>+<i>y</i><sup>2</sup>=17</span>일 때 <span class="m"><i>x</i><sup>3</sup>−<i>y</i><sup>3</sup></span>의 값을 구하시오.</p><p class="src">출처 · 곱셈 공식의 변형 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">63</span></p><p class="how"><span class="m"><i>x</i><i>y</i>=(17−3<sup>2</sup>)/2=4</span>이므로 <span class="m">3<sup>3</sup>+3×4×3</span>.</p></div></div></article>
+</div></div></div>
+<div class="xcard">
+<div class="xh"><h3>실생활 공식과 식의 값</h3><span class="xc">출제 1문항</span></div>
+<p class="xtip">문자식에서 <mark class="mem">어떤 문자가 몇 제곱인지</mark>를 먼저 확인하고, 주어진 비율을 그대로 곱한다.</p>
+<ul class="erows">
+<li class="erow"><span class="eid"><b>2025.6</b> 7번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></span><span class="ept">3점</span><span class="etopic">실생활 공식(축전기)</span><span class="elinks"><a class="ext" href="player.html?set=m1_2506_s1_me_hakpyeong&amp;start=7&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x4" aria-expanded="false" aria-controls="x4"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+</ul>
+<div class="extra" id="x4" hidden><p class="xhd">추가 문제 · 실생활 공식과 식의 값 (하·중·중상·상)</p><div class="probs">
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></div><div class="qb"><p class="q">물체의 운동에너지는 <span class="m"><i>E</i>=1/2 <i>m</i><i>v</i><sup>2</sup></span>이다. 물체 A의 질량은 B의 2배, 속력은 B의 3배일 때 A의 운동에너지는 B의 몇 배인지 구하시오.</p><p class="src">출처 · 실생활 공식과 식의 값 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> 18배</p><p class="how"><span class="m">2×3<sup>2</sup>=18</span></p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></div><div class="qb"><p class="q">원기둥의 부피는 <span class="m"><i>V</i>=π<i>r</i><sup>2</sup><i>h</i></span>이다. 원기둥 A의 반지름은 B의 2배, 높이는 B의 3/4배일 때 A의 부피는 B의 몇 배인지 구하시오.</p><p class="src">출처 · 실생활 공식과 식의 값 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> 3배</p><p class="how"><span class="m">2<sup>2</sup>×3/4=3</span></p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></div><div class="qb"><p class="q">두 물체 사이의 만유인력은 <span class="m"><i>F</i>=<i>G</i> <i>M</i><i>m</i>/<i>r</i><sup>2</sup></span>이다. 두 질량이 각각 2배, 3배가 되고 거리가 3배가 되면 <span class="m"><i>F</i></span>는 처음의 몇 배가 되는지 구하시오.</p><p class="src">출처 · 실생활 공식과 식의 값 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> 2/3배</p><p class="how"><span class="m">(2×3)/3<sup>2</sup>=2/3</span></p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></div><div class="qb"><p class="q">직사각형의 둘레의 길이가 20이고 대각선의 길이가 <span class="m">√58</span>일 때 넓이를 구하시오.</p><p class="src">출처 · 실생활 공식과 식의 값 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">21</span></p><p class="how">가로, 세로를 <span class="m"><i>x</i>, <i>y</i></span>라 하면 <span class="m"><i>x</i>+<i>y</i>=10</span>, <span class="m"><i>x</i><sup>2</sup>+<i>y</i><sup>2</sup>=58</span>이므로 <span class="m"><i>x</i><i>y</i>=(10<sup>2</sup>−58)/2</span>.</p></div></div></article>
+</div></div></div>
+<div class="xcard">
+<div class="xh"><h3>도형과 곱셈 공식</h3><span class="xc">출제 5문항</span></div>
+<p class="xtip">길이를 문자로 놓고 조건을 <mark class="mem">합, 곱, 제곱합</mark>으로 바꾼다. 직육면체는 <mark class="mem">모서리 길이의 합 <span class="m">4(<i>a</i>+<i>b</i>+<i>c</i>)</span>, 겉넓이 <span class="m">2(<i>a</i><i>b</i>+<i>b</i><i>c</i>+<i>c</i><i>a</i>)</span>, 대각선 <span class="m">√(<i>a</i><sup>2</sup>+<i>b</i><sup>2</sup>+<i>c</i><sup>2</sup>)</span></mark>.</p>
+<ul class="erows">
+<li class="erow"><span class="eid"><b>2024.6</b> 19번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">반원 도형</span><span class="elinks"><a class="ext" href="player.html?set=m1_2406_s1_me_hakpyeong&amp;start=19&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x6" aria-expanded="false" aria-controls="x6"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2024.10</b> 29번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">원 도형</span><span class="elinks"><a class="ext" href="player.html?set=m1_2410_s2_me_hakpyeong&amp;start=29&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x6" aria-expanded="false" aria-controls="x6"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2025.6</b> 14번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></span><span class="ept">4점</span><span class="etopic">직육면체</span><span class="elinks"><a class="ext" href="player.html?set=m1_2506_s1_me_hakpyeong&amp;start=14&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x6" aria-expanded="false" aria-controls="x6"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2025.10</b> 29번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">직육면체</span><span class="elinks"><a class="ext" href="player.html?set=m1_2510_s2_me_hakpyeong&amp;start=29&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x6" aria-expanded="false" aria-controls="x6"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2026.6</b> 12번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></span><span class="ept">3점</span><span class="etopic">직각삼각형</span><span class="elinks"><a class="ext" href="player.html?set=m1_2606_s1_me_hakpyeong&amp;start=12&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x6" aria-expanded="false" aria-controls="x6"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+</ul>
+<div class="extra" id="x6" hidden><p class="xhd">추가 문제 · 도형과 곱셈 공식 (하·중·중상·상)</p><div class="probs">
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></div><div class="qb"><p class="q">직육면체의 모든 모서리의 길이의 합이 24, 겉넓이가 22일 때 대각선의 길이를 구하시오.</p><p class="src">출처 · 도형과 곱셈 공식 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">√14</span></p><p class="how"><span class="m"><i>a</i>+<i>b</i>+<i>c</i>=6</span>, <span class="m"><i>a</i><i>b</i>+<i>b</i><i>c</i>+<i>c</i><i>a</i>=11</span>이므로 <span class="m"><i>a</i><sup>2</sup>+<i>b</i><sup>2</sup>+<i>c</i><sup>2</sup>=36−22=14</span>.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></div><div class="qb"><p class="q">직각삼각형의 둘레의 길이가 24, 넓이가 24일 때 빗변의 길이를 구하시오.</p><p class="src">출처 · 도형과 곱셈 공식 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">10</span></p><p class="how">두 변을 <span class="m"><i>a</i>, <i>b</i></span>, 빗변을 <span class="m"><i>c</i></span>라 하면 <span class="m">(<i>a</i>+<i>b</i>)<sup>2</sup>=<i>c</i><sup>2</sup>+2<i>a</i><i>b</i></span>이므로 <span class="m">(24−<i>c</i>)<sup>2</sup>=<i>c</i><sup>2</sup>+96</span>.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></div><div class="qb"><p class="q">직육면체의 모든 모서리의 길이의 합이 24, 부피가 6, 대각선의 길이가 <span class="m">√14</span>이다. 한 꼭짓점에서 만나는 세 면의 넓이를 각각 제곱하여 더한 값을 구하시오.</p><p class="src">출처 · 도형과 곱셈 공식 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">49</span></p><p class="how"><span class="m"><i>a</i>+<i>b</i>+<i>c</i>=6</span>, <span class="m"><i>a</i><i>b</i><i>c</i>=6</span>, <span class="m"><i>a</i><i>b</i>+<i>b</i><i>c</i>+<i>c</i><i>a</i>=11</span>. <span class="m">(<i>a</i><i>b</i>)<sup>2</sup>+(<i>b</i><i>c</i>)<sup>2</sup>+(<i>c</i><i>a</i>)<sup>2</sup>=(<i>a</i><i>b</i>+<i>b</i><i>c</i>+<i>c</i><i>a</i>)<sup>2</sup>−2<i>a</i><i>b</i><i>c</i>(<i>a</i>+<i>b</i>+<i>c</i>)=121−72</span>.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></div><div class="qb"><p class="q">밑면이 정사각형인 직육면체의 모든 모서리의 길이의 합이 40, 대각선의 길이가 <span class="m">√34</span>일 때 겉넓이를 구하시오.</p><p class="src">출처 · 도형과 곱셈 공식 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">66</span></p><p class="how">밑면의 한 변을 <span class="m"><i>a</i></span>, 높이를 <span class="m"><i>b</i></span>라 하면 <span class="m">2<i>a</i>+<i>b</i>=10</span>, <span class="m">2<i>a</i><sup>2</sup>+<i>b</i><sup>2</sup>=34</span>. 겉넓이 <span class="m">2<i>a</i><sup>2</sup>+4<i>a</i><i>b</i>=(2<i>a</i>+<i>b</i>)<sup>2</sup>−(2<i>a</i><sup>2</sup>+<i>b</i><sup>2</sup>)=100−34</span>.</p></div></div></article>
+</div></div></div></div>
+</section>
+<section class="sec" id="s5">
+<header class="sh"><span class="no">5</span><h2>다항식의 나눗셈</h2><span class="ref">교과서 p.18</span></header>
+<div class="note">
+<ul class="pts"><li>각 다항식을 <mark class="mem">내림차순으로 정리</mark>한 뒤 자연수의 나눗셈과 같은 방법으로 계산한다.</li><li><mark class="mem">빠진 차수의 항은 0으로 자리를 비워 둔다</mark>. 예) <span class="m">3<i>x</i><sup>3</sup>+<i>x</i>−2</span>는 <span class="m">3<i>x</i><sup>3</sup>+0<i>x</i><sup>2</sup>+<i>x</i>−2</span>로 쓰고 계산한다.</li><li>나누는 식이 이차식이면 나머지는 일차 이하이므로 <span class="m"><i>R</i>=<i>p</i><i>x</i>+<i>q</i></span>로 놓는다. 일차식으로 나누면 나머지는 상수이다.</li><li><span class="m"><i>Q</i></span>는 quotient(몫), <span class="m"><i>R</i></span>은 remainder(나머지)의 첫 글자이다.</li></ul>
+<div class="must"><p class="mt">반드시 암기</p><div class="f"><mark class="mem"><span class="m"><i>A</i>=<i>B</i><i>Q</i>+<i>R</i></span>  (<span class="m"><i>Q</i></span>: 몫, <span class="m"><i>R</i></span>: 나머지)</mark></div><div class="f"><mark class="mem"><span class="m"><i>R</i></span>의 차수 &lt; <span class="m"><i>B</i></span>의 차수  (또는 <span class="m"><i>R</i>=0</span>)</mark></div><div class="f"><mark class="mem"><span class="m"><i>R</i>=0</span>, 즉 <span class="m"><i>A</i>=<i>B</i><i>Q</i></span>이면 “<span class="m"><i>A</i></span>는 <span class="m"><i>B</i></span>로 나누어떨어진다”</mark></div></div>
+<p class="warn"><b>주의</b><span class="m"><i>x</i><sup>3</sup>+3<i>x</i></span>를 <span class="m"><i>x</i>+1</span>로 나눈 나머지는 <span class="m">3<i>x</i>−1</span>이 아니라 상수 <span class="m">−4</span>이다. <span class="m">3<i>x</i>−1</span>은 일차식이라 일차식 <span class="m"><i>x</i>+1</span>로 나눈 나머지가 될 수 없다. 나머지의 차수는 나누는 식보다 낮아야 한다. (교과서 p.18 생각 넓히기)</p>
+</div>
+<div class="probs">
+<article class="prob">
+<div class="lv" title="난이도 하"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></div>
+<div class="qb"><p class="q"><span class="m">(<i>x</i><sup>2</sup>+5<i>x</i>+6)÷(<i>x</i>+2)</span>의 몫과 나머지를 구하시오.</p><p class="src">출처 · 교과서 p.18 문제 5 (1) 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> 몫 <span class="m"><i>x</i>+3</span>, 나머지 <span class="m">0</span></p><p class="how"><span class="m"><i>x</i><sup>2</sup>+5<i>x</i>+6=(<i>x</i>+2)(<i>x</i>+3)</span></p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 중"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></div>
+<div class="qb"><p class="q"><span class="m">(2<i>x</i><sup>3</sup>−3<i>x</i><sup>2</sup>+<i>x</i>−4)÷(<i>x</i>−2)</span>의 몫과 나머지를 구하시오.</p><p class="src">출처 · 교과서 p.18 문제 5 (1) 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> 몫 <span class="m">2<i>x</i><sup>2</sup>+<i>x</i>+3</span>, 나머지 <span class="m">2</span></p><p class="how"><span class="m">2<i>x</i><sup>3</sup>−3<i>x</i><sup>2</sup>+<i>x</i>−4=(<i>x</i>−2)(2<i>x</i><sup>2</sup>+<i>x</i>+3)+2</span></p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 중상"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></div>
+<div class="qb"><p class="q"><span class="m">3<i>x</i><sup>3</sup>+<i>x</i>−2</span>를 <span class="m"><i>x</i><sup>2</sup>−<i>x</i>+2</span>로 나누었을 때의 몫과 나머지를 구하시오. (<span class="m"><i>x</i><sup>2</sup></span>항이 빠져 있음에 주의)</p><p class="src">출처 · 교과서 p.18 문제 5 (2) 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> 몫 <span class="m">3<i>x</i>+3</span>, 나머지 <span class="m">−2<i>x</i>−8</span></p><p class="how"><span class="m">3<i>x</i><sup>3</sup>+0<i>x</i><sup>2</sup>+<i>x</i>−2</span>로 쓰고 계산한다.</p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 상"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></div>
+<div class="qb"><p class="q"><span class="m"><i>x</i><sup>4</sup>+<i>a</i><i>x</i><sup>2</sup>+<i>b</i></span>가 <span class="m"><i>x</i><sup>2</sup>−<i>x</i>+1</span>로 나누어떨어질 때 상수 <span class="m"><i>a</i></span>, <span class="m"><i>b</i></span>의 값을 구하시오.</p><p class="src">출처 · 중단원 p.21 08 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m"><i>a</i>=1</span>, <span class="m"><i>b</i>=1</span></p><p class="how">나머지가 <span class="m">(<i>a</i>−1)<i>x</i>+(<i>b</i>−<i>a</i>)</span>이므로 두 계수가 모두 0.</p></div></div>
+</article>
+</div>
+<div class="mock"><p class="mh">모의고사 출제 문제 · 고1 학력평가</p><div class="xcard">
+<div class="xh"><h3>다항식의 나눗셈 계산</h3><span class="xc">출제 1문항</span></div>
+<p class="xtip"><mark class="mem">내림차순으로 정리하고 빠진 차수는 0으로 자리를 비운다</mark>. 몫과 나머지를 구한 뒤 <span class="m"><i>Q</i>(<i>x</i>)</span>, <span class="m"><i>R</i>(<i>x</i>)</span>에 값을 대입한다.</p>
+<ul class="erows">
+<li class="erow"><span class="eid"><b>2024.6</b> 25번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></span><span class="ept">3점</span><span class="etopic">다항식의 나눗셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2406_s1_me_hakpyeong&amp;start=25&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x5" aria-expanded="false" aria-controls="x5"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+</ul>
+<div class="extra" id="x5" hidden><p class="xhd">추가 문제 · 다항식의 나눗셈 계산 (하·중·중상·상)</p><div class="probs">
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></div><div class="qb"><p class="q"><span class="m"><i>x</i><sup>3</sup>+2<i>x</i><sup>2</sup>−3<i>x</i>+4</span>를 <span class="m"><i>x</i>−1</span>로 나눈 몫과 나머지를 구하시오.</p><p class="src">출처 · 다항식의 나눗셈 계산 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> 몫 <span class="m"><i>x</i><sup>2</sup>+3<i>x</i></span>, 나머지 <span class="m">4</span></p><p class="how"><span class="m"><i>x</i><sup>3</sup>+2<i>x</i><sup>2</sup>−3<i>x</i>+4=(<i>x</i>−1)(<i>x</i><sup>2</sup>+3<i>x</i>)+4</span></p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></div><div class="qb"><p class="q"><span class="m"><i>x</i><sup>4</sup>+3<i>x</i><sup>3</sup>−2<i>x</i>+5</span>를 <span class="m"><i>x</i><sup>2</sup>+<i>x</i>−1</span>로 나누었을 때의 몫과 나머지를 각각 <span class="m"><i>Q</i>(<i>x</i>)</span>, <span class="m"><i>R</i>(<i>x</i>)</span>라 할 때 <span class="m"><i>Q</i>(1)+<i>R</i>(2)</span>의 값을 구하시오.</p><p class="src">출처 · 다항식의 나눗셈 계산 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">8</span></p><p class="how"><span class="m"><i>x</i><sup>4</sup>+3<i>x</i><sup>3</sup>+0<i>x</i><sup>2</sup>−2<i>x</i>+5</span>로 쓰고 나누면 몫 <span class="m"><i>x</i><sup>2</sup>+2<i>x</i>−1</span>, 나머지 <span class="m"><i>x</i>+4</span>.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></div><div class="qb"><p class="q"><span class="m"><i>x</i><sup>3</sup>+<i>a</i><i>x</i><sup>2</sup>+<i>b</i><i>x</i>−3</span>을 <span class="m"><i>x</i><sup>2</sup>−<i>x</i>+1</span>로 나눈 나머지가 <span class="m">5<i>x</i>−6</span>일 때 <span class="m"><i>a</i><i>b</i></span>의 값을 구하시오.</p><p class="src">출처 · 다항식의 나눗셈 계산 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">6</span></p><p class="how">몫은 <span class="m"><i>x</i>+<i>a</i>+1</span>, 나머지는 <span class="m">(<i>a</i>+<i>b</i>)<i>x</i>−<i>a</i>−4</span>. <span class="m"><i>a</i>+<i>b</i>=5</span>, <span class="m">−<i>a</i>−4=−6</span>에서 <span class="m"><i>a</i>=2</span>, <span class="m"><i>b</i>=3</span>.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></div><div class="qb"><p class="q"><span class="m"><i>x</i><sup>4</sup>+<i>a</i><i>x</i><sup>2</sup>+<i>b</i></span>가 <span class="m"><i>x</i><sup>2</sup>+<i>x</i>+2</span>로 나누어떨어질 때 상수 <span class="m"><i>a</i></span>, <span class="m"><i>b</i></span>에 대하여 <span class="m"><i>a</i>+<i>b</i></span>의 값을 구하시오.</p><p class="src">출처 · 다항식의 나눗셈 계산 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">7</span></p><p class="how">나머지 <span class="m">(3−<i>a</i>)<i>x</i>+(<i>b</i>−2<i>a</i>+2)</span>가 0이므로 <span class="m"><i>a</i>=3</span>, <span class="m"><i>b</i>=4</span>.</p></div></div></article>
+</div></div></div>
+<div class="xcard">
+<div class="xh"><h3>나눗셈 관계 추론</h3><span class="xc">출제 7문항</span></div>
+<p class="xtip"><mark class="mem">A=BQ+R</mark>로 조건마다 식을 세운다. <mark class="mem">R의 차수 &lt; B의 차수</mark>로 미지 다항식의 차수와 최고차항을 정한다. 나누어떨어지면 <span class="m"><i>R</i>=0</span>.</p>
+<ul class="erows">
+<li class="erow"><span class="eid"><b>2024.6</b> 28번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">미지 다항식의 나눗셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2406_s1_me_hakpyeong&amp;start=28&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x7" aria-expanded="false" aria-controls="x7"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2024.9</b> 18번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">조건이 있는 나눗셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2409_s2_me_hakpyeong&amp;start=18&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x7" aria-expanded="false" aria-controls="x7"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2025.6</b> 28번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">제곱식의 나눗셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2506_s1_me_hakpyeong&amp;start=28&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x7" aria-expanded="false" aria-controls="x7"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2025.10</b> 19번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">나눗셈 관계 추론</span><span class="elinks"><a class="ext" href="player.html?set=m1_2510_s2_me_hakpyeong&amp;start=19&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x7" aria-expanded="false" aria-controls="x7"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2026.6</b> 17번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">세 다항식의 나눗셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2606_s1_me_hakpyeong&amp;start=17&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x7" aria-expanded="false" aria-controls="x7"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2026.6</b> 29번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">미지 다항식의 나눗셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2606_s1_me_hakpyeong&amp;start=29&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x7" aria-expanded="false" aria-controls="x7"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+<li class="erow"><span class="eid"><b>2026.9</b> 27번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></span><span class="ept">4점</span><span class="etopic">미지 다항식의 나눗셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2609_s2_me_hakpyeong&amp;start=27&amp;back=note-cm1-polynomial.html">풀기 ↗</a><button type="button" class="xbtn" data-target="x7" aria-expanded="false" aria-controls="x7"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>추가 문제</button></span></li>
+</ul>
+<div class="extra" id="x7" hidden><p class="xhd">추가 문제 · 나눗셈 관계 추론 (하·중·중상·상)</p><div class="probs">
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></div><div class="qb"><p class="q">다항식 <span class="m"><i>f</i>(<i>x</i>)</span>를 <span class="m"><i>x</i><sup>2</sup>+1</span>로 나눈 몫이 <span class="m"><i>x</i>+2</span>, 나머지가 <span class="m">3<i>x</i>−1</span>일 때 <span class="m"><i>f</i>(1)</span>의 값을 구하시오.</p><p class="src">출처 · 나눗셈 관계 추론 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">8</span></p><p class="how"><span class="m"><i>f</i>(<i>x</i>)=(<i>x</i><sup>2</sup>+1)(<i>x</i>+2)+3<i>x</i>−1</span>이므로 <span class="m"><i>f</i>(1)=2×3+2</span>.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></div><div class="qb"><p class="q">다항식 <span class="m"><i>f</i>(<i>x</i>)</span>를 <span class="m"><i>x</i><sup>2</sup>−2<i>x</i>+4</span>로 나눈 몫이 <span class="m"><i>x</i>+1</span>, 나머지가 <span class="m">2<i>x</i>−3</span>일 때 <span class="m"><i>f</i>(2)</span>의 값을 구하시오.</p><p class="src">출처 · 나눗셈 관계 추론 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">13</span></p><p class="how"><span class="m"><i>f</i>(<i>x</i>)=(<i>x</i><sup>2</sup>−2<i>x</i>+4)(<i>x</i>+1)+2<i>x</i>−3</span>이므로 <span class="m"><i>f</i>(2)=4×3+1</span>.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></div><div class="qb"><p class="q">다항식 <span class="m"><i>x</i><sup>3</sup>+2<i>x</i><sup>2</sup>+<i>x</i>+5</span>를 <span class="m"><i>x</i><sup>2</sup>−<i>x</i>+1</span>로 나눈 몫이 <span class="m"><i>x</i>+<i>a</i></span>, 나머지가 <span class="m">3<i>x</i>+<i>b</i></span>일 때 <span class="m"><i>a</i><i>b</i></span>의 값을 구하시오.</p><p class="src">출처 · 나눗셈 관계 추론 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">6</span></p><p class="how"><span class="m">(<i>x</i>+<i>a</i>)(<i>x</i><sup>2</sup>−<i>x</i>+1)+3<i>x</i>+<i>b</i></span>를 전개해 계수를 비교하면 <span class="m"><i>a</i>−1=2</span>, <span class="m"><i>a</i>+<i>b</i>=5</span>이므로 <span class="m"><i>a</i>=3</span>, <span class="m"><i>b</i>=2</span>.</p></div></div></article>
+<article class="prob"><div class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></div><div class="qb"><p class="q">최고차항의 계수가 1인 두 다항식 <span class="m"><i>A</i>(<i>x</i>)</span>, <span class="m"><i>B</i>(<i>x</i>)</span>가 다음을 만족시킬 때 <span class="m"><i>A</i>(1)</span>의 값을 구하시오. (가) <span class="m"><i>A</i>(<i>x</i>)</span>를 <span class="m"><i>B</i>(<i>x</i>)</span>로 나눈 몫은 <span class="m"><i>B</i>(<i>x</i>)−<i>x</i></span>이고 나머지는 <span class="m"><i>B</i>(<i>x</i>)−<i>x</i><sup>2</sup></span>이다. (나) <span class="m"><i>A</i>(<i>x</i>)</span>는 <span class="m"><i>B</i>(<i>x</i>)−2<i>x</i></span>로 나누어떨어진다.</p><p class="src">출처 · 나눗셈 관계 추론 추가 문제 (자체 제작)</p></div><div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">24</span></p><p class="how">나머지의 차수가 <span class="m"><i>B</i>(<i>x</i>)</span>보다 낮으므로 <span class="m"><i>B</i>(<i>x</i>)</span>는 최고차항의 계수가 1인 이차식이다. <span class="m"><i>B</i>(<i>x</i>)−2<i>x</i>=<i>t</i></span>로 놓으면 <span class="m"><i>A</i>(<i>x</i>)=<i>t</i>(<i>t</i>+3<i>x</i>+1)+<i>x</i><sup>2</sup>+2<i>x</i></span>. <span class="m"><i>t</i></span>는 이차식이고 <span class="m"><i>x</i><sup>2</sup>+2<i>x</i></span>를 나누므로 <span class="m"><i>t</i>=<i>x</i><sup>2</sup>+2<i>x</i></span>, 곧 <span class="m"><i>B</i>(<i>x</i>)=<i>x</i><sup>2</sup>+4<i>x</i></span>. 따라서 <span class="m"><i>A</i>(1)=5×4+4</span>.</p></div></div></article>
+</div></div></div></div>
+</section>
+<section class="sec" id="s6">
+<header class="sh"><span class="no">6</span><h2>종합 유형</h2><span class="ref">중단원 p.20~21</span></header>
+<div class="note">
+<ul class="pts"><li>몫과 나머지가 주어지면 <mark class="mem"><span class="m"><i>A</i>=<i>B</i><i>Q</i>+<i>R</i></span>로 되돌려</mark> 구한다. 나누는 식을 구할 때는 <span class="m"><i>B</i>=(<i>A</i>−<i>R</i>)÷<i>Q</i></span>.</li><li>나누어떨어질 조건: 나눈 <mark class="mem">나머지가 0</mark>이 되도록 계수를 비교한다. 나머지가 <span class="m"><i>p</i><i>x</i>+<i>q</i></span> 꼴이면 <span class="m"><i>p</i>=0</span>, <span class="m"><i>q</i>=0</span>.</li><li><span class="m"><i>x</i><sup>2</sup>+<i>x</i>+1=0</span> 같은 조건이 있으면 <span class="m"><i>A</i>=(<i>x</i><sup>2</sup>+<i>x</i>+1)<i>Q</i>+<i>R</i></span>에서 앞부분이 0이 되어 <mark class="mem"><span class="m"><i>A</i>=<i>R</i></span></mark>이다.</li><li>예) <span class="m"><i>x</i><sup>4</sup>−<i>x</i><sup>3</sup>−5<i>x</i><sup>2</sup>−6<i>x</i>+3=(<i>x</i><sup>2</sup>+<i>x</i>+1)(<i>x</i><sup>2</sup>−2<i>x</i>−4)+7</span>이므로 <span class="m"><i>x</i><sup>2</sup>+<i>x</i>+1=0</span>일 때 값은 7. (교과서 p.21 11)</li></ul>
+<div class="must"><p class="mt">반드시 암기</p><div class="f"><mark class="mem"><span class="m"><i>B</i>=(<i>A</i>−<i>R</i>)÷<i>Q</i></span></mark></div><div class="f"><mark class="mem"><span class="m"><i>B</i>=0</span>이면 <span class="m"><i>A</i>=<i>R</i></span>  (나머지가 곧 <span class="m"><i>A</i></span>의 값)</mark></div></div>
+</div>
+<div class="probs">
+<article class="prob">
+<div class="lv" title="난이도 하"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><b>하</b></div>
+<div class="qb"><p class="q">다항식 <span class="m"><i>A</i></span>를 <span class="m"><i>x</i>+1</span>로 나눈 몫이 <span class="m"><i>x</i><sup>2</sup>+<i>x</i>+2</span>, 나머지가 <span class="m">3</span>일 때 <span class="m"><i>A</i></span>를 구하시오.</p><p class="src">출처 · 교과서 p.18 <span class="m"><i>A</i>=<i>B</i><i>Q</i>+<i>R</i></span> 활용</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m"><i>x</i><sup>3</sup>+2<i>x</i><sup>2</sup>+3<i>x</i>+5</span></p><p class="how"><span class="m"><i>A</i>=(<i>x</i>+1)(<i>x</i><sup>2</sup>+<i>x</i>+2)+3</span></p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 중"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><b>중</b></div>
+<div class="qb"><p class="q"><span class="m"><i>x</i><sup>3</sup>+2<i>x</i><sup>2</sup>+<i>a</i><i>x</i>+<i>b</i></span>가 <span class="m"><i>x</i><sup>2</sup>+<i>x</i>+1</span>로 나누어떨어질 때 상수 <span class="m"><i>a</i></span>, <span class="m"><i>b</i></span>의 값을 구하시오.</p><p class="src">출처 · 중단원 p.21 08 유형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m"><i>a</i>=2</span>, <span class="m"><i>b</i>=1</span></p><p class="how">몫 <span class="m"><i>x</i>+1</span>, 나머지 <span class="m">(<i>a</i>−2)<i>x</i>+(<i>b</i>−1)</span>.</p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 중상"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></div>
+<div class="qb"><p class="q">직육면체의 겉넓이가 <span class="m">52</span>, 대각선의 길이가 <span class="m">√29</span>일 때 <span class="m"><i>a</i>+<i>b</i>+<i>c</i></span>의 값을 구하시오. (단, <span class="m"><i>a</i>, <i>b</i>, <i>c</i>&gt;0</span>)</p><p class="src">출처 · 중단원 p.21 10 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">9</span></p><p class="how"><span class="m"><i>a</i><sup>2</sup>+<i>b</i><sup>2</sup>+<i>c</i><sup>2</sup>=29</span>, <span class="m">2(<i>a</i><i>b</i>+<i>b</i><i>c</i>+<i>c</i><i>a</i>)=52</span>이므로 <span class="m">(<i>a</i>+<i>b</i>+<i>c</i>)<sup>2</sup>=81</span>.</p></div></div>
+</article>
+<article class="prob">
+<div class="lv" title="난이도 상"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></div>
+<div class="qb"><p class="q"><span class="m"><i>x</i><sup>2</sup>+<i>x</i>+1=0</span>일 때 <span class="m"><i>x</i><sup>4</sup>+2<i>x</i><sup>3</sup>+3<i>x</i><sup>2</sup>+2<i>x</i>+5</span>의 값을 구하시오.</p><p class="src">출처 · 중단원 p.21 11 (2) 변형</p></div>
+<div class="ans" tabindex="0"><div class="ans-in"><p class="al"><b>정답</b> <span class="m">4</span></p><p class="how"><span class="m"><i>x</i><sup>4</sup>+2<i>x</i><sup>3</sup>+3<i>x</i><sup>2</sup>+2<i>x</i>+1=(<i>x</i><sup>2</sup>+<i>x</i>+1)<sup>2</sup>=0</span>이므로 <span class="m">0+4</span>.</p></div></div>
+</article>
+</div>
+<div class="mock"><p class="mh">모의고사 출제 문제 · 중상·상 모아보기</p>
+<div class="xcard"><div class="xh"><h3>고난도 출제 문항</h3><span class="xc">12문항</span></div>
+<p class="xtip">앞의 유형별 문항 중 중상·상만 모았습니다. 여러 개념이 섞여 나오므로 종합 연습용으로 풀어 보세요. 같은 문항의 추가 문제는 각 소단원의 ‘추가 문제’ 버튼에서 열립니다.</p><ul class="erows">
+<li class="erow"><span class="eid"><b>2024.6</b> 19번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">도형과 곱셈 공식 · 반원 도형</span><span class="elinks"><a class="ext" href="player.html?set=m1_2406_s1_me_hakpyeong&amp;start=19&amp;back=note-cm1-polynomial.html">풀기 ↗</a></span></li>
+<li class="erow"><span class="eid"><b>2024.6</b> 28번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">나눗셈 관계 추론 · 미지 다항식의 나눗셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2406_s1_me_hakpyeong&amp;start=28&amp;back=note-cm1-polynomial.html">풀기 ↗</a></span></li>
+<li class="erow"><span class="eid"><b>2024.9</b> 18번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">나눗셈 관계 추론 · 조건이 있는 나눗셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2409_s2_me_hakpyeong&amp;start=18&amp;back=note-cm1-polynomial.html">풀기 ↗</a></span></li>
+<li class="erow"><span class="eid"><b>2024.10</b> 29번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">도형과 곱셈 공식 · 원 도형</span><span class="elinks"><a class="ext" href="player.html?set=m1_2410_s2_me_hakpyeong&amp;start=29&amp;back=note-cm1-polynomial.html">풀기 ↗</a></span></li>
+<li class="erow"><span class="eid"><b>2025.6</b> 28번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">나눗셈 관계 추론 · 제곱식의 나눗셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2506_s1_me_hakpyeong&amp;start=28&amp;back=note-cm1-polynomial.html">풀기 ↗</a></span></li>
+<li class="erow"><span class="eid"><b>2025.10</b> 19번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">나눗셈 관계 추론 · 나눗셈 관계 추론</span><span class="elinks"><a class="ext" href="player.html?set=m1_2510_s2_me_hakpyeong&amp;start=19&amp;back=note-cm1-polynomial.html">풀기 ↗</a></span></li>
+<li class="erow"><span class="eid"><b>2025.10</b> 29번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">도형과 곱셈 공식 · 직육면체</span><span class="elinks"><a class="ext" href="player.html?set=m1_2510_s2_me_hakpyeong&amp;start=29&amp;back=note-cm1-polynomial.html">풀기 ↗</a></span></li>
+<li class="erow"><span class="eid"><b>2026.6</b> 17번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">나눗셈 관계 추론 · 세 다항식의 나눗셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2606_s1_me_hakpyeong&amp;start=17&amp;back=note-cm1-polynomial.html">풀기 ↗</a></span></li>
+<li class="erow"><span class="eid"><b>2026.6</b> 29번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span><b>상</b></span><span class="ept">4점</span><span class="etopic">나눗셈 관계 추론 · 미지 다항식의 나눗셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2606_s1_me_hakpyeong&amp;start=29&amp;back=note-cm1-polynomial.html">풀기 ↗</a></span></li>
+<li class="erow"><span class="eid"><b>2025.6</b> 14번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></span><span class="ept">4점</span><span class="etopic">도형과 곱셈 공식 · 직육면체</span><span class="elinks"><a class="ext" href="player.html?set=m1_2506_s1_me_hakpyeong&amp;start=14&amp;back=note-cm1-polynomial.html">풀기 ↗</a></span></li>
+<li class="erow"><span class="eid"><b>2026.6</b> 12번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></span><span class="ept">3점</span><span class="etopic">도형과 곱셈 공식 · 직각삼각형</span><span class="elinks"><a class="ext" href="player.html?set=m1_2606_s1_me_hakpyeong&amp;start=12&amp;back=note-cm1-polynomial.html">풀기 ↗</a></span></li>
+<li class="erow"><span class="eid"><b>2026.9</b> 27번</span><span class="lv"><span class="dots" aria-hidden="true"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><b>중상</b></span><span class="ept">4점</span><span class="etopic">나눗셈 관계 추론 · 미지 다항식의 나눗셈</span><span class="elinks"><a class="ext" href="player.html?set=m1_2609_s2_me_hakpyeong&amp;start=27&amp;back=note-cm1-polynomial.html">풀기 ↗</a></span></li>
+</ul></div></div>
+</section>
+<section class="sec" id="check"><header class="sh"><span class="no">✓</span><h2>시험 직전 체크</h2></header><ul class="chk"><li>곱셈 공식 5개(특히 세제곱 공식의 부호)를 보지 않고 쓸 수 있는가?</li><li>뺄셈에서 괄호를 풀 때 모든 항의 부호를 바꾸었는가?</li><li>나눗셈에서 빠진 차수의 항을 0으로 채웠는가?</li><li>나머지의 차수가 나누는 식의 차수보다 낮은가?</li><li>식의 값 문제에서 합과 곱을 먼저 구한 뒤 변형 공식에 대입했는가?</li><li>서술형은 <span class="m"><i>A</i>=<i>B</i><i>Q</i>+<i>R</i></span> 꼴로 쓰고 풀이 과정을 단계별로 적었는가?</li></ul></section>
+</main>
+<script>
+(function () {
+  var btn = document.getElementById('quizBtn');
+  var tip = document.getElementById('quizTip');
+  function setQuiz(on) {
+    document.body.classList.toggle('quiz', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.textContent = on ? '정답 보이기' : '정답 가리기';
+    tip.hidden = !on;
+    if (!on) {
+      document.querySelectorAll('.ans.open').forEach(function (a) { a.classList.remove('open'); });
+    }
+  }
+  btn.addEventListener('click', function () { setQuiz(!document.body.classList.contains('quiz')); });
+  document.querySelectorAll('.ans').forEach(function (a) {
+    function toggle() { if (document.body.classList.contains('quiz')) a.classList.toggle('open'); }
+    a.addEventListener('click', toggle);
+    a.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+  });
+  tip.hidden = true;
+
+  /* 추가 문제 열고 닫기: 같은 유형의 버튼은 모두 같은 패널을 연다 */
+  var allBtn = document.getElementById('allBtn');
+  function setPanel(id, open) {
+    var panel = document.getElementById(id);
+    if (!panel) return;
+    panel.hidden = !open;
+    document.querySelectorAll('.xbtn[data-target="' + id + '"]').forEach(function (b) {
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+  function syncAll() {
+    var panels = document.querySelectorAll('.extra');
+    var allOpen = panels.length > 0 && Array.prototype.every.call(panels, function (p) { return !p.hidden; });
+    allBtn.setAttribute('aria-pressed', allOpen ? 'true' : 'false');
+    allBtn.textContent = allOpen ? '추가 문제 모두 닫기' : '추가 문제 모두 열기';
+  }
+  document.querySelectorAll('.xbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var id = b.getAttribute('data-target');
+      var panel = document.getElementById(id);
+      var open = panel.hidden;
+      setPanel(id, open);
+      syncAll();
+      if (open) {
+        var r = panel.getBoundingClientRect();
+        if (r.top > window.innerHeight * 0.7) panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    });
+  });
+  allBtn.addEventListener('click', function () {
+    var open = allBtn.getAttribute('aria-pressed') !== 'true';
+    document.querySelectorAll('.extra').forEach(function (p) { setPanel(p.id, open); });
+    syncAll();
+  });
+})();
+
+</script>
+</body>
+</html>
