@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.30 (2026-11-07): "학교별 교재출판사" 탭을 폰에서 읽기 쉽게 정돈 — 5열 표(학교 글자가 세로로 깨지던 것)를 학교별 카드로 바꾸고, 과목마다 "출판사 · 저자" 한 줄과 첨부 자료를 누르기 쉬운 칩으로 표시 -->
 <!-- v2.29 (2026-11-07): 홈 "바로가기"에 "교과과정" 카드 추가(누르면 교과과정 탭으로 이동) -->
 <!-- v2.28 (2026-11-07): 동작 변경 없음 — 요점노트 버전에 맞춰 번호만 올림 -->
 <!-- v2.27 (2026-11-07): 교과과정 단원 links에 사이트 안 상대 주소(.html)도 허용(같은 탭에서 열기). 「다항식의 연산」 요점노트를 worksheets/note-cm1-polynomial.html로 사이트에 포함 -->
@@ -472,6 +473,20 @@
   .publisher-table td.blank{ color:var(--num); font-style:italic; }
   .publisher-table td a{ color:var(--accent); font-weight:700; text-decoration:none; }
   .publisher-table td a:hover{ text-decoration:underline; }
+
+  /* v2.30 학교별 교재출판사 카드 */
+  .pub-list{ display:grid; gap:14px; }
+  .pub-school{ border-top:2px solid var(--ink); padding-top:8px; }
+  .pub-sname{ font-size:16px; font-weight:700; margin-bottom:2px; }
+  .pub-item{ padding:9px 0; border-bottom:1px solid var(--rule); }
+  .pub-item:last-child{ border-bottom:none; }
+  .pub-subj{ font-weight:700; font-size:14px; }
+  .pub-who{ font-size:13.5px; color:#5c584b; margin-top:2px; }
+  .pub-who.blank{ color:var(--num); font-style:italic; }
+  .pub-who a{ color:var(--accent); font-weight:700; text-decoration:none; }
+  .pub-mats{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .pub-chip{ display:inline-flex; align-items:center; min-height:34px; padding:0 12px; border:1px solid var(--rule); border-radius:999px; font-size:13px; color:inherit; text-decoration:none; background:#fff; }
+  .pub-chip:hover{ border-color:var(--accent); color:var(--accent); }
   .roadmap-link{
     display:flex;
     align-items:center;
@@ -711,7 +726,7 @@
       <div class="brand-text">
         <div class="brand-title">수학 학습 기록판</div>
         <div class="brand-sub" id="sessionBrandSub">전주영</div>
-        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.29 · 2026-11-07</div>
+        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.30 · 2026-11-07</div>
       </div>
       <button type="button" class="admin-lock" id="adminLock" onclick="goAdminSection()" aria-label="관리자 메뉴" title="관리자"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
       <button class="refresh-btn" id="refreshBtn" onclick="refreshAllData()" title="새로고침">🔄</button>
@@ -1220,28 +1235,37 @@
       const data = await res.json();
       const schools = data.schools || [];
 
+      // v2.30: 폰에서도 읽기 쉽게 표 대신 "학교 → 과목별 한 줄 + 첨부 자료 칩" 카드로 그린다
       const buildTable = (list) => {
         if(list.length === 0) return '';
-        const rows = list.map(s => {
-          const authorCell = s.author
-            ? (s.url ? `<a href="${s.url}" target="_blank" rel="noopener">${s.author} ↗</a>` : s.author)
-            : '';
-          const isBlank = !s.publisher || s.publisher === '확인 중';
-          const materialsCell = (s.materials && s.materials.length)
-            ? s.materials.map(m => `<a href="${encodeURI(m.url)}" target="_blank" rel="noopener">${m.label}</a>`).join('<br>')
-            : '';
-          return `<tr>
-            <td>${s.school || ''}</td>
-            <td>${s.subject || ''}</td>
-            <td${isBlank ? ' class="blank"' : ''}>${s.publisher || ''}</td>
-            <td${isBlank ? ' class="blank"' : ''}>${authorCell}</td>
-            <td>${materialsCell}</td>
-          </tr>`;
+        const order = [], bySchool = {};
+        list.forEach(s => {
+          const k = s.school || '';
+          if(!bySchool[k]){ bySchool[k] = []; order.push(k); }
+          bySchool[k].push(s);
+        });
+        const groups = order.map(k => {
+          const items = bySchool[k].map(s => {
+            const isBlank = !s.publisher || s.publisher === '확인 중';
+            const author = s.author
+              ? (s.url && /^https?:\/\//.test(s.url)
+                  ? `<a href="${currEsc(s.url)}" target="_blank" rel="noopener">${currEsc(s.author)} ↗</a>`
+                  : currEsc(s.author))
+              : '';
+            const who = isBlank ? '확인 중' : [currEsc(s.publisher), author].filter(Boolean).join(' · ');
+            const mats = (s.materials && s.materials.length)
+              ? `<div class="pub-mats">${s.materials.map(m => `<a class="pub-chip" href="${currEsc(encodeURI(m.url))}" target="_blank" rel="noopener">${currEsc(m.label)}</a>`).join('')}</div>`
+              : '';
+            const subj = (s.subject && s.subject !== '-') ? currEsc(s.subject) : '';
+            return `<div class="pub-item">
+              ${subj ? `<div class="pub-subj">${subj}</div>` : ''}
+              <div class="pub-who${isBlank ? ' blank' : ''}">${who || '확인 중'}</div>
+              ${mats}
+            </div>`;
+          }).join('');
+          return `<div class="pub-school"><div class="pub-sname">${currEsc(k)}</div>${items}</div>`;
         }).join('');
-        return `<table class="publisher-table">
-          <thead><tr><th>학교</th><th>과목</th><th>출판사</th><th>저자</th><th>첨부 자료</th></tr></thead>
-          <tbody>${rows}</tbody>
-        </table>`;
+        return `<div class="pub-list">${groups}</div>`;
       };
 
       PUBLISHER_TABLE_HTML_HIGH = buildTable(schools);
