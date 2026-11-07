@@ -35,7 +35,7 @@ LEGACY_DIFF = {"최상", "상", "중상", "중", "하"}
 VALID_TYPE = {"mc", "mc_multi", "fillin", "subjective", "essay", "discussion", "game"}
 LEGACY_TYPE = {"mcq", "short"}
 # data/ 안에 있지만 문제지가 아닌 파일
-NON_WORKSHEET = {"exam-ranges.json", "publishers.json", "study-plan.json", "worksheets-manifest.json", "_index.json", "tips.json"}
+NON_WORKSHEET = {"exam-ranges.json", "publishers.json", "study-plan.json", "worksheets-manifest.json", "_index.json", "tips.json", "curriculum.json"}
 
 
 class Report:
