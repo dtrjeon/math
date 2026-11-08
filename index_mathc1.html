@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.55 (2026-11-08): 문제집 범위요약 탭 이름을 중간·기말·모의로 단축 -->
 <!-- v2.54 (2026-11-08): 홈 문제집 범위요약 — 좁은 화면에서 깨지던 5열 표를 문제지별 카드(파일명·문제수·단원·난이도 칩·회차 체크)로 변경 -->
 <!-- v2.53 (2026-11-08): 홈 오답노트 — 좁은 화면에서 글자가 세로로 깨지던 5열 표를 문제별 카드 목록(제목·오답/시도·연속정답·최근 풀이·풀기 버튼)으로 바꿔 정리. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.52 (2026-11-08): 문제 풀기 — 종료 시 풀지 않은(미응답) 문제도 틀린 것으로 계산(필기감 옆 표시·결과창·다시 풀 오답 목록). 나머지 파일은 동작 변경 없이 번호만 올림 -->
@@ -766,7 +767,7 @@
       <div class="brand-text">
         <div class="brand-title">수학 학습 기록판</div>
         <div class="brand-sub" id="sessionBrandSub">전주영</div>
-        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.54 · 2026-11-08</div>
+        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.55 · 2026-11-08</div>
       </div>
       <button type="button" class="admin-lock" id="adminLock" onclick="goAdminSection()" aria-label="관리자 메뉴" title="관리자"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
       <button class="refresh-btn" id="refreshBtn" onclick="refreshAllData()" title="새로고침">🔄</button>
@@ -882,9 +883,9 @@
     <section class="page" id="mainPanel-range">
       <div class="unit-label">문제집 범위요약</div>
       <div class="worksheet-tabs" id="rangeTabs">
-        <button class="ws-tab-btn active" id="rangeTab-mid" onclick="switchRangeTab('mid')">📗 중간고사 <span class="count" id="rangeCount-mid">0</span></button>
-        <button class="ws-tab-btn" id="rangeTab-final" onclick="switchRangeTab('final')">📕 기말고사 <span class="count" id="rangeCount-final">0</span></button>
-        <button class="ws-tab-btn" id="rangeTab-mock" onclick="switchRangeTab('mock')">🧪 모의고사 <span class="count" id="rangeCount-mock">0</span></button>
+        <button class="ws-tab-btn active" id="rangeTab-mid" onclick="switchRangeTab('mid')">📗 중간 <span class="count" id="rangeCount-mid">0</span></button>
+        <button class="ws-tab-btn" id="rangeTab-final" onclick="switchRangeTab('final')">📕 기말 <span class="count" id="rangeCount-final">0</span></button>
+        <button class="ws-tab-btn" id="rangeTab-mock" onclick="switchRangeTab('mock')">🧪 모의 <span class="count" id="rangeCount-mock">0</span></button>
       </div>
 
       <div class="ws-tab-panel active" id="rangePanel-mid"><div class="ws-loading">범위 요약을 불러오는 중...</div></div>
