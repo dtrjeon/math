@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.53 (2026-11-08): 홈 오답노트 — 좁은 화면에서 글자가 세로로 깨지던 5열 표를 문제별 카드 목록(제목·오답/시도·연속정답·최근 풀이·풀기 버튼)으로 바꿔 정리. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.52 (2026-11-08): 문제 풀기 — 종료 시 풀지 않은(미응답) 문제도 틀린 것으로 계산(필기감 옆 표시·결과창·다시 풀 오답 목록). 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.51 (2026-11-08): 문제 풀기 — 「왜 틀렸을까요?」에서 이유를 고른 뒤 「오답체크」 버튼을 눌러야 오답노트에 저장(저장되면 ✓ 표시). 다시 시작하면 선택·저장 표시 초기화. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.50 (2026-11-08): 문제 풀기 — 「시작」을 누르면 「종료」 전까지 정답·정오 표시를 잠그고(테스트 모드 설정과 무관), 종료하면 「필기감」 버튼 옆에 맞은 개수·틀린 개수를 표시. 나머지 파일은 동작 변경 없이 번호만 올림 -->
@@ -449,7 +450,7 @@ a.ext:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border
 </section>
 <section class="sec" id="check"><header class="sh"><span class="no">✓</span><h2>시험 직전 체크</h2></header><ul class="chk"><li>행렬의 <span class="m">(<i>i</i>,<i>j</i>)</span> 성분에서 <span class="m"><i>i</i></span>는 행, <span class="m"><i>j</i></span>는 열로 읽었고, 식으로 주어진 성분은 <span class="m"><i>i</i></span>, <span class="m"><i>j</i></span>를 모두 대입해 행렬을 만들었는가?</li><li>두 행렬이 같을 때 같은 위치의 성분끼리 등식을 세워 연립방정식으로 풀었는가?</li><li>덧셈·뺄셈·실수배를 성분끼리 계산했고, 실수배는 모든 성분에 곱했는가?</li><li><span class="m"><i>A</i>+<i>B</i></span>, <span class="m"><i>A</i>−2<i>B</i></span> 꼴이 주어졌을 때 문자식처럼 소거해 <span class="m"><i>A</i></span>, <span class="m"><i>B</i></span>를 구했는가?</li><li>곱셈에서 행과 열의 개수를 먼저 확인했고, <span class="m">(<i>i</i>,<i>j</i>)</span> 성분을 제<span class="m"><i>i</i></span>행과 제<span class="m"><i>j</i></span>열로 계산했는가?</li><li><span class="m"><i>A</i><i>B</i>≠ <i>B</i><i>A</i></span>, <span class="m">(<i>A</i>+<i>B</i>)<sup>2</sup></span> 전개, <span class="m"><i>A</i><i>B</i>=<i>O</i></span>에 대한 성질을 정확히 적용했는가?</li></ul></section>
 </main>
-<p class="ver">v2.52 · 2026-11-08</p>
+<p class="ver">v2.53 · 2026-11-08</p>
 <script>
 (function () {
   var btn = document.getElementById('quizBtn');
