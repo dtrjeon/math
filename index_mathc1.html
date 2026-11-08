@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.57 (2026-11-08): 문제집 모음 '기출·내신' 탭 이름을 '중간·기말'로 통일 -->
 <!-- v2.56 (2026-11-08): 문제집 모음·오답노트 탭 이름도 모의로 통일 -->
 <!-- v2.55 (2026-11-08): 문제집 범위요약 탭 이름을 중간·기말·모의로 단축 -->
 <!-- v2.54 (2026-11-08): 홈 문제집 범위요약 — 좁은 화면에서 깨지던 5열 표를 문제지별 카드(파일명·문제수·단원·난이도 칩·회차 체크)로 변경 -->
@@ -768,7 +769,7 @@
       <div class="brand-text">
         <div class="brand-title">수학 학습 기록판</div>
         <div class="brand-sub" id="sessionBrandSub">전주영</div>
-        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.56 · 2026-11-08</div>
+        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.57 · 2026-11-08</div>
       </div>
       <button type="button" class="admin-lock" id="adminLock" onclick="goAdminSection()" aria-label="관리자 메뉴" title="관리자"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
       <button class="refresh-btn" id="refreshBtn" onclick="refreshAllData()" title="새로고침">🔄</button>
@@ -859,7 +860,7 @@
       <div class="unit-label">문제집 모음</div>
       <div class="worksheet-tabs">
         <button class="ws-tab-btn active" id="wsTab-tb" onclick="switchWsTab('tb')">📘 교과문제 <span class="count" id="wsCount-tb">0</span></button>
-        <button class="ws-tab-btn" id="wsTab-peq" onclick="switchWsTab('peq')">📚 기출·내신 <span class="count" id="wsCount-peq">0</span></button>
+        <button class="ws-tab-btn" id="wsTab-peq" onclick="switchWsTab('peq')">📚 중간·기말 <span class="count" id="wsCount-peq">0</span></button>
         <button class="ws-tab-btn" id="wsTab-me" onclick="switchWsTab('me')">📝 모의 <span class="count" id="wsCount-me">0</span></button>
       </div>
 
