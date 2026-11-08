@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.51 (2026-11-08): 문제 풀기 — 「왜 틀렸을까요?」에서 이유를 고른 뒤 「오답체크」 버튼을 눌러야 오답노트에 저장(저장되면 ✓ 표시). 다시 시작하면 선택·저장 표시 초기화. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.50 (2026-11-08): 문제 풀기 — 「시작」을 누르면 「종료」 전까지 정답·정오 표시를 잠그고(테스트 모드 설정과 무관), 종료하면 「필기감」 버튼 옆에 맞은 개수·틀린 개수를 표시. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.49 (2026-11-08): 「나머지정리와 인수분해」 노트의 조립제법 소단원에 계산표와 단계별 설명 추가. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.48 (2026-11-08): 「여러 가지 방정식」 노트에 조립제법으로 인수분해하는 방법(계산표와 단계 설명) 추가. 나머지 파일은 동작 변경 없이 번호만 올림 -->
@@ -553,6 +554,13 @@
     cursor:pointer;
     color:var(--num);
   }
+  .reason-actions{ display:flex; align-items:center; gap:10px; margin-top:10px; flex-wrap:wrap; }
+  .reason-save{ font-family:inherit; font-size:14px; font-weight:800; background:var(--wrong); color:#fff; border:1.5px solid var(--wrong); border-radius:999px; padding:8px 18px; cursor:pointer; }
+  .reason-save.done{ background:#2f7a5b; border-color:#2f7a5b; }
+  .reason-save:disabled{ cursor:default; }
+  .reason-status{ font-size:12.5px; font-weight:700; color:#6b6558; }
+  .reason-status.ok{ color:#2f7a5b; }
+  .reason-status.warn{ color:var(--wrong); }
   .reason-chip.active{
     background:var(--wrong);
     border-color:var(--wrong);
@@ -1047,11 +1055,40 @@
     const el = document.getElementById('reason-' + n);
     if(el) el.style.display = 'none';
   }
+  // v2.51: 유형 칩은 고르기만 하고, 「오답체크」 버튼을 눌러야 저장한다
   function pickReason(n, btn, reason){
-    quizState.wrongReasons[n] = reason;
-    const chips = btn.parentElement.querySelectorAll('.reason-chip');
-    chips.forEach(c => c.classList.remove('active'));
+    const box = document.getElementById('reason-' + n);
+    if(!box) return;
+    box.dataset.sel = reason;
+    box.querySelectorAll('.reason-chip').forEach(c => c.classList.remove('active'));
     btn.classList.add('active');
+    const save = box.querySelector('.reason-save');
+    if(save){ save.disabled = false; save.textContent = '오답체크'; save.classList.remove('done'); }
+    const st = document.getElementById('reason-status-' + n);
+    if(st){ st.textContent = ''; st.className = 'reason-status'; }
+  }
+  function resetReasonPickers(){
+    document.querySelectorAll('.reason-picker').forEach(box => {
+      box.style.display = 'none';
+      delete box.dataset.sel;
+      box.querySelectorAll('.reason-chip').forEach(c => c.classList.remove('active'));
+      const save = box.querySelector('.reason-save');
+      if(save){ save.disabled = false; save.textContent = '오답체크'; save.classList.remove('done'); }
+      const st = box.querySelector('.reason-status');
+      if(st){ st.textContent = ''; st.className = 'reason-status'; }
+    });
+  }
+  function saveReason(n, btn){
+    const box = document.getElementById('reason-' + n);
+    const st = document.getElementById('reason-status-' + n);
+    const reason = box && box.dataset.sel;
+    if(!reason){
+      if(st){ st.textContent = '틀린 이유를 먼저 골라 주세요'; st.className = 'reason-status warn'; }
+      return;
+    }
+    quizState.wrongReasons[n] = reason;
+    btn.disabled = true; btn.textContent = '✓ 저장됨'; btn.classList.add('done');
+    if(st){ st.textContent = '오답노트에 「' + reason + '」로 기록했어요'; st.className = 'reason-status ok'; }
 
     // 이미 저장된 오답 로그 행에 유형만 갱신 (새 행을 만들지 않음)
     if(SHEET_WEBHOOK_URL.indexOf('PASTE_YOUR') === 0) return;
@@ -1590,6 +1627,7 @@
     document.querySelectorAll('.write-canvas').forEach(c => { clearCanvas(c.id); setPenMode(c.id,'pen'); });
     quizState.answers = {};
     quizState.wrongReasons = {};
+    resetReasonPickers();
     quizState.unitNotes = {};
     solutionsUnlocked = TEST_MODE_UNLOCK_SOLUTIONS;
     const startProb = currentProblemsData[quizStartIdx];
@@ -1847,6 +1885,7 @@
     goToPage(targetPage);
     quizState.answers = {};
     quizState.wrongReasons = {};
+    resetReasonPickers();
     solutionsUnlocked = TEST_MODE_UNLOCK_SOLUTIONS;
     closeResultModal();
   }
@@ -3105,10 +3144,11 @@
     }
 
     html += `<div class="reason-picker" id="reason-${n}" style="display:none;">
-      <span class="reason-label">🤔 왜 틀렸을까요? (선택하면 오답노트에 기록돼요)</span>
+      <span class="reason-label">🤔 왜 틀렸을까요? (이유를 고르고 「오답체크」를 누르면 오답노트에 기록돼요)</span>
       <div class="reason-chips">
         ${WRONG_REASONS.map(r => `<button class="reason-chip" onclick="pickReason(${n}, this, '${r}')">${r}</button>`).join('')}
       </div>
+      <div class="reason-actions"><button class="reason-save" onclick="saveReason(${n}, this)">오답체크</button><span class="reason-status" id="reason-status-${n}"></span></div>
     </div>`;
 
     const solLines = (p.solution || []).map(s => `<div class="sol-line">${escapeHtml(s)}</div>`).join('');
