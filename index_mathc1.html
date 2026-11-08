@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.56 (2026-11-08): 문제집 모음·오답노트 탭 이름도 모의로 통일 -->
 <!-- v2.55 (2026-11-08): 문제집 범위요약 탭 이름을 중간·기말·모의로 단축 -->
 <!-- v2.54 (2026-11-08): 홈 문제집 범위요약 — 좁은 화면에서 깨지던 5열 표를 문제지별 카드(파일명·문제수·단원·난이도 칩·회차 체크)로 변경 -->
 <!-- v2.53 (2026-11-08): 홈 오답노트 — 좁은 화면에서 글자가 세로로 깨지던 5열 표를 문제별 카드 목록(제목·오답/시도·연속정답·최근 풀이·풀기 버튼)으로 바꿔 정리. 나머지 파일은 동작 변경 없이 번호만 올림 -->
@@ -767,7 +768,7 @@
       <div class="brand-text">
         <div class="brand-title">수학 학습 기록판</div>
         <div class="brand-sub" id="sessionBrandSub">전주영</div>
-        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.55 · 2026-11-08</div>
+        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.56 · 2026-11-08</div>
       </div>
       <button type="button" class="admin-lock" id="adminLock" onclick="goAdminSection()" aria-label="관리자 메뉴" title="관리자"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
       <button class="refresh-btn" id="refreshBtn" onclick="refreshAllData()" title="새로고침">🔄</button>
@@ -859,7 +860,7 @@
       <div class="worksheet-tabs">
         <button class="ws-tab-btn active" id="wsTab-tb" onclick="switchWsTab('tb')">📘 교과문제 <span class="count" id="wsCount-tb">0</span></button>
         <button class="ws-tab-btn" id="wsTab-peq" onclick="switchWsTab('peq')">📚 기출·내신 <span class="count" id="wsCount-peq">0</span></button>
-        <button class="ws-tab-btn" id="wsTab-me" onclick="switchWsTab('me')">📝 모의고사 <span class="count" id="wsCount-me">0</span></button>
+        <button class="ws-tab-btn" id="wsTab-me" onclick="switchWsTab('me')">📝 모의 <span class="count" id="wsCount-me">0</span></button>
       </div>
 
       <div class="ws-tab-panel active" id="wsPanel-tb"><div class="ws-loading">문제지 목록을 불러오는 중...</div></div>
@@ -1326,7 +1327,7 @@
   let WRONG_STATS_RAW = [];
   let WRONG_GROUPS = {}; // key(all/me/tb/peq/etc) → [{ setId, num, title }] — "모아 풀기" 버튼이 쓴다
   const WRONG_GROUP_DEFS = [
-    { key:'me',  label:'📝 모의고사' },
+    { key:'me',  label:'📝 모의' },
     { key:'tb',  label:'📘 교재' },
     { key:'peq', label:'📚 중간·기말' },
     { key:'etc', label:'기타' }
