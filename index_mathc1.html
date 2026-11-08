@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.54 (2026-11-08): 홈 문제집 범위요약 — 좁은 화면에서 깨지던 5열 표를 문제지별 카드(파일명·문제수·단원·난이도 칩·회차 체크)로 변경 -->
 <!-- v2.53 (2026-11-08): 홈 오답노트 — 좁은 화면에서 글자가 세로로 깨지던 5열 표를 문제별 카드 목록(제목·오답/시도·연속정답·최근 풀이·풀기 버튼)으로 바꿔 정리. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.52 (2026-11-08): 문제 풀기 — 종료 시 풀지 않은(미응답) 문제도 틀린 것으로 계산(필기감 옆 표시·결과창·다시 풀 오답 목록). 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.51 (2026-11-08): 문제 풀기 — 「왜 틀렸을까요?」에서 이유를 고른 뒤 「오답체크」 버튼을 눌러야 오답노트에 저장(저장되면 ✓ 표시). 다시 시작하면 선택·저장 표시 초기화. 나머지 파일은 동작 변경 없이 번호만 올림 -->
@@ -497,6 +498,17 @@
   .publisher-table td a{ color:var(--accent); font-weight:700; text-decoration:none; }
   .publisher-table td a:hover{ text-decoration:underline; }
 
+  /* v2.54 문제집 범위요약 카드 */
+  .rg-list{ display:grid; gap:10px; margin-top:10px; }
+  .rg-item{ background:var(--card,#fff); border:1px solid var(--rule); border-radius:12px; padding:12px 14px; display:grid; gap:6px; }
+  .rg-head{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+  .rg-title{ font-weight:700; color:var(--accent); text-decoration:none; word-break:break-all; font-size:14px; }
+  .rg-count{ color:var(--num); font-size:12.5px; white-space:nowrap; }
+  .rg-unit{ font-size:13px; color:var(--ink); }
+  .rg-diff{ display:flex; flex-wrap:wrap; gap:4px; }
+  .rg-chip{ font-size:11.5px; background:var(--rule); border-radius:999px; padding:2px 8px; color:var(--ink); }
+  .rg-done{ font-size:12px; color:var(--num); }
+
   /* v2.30 학교별 교재출판사 카드 */
   .pub-list{ display:grid; gap:14px; }
   .pub-school{ border-top:2px solid var(--ink); padding-top:8px; }
@@ -754,7 +766,7 @@
       <div class="brand-text">
         <div class="brand-title">수학 학습 기록판</div>
         <div class="brand-sub" id="sessionBrandSub">전주영</div>
-        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.53 · 2026-11-08</div>
+        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.54 · 2026-11-08</div>
       </div>
       <button type="button" class="admin-lock" id="adminLock" onclick="goAdminSection()" aria-label="관리자 메뉴" title="관리자"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
       <button class="refresh-btn" id="refreshBtn" onclick="refreshAllData()" title="새로고침">🔄</button>
@@ -1803,7 +1815,7 @@
   function diffSummary(problems){
     const counts = { top:0, high:0, midhigh:0, mid:0, low:0 };
     (problems || []).forEach(p => { if(counts.hasOwnProperty(p.diff)) counts[p.diff]++; });
-    return DIFF_LABELS.map(([key,label]) => `${label} ${counts[key]}`).join(', ');
+    return DIFF_LABELS.map(([key,label]) => `<span class="rg-chip">${label} <b>${counts[key]}</b></span>`).join('');
   }
 
   function checkboxHtml(id, attemptCounts){
@@ -1842,13 +1854,12 @@
           }
         } catch(e){ /* 개별 파일 실패 시 난이도만 '-'로 표시, 행 자체는 유지 */ }
 
-        const row = `<tr>
-          <td><a href="worksheets/player.html?set=${s.id}">${s.id}</a></td>
-          <td>${s.unit || ''}</td>
-          <td>${s.count || '?'}</td>
-          <td>${diffText}</td>
-          <td>${checkboxHtml(s.id, attemptCounts)}</td>
-        </tr>`;
+        const row = `<div class="rg-item">
+          <div class="rg-head"><a class="rg-title" href="worksheets/player.html?set=${s.id}">${s.id}</a><span class="rg-count">${s.count || '?'}문제</span></div>
+          ${s.unit ? `<div class="rg-unit">${s.unit}</div>` : ''}
+          <div class="rg-diff">${diffText}</div>
+          <div class="rg-done">${checkboxHtml(s.id, attemptCounts)}</div>
+        </div>`;
 
         let bucket = 'mock';
         if(/_final_/.test(s.id)) bucket = 'final';
@@ -1874,10 +1885,7 @@
       const rows = buckets[kind];
       document.getElementById('rangeCount-' + kind).textContent = rows.length;
       document.getElementById('rangePanel-' + kind).innerHTML = rows.length
-        ? `<div class="card"><table class="publisher-table">
-            <thead><tr><th>파일명</th><th>범위</th><th>문제수</th><th>난이도(최상/상/중상/중/하)</th><th>풀이 완료</th></tr></thead>
-            <tbody>${rows.join('')}</tbody>
-          </table></div>`
+        ? `<div class="rg-list">${rows.join('')}</div>`
         : '<div class="ws-loading">등록된 문제지가 없어요</div>';
     });
   }

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.54 (2026-11-08): 홈 문제집 범위요약 — 좁은 화면에서 깨지던 5열 표를 문제지별 카드(파일명·문제수·단원·난이도 칩·회차 체크)로 변경 -->
 <!-- v2.53 (2026-11-08): 홈 오답노트 — 좁은 화면에서 글자가 세로로 깨지던 5열 표를 문제별 카드 목록(제목·오답/시도·연속정답·최근 풀이·풀기 버튼)으로 바꿔 정리. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.52 (2026-11-08): 문제 풀기 — 종료 시 풀지 않은(미응답) 문제도 틀린 것으로 계산(필기감 옆 표시·결과창·다시 풀 오답 목록). 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.51 (2026-11-08): 문제 풀기 — 「왜 틀렸을까요?」에서 이유를 고른 뒤 「오답체크」 버튼을 눌러야 오답노트에 저장(저장되면 ✓ 표시). 다시 시작하면 선택·저장 표시 초기화. 나머지 파일은 동작 변경 없이 번호만 올림 -->
@@ -402,7 +403,7 @@ a.ext:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border
 </section>
 <section class="sec" id="check"><header class="sh"><span class="no">✓</span><h2>시험 직전 체크</h2></header><ul class="chk"><li><span class="m"><sub><i>n</i></sub><i>C</i><sub><i>r</i></sub></span>를 계산할 때 분자는 <span class="m"><i>n</i></span>부터 <span class="m"><i>r</i></span>개를 곱하고 분모는 <span class="m"><i>r</i>!</span>로 놓았는가?</li><li><span class="m"><sub><i>n</i></sub><i>C</i><sub><i>r</i></sub>=<sub><i>n</i></sub><i>C</i><sub><i>n</i>−<i>r</i></sub></span>을 이용해 계산을 줄였고, 등식에서 <span class="m"><i>a</i>=<i>b</i></span>와 <span class="m"><i>a</i>+<i>b</i>=<i>n</i></span> 두 경우를 모두 찾았는가?</li><li>순서를 생각하는지로 순열과 조합을 구분했고, 택한 뒤 나열까지 하는 문제는 곱의 법칙을 썼는가?</li><li>특정한 것을 포함·제외하는 문제에서 남는 원소 수와 택하는 개수를 정확히 줄였는가?</li><li>&quot;적어도 하나&quot; 문제는 여사건으로 풀었고, 삼각형 개수에서는 일직선 위의 점을 뺐는가?</li><li>같은 크기의 구별 없는 묶음으로 나눌 때 <span class="m"><i>k</i>!</span>로 나눴는가?</li></ul></section>
 </main>
-<p class="ver">v2.53 · 2026-11-08</p>
+<p class="ver">v2.54 · 2026-11-08</p>
 <script>
 (function () {
   var btn = document.getElementById('quizBtn');
