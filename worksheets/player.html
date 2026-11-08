@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.52 (2026-11-08): 문제 풀기 — 종료 시 풀지 않은(미응답) 문제도 틀린 것으로 계산(필기감 옆 표시·결과창·다시 풀 오답 목록). 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.51 (2026-11-08): 문제 풀기 — 「왜 틀렸을까요?」에서 이유를 고른 뒤 「오답체크」 버튼을 눌러야 오답노트에 저장(저장되면 ✓ 표시). 다시 시작하면 선택·저장 표시 초기화. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.50 (2026-11-08): 문제 풀기 — 「시작」을 누르면 「종료」 전까지 정답·정오 표시를 잠그고(테스트 모드 설정과 무관), 종료하면 「필기감」 버튼 옆에 맞은 개수·틀린 개수를 표시. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.49 (2026-11-08): 「나머지정리와 인수분해」 노트의 조립제법 소단원에 계산표와 단계별 설명 추가. 나머지 파일은 동작 변경 없이 번호만 올림 -->
@@ -1706,9 +1707,13 @@
       if(quizState.answers[n] === 'correct') correctCount++;
       else { wrongNums.push(parseInt(n,10)); wrongStrs.push(String(n)); }
     });
+    // v2.52: 풀지 않은(미응답) 문제도 틀린 것으로 센다
+    const unanswered = rangeTotal - answeredNums.length;
+    rangeNums().forEach(n => {
+      if(!quizState.answers[n]){ wrongNums.push(parseInt(n,10)); wrongStrs.push(String(n)); }
+    });
     wrongNums.sort((a,b)=>a-b);
     wrongStrs.sort((a,b)=>parseInt(a,10)-parseInt(b,10));
-    const unanswered = rangeTotal - answeredNums.length;
 
     let html = '';
     if(quizStartIdx > 0){
@@ -1718,7 +1723,7 @@
     }
     html += `<p><b>${correctCount} / ${rangeTotal}</b> 문제 정답`;
     if(wrongNums.length>0) html += `, <b style="color:#b23a2e;">${wrongNums.length}개 오답</b>`;
-    if(unanswered>0) html += `, ${unanswered}개 미응답`;
+    if(unanswered>0) html += ` <span style="font-size:12.5px;color:#6b6558;">(미응답 ${unanswered}개 포함)</span>`;
     html += `</p>`;
 
     if(wrongNums.length>0){
@@ -1750,7 +1755,7 @@
     // v2.50: 종료하면 필기감 버튼 옆에 맞은/틀린 개수를 계속 표시
     const scoreEl = document.getElementById('quizScore');
     if(scoreEl){
-      scoreEl.innerHTML = '<span class="ok">✅ 맞은 ' + correctCount + '</span> · <span class="no">❌ 틀린 ' + wrongNums.length + '</span>' + (unanswered > 0 ? ' · <span class="na">미응답 ' + unanswered + '</span>' : '') + ' <span class="na">/ 전체 ' + rangeTotal + '</span>';
+      scoreEl.innerHTML = '<span class="ok">✅ 맞은 ' + correctCount + '</span> · <span class="no">❌ 틀린 ' + wrongNums.length + '</span>' + (unanswered > 0 ? ' <span class="na">(미응답 ' + unanswered + ' 포함)</span>' : '') + ' <span class="na">/ 전체 ' + rangeTotal + '</span>';
       scoreEl.hidden = false;
     }
     document.getElementById('resultModal').style.display = 'flex';
