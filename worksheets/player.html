@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.61 (2026-11-10): PDF 출력 — 문제와 풀이를 같은 열에 묶어 배치(안 들어가면 다음 열 맨 위로, 한 열보다 긴 풀이만 「풀이 계속」으로 이어 씀). 나머지 파일은 동일 버전 표기만 갱신 -->
 <!-- v2.60 (2026-11-10): PDF 출력 — 분수 보기 겹침 수정, 정답·풀이가 열 끝에서 잘리던 문제 수정(풀이를 줄 단위로 다음 열·쪽에 이어 배치). 나머지 파일은 동일 버전 표기만 갱신 -->
 <!-- v2.59 (2026-11-10): PDF 출력 미리보기 — 문제 사이 간격을 3.5mm → 9mm로 넓힘. 나머지 파일은 동일 버전 표기만 갱신 -->
 <!-- v2.58 (2026-11-10): 문제 풀기 — 필기감 옆에 「PDF 출력」 칩 추가. A4 2열 미리보기(정답·풀이 포함 선택) 후 인쇄/PDF 저장 -->
@@ -824,6 +825,8 @@
   .pp-col + .pp-col{ border-left:1px solid #bbb; padding-left:3mm; margin-left:-3mm; }
   .pp-item{ margin-bottom:9mm; break-inside:avoid; }
   .pp-item.pp-more{ margin-bottom:0; }
+  .pp-whole{ margin-bottom:9mm; } .pp-whole > .pp-item{ margin-bottom:0; }
+  .pp-cont{ font-size:8pt; color:#a02a20; margin:0 0 1mm 6mm; }
   .pp-solu .pp-sol{ margin-top:0; }
   .pp-ch{ row-gap:1.5mm; } .pp-ch.tall > div{ padding:1.5mm 0; }
   .pp-q{ display:flex; gap:5px; }
@@ -3465,7 +3468,7 @@
     }
     // 풀이 줄은 열을 넘나들 수 있게 따로 쪼개고, 문제 마지막 조각에만 넓은 간격을 둔다
     units[units.length-1] = units[units.length-1].replace(' pp-more', '');
-    return units.join('');
+    return '<div class="pp-prob">' + units.join('') + '</div>';
   }
 
   async function buildPreview(){
@@ -3495,11 +3498,31 @@
       return el.getBoundingClientRect().bottom > col.getBoundingClientRect().bottom + 0.5;
     }
     colIdx = 1; nextCol();
-    items.forEach(it => {
+    function placeUnit(it){
       curCol.appendChild(it);
       if(overflows(curCol, it) && curCol.children.length > 1){
-        nextCol(); curCol.appendChild(it);
+        it.remove(); nextCol();
+        if(it.classList.contains('pp-solu')){
+          const lb = document.createElement('div'); lb.className = 'pp-cont'; lb.textContent = '(풀이 계속)';
+          it.insertBefore(lb, it.firstChild);
+        }
+        curCol.appendChild(it);
       }
+    }
+    items.forEach(grp => {
+      // 문제+풀이를 한 덩어리로 같은 열에 넣어 보고, 안 들어가면 다음 열 맨 위로 보낸다
+      const units = [...grp.children];
+      const whole = document.createElement('div'); whole.className = 'pp-whole';
+      units.forEach(u => whole.appendChild(u));
+      curCol.appendChild(whole);
+      if(!overflows(curCol, whole)) return;
+      if(curCol.children.length > 1){
+        whole.remove(); nextCol(); curCol.appendChild(whole);
+        if(!overflows(curCol, whole)) return;
+      }
+      // 새 열에서도 한 열을 넘는 문제만 풀이를 줄 단위로 이어 쓴다
+      const kids = [...whole.children]; whole.remove();
+      kids.forEach(placeUnit);
     });
     const pageCount = pages.length;
     pages.forEach((pg, pi) => {
