@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.58 (2026-11-10): 문제 풀기 — 필기감 옆에 「PDF 출력」 칩 추가. A4 2열 미리보기(정답·풀이 포함 선택) 후 인쇄/PDF 저장 -->
 <!-- v2.54 (2026-11-08): 홈 문제집 범위요약 — 좁은 화면에서 깨지던 5열 표를 문제지별 카드(파일명·문제수·단원·난이도 칩·회차 체크)로 변경 -->
 <!-- v2.53 (2026-11-08): 홈 오답노트 — 좁은 화면에서 글자가 세로로 깨지던 5열 표를 문제별 카드 목록(제목·오답/시도·연속정답·최근 풀이·풀기 버튼)으로 바꿔 정리. 나머지 파일은 동작 변경 없이 번호만 올림 -->
 <!-- v2.52 (2026-11-08): 문제 풀기 — 종료 시 풀지 않은(미응답) 문제도 틀린 것으로 계산(필기감 옆 표시·결과창·다시 풀 오답 목록). 나머지 파일은 동작 변경 없이 번호만 올림 -->
@@ -804,6 +805,40 @@
   .ai-ask button{ font-family:inherit; font-size:13px; border:none; background:#33578c; color:#fff; border-radius:6px; padding:6px 12px; cursor:pointer; }
   .ai-status{ font-size:12.5px; color:var(--num); min-height:16px; }
   .result-actions .btn-ai{ background:#5b3d8c; color:#fff; }
+
+  /* v2.58 PDF 출력 미리보기 (A4 · 2열) */
+  .pdf-btn{ background:#fff; color:var(--ink); border:1.5px solid var(--rule); }
+  #ppOverlay{ position:fixed; inset:0; z-index:9999; background:#6b6b6b; overflow:auto; display:none; -webkit-overflow-scrolling:touch; }
+  #ppOverlay.show{ display:block; }
+  .pp-toolbar{ position:sticky; top:0; z-index:2; display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:center; padding:8px 10px; background:#222; color:#fff; font-size:13px; }
+  .pp-toolbar button{ border:0; border-radius:8px; padding:8px 14px; font-weight:700; font-size:14px; cursor:pointer; background:#fff; color:#222; }
+  .pp-toolbar button.pp-go{ background:#2f7a5b; color:#fff; }
+  .pp-toolbar label{ display:flex; align-items:center; gap:4px; }
+  .pp-pages{ padding:12px 0 40px; display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .pp-page{ width:210mm; height:297mm; background:#fff; box-sizing:border-box; padding:10mm; position:relative; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.4); color:#000; font-size:10pt; line-height:1.5; }
+  .pp-head{ height:7mm; display:flex; justify-content:space-between; align-items:flex-end; border-bottom:1.5px solid #000; font-size:9pt; font-weight:700; margin-bottom:2mm; }
+  .pp-cols{ display:grid; grid-template-columns:1fr 1fr; column-gap:6mm; height:calc(297mm - 20mm - 9mm); }
+  .pp-col{ position:relative; }
+  .pp-col + .pp-col{ border-left:1px solid #bbb; padding-left:3mm; margin-left:-3mm; }
+  .pp-item{ margin-bottom:3.5mm; break-inside:avoid; }
+  .pp-q{ display:flex; gap:5px; }
+  .pp-n{ font-weight:800; min-width:6mm; }
+  .pp-d{ font-size:8pt; color:#555; font-weight:400; }
+  .pp-img{ text-align:center; margin:1mm 0; }
+  .pp-img img{ max-width:100%; max-height:60mm; }
+  .pp-ch{ margin:1mm 0 0 6mm; display:grid; gap:0 4mm; }
+  .pp-ch.c1{ grid-template-columns:1fr; } .pp-ch.c2{ grid-template-columns:1fr 1fr; }
+  .pp-sol{ margin:1mm 0 0 6mm; font-size:8.5pt; color:#a02a20; }
+  #ppMeasure{ position:absolute; left:-99999px; top:0; width:86mm; visibility:hidden; font-size:10pt; line-height:1.5; }
+  @media print{
+    @page{ size:A4; margin:0; }
+    html,body{ background:#fff !important; }
+    body > *:not(#ppOverlay){ display:none !important; }
+    #ppOverlay{ position:static; background:#fff; overflow:visible; display:block; }
+    .pp-toolbar{ display:none !important; }
+    .pp-pages{ padding:0; gap:0; display:block; zoom:1 !important; }
+    .pp-page{ box-shadow:none; page-break-after:always; break-after:page; margin:0; }
+  }
 </style>
 </head>
 <body>
@@ -846,6 +881,7 @@
   <div class="quiz-timer" id="quizTimer">00:00</div>
   <button class="quiz-btn scroll-mode" id="scrollModeBtn" onclick="toggleScrollMode()">✏️ 필기 모드</button>
   <button class="quiz-btn pen-settings-btn" id="penSettingsBtn" onclick="togglePenSettings()">⚙️ 필기감</button>
+  <button class="quiz-btn pdf-btn" id="pdfBtn" onclick="openPrintPreview()">🖨️ PDF 출력</button>
   <span class="quiz-score" id="quizScore" hidden></span>
   <label class="twocol-toggle" title="태블릿·PC에서 문제를 2열로 보기"><input type="checkbox" id="twoColChk" onchange="setTwoCol(this.checked)"> 2열 보기</label>
 
@@ -3373,6 +3409,110 @@
   }
 
   loadProblemSet();
+</script>
+
+<script>
+/* v2.58 PDF 출력 미리보기: 문제를 A4 2열로 나눠 담아 미리 보고, 인쇄(PDF로 저장)한다 */
+(function(){
+  const MM = 96/25.4;
+  const COL_H = (297-20-9-3) * MM;
+  let withSol = false;
+
+  function ensureOverlay(){
+    let o = document.getElementById('ppOverlay');
+    if(o) return o;
+    o = document.createElement('div');
+    o.id = 'ppOverlay';
+    o.innerHTML = '<div class="pp-toolbar"><strong>🖨️ PDF 미리보기 · A4 2열</strong>' +
+      '<label><input type="checkbox" id="ppSol"> 정답·풀이 포함</label>' +
+      '<span id="ppInfo"></span>' +
+      '<button class="pp-go" type="button" onclick="window.print()">인쇄 / PDF 저장</button>' +
+      '<button type="button" onclick="closePrintPreview()">닫기</button></div>' +
+      '<div class="pp-pages" id="ppPages"></div><div id="ppMeasure"></div>';
+    document.body.appendChild(o);
+    o.querySelector('#ppSol').addEventListener('change', e => { withSol = e.target.checked; buildPreview(); });
+    return o;
+  }
+
+  function itemHtml(p){
+    const n = p.num;
+    const dl = (typeof DIFF_LABEL !== 'undefined' && DIFF_LABEL[p.diff]) || '';
+    let h = '<div class="pp-item"><div class="pp-q"><span class="pp-n">' + escapeHtml(String(n)) + '.</span><div>' +
+      (dl ? '<span class="pp-d">[' + escapeHtml(dl) + '] </span>' : '') + escapeHtml(p.question) + '</div></div>';
+    if(Array.isArray(p.images) && p.images.length)
+      h += '<div class="pp-img">' + p.images.map(src => '<img src="' + escapeAttr(src) + '" alt="">').join('') + '</div>';
+    if(p.type === 'mc' && Array.isArray(p.choices)){
+      const short = p.choices.every(ch => String(ch).replace(/\\[()\[\]]|\s/g,'').length <= 14);
+      h += '<div class="pp-ch ' + (short ? 'c2' : 'c1') + '">' +
+        p.choices.map((ch,i) => '<div>' + CIRCLE[i] + ' ' + escapeHtml(ch) + '</div>').join('') + '</div>';
+    }
+    if(withSol){
+      let ans = '';
+      if(p.type === 'mc'){
+        const c = Array.isArray(p.correct) ? p.correct : [p.correct];
+        ans = c.map(i => CIRCLE[i]).join(' ');
+      } else ans = p.answer == null ? '' : String(p.answer);
+      h += '<div class="pp-sol"><b>정답</b> ' + escapeHtml(ans) +
+        (p.solution && p.solution.length ? '<br>' + p.solution.map(escapeHtml).join('<br>') : '') + '</div>';
+    }
+    return h + '</div>';
+  }
+
+  async function buildPreview(){
+    const o = ensureOverlay();
+    const probs = (typeof currentProblemsData !== 'undefined' ? currentProblemsData : []) || [];
+    const box = o.querySelector('#ppPages'), ms = o.querySelector('#ppMeasure');
+    box.innerHTML = '';
+    ms.innerHTML = probs.map(itemHtml).join('');
+    if(window.renderMathInElement) renderMathInElement(ms, { delimiters:[
+      {left:"\\(", right:"\\)", display:false}, {left:"\\[", right:"\\]", display:true}] });
+    await Promise.all([...ms.querySelectorAll('img')].map(im => im.complete ? 0 :
+      new Promise(r => { im.onload = im.onerror = r; })));
+    const items = [...ms.children];
+    // 열 단위로 채우기(큰 문제는 다음 열로)
+    const cols = []; let cur = [], used = 0;
+    items.forEach(it => {
+      const cs = getComputedStyle(it);
+      const h = it.getBoundingClientRect().height + parseFloat(cs.marginBottom);
+      if(used + h > COL_H && cur.length){ cols.push(cur); cur = []; used = 0; }
+      cur.push(it); used += h;
+    });
+    if(cur.length) cols.push(cur);
+    const title = (document.getElementById('setTitle') || {}).textContent || '';
+    const pageCount = Math.max(1, Math.ceil(cols.length / 2));
+    for(let pi=0; pi<pageCount; pi++){
+      const pg = document.createElement('div'); pg.className = 'pp-page';
+      pg.innerHTML = '<div class="pp-head"><span>' + escapeHtml(title) + '</span><span>' + (pi+1) + ' / ' + pageCount + '</span></div><div class="pp-cols"></div>';
+      const grid = pg.querySelector('.pp-cols');
+      [cols[pi*2], cols[pi*2+1]].forEach(c => {
+        const d = document.createElement('div'); d.className = 'pp-col';
+        (c || []).forEach(it => d.appendChild(it));
+        grid.appendChild(d);
+      });
+      box.appendChild(pg);
+    }
+    o.querySelector('#ppInfo').textContent = probs.length + '문제 · ' + pageCount + '쪽';
+    fit();
+  }
+
+  function fit(){
+    const o = document.getElementById('ppOverlay'); if(!o) return;
+    const w = 210*MM, z = Math.min(1, (window.innerWidth - 16) / w);
+    o.querySelector('#ppPages').style.zoom = z;
+  }
+  window.addEventListener('resize', fit);
+
+  window.openPrintPreview = function(){
+    if(!(typeof currentProblemsData !== 'undefined' && currentProblemsData.length)){ alert('문제가 아직 불러와지지 않았어요'); return; }
+    const o = ensureOverlay(); o.classList.add('show'); o.scrollTop = 0;
+    document.documentElement.style.overflow = 'hidden';
+    buildPreview();
+  };
+  window.closePrintPreview = function(){
+    const o = document.getElementById('ppOverlay'); if(o) o.classList.remove('show');
+    document.documentElement.style.overflow = '';
+  };
+})();
 </script>
 </body>
 </html>
