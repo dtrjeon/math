@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v2.65 (2026-11-10): 문제집 모음 — 날짜별로 흩어진 「MADE Sayno (날짜)」 서브탭 6개를 「MADE Sayno」 하나로 합치고, 자체 복습·MADE Sayno를 단원 번호 순(1.1→2.1→…→3.1)으로 정렬. 카드 제목 옆에 업로드 날짜 표시. 나머지 파일은 동일 버전 표기만 갱신 -->
 <!-- v2.64 (2026-11-10): PDF 출력 — 「장수」 선택(자동·1~8장) 추가: 문제 순서를 지키며 열 분량을 고르게 나누고 남는 높이는 문제 사이 간격(풀이 여백, 최대 40mm)으로 분배. 장수가 부족하면 필요한 장수로 조정해 안내. 나머지 파일은 동일 버전 표기만 갱신 -->
 <!-- v2.63 (2026-11-10): PDF 미리보기 막대를 2줄(제목·버전 / 옵션·쪽수·버튼)로 정렬. 나머지 파일은 동일 버전 표기만 갱신 -->
 <!-- v2.62 (2026-11-10): PDF 미리보기 막대에 버전 표시(옛 캐시 화면과 구분). 나머지 파일은 동일 버전 표기만 갱신 -->
@@ -508,6 +509,7 @@
   .publisher-table td a{ color:var(--accent); font-weight:700; text-decoration:none; }
   .publisher-table td a:hover{ text-decoration:underline; }
 
+  .card-date{ font-size:11.5px; font-weight:600; color:var(--num); background:var(--rule); border-radius:999px; padding:1px 8px; margin-left:4px; vertical-align:middle; }
   /* v2.54 문제집 범위요약 카드 */
   .rg-list{ display:grid; gap:10px; margin-top:10px; }
   .rg-item{ background:var(--card,#fff); border:1px solid var(--rule); border-radius:12px; padding:12px 14px; display:grid; gap:6px; }
@@ -776,7 +778,7 @@
       <div class="brand-text">
         <div class="brand-title">수학 학습 기록판</div>
         <div class="brand-sub" id="sessionBrandSub">전주영</div>
-        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.64 · 2026-11-10</div>
+        <div class="brand-sub" style="font-size:11px;opacity:.6;margin-top:2px;">v2.65 · 2026-11-10</div>
       </div>
       <button type="button" class="admin-lock" id="adminLock" onclick="goAdminSection()" aria-label="관리자 메뉴" title="관리자"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
       <button class="refresh-btn" id="refreshBtn" onclick="refreshAllData()" title="새로고침">🔄</button>
@@ -1027,13 +1029,15 @@
     const metaLine1 = s.stats ? `전체 ${s.count}문제${s.pages ? ' · ' + s.pages + '페이지' : ''}` : (s.unit || '');
     const metaLine2 = s.stats ? s.stats : `전체 ${s.count || '?'}문제`;
     const pill = s.stats ? '<span class="status-pill status-ok">채점 완료</span>' : '<span class="status-pill status-ok">등록 완료</span>';
+    const dm = /^MADE Sayno \((.+)\)/.exec(s.source || '');
+    const dateTag = dm ? ` <span class="card-date">${dm[1]}</span>` : '';
     const reviewBtn = s.reviewUrl
       ? `<a class="btn btn-secondary" href="${s.reviewUrl}">검토용 보기</a>`
       : `<span class="btn btn-disabled">검토용 (준비 중)</span>`;
     return `<div class="card">
       <div class="card-top">
         <div>
-          <div class="card-title">${s.title}</div>
+          <div class="card-title">${s.title}${dateTag}</div>
           <div class="card-meta"><span>${metaLine1}</span><span>${metaLine2}</span></div>
           <div class="last-run none" id="lastRun-${s.id}">최근 풀이 기록 없음</div>
         </div>
@@ -1137,9 +1141,15 @@
       const sourceOrder = [];
       const bySource = {};
       sets.forEach(s => {
-        const key = s.source || '';
+        let key = s.source || '';
+        if(/^MADE Sayno/.test(key)) key = 'MADE Sayno'; // 날짜별 출처를 하나로 합치고 단원 순으로 정렬
         if(!bySource[key]){ bySource[key] = []; sourceOrder.push(key); }
         bySource[key].push(s);
+      });
+      // 단원 번호(1.1, 2.3, 3.1 …) 순 정렬 — 자체 복습·MADE Sayno만(교과서는 원래 순서 유지)
+      const unitKey = s => { const m = /(\d+)\.(\d+)/.exec(s.group || s.unit || ''); return m ? +m[1]*100 + +m[2] : 9999; };
+      ['self','MADE Sayno'].forEach(k => {
+        if(bySource[k]) bySource[k] = bySource[k].map((x,i) => [x,i]).sort((a,b) => unitKey(a[0]) - unitKey(b[0]) || a[1]-b[1]).map(x => x[0]);
       });
 
       const buildGroupHtml = list => {
