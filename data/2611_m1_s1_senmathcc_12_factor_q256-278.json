@@ -1,0 +1,511 @@
+{
+ "id": "2611_m1_s1_senmathcc_12_factor_q256-278",
+ "title": "쎈 공통수학1 다항식 C단계 0256~0278",
+ "unit": "I. 다항식 - 02 나머지 정리와 인수분해",
+ "category": "textbook",
+ "examType": "workbook",
+ "source": "쎈 공통수학1 C단계 p.41~44",
+ "group": "쎈 공통수학1",
+ "grade": "m1",
+ "semester": "s1",
+ "problems": [
+  {
+   "id": "0256",
+   "num": 256,
+   "number": "0256",
+   "diff": "high",
+   "type": "fillin",
+   "question": "이차 이하의 다항식 \\(P(x)\\)에 대하여 등식\n\\(\\{P(x)\\}^2=2P(x^2)+8x^2\\)\n이 \\(x\\)의 값에 관계없이 항상 성립하도록 하는 \\(P(x)\\)의 개수를 구하시오.",
+   "answer": "3",
+   "solution": [
+    "\\(P(x)=ax^2+bx+c\\)라 하면 \\(\\{P(x)\\}^2=a^2x^4+2abx^3+(b^2+2ac)x^2+2bcx+c^2\\)",
+    "\\(2P(x^2)+8x^2=2ax^4+(2b+8)x^2+2c\\)",
+    "계수를 비교하면 \\(a^2=2a,\\ 2ab=0,\\ b^2+2ac=2b+8,\\ 2bc=0,\\ c^2=2c\\)",
+    "\\(a=2\\)이면 \\(b=0\\), \\(c=2\\) (\\(4+8=8\\)에서 \\(b^2+2ac=8=2b+8\\) 성립) → \\(P(x)=2x^2+2\\)",
+    "\\(a=0\\)이면 \\(b^2=2b+8\\)에서 \\(b=-2\\) 또는 \\(b=4\\)이고 \\(bc=0\\)에서 \\(c=0\\) → \\(P(x)=-2x,\\ 4x\\)",
+    "따라서 \\(P(x)\\)는 3개"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0257",
+   "num": 257,
+   "number": "0257",
+   "diff": "mid",
+   "type": "mc",
+   "question": "임의의 실수 \\(x\\)에 대하여 등식\n\\((x^2+3x)^5-10=a_0+a_1x+a_2x^2+⋯+a_{10}x^{10}\\)\n이 성립할 때, \\(4a_5-(a_6+a_7+a_8+a_9+a_{10})\\)의 값은? (단, \\(a_0,\\ a_1,\\ ⋯,\\ a_{10}\\)은 상수이다.)",
+   "choices": [
+    "190",
+    "191",
+    "192",
+    "193",
+    "194"
+   ],
+   "correct": 1,
+   "answer": "191",
+   "solution": [
+    "\\((x^2+3x)^5=x^5(x+3)^5\\)이므로 \\(x^5\\)보다 낮은 차수의 항은 없다. 따라서 \\(a_0=-10,\\ a_1=a_2=a_3=a_4=0\\)",
+    "\\(a_5=3^5=243\\)",
+    "\\(x=1\\)을 대입하면 \\(a_0+a_1+⋯+a_{10}=4^5-10=1014\\)",
+    "\\(a_6+⋯+a_{10}=1014-(-10)-243=781\\)",
+    "따라서 \\(4a_5-781=972-781=191\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0258",
+   "num": 258,
+   "number": "0258",
+   "diff": "mid",
+   "type": "mc",
+   "question": "삼차식 \\(P(x)\\)에 대하여 \\(P(x)\\)는 \\(x^2-2x+3\\)으로 나누어떨어지고, \\(P(x)-36\\)은 \\(x^2+5\\)로 나누어떨어진다. \\(P(0)=-9\\)일 때, \\(P(2)\\)의 값은?",
+   "choices": [
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+   ],
+   "correct": 4,
+   "answer": "9",
+   "solution": [
+    "\\(P(x)=(x^2-2x+3)(ax+b)\\)로 놓으면 \\(P(0)=3b=-9\\)이므로 \\(b=-3\\)",
+    "\\(P(x)-36\\)이 \\(x^2+5\\)로 나누어떨어지므로 \\(x^2=-5\\)일 때 \\(P(x)=36\\)",
+    "\\(x^2=-5\\)이면 \\(x^2-2x+3=-2x-2\\)이므로 \\(P(x)=-2(x+1)(ax-3)=-2\\{ax^2+(a-3)x-3\\}=10a+6-2(a-3)x\\)",
+    "\\(x\\)의 계수가 0이어야 하므로 \\(a=3\\) (이때 상수항 \\(10a+6=36\\)으로 성립)",
+    "\\(P(x)=(x^2-2x+3)(3x-3)\\)이므로 \\(P(2)=3\\times3=9\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0259",
+   "num": 259,
+   "number": "0259",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "두 다항식 \\(P(x),\\ Q(x)\\)에 대하여 \\(P(x)+Q(x)\\)를 \\(x-1\\)로 나누었을 때의 나머지가 5이고, \\(\\{P(x)\\}^3+\\{Q(x)\\}^3\\)을 \\(x-1\\)로 나누었을 때의 나머지가 35일 때, 다항식 \\(P(x)Q(x)\\)를 \\(x-1\\)로 나누었을 때의 나머지를 구하시오.",
+   "answer": "6",
+   "solution": [
+    "나머지정리에 의해 \\(P(1)+Q(1)=5,\\ \\{P(1)\\}^3+\\{Q(1)\\}^3=35\\)",
+    "\\(P(1)=p,\\ Q(1)=q\\)라 하면 \\(p+q=5\\), \\(p^3+q^3=(p+q)^3-3pq(p+q)=125-15pq=35\\)",
+    "따라서 \\(pq=6\\)이므로 구하는 나머지는 \\(P(1)Q(1)=6\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0260",
+   "num": 260,
+   "number": "0260",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "다항식 \\(x^n(x^2+ax+b)\\)를 \\((x-3)^2\\)으로 나누었을 때의 나머지가 \\(3^n(x-3)\\)이 되도록 하는 상수 \\(a,\\ b\\)에 대하여 \\(ab\\)의 값을 구하시오. (단, \\(n\\)은 자연수이다.)",
+   "answer": "-30",
+   "solution": [
+    "\\(f(x)=x^n(x^2+ax+b)=(x-3)^2Q(x)+3^n(x-3)\\)이라 하자.",
+    "\\(x=3\\)을 대입하면 \\(f(3)=0\\)이므로 \\(9+3a+b=0\\)",
+    "양변을 미분하면 \\(f'(x)=2(x-3)Q(x)+(x-3)^2Q'(x)+3^n\\)이므로 \\(f'(3)=3^n\\)",
+    "\\(f'(x)=nx^{n-1}(x^2+ax+b)+x^n(2x+a)\\)에서 \\(f'(3)=3^n(6+a)\\)이므로 \\(6+a=1\\), \\(a=-5\\)",
+    "\\(b=-9-3a=6\\)이므로 \\(ab=-30\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0261",
+   "num": 261,
+   "number": "0261",
+   "diff": "midhigh",
+   "type": "mc",
+   "question": "최고차항의 계수가 양수인 다항식 \\(f(x)\\)가 모든 실수 \\(x\\)에 대하여\n\\(\\{f(x)\\}^3=4x^2f(x)+8x^2+6x+1\\)\n을 만족시킬 때, 보기에서 옳은 것만을 있는 대로 고른 것은?\n\n[보기]\nㄱ. 다항식 \\(f(x)\\)를 \\(x\\)로 나눈 나머지는 1이다.\nㄴ. 다항식 \\(f(x)\\)의 최고차항의 계수는 4이다.\nㄷ. 다항식 \\(\\{f(x)\\}^3\\)을 \\(x^2-1\\)로 나눈 나머지는 \\(14x+13\\)이다.",
+   "choices": [
+    "ㄱ",
+    "ㄴ",
+    "ㄱ, ㄷ",
+    "ㄴ, ㄷ",
+    "ㄱ, ㄴ, ㄷ"
+   ],
+   "correct": 2,
+   "answer": "ㄱ, ㄷ",
+   "solution": [
+    "\\(f(x)\\)의 차수를 \\(d\\)라 하면 좌변은 \\(3d\\)차, 우변은 \\(d+2\\)차이므로 \\(3d=d+2\\), \\(d=1\\)",
+    "\\(f(x)=px+q\\ (p>0)\\)로 놓고 대입하면 \\(x^3\\): \\(p^3=4p\\)이므로 \\(p=2\\)",
+    "\\(x^2\\): \\(3p^2q=4q+8\\)에서 \\(12q=4q+8\\), \\(q=1\\) → \\(f(x)=2x+1\\)",
+    "ㄱ. \\(f(0)=1\\) (참)",
+    "ㄴ. 최고차항의 계수는 2 (거짓)",
+    "ㄷ. \\(\\{f(x)\\}^3=8x^3+12x^2+6x+1\\)을 \\(x^2-1\\)로 나눈 나머지는 \\(x^2=1,\\ x^3=x\\)를 대입하여 \\(8x+12+6x+1=14x+13\\) (참)",
+    "따라서 옳은 것은 ㄱ, ㄷ"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0262",
+   "num": 262,
+   "number": "0262",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "삼차다항식 \\(f(x)\\)가 다음 조건을 만족시킨다.\n(가) \\(f(1)=2\\)\n(나) \\(f(x)\\)를 \\((x-1)^2\\)으로 나눈 몫과 나머지가 같다.\n\\(f(x)\\)를 \\((x-1)^3\\)으로 나눈 나머지를 \\(R(x)\\)라 하자. \\(R(0)=R(3)\\)일 때, \\(R(5)\\)의 값을 구하시오.",
+   "answer": "26",
+   "solution": [
+    "(나)에서 몫과 나머지를 \\(ax+b\\)로 놓으면 \\(f(x)=(x-1)^2(ax+b)+(ax+b)=(ax+b)(x^2-2x+2)\\)",
+    "(가)에서 \\(f(1)=a+b=2\\)",
+    "\\(t=x-1\\)로 놓으면 \\(f=(at+a+b)(t^2+1)=at^3+(a+b)t^2+at+(a+b)\\)",
+    "\\((x-1)^3=t^3\\)으로 나눈 나머지는 \\(R=2t^2+at+2=2(x-1)^2+a(x-1)+2\\)",
+    "\\(R(0)=4-a,\\ R(3)=10+2a\\)이므로 \\(4-a=10+2a\\), \\(a=-2\\)",
+    "\\(R(5)=2\\cdot16-2\\cdot4+2=26\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0263",
+   "num": 263,
+   "number": "0263",
+   "diff": "high",
+   "type": "mc",
+   "question": "모든 실수 \\(x\\)에 대하여 다항식 \\(P(x)\\)가 다음 조건을 모두 만족시킬 때, 다항식 \\(P(x+a)\\)를 \\(x-3\\)으로 나누었을 때의 나머지가 \\(-4\\)가 되도록 하는 모든 상수 \\(a\\)의 값의 합은?\n(가) \\(P(x)<0\\)\n(나) \\(\\{P(x+1)\\}^2-49=(x-2)(x+2)(x^2+10)\\)",
+   "choices": [
+    "\\(-6\\)",
+    "\\(-4\\)",
+    "\\(-2\\)",
+    "2",
+    "4"
+   ],
+   "correct": 1,
+   "answer": "\\(-4\\)",
+   "solution": [
+    "(나)에서 \\(\\{P(x+1)\\}^2=(x^2-4)(x^2+10)+49=x^4+6x^2+9=(x^2+3)^2\\)",
+    "(가)에서 \\(P(x+1)<0\\)이므로 \\(P(x+1)=-(x^2+3)\\), 즉 \\(P(x)=-\\{(x-1)^2+3\\}\\)",
+    "\\(P(x+a)=-\\{(x+a-1)^2+3\\}\\)이므로 \\(x=3\\)에서의 값은 \\(-\\{(a+2)^2+3\\}=-4\\)",
+    "\\((a+2)^2=1\\)에서 \\(a=-1\\) 또는 \\(a=-3\\)이므로 합은 \\(-4\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0264",
+   "num": 264,
+   "number": "0264",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "삼차식 \\(P(x)\\)에 대하여\n\\(P(1)=\\dfrac{1}{2},\\ P(2)=\\dfrac{2}{3},\\ P(3)=\\dfrac{3}{4},\\ P(4)=\\dfrac{4}{5}\\)\n일 때, \\(P(x)\\)를 \\(x-5\\)로 나누었을 때의 나머지를 구하시오.",
+   "answer": "\\(\\dfrac{13}{15}\\)",
+   "solution": [
+    "\\(Q(x)=(x+1)P(x)-x\\)라 하면 \\(Q(1)=Q(2)=Q(3)=Q(4)=0\\)이고 \\(Q(x)\\)는 사차식",
+    "\\(Q(x)=c(x-1)(x-2)(x-3)(x-4)\\)로 놓고 \\(x=-1\\)을 대입하면 \\(Q(-1)=1=120c\\)이므로 \\(c=\\dfrac{1}{120}\\)",
+    "\\(Q(5)=6P(5)-5=\\dfrac{1}{120}\\cdot24=\\dfrac{1}{5}\\)이므로 \\(P(5)=\\dfrac{13}{15}\\)",
+    "나머지정리에 의해 구하는 나머지는 \\(P(5)=\\dfrac{13}{15}\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0265",
+   "num": 265,
+   "number": "0265",
+   "diff": "midhigh",
+   "type": "mc",
+   "question": "최고차항의 계수가 1인 삼차다항식 \\(f(x)\\)가 다음 조건을 만족시킬 때, \\(f(0)\\)의 값은?\n(가) 다항식 \\(f(x+3)-f(x)\\)는 \\((x-1)(x+2)\\)로 나누어떨어진다.\n(나) 다항식 \\(f(x)\\)를 \\(x-2\\)로 나누었을 때의 나머지는 \\(-3\\)이다.",
+   "choices": [
+    "13",
+    "14",
+    "15",
+    "16",
+    "17"
+   ],
+   "correct": 0,
+   "answer": "13",
+   "solution": [
+    "\\(f(x+3)-f(x)\\)는 이차식이고 \\(x^2\\)의 계수는 9이므로 \\(f(x+3)-f(x)=9(x-1)(x+2)=9x^2+9x-18\\)",
+    "\\(f(x)=x^3+ax^2+bx+c\\)라 하면 \\(f(x+3)-f(x)=9x^2+(27+6a)x+27+9a+3b\\)",
+    "\\(27+6a=9\\)에서 \\(a=-3\\), \\(27+9a+3b=-18\\)에서 \\(b=-6\\)",
+    "(나)에서 \\(f(2)=8-12-12+c=-3\\)이므로 \\(c=13\\)",
+    "따라서 \\(f(0)=13\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0266",
+   "num": 266,
+   "number": "0266",
+   "diff": "top",
+   "type": "fillin",
+   "question": "삼차다항식 \\(P(x)\\)와 일차다항식 \\(Q(x)\\)가 다음 조건을 만족시킨다.\n(가) \\(P(x)Q(x)\\)는 \\((x^2-3x+3)(x-1)\\)로 나누어떨어진다.\n(나) 모든 실수 \\(x\\)에 대하여 \\(x^3-10x+13-P(x)=\\{Q(x)\\}^2\\)이다.\n\\(Q(0)<0\\)일 때, \\(P(2)+Q(8)\\)의 값을 구하시오.",
+   "answer": "13",
+   "solution": [
+    "\\(Q(x)=mx+n\\)이라 하면 (나)에서 \\(P(x)=x^3-10x+13-(mx+n)^2\\)",
+    "\\(x^2-3x+3\\)은 실수 범위에서 인수분해되지 않고 \\(Q(x)\\)는 일차식이므로 \\(P(x)\\)가 \\(x^2-3x+3\\)으로 나누어떨어진다. 따라서 \\(P(x)=(x^2-3x+3)(x+k)\\)",
+    "(나)에서 \\(\\{Q(x)\\}^2=x^3-10x+13-P(x)=(3-k)x^2+(3k-13)x+13-3k\\)",
+    "이것이 완전제곱식이므로 판별식 \\((3k-13)^2-4(3-k)(13-3k)=0\\), 즉 \\(3k^2-10k-13=(3k-13)(k+1)=0\\)에서 \\(k=-1\\) 또는 \\(k=\\dfrac{13}{3}\\)",
+    "\\(k=\\dfrac{13}{3}\\)이면 \\(\\{Q(x)\\}^2=-\\dfrac{4}{3}x^2\\)이 되어 불가능하므로 \\(k=-1\\)이고 \\(\\{Q(x)\\}^2=(2x-4)^2\\)",
+    "\\(Q(0)=n<0\\)이므로 \\(Q(x)=2x-4\\)",
+    "\\(P(x)=(x^2-3x+3)(x-1)\\)이므로 \\(P(2)=(4-6+3)\\times1=1\\)",
+    "\\(Q(8)=12\\)이므로 \\(P(2)+Q(8)=13\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0267",
+   "num": 267,
+   "number": "0267",
+   "diff": "mid",
+   "type": "fillin",
+   "question": "오른쪽 조립제법은 다항식 \\(x^3+ax^2+bx+c\\)를 \\(x+1\\)로 나누었을 때의 몫과 나머지를 구하는 과정이다. 이때 다항식 \\((ax^2+bx+c)+(px^2+qx+r)\\)를 \\(x+2\\)로 나누었을 때의 나머지를 구하시오.",
+   "answer": "21",
+   "solution": [
+    "조립제법의 첫 열은 \\(p=1\\)이고, 둘째 행의 \\(-1\\)은 \\(-1\\times p\\)이다.",
+    "\\(q=a-1\\)이고 \\(-1\\times q=-1\\)이므로 \\(q=1\\), \\(a=2\\)",
+    "\\(-1\\times r=5\\)이므로 \\(r=-5\\), \\(r=b-1\\)이므로 \\(b=-4\\)",
+    "\\(c+5=13\\)이므로 \\(c=8\\)",
+    "\\((2x^2-4x+8)+(x^2+x-5)=3x^2-3x+3\\)이고, \\(x=-2\\)를 대입하면 \\(12+6+3=21\\)"
+   ],
+   "family": "",
+   "images": [
+    "data:image/jpeg;base64,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"
+   ]
+  },
+  {
+   "id": "0268",
+   "num": 268,
+   "number": "0268",
+   "diff": "high",
+   "type": "fillin",
+   "question": "\\(n\\)이 1000 이하의 자연수일 때, 다항식 \\(f(x)=x^2+2x-n\\) 중에서 \\((x+\\alpha)(x-\\beta)\\) (\\(\\alpha,\\ \\beta\\)는 자연수)로 인수분해되는 \\(f(x)\\)의 개수를 구하시오.",
+   "answer": "30",
+   "solution": [
+    "\\((x+\\alpha)(x-\\beta)=x^2+(\\alpha-\\beta)x-\\alpha\\beta\\)이므로 \\(\\alpha-\\beta=2,\\ \\alpha\\beta=n\\)",
+    "\\(\\alpha=\\beta+2\\)이므로 \\(n=\\beta(\\beta+2)\\ (\\beta\\)는 자연수)",
+    "\\(\\beta(\\beta+2)\\le1000\\)에서 \\(\\beta=30\\)일 때 960, \\(\\beta=31\\)일 때 1023이므로 \\(\\beta=1,2,⋯,30\\)",
+    "따라서 \\(f(x)\\)는 30개"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0269",
+   "num": 269,
+   "number": "0269",
+   "diff": "mid",
+   "type": "fillin",
+   "question": "자연수 \\(n^4-16n^2+100\\)이 소수가 되도록 하는 자연수 \\(n\\)의 값을 구하시오.",
+   "answer": "3",
+   "solution": [
+    "\\(n^4-16n^2+100=(n^4+20n^2+100)-36n^2=(n^2+10)^2-(6n)^2=(n^2-6n+10)(n^2+6n+10)\\)",
+    "\\(n^2+6n+10>1\\)이므로 소수가 되려면 \\(n^2-6n+10=1\\)이어야 한다.",
+    "\\((n-3)^2=0\\)에서 \\(n=3\\) (이때 값은 \\(1\\times37=37\\)로 소수)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0270",
+   "num": 270,
+   "number": "0270",
+   "diff": "high",
+   "type": "mc",
+   "question": "\\(x\\)에 대한 다항식 \\(P(x)=x^4+ax^2+b\\)를 인수분해하였을 때, 일차항의 계수와 상수항이 모두 정수인 일차식의 개수를 \\(N(a,\\ b)\\)라 하자. 예를 들어 다항식 \\(x^4-3x^2+2\\)를 인수분해하면 \\((x+1)(x-1)(x^2-2)\\)이므로 \\(N(-3,\\ 2)=2\\)이다. 옳은 것만을 보기에서 있는 대로 고른 것은?\n\n[보기]\nㄱ. \\(N(0,\\ 1)=0\\)\nㄴ. \\(N(n,\\ -20)=2\\)를 만족시키는 정수 \\(n\\)의 개수는 2이다.\nㄷ. \\(N(m,\\ 4)=4\\)를 만족시키는 정수 \\(m\\)의 개수는 2이다.",
+   "choices": [
+    "ㄱ",
+    "ㄴ",
+    "ㄱ, ㄴ",
+    "ㄴ, ㄷ",
+    "ㄱ, ㄴ, ㄷ"
+   ],
+   "correct": 2,
+   "answer": "ㄱ, ㄴ",
+   "solution": [
+    "ㄱ. \\(x^4+1\\)은 정수 계수의 일차식을 인수로 갖지 않으므로 \\(N(0,1)=0\\) (참)",
+    "ㄴ. 정수 \\(k\\)에 대해 \\(x-k\\)가 인수이면 \\(k^4+nk^2-20=0\\), 즉 \\(k^2(k^2+n)=20\\)에서 \\(k^2=1\\) 또는 \\(4\\)",
+    "\\(k^2=1\\)이면 \\(n=19\\): \\(x^4+19x^2-20=(x^2-1)(x^2+20)\\), \\(k^2=4\\)이면 \\(n=1\\): \\(x^4+x^2-20=(x^2-4)(x^2+5)\\)",
+    "두 경우 모두 \\(N=2\\)이므로 \\(n\\)의 개수는 2 (참)",
+    "ㄷ. \\(N(m,4)=4\\)이면 \\(x^4+mx^2+4=(x^2-r^2)(x^2-s^2)\\) 꼴이고 \\(r^2s^2=4\\), \\(r\\ne s\\)에서 \\(\\{r,s\\}=\\{1,2\\}\\)뿐이다. 이때 \\(m=-5\\) 하나뿐이므로 거짓",
+    "따라서 옳은 것은 ㄱ, ㄴ"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0271",
+   "num": 271,
+   "number": "0271",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "\\(201^{15}\\)을 200으로 나누었을 때의 몫이 \\(Q\\)일 때, \\(Q\\)를 200으로 나누었을 때의 나머지를 구하시오.",
+   "answer": "15",
+   "solution": [
+    "\\(201^{15}=(200+1)^{15}={}_{15}C_0\\cdot200^{15}+⋯+{}_{15}C_{14}\\cdot200+1\\)",
+    "\\(201^{15}=200\\left({}_{15}C_{0}200^{14}+⋯+{}_{15}C_{13}200+15\\right)+1\\)이므로 \\(Q=200\\times(정수)+15\\)",
+    "따라서 \\(Q\\)를 200으로 나눈 나머지는 15"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0272",
+   "num": 272,
+   "number": "0272",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "자연수 \\(n^4+n^2-2\\)가 \\((n-1)(n-2)\\)의 배수가 되도록 하는 자연수 \\(n\\)의 최댓값을 구하시오.",
+   "answer": "20",
+   "solution": [
+    "\\(n^4+n^2-2=(n^2+2)(n-1)(n+1)\\)이고 \\(n-1,\\ n-2\\)는 서로소이므로 \\((n-2)\\)가 \\((n^2+2)(n-1)(n+1)\\)의 약수이면 된다.",
+    "\\(n\\equiv2\\pmod{n-2}\\)이므로 \\((n^2+2)(n-1)(n+1)\\equiv6\\cdot1\\cdot3=18\\)",
+    "즉 \\(n-2\\)는 18의 약수이므로 \\(n-2\\)의 최댓값은 18이고 \\(n=20\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0273",
+   "num": 273,
+   "number": "0273",
+   "diff": "midhigh",
+   "type": "mc",
+   "question": "다항식 \\(x^3-3x^2+2x+5\\)를 최고차항의 계수가 1인 서로 다른 두 이차식 \\(A(x),\\ B(x)\\)로 나누었을 때의 나머지가 모두 \\(2x+1\\)이다. 다항식 \\(A(x)+B(x)\\)를 \\(x-5\\)로 나누었을 때의 나머지는?",
+   "choices": [
+    "21",
+    "23",
+    "25",
+    "27",
+    "29"
+   ],
+   "correct": 3,
+   "answer": "27",
+   "solution": [
+    "\\(x^3-3x^2+2x+5-(2x+1)=x^3-3x^2+4=(x+1)(x-2)^2\\)이 \\(A(x),\\ B(x)\\)로 각각 나누어떨어진다.",
+    "최고차항의 계수가 1인 서로 다른 이차식 약수는 \\((x+1)(x-2)\\)와 \\((x-2)^2\\)",
+    "\\(A(x)+B(x)\\)에 \\(x=5\\)를 대입하면 \\(6\\times3+3^2=27\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0274",
+   "num": 274,
+   "number": "0274",
+   "diff": "high",
+   "type": "mc",
+   "question": "다음 그림과 같이 한 모서리의 길이가 \\(a\\)인 정육면체가 4개, \\(b\\)인 정육면체가 1개 있고, 밑면의 가로의 길이, 세로의 길이, 높이가 각각 \\(a,\\ a,\\ b\\)인 직육면체가 8개, \\(b,\\ b,\\ a\\)인 직육면체가 5개 있다.\n\n5개의 정육면체와 13개의 직육면체를 모두 사용하여 빈틈없이 쌓아 부피가 75인 하나의 직육면체를 만들었을 때, \\(ab\\)의 값은? (단, \\(a,\\ b\\)는 자연수이다.)",
+   "choices": [
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "correct": 0,
+   "answer": "2",
+   "solution": [
+    "전체 부피는 \\(4a^3+b^3+8a^2b+5ab^2=75\\)",
+    "좌변을 인수분해하면 \\((a+b)(2a+b)^2=75\\)",
+    "\\(75=3\\times5^2\\)이고 \\(a,\\ b\\)가 자연수이므로 \\(a+b=3,\\ 2a+b=5\\)에서 \\(a=2,\\ b=1\\) (\\(a+b=75\\)이면 \\(2a+b=1\\)이라 불가능)",
+    "따라서 \\(ab=2\\)"
+   ],
+   "family": "",
+   "images": [
+    "data:image/jpeg;base64,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"
+   ]
+  },
+  {
+   "id": "0275",
+   "num": 275,
+   "number": "0275",
+   "diff": "mid",
+   "type": "mc",
+   "question": "삼각형의 세 변의 길이 \\(a,\\ b,\\ c\\)에 대하여\n\\(a^3-b^3-a^2b+ab^2-ac^2+bc^2=0\\)\n이 성립할 때, 옳은 것만을 보기에서 있는 대로 고른 것은?\n\n[보기]\nㄱ. \\(a>b\\)이면 \\(c>a\\)이다.\nㄴ. \\(b>c\\)이면 \\(a>b\\)이다.\nㄷ. \\(b\\ge c\\)이면 \\(a\\ge c\\)이다.",
+   "choices": [
+    "ㄱ",
+    "ㄴ",
+    "ㄱ, ㄷ",
+    "ㄴ, ㄷ",
+    "ㄱ, ㄴ, ㄷ"
+   ],
+   "correct": 2,
+   "answer": "ㄱ, ㄷ",
+   "solution": [
+    "좌변 \\(=a^2(a-b)+b^2(a-b)-c^2(a-b)=(a-b)(a^2+b^2-c^2)=0\\)이므로 \\(a=b\\) 또는 \\(a^2+b^2=c^2\\)",
+    "ㄱ. \\(a>b\\)이면 \\(a\\ne b\\)이므로 \\(a^2+b^2=c^2\\), 따라서 \\(c^2>a^2\\)에서 \\(c>a\\) (참)",
+    "ㄴ. \\(a=b>c\\)인 경우 \\(a>b\\)가 아니다. (거짓)",
+    "ㄷ. \\(a=b\\)이면 \\(b\\ge c\\)에서 \\(a=b\\ge c\\)이고, \\(a^2+b^2=c^2\\)이면 \\(c>b\\)이므로 \\(b\\ge c\\)일 수 없다. 따라서 항상 \\(a\\ge c\\) (참)",
+    "옳은 것은 ㄱ, ㄷ"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0276",
+   "num": 276,
+   "number": "0276",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "삼각형의 세 변의 길이 \\(a,\\ b,\\ c\\)에 대하여\n\\(a=2b,\\ a^2b-a^2c-ab^2+b^2c+ac^2-bc^2=0\\)\n이 성립한다. 이 삼각형의 둘레의 길이가 40일 때, 삼각형의 넓이를 구하시오.",
+   "answer": "\\(16\\sqrt{15}\\)",
+   "solution": [
+    "좌변 \\(=ab(a-b)-c(a^2-b^2)+c^2(a-b)=(a-b)(ab-ac-bc+c^2)=(a-b)(a-c)(b-c)=0\\)",
+    "\\(a=2b\\)이므로 \\(a\\ne b\\), 따라서 \\(a=c\\) 또는 \\(b=c\\)",
+    "\\(b=c\\)이면 \\(a=2b=b+c\\)가 되어 삼각형이 만들어지지 않는다.",
+    "\\(a=c\\)이면 둘레가 \\(2b+b+2b=5b=40\\)이므로 \\(b=8,\\ a=c=16\\)",
+    "밑변 8, 높이 \\(\\sqrt{16^2-4^2}=4\\sqrt{15}\\)이므로 넓이는 \\(\\dfrac{1}{2}\\cdot8\\cdot4\\sqrt{15}=16\\sqrt{15}\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0277",
+   "num": 277,
+   "number": "0277",
+   "diff": "high",
+   "type": "mc",
+   "question": "\\(a>b>c\\ge2\\)인 세 자연수 \\(a,\\ b,\\ c\\)에 대하여\n\\((a+b+c)(ab+bc+ca)-abc=280\\)\n일 때, \\(abc\\)의 값은?",
+   "choices": [
+    "25",
+    "30",
+    "35",
+    "40",
+    "45"
+   ],
+   "correct": 1,
+   "answer": "30",
+   "solution": [
+    "\\((a+b+c)(ab+bc+ca)-abc=(a+b)(b+c)(c+a)=280\\)",
+    "\\(a+b>a+c>b+c\\ge5\\)이고 \\(280=2^3\\cdot5\\cdot7\\)을 서로 다른 세 약수의 곱으로 나타내면 \\(5\\times7\\times8\\)",
+    "\\(b+c=5,\\ a+c=7,\\ a+b=8\\)을 풀면 \\(a=5,\\ b=3,\\ c=2\\)",
+    "따라서 \\(abc=30\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0278",
+   "num": 278,
+   "number": "0278",
+   "diff": "mid",
+   "type": "mc",
+   "question": "\\(\\sqrt{\\dfrac{16^4-9\\cdot16^2-4\\cdot16+12}{n}}\\)가 자연수가 되도록 하는 자연수 \\(n\\)의 개수는?",
+   "choices": [
+    "4",
+    "5",
+    "6",
+    "7",
+    "8"
+   ],
+   "correct": 2,
+   "answer": "6",
+   "solution": [
+    "\\(16^4-9\\cdot16^2-4\\cdot16+12=65536-2304-64+12=63180=2^2\\cdot3^5\\cdot5\\cdot13\\)",
+    "\\(\\dfrac{63180}{n}\\)이 자연수의 제곱이어야 하므로 \\(63180=k^2\\cdot n\\) (\\(k\\)는 자연수)",
+    "\\(k^2\\)이 63180의 약수이려면 \\(k\\)는 \\(2\\cdot3^2=18\\)의 약수이므로 \\(k=1,2,3,6,9,18\\)",
+    "따라서 \\(n\\)의 개수는 6"
+   ],
+   "family": "",
+   "images": []
+  }
+ ]
+}

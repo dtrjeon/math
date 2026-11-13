@@ -1,0 +1,383 @@
+{
+ "id": "2611_m1_s1_senmathcc_31_lineq_q868-884",
+ "title": "쎈 공통수학1 일차부등식 C단계 0868~0884",
+ "unit": "III. 부등식 - 07 일차부등식",
+ "category": "textbook",
+ "examType": "workbook",
+ "source": "쎈 공통수학1 C단계 p.127~129",
+ "group": "쎈 공통수학1",
+ "grade": "m1",
+ "semester": "s1",
+ "problems": [
+  {
+   "id": "0868",
+   "num": 868,
+   "number": "0868",
+   "diff": "mid",
+   "type": "mc",
+   "question": "양수 \\(a,\\ b\\)에 대하여 \\(\\dfrac{1}{a}<1<\\dfrac{1}{b}\\)일 때, 옳은 것만을 보기에서 있는 대로 고른 것은?\n\n[보기]\nㄱ. \\(0<b<1<a\\)\nㄴ. \\(ab^2>a^2b\\)\nㄷ. \\(ab+1<a+b\\)",
+   "choices": [
+    "ㄱ",
+    "ㄱ, ㄴ",
+    "ㄱ, ㄷ",
+    "ㄴ, ㄷ",
+    "ㄱ, ㄴ, ㄷ"
+   ],
+   "correct": 2,
+   "answer": "ㄱ, ㄷ",
+   "solution": [
+    "\\(a>0\\)이므로 \\(\\dfrac{1}{a}<1\\)에서 \\(a>1\\), \\(b>0\\)이므로 \\(1<\\dfrac{1}{b}\\)에서 \\(0<b<1\\)",
+    "ㄱ. \\(0<b<1<a\\) (참)",
+    "ㄴ. \\(ab^2-a^2b=ab(b-a)\\)에서 \\(ab>0,\\ b-a<0\\)이므로 \\(ab^2<a^2b\\) (거짓)",
+    "ㄷ. \\(ab+1-(a+b)=(a-1)(b-1)<0\\)이므로 \\(ab+1<a+b\\) (참)",
+    "따라서 옳은 것은 ㄱ, ㄷ"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0869",
+   "num": 869,
+   "number": "0869",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "부등식 \\((a+b)x<a\\)의 해가 \\(x>\\dfrac{1}{3}\\)일 때, 부등식 \\(ax+a>bx-2b\\)의 해를 구하시오. (단, \\(a,\\ b\\)는 실수이다.)",
+   "answer": "\\(x>5\\)",
+   "solution": [
+    "해가 \\(x>\\dfrac{1}{3}\\)이므로 \\(a+b<0\\)이고 \\(\\dfrac{a}{a+b}=\\dfrac{1}{3}\\)",
+    "\\(3a=a+b\\)에서 \\(b=2a\\)이고, \\(a+b=3a<0\\)이므로 \\(a<0\\)",
+    "\\(ax+a>bx-2b\\)에서 \\((a-b)x>-a-2b\\)이고, \\(b=2a\\)를 대입하면 \\(-ax>-5a\\)",
+    "\\(-a>0\\)이므로 양변을 \\(-a\\)로 나누면 \\(x>5\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0870",
+   "num": 870,
+   "number": "0870",
+   "diff": "mid",
+   "type": "mc",
+   "question": "다음 조건을 모두 만족시키는 정수 \\(x\\)의 개수는?\n(가) \\(\\sqrt{x-5}\\sqrt{-3-x}=-\\sqrt{(x-5)(-3-x)}\\)\n(나) \\(\\dfrac{\\sqrt{x+6}}{\\sqrt{x+2}}=-\\sqrt{\\dfrac{x+6}{x+2}}\\)",
+   "choices": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "correct": 0,
+   "answer": "1",
+   "solution": [
+    "(가): \\(\\sqrt{a}\\sqrt{b}=-\\sqrt{ab}\\)가 성립하려면 \\(a\\le0,\\ b\\le0\\) (\\(a<0,\\ b<0\\) 또는 둘 중 하나가 0)이어야 한다. 즉 \\(x-5\\le0,\\ -3-x\\le0\\)에서 \\(-3\\le x\\le5\\)",
+    "(나): \\(\\dfrac{\\sqrt{a}}{\\sqrt{b}}=-\\sqrt{\\dfrac{a}{b}}\\)가 성립하려면 \\(a\\ge0,\\ b<0\\)이어야 한다. 즉 \\(x+6\\ge0,\\ x+2<0\\)에서 \\(-6\\le x<-2\\)",
+    "두 조건을 모두 만족시키는 범위는 \\(-3\\le x<-2\\)이므로 정수 \\(x\\)는 \\(-3\\)의 1개"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0871",
+   "num": 871,
+   "number": "0871",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "두 자연수 \\(a,\\ b\\)에 대하여 \\(\\dfrac{a}{b}\\)를 소수점 아래 첫째 자리에서 반올림하면 5이다. \\(2a-5b=23\\)일 때, \\(ab\\)의 값을 구하시오.",
+   "answer": "120",
+   "solution": [
+    "반올림하여 5이므로 \\(4.5\\le\\dfrac{a}{b}<5.5\\), 즉 \\(4.5b\\le a<5.5b\\)",
+    "\\(2a=5b+23\\)에서 \\(a=\\dfrac{5b+23}{2}\\)를 대입하면 \\(9b\\le5b+23<11b\\)",
+    "\\(4b\\le23\\)에서 \\(b\\le5.75\\), \\(6b>23\\)에서 \\(b>\\dfrac{23}{6}\\)이므로 \\(b=4\\) 또는 \\(5\\)",
+    "\\(a\\)가 자연수이려면 \\(5b+23\\)이 짝수이어야 하므로 \\(b\\)는 홀수, 즉 \\(b=5,\\ a=24\\)",
+    "따라서 \\(ab=120\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0872",
+   "num": 872,
+   "number": "0872",
+   "diff": "mid",
+   "type": "fillin",
+   "question": "부등식 \\(3x+a<x+1\\le2x+b\\)를 연립부등식 \\(\\begin{cases}3x+a<2x+b\\\\x+1\\le2x+b\\end{cases}\\)로 잘못 변형하여 풀었더니 해가 \\(-1\\le x<3\\)이었다. (단, \\(a,\\ b\\)는 실수이다.)\n(1) \\(a,\\ b\\)의 값을 구하시오.\n(2) 원래 부등식의 해를 구하시오.",
+   "answer": "(1) \\(a=-1,\\ b=2\\)  (2) \\(-1\\le x<1\\)",
+   "solution": [
+    "(1) \\(3x+a<2x+b\\)에서 \\(x<b-a\\), \\(x+1\\le2x+b\\)에서 \\(x\\ge1-b\\)",
+    "해가 \\(-1\\le x<3\\)이므로 \\(1-b=-1,\\ b-a=3\\)에서 \\(b=2,\\ a=-1\\)",
+    "(2) 원래 부등식은 \\(3x-1<x+1\\le2x+2\\)",
+    "\\(3x-1<x+1\\)에서 \\(x<1\\), \\(x+1\\le2x+2\\)에서 \\(x\\ge-1\\)",
+    "따라서 해는 \\(-1\\le x<1\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0873",
+   "num": 873,
+   "number": "0873",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "연립부등식 \\(\\begin{cases}ax+b<0\\\\cx+d\\ge0\\end{cases}\\)의 해를 수직선 위에 나타내면 그림과 같다. 이때 연립부등식 \\(\\begin{cases}ax-b<0\\\\cx-d\\ge0\\end{cases}\\)을 푸시오. (단, \\(a,\\ b,\\ c,\\ d\\)는 실수이다.)",
+   "answer": "해는 없다.",
+   "solution": [
+    "\\(ax+b<0\\)의 해가 \\(x<5\\)이므로 \\(a>0\\)이고 \\(-\\dfrac{b}{a}=5\\), 즉 \\(b=-5a\\)",
+    "\\(cx+d\\ge0\\)의 해가 \\(x\\ge-3\\)이므로 \\(c>0\\)이고 \\(-\\dfrac{d}{c}=-3\\), 즉 \\(d=3c\\)",
+    "\\(ax-b<0\\)에 \\(b=-5a\\)를 대입하면 \\(ax+5a<0\\)이고 \\(a>0\\)이므로 \\(x<-5\\)",
+    "\\(cx-d\\ge0\\)에 \\(d=3c\\)를 대입하면 \\(cx-3c\\ge0\\)이고 \\(c>0\\)이므로 \\(x\\ge3\\)",
+    "\\(x<-5\\)와 \\(x\\ge3\\)의 공통부분이 없으므로 해는 없다."
+   ],
+   "family": "",
+   "images": [
+    "data:image/jpeg;base64,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"
+   ]
+  },
+  {
+   "id": "0874",
+   "num": 874,
+   "number": "0874",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "연립부등식 \\(\\begin{cases}ax+2\\le-x-2a\\\\bx+10<2ax+5b\\end{cases}\\)의 해가 \\(x<\\dfrac{5}{3}\\)일 때, 실수 \\(a,\\ b\\)에 대하여 \\(a-b\\)의 값을 구하시오.",
+   "answer": "-5",
+   "solution": [
+    "정리하면 \\((a+1)x\\le-2(a+1)\\), \\((b-2a)x<5b-10\\)",
+    "해가 \\(x<\\dfrac{5}{3}\\)인 꼴이 되려면 둘째 식이 \\(x<\\dfrac{5}{3}\\)이어야 한다. (첫째 식은 \\(a+1\\ne0\\)이면 \\(x\\le-2\\) 또는 \\(x\\ge-2\\) 꼴이 되어 해가 맞지 않으므로 \\(a+1=0\\), 즉 \\(a=-1\\))",
+    "\\(a=-1\\)이면 첫째 식은 \\(0\\le0\\)으로 항상 성립하고, 둘째 식은 \\((b+2)x<5b-10\\)",
+    "\\(b+2>0\\)이고 \\(\\dfrac{5b-10}{b+2}=\\dfrac{5}{3}\\)에서 \\(15b-30=5b+10\\), \\(b=4\\)",
+    "따라서 \\(a-b=-1-4=-5\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0875",
+   "num": 875,
+   "number": "0875",
+   "diff": "mid",
+   "type": "mc",
+   "question": "\\(x\\)에 대한 연립부등식 \\(\\begin{cases}x+2>3\\\\3x<a+1\\end{cases}\\)을 만족시키는 모든 정수 \\(x\\)의 값의 합이 9가 되도록 하는 자연수 \\(a\\)의 최댓값은?",
+   "choices": [
+    "10",
+    "11",
+    "12",
+    "13",
+    "14"
+   ],
+   "correct": 4,
+   "answer": "14",
+   "solution": [
+    "\\(x+2>3\\)에서 \\(x>1\\), \\(3x<a+1\\)에서 \\(x<\\dfrac{a+1}{3}\\)이므로 \\(1<x<\\dfrac{a+1}{3}\\)",
+    "정수 \\(x\\)의 합이 9이려면 \\(x=2,\\ 3,\\ 4\\)이어야 한다. (\\(2+3+4=9\\))",
+    "\\(4<\\dfrac{a+1}{3}\\le5\\)이므로 \\(12<a+1\\le15\\), 즉 \\(11<a\\le14\\)",
+    "자연수 \\(a\\)의 최댓값은 14"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0876",
+   "num": 876,
+   "number": "0876",
+   "diff": "midhigh",
+   "type": "mc",
+   "question": "어느 반 학생들이 피자 몇 판을 나누어 먹으려고 한다. 모든 판을 똑같이 6조각으로 각각 자른 후 한 명이 3조각씩 먹으면 5명이 피자를 먹을 수 없고, 한 명이 2조각씩 먹으면 피자가 한 판 이하로 남는다고 한다. 이때 이 반의 최소 학생 수는?",
+   "choices": [
+    "16",
+    "17",
+    "18",
+    "19",
+    "20"
+   ],
+   "correct": 1,
+   "answer": "17",
+   "solution": [
+    "피자가 \\(n\\)판, 학생 수가 \\(x\\)명이면 전체 조각은 \\(6n\\)이다.",
+    "3조각씩 먹을 때 5명이 먹지 못하므로 \\(3(x-6)<6n\\le3(x-5)\\)",
+    "2조각씩 먹을 때 피자가 남고 그 양이 한 판(6조각) 이하이므로 \\(0<6n-2x\\le6\\)",
+    "\\(6n\\le3x-15\\)와 \\(6n>2x\\)에서 \\(2x<3x-15\\)이므로 \\(x>15\\), \\(3x-18<6n\\le2x+6\\)에서 \\(x<24\\)",
+    "\\(x=16\\)이면 \\(30<6n\\le33\\)이고 \\(32<6n\\le38\\)이므로 \\(6n\\)이 존재하지 않는다.",
+    "\\(x=17\\)이면 \\(33<6n\\le36\\)이고 \\(34<6n\\le40\\)이므로 \\(6n=36\\), 즉 \\(n=6\\)이 존재한다.",
+    "따라서 최소 학생 수는 17"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0877",
+   "num": 877,
+   "number": "0877",
+   "diff": "mid",
+   "type": "fillin",
+   "question": "일의 자리의 숫자가 십의 자리의 숫자보다 3만큼 큰 두 자리 자연수가 있다. 이 자연수의 각 자리의 숫자의 합은 10 이상이고, 십의 자리의 숫자와 일의 자리의 숫자를 바꾼 수는 처음 수의 2배에서 30을 뺀 수보다 크다. 처음 자연수를 구하시오.",
+   "answer": "47",
+   "solution": [
+    "십의 자리의 숫자를 \\(t\\)라 하면 일의 자리의 숫자는 \\(t+3\\)이고 \\(t\\le6\\)이다. 처음 수는 \\(10t+(t+3)=11t+3\\)",
+    "각 자리의 숫자의 합이 10 이상이므로 \\(2t+3\\ge10\\)에서 \\(t\\ge\\dfrac{7}{2}\\), 즉 \\(t\\ge4\\)",
+    "바꾼 수는 \\(10(t+3)+t=11t+30\\)이고 \\(11t+30>2(11t+3)-30\\)에서 \\(54>11t\\), 즉 \\(t<\\dfrac{54}{11}\\)이므로 \\(t\\le4\\)",
+    "따라서 \\(t=4\\)이고 처음 자연수는 47"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0878",
+   "num": 878,
+   "number": "0878",
+   "diff": "high",
+   "type": "mc",
+   "question": "오른쪽 그림과 같이 연못 주위를 따라 도로가 있고, 두 지점 A, B 사이에는 다리가 놓여 있다. A 지점에서 도로 위의 두 지점 P, Q까지의 거리는 각각 \\(x\\) m이고, B 지점에서 도로 위의 두 지점 C, D까지의 거리는 각각 9 m, 12 m이다. C 지점에서 출발하여 Q 지점까지 갈 때, 두 지점 P, A만을 한 번씩 지나는 경우와 두 지점 B, D만을 한 번씩 지나는 경우, 두 지점 B, A만을 한 번씩 지나는 경우의 이동 거리가 모두 같다. 또 D 지점에서 출발하여 P 지점까지 갈 때, 두 지점 Q, A만을 한 번씩 지나는 경우와 두 지점 B, C만을 한 번씩 지나는 경우, 두 지점 B, A만을 한 번씩 지나는 경우의 순서대로 이동 거리가 멀어진다고 한다. 이때 자연수 \\(x\\)의 값은? (단, 도로와 다리의 폭은 무시한다.)",
+   "choices": [
+    "8",
+    "9",
+    "10",
+    "11",
+    "12"
+   ],
+   "correct": 2,
+   "answer": "10",
+   "solution": [
+    "\\(\\overline{CP}=p,\\ \\overline{DQ}=q,\\ \\overline{AB}=l\\)이라 하자.",
+    "C에서 Q까지: \\(p+2x=9+12+q=9+l+x\\)이므로 \\(p=21+q-2x,\\ l=12+q-x\\)",
+    "D에서 P까지의 이동 거리는 \\(q+2x<12+9+p<12+l+x\\)",
+    "\\(q+2x<21+p=42+q-2x\\)에서 \\(4x<42\\), 즉 \\(x<10.5\\)",
+    "\\(42+q-2x<12+l+x=24+q\\)에서 \\(2x>18\\), 즉 \\(x>9\\)",
+    "따라서 \\(9<x<10.5\\)이므로 자연수 \\(x=10\\)"
+   ],
+   "family": "",
+   "images": [
+    "data:image/jpeg;base64,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"
+   ]
+  },
+  {
+   "id": "0879",
+   "num": 879,
+   "number": "0879",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "연립부등식 \\(\\begin{cases}x-6a\\ge3\\\\|x+a-1|<5\\end{cases}\\)의 해가 부등식 \\(|x+a-1|<5\\)의 해와 같을 때, 실수 \\(a\\)의 값의 범위를 구하시오.",
+   "answer": "\\(a\\le-1\\)",
+   "solution": [
+    "\\(x-6a\\ge3\\)에서 \\(x\\ge6a+3\\)",
+    "\\(|x+a-1|<5\\)에서 \\(-5<x+a-1<5\\), 즉 \\(-a-4<x<-a+6\\)",
+    "연립부등식의 해가 \\(|x+a-1|<5\\)의 해와 같으려면 \\(-a-4<x<-a+6\\)이 \\(x\\ge6a+3\\)에 포함되어야 한다.",
+    "\\(6a+3\\le-a-4\\)이므로 \\(7a\\le-7\\), 즉 \\(a\\le-1\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0880",
+   "num": 880,
+   "number": "0880",
+   "diff": "mid",
+   "type": "mc",
+   "question": "부등식 \\(|x-k|<k^2\\)의 해가 \\(-6<x<12\\)일 때, 부등식 \\(|x-1|<k\\)를 만족시키는 모든 정수 \\(x\\)의 값의 합은? (단, \\(k\\)는 실수이다.)",
+   "choices": [
+    "5",
+    "7",
+    "9",
+    "11",
+    "13"
+   ],
+   "correct": 0,
+   "answer": "5",
+   "solution": [
+    "\\(|x-k|<k^2\\)에서 \\(k-k^2<x<k+k^2\\)",
+    "\\(k-k^2=-6,\\ k+k^2=12\\)이므로 두 식을 더하면 \\(2k=6\\), \\(k=3\\) (\\(k^2=9\\)로 확인된다.)",
+    "\\(|x-1|<3\\)에서 \\(-2<x<4\\)이므로 정수 \\(x=-1,\\ 0,\\ 1,\\ 2,\\ 3\\)",
+    "합은 \\(-1+0+1+2+3=5\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0881",
+   "num": 881,
+   "number": "0881",
+   "diff": "high",
+   "type": "fillin",
+   "question": "연립부등식 \\(\\begin{cases}|5-3x|<x+1\\\\a(x+3)>a^2+3x\\end{cases}\\)가 해를 갖지 않도록 하는 실수 \\(a\\)의 값의 범위를 구하시오.",
+   "answer": "\\(a\\le1\\) 또는 \\(a\\ge3\\)",
+   "solution": [
+    "\\(|5-3x|<x+1\\)에서 \\(-(x+1)<5-3x<x+1\\)이므로 \\(x>1\\)이고 \\(x<3\\), 즉 \\(1<x<3\\)",
+    "\\(a(x+3)>a^2+3x\\)를 정리하면 \\((a-3)x>a(a-3)\\)",
+    "\\(a>3\\)이면 \\(x>a\\)이고 \\(a>3\\)이므로 \\(1<x<3\\)과 공통부분이 없다.",
+    "\\(a=3\\)이면 \\(0>0\\)이 되어 해가 없다.",
+    "\\(a<3\\)이면 \\(x<a\\)이고 \\(1<x<3\\)과 공통부분이 없으려면 \\(a\\le1\\)",
+    "따라서 \\(a\\le1\\) 또는 \\(a\\ge3\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0882",
+   "num": 882,
+   "number": "0882",
+   "diff": "mid",
+   "type": "fillin",
+   "question": "부등식 \\(\\left||x+2|+\\sqrt{x^2-2x+1}\\right|\\le4\\)의 해가 \\(a\\le x\\le b\\)일 때, \\(a+b\\)의 값을 구하시오.",
+   "answer": "-1",
+   "solution": [
+    "\\(\\sqrt{x^2-2x+1}=|x-1|\\)이고 \\(|x+2|+|x-1|\\ge0\\)이므로 주어진 부등식은 \\(|x+2|+|x-1|\\le4\\)",
+    "\\(x<-2\\): \\(-2x-1\\le4\\)에서 \\(x\\ge-\\dfrac{5}{2}\\)이므로 \\(-\\dfrac{5}{2}\\le x<-2\\)",
+    "\\(-2\\le x<1\\): \\(3\\le4\\)이므로 항상 성립",
+    "\\(x\\ge1\\): \\(2x+1\\le4\\)에서 \\(x\\le\\dfrac{3}{2}\\)이므로 \\(1\\le x\\le\\dfrac{3}{2}\\)",
+    "해는 \\(-\\dfrac{5}{2}\\le x\\le\\dfrac{3}{2}\\)이므로 \\(a+b=-1\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0883",
+   "num": 883,
+   "number": "0883",
+   "diff": "midhigh",
+   "type": "mc",
+   "question": "부등식 \\(|x|+|x-a|<b\\) (\\(0<a<b\\))를 만족시키는 정수 \\(x\\)의 개수를 \\(f(a,\\ b)\\)라 할 때, 옳은 것만을 보기에서 있는 대로 고른 것은?\n\n[보기]\nㄱ. \\(f(1,\\ 6)=6\\)\nㄴ. 자연수 \\(n\\)에 대하여 \\(f(n,\\ n+6)=f(n+1,\\ n+7)\\)\nㄷ. \\(f(2n,\\ 8n)<100\\)을 만족시키는 자연수 \\(n\\)의 최댓값은 12이다.",
+   "choices": [
+    "ㄱ",
+    "ㄱ, ㄴ",
+    "ㄱ, ㄷ",
+    "ㄴ, ㄷ",
+    "ㄱ, ㄴ, ㄷ"
+   ],
+   "correct": 2,
+   "answer": "ㄱ, ㄷ",
+   "solution": [
+    "\\(x<0\\): \\(-2x+a<b\\)에서 \\(x>\\dfrac{a-b}{2}\\), \\(0\\le x\\le a\\): \\(a<b\\)이므로 항상 성립, \\(x>a\\): \\(2x-a<b\\)에서 \\(x<\\dfrac{a+b}{2}\\)",
+    "따라서 해는 \\(\\dfrac{a-b}{2}<x<\\dfrac{a+b}{2}\\)",
+    "ㄱ. \\(f(1,\\ 6)\\): \\(-\\dfrac{5}{2}<x<\\dfrac{7}{2}\\)이므로 정수는 \\(-2,\\ ⋯,\\ 3\\)의 6개 (참)",
+    "ㄴ. \\(f(n,\\ n+6)\\): \\(-3<x<n+3\\)이므로 \\(n+5\\)개, \\(f(n+1,\\ n+7)\\): \\(-3<x<n+4\\)이므로 \\(n+6\\)개이므로 같지 않다. (거짓)",
+    "ㄷ. \\(f(2n,\\ 8n)\\): \\(-3n<x<5n\\)이므로 정수는 \\(-3n+1,\\ ⋯,\\ 5n-1\\)의 \\(8n-1\\)개, \\(8n-1<100\\)에서 \\(n<\\dfrac{101}{8}=12.6⋯\\)이므로 최댓값은 12 (참)",
+    "따라서 옳은 것은 ㄱ, ㄷ"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "0884",
+   "num": 884,
+   "number": "0884",
+   "diff": "mid",
+   "type": "mc",
+   "question": "부등식 \\(|x-1|+2|x+1|\\le k\\)가 해를 갖도록 하는 실수 \\(k\\)의 최솟값은?",
+   "choices": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "correct": 2,
+   "answer": "2",
+   "solution": [
+    "\\(f(x)=|x-1|+2|x+1|\\)이라 하면 \\(x<-1\\)일 때 \\(f(x)=-3x-1\\), \\(-1\\le x<1\\)일 때 \\(f(x)=x+3\\), \\(x\\ge1\\)일 때 \\(f(x)=3x+1\\)",
+    "\\(f(x)\\)는 \\(x=-1\\)에서 최솟값 \\(f(-1)=2\\)를 갖는다.",
+    "\\(f(x)\\le k\\)가 해를 가지려면 \\(k\\ge2\\)이므로 \\(k\\)의 최솟값은 2"
+   ],
+   "family": "",
+   "images": []
+  }
+ ]
+}

@@ -1,0 +1,505 @@
+{
+ "id": "2611_m1_s1_senmathcc_32_quadineq_q1009-1031",
+ "title": "쎈 공통수학1 이차부등식 C단계 1009~1031",
+ "unit": "III. 부등식 - 08 이차부등식",
+ "category": "textbook",
+ "examType": "workbook",
+ "source": "쎈 공통수학1 C단계 p.145~148",
+ "group": "쎈 공통수학1",
+ "grade": "m1",
+ "semester": "s1",
+ "problems": [
+  {
+   "id": "1009",
+   "num": 1009,
+   "number": "1009",
+   "diff": "mid",
+   "type": "mc",
+   "question": "이차함수 \\(y=f(x)\\)의 그래프와 직선 \\(y=g(x)\\)가 오른쪽 그림과 같을 때, 옳은 것만을 보기에서 있는 대로 고른 것은? (단, \\(\\alpha<\\gamma<\\beta,\\ \\beta-\\gamma<\\gamma-\\alpha\\))\n\n[보기]\nㄱ. \\(f\\left(\\dfrac{\\alpha+\\beta}{2}\\right)>g(\\gamma)\\)\nㄴ. 방정식 \\(g(x)\\{f(x)-g(x)\\}=0\\)의 서로 다른 실근의 개수는 3이다.\nㄷ. 부등식 \\(\\{f(x)\\}^2\\ge g(x)f(x)\\)의 해는 \\(x\\le\\gamma\\) 또는 \\(x\\ge\\beta\\)이다.",
+   "choices": [
+    "ㄱ",
+    "ㄱ, ㄴ",
+    "ㄱ, ㄷ",
+    "ㄴ, ㄷ",
+    "ㄱ, ㄴ, ㄷ"
+   ],
+   "correct": 2,
+   "answer": "ㄱ, ㄷ",
+   "solution": [
+    "\\(\\beta-\\gamma<\\gamma-\\alpha\\)에서 \\(\\gamma>\\dfrac{\\alpha+\\beta}{2}\\)이므로 \\(\\gamma\\)는 꼭짓점의 \\(x\\)좌표가 아니다.",
+    "ㄱ. \\(f\\left(\\dfrac{\\alpha+\\beta}{2}\\right)\\)은 \\(f(x)\\)의 최댓값이므로 \\(f\\left(\\dfrac{\\alpha+\\beta}{2}\\right)>f(\\gamma)=g(\\gamma)\\) (참)",
+    "ㄴ. \\(g(x)=0\\)의 근은 \\(x=\\alpha\\), \\(f(x)=g(x)\\)의 근은 \\(x=\\alpha,\\ \\gamma\\)이므로 서로 다른 실근은 2개 (거짓)",
+    "ㄷ. \\(\\{f(x)\\}^2\\ge g(x)f(x)\\)는 \\(f(x)\\{f(x)-g(x)\\}\\ge0\\)이다. \\(f(x)\\)와 \\(f(x)-g(x)\\)의 부호를 조사하면 \\(x\\le\\gamma\\) 또는 \\(x\\ge\\beta\\)에서 성립하고 \\(\\gamma<x<\\beta\\)에서는 \\(f(x)>0,\\ f(x)-g(x)<0\\)이므로 성립하지 않는다. (참)",
+    "따라서 옳은 것은 ㄱ, ㄷ"
+   ],
+   "family": "",
+   "images": [
+    "data:image/jpeg;base64,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"
+   ]
+  },
+  {
+   "id": "1010",
+   "num": 1010,
+   "number": "1010",
+   "diff": "mid",
+   "type": "mc",
+   "question": "\\(x^2\\)의 계수가 1인 이차함수 \\(y=f(x)\\)와 \\(x^2\\)의 계수가 \\(-1\\)인 이차함수 \\(y=g(x)\\)의 그래프의 교점의 좌표가 \\((-1,\\ k),\\ (5,\\ k)\\)이다. 부등식 \\(f(x)<g(0)+2\\)의 해가 \\(\\alpha<x<\\beta\\)일 때, \\(\\alpha+\\beta\\)의 값은?",
+   "choices": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "correct": 3,
+   "answer": "4",
+   "solution": [
+    "두 교점의 \\(y\\)좌표가 모두 \\(k\\)이므로 \\(f(-1)=f(5)=k\\)이다.",
+    "따라서 \\(f(x)\\)의 그래프의 축은 \\(x=\\dfrac{-1+5}{2}=2\\)",
+    "부등식 \\(f(x)<g(0)+2\\)의 해 \\(\\alpha<x<\\beta\\)는 \\(f(x)-g(0)-2=0\\)의 두 근 \\(\\alpha,\\ \\beta\\) 사이의 값이고, 이 방정식의 이차항의 계수가 1이며 축이 \\(x=2\\)이므로 \\(\\alpha+\\beta=2\\times2=4\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1011",
+   "num": 1011,
+   "number": "1011",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "최고차항의 계수가 각각 \\(\\dfrac{1}{2},\\ 2\\)인 두 이차함수 \\(y=f(x),\\ y=g(x)\\)가 다음 조건을 만족시킨다.\n(가) 두 함수 \\(y=f(x)\\)와 \\(y=g(x)\\)의 그래프는 직선 \\(x=p\\)를 축으로 한다.\n(나) 부등식 \\(f(x)\\ge g(x)\\)의 해는 \\(-1\\le x\\le5\\)이다.\n\\(p\\times\\{f(2)-g(2)\\}\\)의 값을 구하시오. (단, \\(p\\)는 상수이다.)",
+   "answer": "27",
+   "solution": [
+    "\\(f(x)-g(x)\\)는 이차항의 계수가 \\(\\dfrac{1}{2}-2=-\\dfrac{3}{2}\\)이고 \\(f(x)-g(x)\\ge0\\)의 해가 \\(-1\\le x\\le5\\)이므로 \\(f(x)-g(x)=-\\dfrac{3}{2}(x+1)(x-5)\\)",
+    "\\(f,\\ g\\)의 축이 모두 \\(x=p\\)이므로 \\(f(x)-g(x)\\)도 축이 \\(x=p\\)이다. 따라서 \\(p=\\dfrac{-1+5}{2}=2\\)",
+    "\\(f(2)-g(2)=-\\dfrac{3}{2}\\cdot3\\cdot(-3)=\\dfrac{27}{2}\\)",
+    "따라서 \\(p\\times\\{f(2)-g(2)\\}=2\\times\\dfrac{27}{2}=27\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1012",
+   "num": 1012,
+   "number": "1012",
+   "diff": "high",
+   "type": "fillin",
+   "question": "부등식 \\(|x^2-4x+3|-|x-4|\\ge\\dfrac{1}{2}x^2-1\\)의 해와 이차부등식 \\(x^2+ax+b\\ge0\\)의 해가 같을 때, 실수 \\(a,\\ b\\)에 대하여 \\(a+b\\)의 값을 구하시오.",
+   "answer": "-8",
+   "solution": [
+    "\\(x^2-4x+3=(x-1)(x-3)\\)이므로 \\(x=1,\\ 3,\\ 4\\)를 기준으로 범위를 나눈다.",
+    "\\(x\\le1\\): \\(x^2-4x+3-(4-x)\\ge\\dfrac{1}{2}x^2-1\\)에서 \\(x(x-6)\\ge0\\), 따라서 \\(x\\le0\\)",
+    "\\(1<x<3\\): \\(-(x^2-4x+3)-(4-x)\\ge\\dfrac{1}{2}x^2-1\\)에서 \\(3x^2-10x+12\\le0\\)이고 판별식이 음수이므로 해가 없다.",
+    "\\(3\\le x<4\\): \\(x^2-4x+3-(4-x)\\ge\\dfrac{1}{2}x^2-1\\)에서 \\(x(x-6)\\ge0\\)이므로 해가 없다.",
+    "\\(x\\ge4\\): \\(x^2-4x+3-(x-4)\\ge\\dfrac{1}{2}x^2-1\\)에서 \\(x^2-10x+16\\ge0\\), \\((x-2)(x-8)\\ge0\\)이므로 \\(x\\ge8\\)",
+    "해는 \\(x\\le0\\) 또는 \\(x\\ge8\\)이므로 \\(x(x-8)\\ge0\\), 즉 \\(x^2-8x\\ge0\\)이다. 따라서 \\(a=-8,\\ b=0\\)이고 \\(a+b=-8\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1013",
+   "num": 1013,
+   "number": "1013",
+   "diff": "mid",
+   "type": "fillin",
+   "question": "정수 \\(a\\)에 대하여 부등식 \\(a(x-a)(x-a^2)<0\\)을 만족시키는 정수 \\(x\\)가 한 개뿐일 때, \\(a\\)의 값을 구하시오.",
+   "answer": "2",
+   "solution": [
+    "\\(a=0\\)이면 \\(0<0\\)이므로 해가 없고, \\(a=1\\)이면 \\((x-1)^2<0\\)이므로 해가 없다.",
+    "\\(a<0\\)이면 \\(a<a^2\\)이고 \\((x-a)(x-a^2)>0\\)이므로 해는 \\(x<a\\) 또는 \\(x>a^2\\)로 정수 \\(x\\)가 무수히 많다.",
+    "\\(a\\ge2\\)이면 \\(a<a^2\\)이고 \\((x-a)(x-a^2)<0\\)에서 \\(a<x<a^2\\)이므로 정수 \\(x\\)는 \\(a^2-a-1\\)개",
+    "\\(a^2-a-1=1\\)에서 \\(a^2-a-2=0\\), \\((a-2)(a+1)=0\\)이므로 \\(a=2\\) (\\(a\\ge2\\))"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1014",
+   "num": 1014,
+   "number": "1014",
+   "diff": "high",
+   "type": "fillin",
+   "question": "이차함수 \\(f(x)=x^2+2x-3\\)에 대하여 부등식 \\(2f(x)+|f(x)|\\le m(x+3)\\)을 만족시키는 정수 \\(x\\)가 6개가 되도록 하는 양수 \\(m\\)의 최솟값을 구하시오.",
+   "answer": "3",
+   "solution": [
+    "\\(f(x)=(x+3)(x-1)\\)이므로 \\(f(x)\\ge0\\)이면 \\(x\\le-3\\) 또는 \\(x\\ge1\\), \\(f(x)<0\\)이면 \\(-3<x<1\\)",
+    "\\(-3<x<1\\): \\(f(x)\\le m(x+3)\\)에서 \\(x-1\\le m\\)이 되므로 \\(m>0\\)이면 항상 성립. 정수는 \\(-2,\\ -1,\\ 0\\)의 3개",
+    "\\(x\\le-3\\) 또는 \\(x\\ge1\\): \\(3f(x)\\le m(x+3)\\). \\(x=-3\\)이면 \\(0\\le0\\)이므로 성립하고, \\(x<-3\\)이면 \\(3(x-1)\\ge m>0\\)이 되어 불가능하다.",
+    "\\(x\\ge1\\): \\(3(x-1)\\le m\\)에서 \\(x\\le1+\\dfrac{m}{3}\\)",
+    "정수 \\(x\\)는 \\(-3,\\ -2,\\ -1,\\ 0\\)의 4개와 \\(x\\ge1\\)인 정수가 2개(\\(x=1,\\ 2\\))이어야 하므로 \\(2\\le1+\\dfrac{m}{3}<3\\), 즉 \\(3\\le m<6\\)",
+    "따라서 \\(m\\)의 최솟값은 3"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1015",
+   "num": 1015,
+   "number": "1015",
+   "diff": "high",
+   "type": "mc",
+   "question": "아래의 조건을 모두 만족시키는 이차함수 \\(f(x)\\)에 대하여 다음 중 \\(f(1)\\)의 값이 될 수 있는 것은?\n(가) 부등식 \\(f\\left(\\dfrac{1-x}{3}\\right)\\ge0\\)의 해가 \\(-5\\le x\\le1\\)이다.\n(나) 부등식 \\(f(x)\\ge3x+\\dfrac{3}{4}\\)의 해가 오직 한 개 존재한다.",
+   "choices": [
+    "\\(-3\\)",
+    "\\(-\\dfrac{1}{2}\\)",
+    "\\(\\dfrac{3}{4}\\)",
+    "\\(\\dfrac{3}{2}\\)",
+    "2"
+   ],
+   "correct": 2,
+   "answer": "\\(\\dfrac{3}{4}\\)",
+   "solution": [
+    "\\(t=\\dfrac{1-x}{3}\\)로 놓으면 \\(x=-5\\)일 때 \\(t=2\\), \\(x=1\\)일 때 \\(t=0\\)이므로 \\(f(t)\\ge0\\)의 해는 \\(0\\le t\\le2\\)",
+    "따라서 \\(f(x)=ax(x-2)\\) (\\(a<0\\))",
+    "(나): \\(ax(x-2)-3x-\\dfrac{3}{4}\\ge0\\), 즉 \\(ax^2-(2a+3)x-\\dfrac{3}{4}\\ge0\\)의 해가 오직 한 개이려면 \\(a<0\\)이고 판별식이 0이어야 한다.",
+    "\\(D=(2a+3)^2+3a=4a^2+15a+9=0\\)에서 \\((a+3)(4a+3)=0\\)이므로 \\(a=-3\\) 또는 \\(a=-\\dfrac{3}{4}\\)",
+    "\\(f(1)=-a\\)이므로 \\(f(1)=3\\) 또는 \\(\\dfrac{3}{4}\\)이고, 보기에서 가능한 값은 \\(\\dfrac{3}{4}\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1016",
+   "num": 1016,
+   "number": "1016",
+   "diff": "mid",
+   "type": "mc",
+   "question": "이차부등식 \\((x-1)(x-p)<3(x-k)\\)가 실수 \\(p\\)의 값에 관계없이 항상 해를 갖도록 하는 정수 \\(k\\)의 최댓값은?",
+   "choices": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "correct": 0,
+   "answer": "0",
+   "solution": [
+    "정리하면 \\(x^2-(p+4)x+p+3k<0\\)",
+    "이 부등식이 해를 가지려면 판별식 \\(D=(p+4)^2-4(p+3k)>0\\), 즉 \\(p^2+4p+16-12k>0\\)",
+    "모든 실수 \\(p\\)에 대하여 성립하려면 \\((p+2)^2+12-12k>0\\)의 최솟값(\\(p=-2\\))이 양수이어야 하므로 \\(12-12k>0\\), \\(k<1\\)",
+    "따라서 정수 \\(k\\)의 최댓값은 0"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1017",
+   "num": 1017,
+   "number": "1017",
+   "diff": "mid",
+   "type": "mc",
+   "question": "모든 실수 \\(x\\)에 대하여 \\(\\sqrt{(k+1)x^2-(k+1)x-1}\\)이 순허수가 되도록 하는 실수 \\(k\\)의 값의 범위는?",
+   "choices": [
+    "\\(-5\\le k<-1\\)",
+    "\\(-5<k\\le-1\\)",
+    "\\(-5\\le k\\le-1\\)",
+    "\\(k<-5\\) 또는 \\(k>-1\\)",
+    "\\(k<-5\\) 또는 \\(k\\ge-1\\)"
+   ],
+   "correct": 1,
+   "answer": "\\(-5<k\\le-1\\)",
+   "solution": [
+    "순허수가 되려면 모든 실수 \\(x\\)에 대하여 \\((k+1)x^2-(k+1)x-1<0\\)이어야 한다.",
+    "\\(k+1=0\\)이면 \\(-1<0\\)이므로 성립한다. 즉 \\(k=-1\\)",
+    "\\(k+1\\ne0\\)이면 \\(k+1<0\\)이고 \\(D=(k+1)^2+4(k+1)=(k+1)(k+5)<0\\)에서 \\(-5<k<-1\\)",
+    "따라서 \\(-5<k\\le-1\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1018",
+   "num": 1018,
+   "number": "1018",
+   "diff": "midhigh",
+   "type": "mc",
+   "question": "\\(3<x<5\\)에서 이차부등식 \\(x^2+2ax>3a^2\\)이 항상 성립하도록 하는 실수 \\(a\\)의 값의 범위는?",
+   "choices": [
+    "\\(-3\\le a\\le1\\)",
+    "\\(-3\\le a\\le4\\)",
+    "\\(-1\\le a\\le3\\)",
+    "\\(-1<a<4\\)",
+    "\\(0\\le a\\le4\\)"
+   ],
+   "correct": 2,
+   "answer": "\\(-1\\le a\\le3\\)",
+   "solution": [
+    "\\(x^2+2ax-3a^2=(x+3a)(x-a)>0\\)이므로 \\(f(x)=(x+3a)(x-a)\\)의 두 근은 \\(-3a,\\ a\\)",
+    "\\(a>0\\)이면 \\(-3a<a\\)이므로 \\(3<x<5\\)에서 \\(x>a\\)이어야 하고 \\(a\\le3\\), 즉 \\(0<a\\le3\\)",
+    "\\(a<0\\)이면 \\(a<-3a\\)이므로 \\(3<x<5\\)에서 \\(x>-3a\\)이어야 하고 \\(-3a\\le3\\), 즉 \\(-1\\le a<0\\)",
+    "\\(a=0\\)이면 \\(x^2>0\\)이 되어 \\(3<x<5\\)에서 항상 성립한다.",
+    "따라서 \\(-1\\le a\\le3\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1019",
+   "num": 1019,
+   "number": "1019",
+   "diff": "mid",
+   "type": "fillin",
+   "question": "\\(x^2\\)의 계수가 음수인 이차함수 \\(y=f(x)\\)의 그래프와 직선 \\(y=2x-1\\)이 두 점에서 만나고, 그 교점의 \\(y\\)좌표는 각각 2, 8이다. 이때 부등식 \\(f(x)-2x+1>0\\)을 만족시키는 모든 정수 \\(x\\)의 값의 합을 구하시오.",
+   "answer": "9",
+   "solution": [
+    "\\(2x-1=2\\)에서 \\(x=\\dfrac{3}{2}\\), \\(2x-1=8\\)에서 \\(x=\\dfrac{9}{2}\\)이므로 교점의 \\(x\\)좌표는 \\(\\dfrac{3}{2},\\ \\dfrac{9}{2}\\)",
+    "\\(f(x)-(2x-1)=k\\left(x-\\dfrac{3}{2}\\right)\\left(x-\\dfrac{9}{2}\\right)\\) (\\(k<0\\))로 나타낼 수 있다.",
+    "\\(f(x)-2x+1>0\\)에서 \\(k<0\\)이므로 \\(\\dfrac{3}{2}<x<\\dfrac{9}{2}\\)",
+    "정수 \\(x\\)는 \\(2,\\ 3,\\ 4\\)이고 합은 9"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1020",
+   "num": 1020,
+   "number": "1020",
+   "diff": "high",
+   "type": "fillin",
+   "question": "두 이차함수 \\(f(x),\\ g(x)\\)가\n\\(f(x)=x^2+x-a^2,\\ g(x)=-x^2-2x+3a\\)\n일 때, 임의의 실수 \\(x_1,\\ x_2\\)에 대하여 \\(f(x_1)>g(x_2)\\)가 성립하도록 하는 정수 \\(a\\)의 최댓값을 구하시오.",
+   "answer": "-1",
+   "solution": [
+    "임의의 \\(x_1,\\ x_2\\)에 대하여 \\(f(x_1)>g(x_2)\\)이려면 \\((f\\text{의 최솟값})>(g\\text{의 최댓값})\\)이어야 한다.",
+    "\\(f(x)=\\left(x+\\dfrac{1}{2}\\right)^2-\\dfrac{1}{4}-a^2\\)이므로 최솟값은 \\(-\\dfrac{1}{4}-a^2\\)",
+    "\\(g(x)=-(x+1)^2+1+3a\\)이므로 최댓값은 \\(1+3a\\)",
+    "\\(-\\dfrac{1}{4}-a^2>1+3a\\)에서 \\(4a^2+12a+5<0\\), \\((2a+1)(2a+5)<0\\), 즉 \\(-\\dfrac{5}{2}<a<-\\dfrac{1}{2}\\)",
+    "정수 \\(a\\)는 \\(-2,\\ -1\\)이므로 최댓값은 \\(-1\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1021",
+   "num": 1021,
+   "number": "1021",
+   "diff": "mid",
+   "type": "fillin",
+   "question": "연립부등식 \\(\\begin{cases}[x]^2-7[x]+10\\le0\\\\x^2-5x\\le6x-24\\end{cases}\\)를 만족시키는 정수 \\(x\\)의 개수를 구하시오. (단, \\([x]\\)는 \\(x\\)보다 크지 않은 최대의 정수이다.)",
+   "answer": "3",
+   "solution": [
+    "\\([x]^2-7[x]+10\\le0\\)에서 \\(([x]-2)([x]-5)\\le0\\)이므로 \\(2\\le[x]\\le5\\)",
+    "\\(x^2-5x\\le6x-24\\)에서 \\(x^2-11x+24\\le0\\), \\((x-3)(x-8)\\le0\\)이므로 \\(3\\le x\\le8\\)",
+    "\\(x\\)가 정수이면 \\([x]=x\\)이므로 \\(2\\le x\\le5\\)와 \\(3\\le x\\le8\\)의 공통부분 \\(3\\le x\\le5\\)",
+    "정수 \\(x\\)는 3, 4, 5의 3개"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1022",
+   "num": 1022,
+   "number": "1022",
+   "diff": "midhigh",
+   "type": "mc",
+   "question": "연립부등식 \\(\\begin{cases}6x^2-11nx+3n^2\\le0\\\\|3x-2n|\\ge2\\end{cases}\\)의 해에 \\(x=1\\)이 포함될 때, 다음 중 이 연립부등식의 해가 아닌 것은? (단, \\(n\\)은 정수이다.)",
+   "choices": [
+    "\\(\\dfrac{4}{3}\\)",
+    "2",
+    "3",
+    "4",
+    "\\(\\dfrac{9}{2}\\)"
+   ],
+   "correct": 1,
+   "answer": "2",
+   "solution": [
+    "\\(x=1\\)을 대입하면 \\(6-11n+3n^2\\le0\\)에서 \\((3n-2)(n-3)\\le0\\)이므로 \\(\\dfrac{2}{3}\\le n\\le3\\)",
+    "\\(|3-2n|\\ge2\\)에서 \\(3-2n\\le-2\\) 또는 \\(3-2n\\ge2\\), 즉 \\(n\\ge\\dfrac{5}{2}\\) 또는 \\(n\\le\\dfrac{1}{2}\\)",
+    "\\(n\\)이 정수이므로 \\(n=3\\)",
+    "\\(n=3\\)이면 \\(6x^2-33x+27\\le0\\)에서 \\((2x-9)(x-1)\\le0\\), 즉 \\(1\\le x\\le\\dfrac{9}{2}\\)이고, \\(|3x-6|\\ge2\\)에서 \\(x\\le\\dfrac{4}{3}\\) 또는 \\(x\\ge\\dfrac{8}{3}\\)",
+    "해는 \\(1\\le x\\le\\dfrac{4}{3}\\) 또는 \\(\\dfrac{8}{3}\\le x\\le\\dfrac{9}{2}\\)이므로 해가 아닌 것은 2"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1023",
+   "num": 1023,
+   "number": "1023",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "연립부등식 \\(\\begin{cases}x^2+ax+b\\le0\\\\x^2+cx+d\\ge0\\end{cases}\\)의 해가 \\(x=-2\\) 또는 \\(1\\le x\\le3\\)일 때, 실수 \\(a,\\ b,\\ c,\\ d\\)에 대하여 \\(ad-bc\\)의 값을 구하시오.",
+   "answer": "8",
+   "solution": [
+    "첫째 부등식의 해는 \\(\\alpha\\le x\\le\\beta\\) 꼴이고 둘째 부등식의 해는 \\(x\\le\\gamma\\) 또는 \\(x\\ge\\delta\\) 꼴이다.",
+    "공통부분이 \\(x=-2\\) 또는 \\(1\\le x\\le3\\)이므로 첫째 부등식의 해는 \\(-2\\le x\\le3\\), 둘째 부등식의 해는 \\(x\\le-2\\) 또는 \\(x\\ge1\\)",
+    "\\(x^2+ax+b=(x+2)(x-3)=x^2-x-6\\)이므로 \\(a=-1,\\ b=-6\\)",
+    "\\(x^2+cx+d=(x+2)(x-1)=x^2+x-2\\)이므로 \\(c=1,\\ d=-2\\)",
+    "따라서 \\(ad-bc=(-1)(-2)-(-6)(1)=8\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1024",
+   "num": 1024,
+   "number": "1024",
+   "diff": "midhigh",
+   "type": "mc",
+   "question": "모든 실수 \\(x\\)에 대하여 부등식\n\\(-x^2+3x+2\\le mx+n\\le x^2-x+4\\)\n가 성립할 때, \\(m^2+n^2\\)의 값은? (단, \\(m,\\ n\\)은 상수이다.)",
+   "choices": [
+    "8",
+    "10",
+    "12",
+    "14",
+    "16"
+   ],
+   "correct": 1,
+   "answer": "10",
+   "solution": [
+    "\\(mx+n\\le x^2-x+4\\)에서 \\(x^2-(m+1)x+4-n\\ge0\\)이 항상 성립해야 하므로 \\((m+1)^2-4(4-n)\\le0\\)",
+    "\\(-x^2+3x+2\\le mx+n\\)에서 \\(x^2+(m-3)x+n-2\\ge0\\)이 항상 성립해야 하므로 \\((m-3)^2-4(n-2)\\le0\\)",
+    "두 식을 정리하면 \\((m+1)^2\\le16-4n,\\ (m-3)^2\\le4n-8\\)이고 변변 더하면 \\((m+1)^2+(m-3)^2\\le8\\), 즉 \\(2(m-1)^2\\le0\\)이므로 \\(m=1\\)",
+    "\\(m=1\\)을 대입하면 \\(4\\le16-4n\\)에서 \\(n\\le3\\), \\(4\\le4n-8\\)에서 \\(n\\ge3\\)이므로 \\(n=3\\)",
+    "따라서 \\(m^2+n^2=1+9=10\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1025",
+   "num": 1025,
+   "number": "1025",
+   "diff": "high",
+   "type": "mc",
+   "question": "\\(a,\\ b\\)가 \\(a<b\\)인 실수이고 \\(ab\\ne0\\)일 때, 연립부등식 \\(\\begin{cases}x^2-(a+b)x+ab<0\\\\abx^2-(a+b)x+1<0\\end{cases}\\)에 대한 설명으로 옳은 것만을 보기에서 있는 대로 고른 것은?\n\n[보기]\nㄱ. \\(ab<0\\)이면 연립부등식의 해는 항상 존재한다.\nㄴ. \\(ab>0\\)이고 연립부등식의 해가 존재하면 \\(a^2+b^2<1\\)이다.\nㄷ. \\(ab>0\\)이고 연립부등식의 해가 존재하면 \\((a-1)(b-1)<0\\) 또는 \\((a+1)(b+1)<0\\)이다.",
+   "choices": [
+    "ㄱ",
+    "ㄴ",
+    "ㄷ",
+    "ㄱ, ㄷ",
+    "ㄴ, ㄷ"
+   ],
+   "correct": 2,
+   "answer": "ㄷ",
+   "solution": [
+    "첫째 부등식: \\((x-a)(x-b)<0\\)에서 \\(a<x<b\\). 둘째 부등식: \\((ax-1)(bx-1)<0\\)",
+    "ㄱ. \\(a=-\\dfrac{1}{2},\\ b=\\dfrac{1}{2}\\)이면 첫째 부등식의 해는 \\(-\\dfrac{1}{2}<x<\\dfrac{1}{2}\\), 둘째 부등식은 \\(-\\dfrac{1}{4}x^2+1<0\\)에서 \\(|x|>2\\)이므로 공통부분이 없다. (거짓)",
+    "\\(0<a<b\\)이면 둘째 부등식의 해는 \\(\\dfrac{1}{b}<x<\\dfrac{1}{a}\\)이고, 첫째 부등식의 해 \\(a<x<b\\)와 공통부분이 있으려면 \\(a<\\dfrac{1}{a}\\)이고 \\(\\dfrac{1}{b}<b\\), 즉 \\(a<1<b\\)이므로 \\((a-1)(b-1)<0\\)",
+    "\\(a<b<0\\)이면 둘째 부등식의 해는 \\(\\dfrac{1}{b}<x<\\dfrac{1}{a}\\)이고, 공통부분이 있으려면 \\(a<-1<b<0\\)이므로 \\((a+1)(b+1)<0\\)",
+    "ㄴ. \\(a<1<b\\)이면 \\(a^2+b^2>1\\)이므로 거짓. ㄷ. 참",
+    "따라서 옳은 것은 ㄷ"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1026",
+   "num": 1026,
+   "number": "1026",
+   "diff": "high",
+   "type": "fillin",
+   "question": "\\(x\\)에 대한 연립이차부등식\n\\(\\begin{cases}x^2-10x+21\\le0\\\\x^2-2(n-1)x+n^2-2n\\ge0\\end{cases}\\)\n을 만족시키는 정수 \\(x\\)의 개수가 4가 되도록 하는 모든 자연수 \\(n\\)의 값의 합을 구하시오.",
+   "answer": "30",
+   "solution": [
+    "\\(x^2-10x+21\\le0\\)에서 \\((x-3)(x-7)\\le0\\), 즉 \\(3\\le x\\le7\\)이고 정수는 3, 4, 5, 6, 7의 5개",
+    "\\(x^2-2(n-1)x+n^2-2n=(x-n)(x-n+2)\\ge0\\)에서 \\(x\\le n-2\\) 또는 \\(x\\ge n\\)",
+    "따라서 둘째 부등식을 만족시키지 않는 정수는 \\(n-2<x<n\\), 즉 \\(x=n-1\\)뿐이다.",
+    "정수 \\(x\\)가 4개이려면 5개 중 \\(x=n-1\\)이 한 개 빠져야 하므로 \\(3\\le n-1\\le7\\), 즉 \\(4\\le n\\le8\\)",
+    "따라서 \\(4+5+6+7+8=30\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1027",
+   "num": 1027,
+   "number": "1027",
+   "diff": "mid",
+   "type": "fillin",
+   "question": "좌표평면 위의 세 점 \\(A(k,\\ 0),\\ B(2k,\\ 0),\\ C(k+1,\\ k+2)\\)를 꼭짓점으로 하는 삼각형 ABC의 넓이가 4 이상 24 이하가 되도록 하는 자연수 \\(k\\)의 개수를 구하시오.",
+   "answer": "5",
+   "solution": [
+    "\\(\\overline{AB}=k\\), 점 C의 \\(y\\)좌표가 \\(k+2\\)이므로 삼각형 ABC의 넓이는 \\(\\dfrac{1}{2}k(k+2)\\)",
+    "\\(4\\le\\dfrac{1}{2}k(k+2)\\le24\\)에서 \\(8\\le k^2+2k\\le48\\)",
+    "\\(k^2+2k-8\\ge0\\)에서 \\((k+4)(k-2)\\ge0\\)이므로 \\(k\\ge2\\) (\\(k>0\\))",
+    "\\(k^2+2k-48\\le0\\)에서 \\((k+8)(k-6)\\le0\\)이므로 \\(k\\le6\\)",
+    "따라서 자연수 \\(k=2,\\ 3,\\ 4,\\ 5,\\ 6\\)의 5개"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1028",
+   "num": 1028,
+   "number": "1028",
+   "diff": "midhigh",
+   "type": "fillin",
+   "question": "그림과 같이 이차함수 \\(f(x)=-x^2+2kx+k^2+4\\) (\\(k>0\\))의 그래프가 \\(y\\)축과 만나는 점을 A라 하자. 점 A를 지나고 \\(x\\)축에 평행한 직선이 이차함수 \\(y=f(x)\\)의 그래프와 만나는 점 중 A가 아닌 점을 B라 하고, 점 B에서 \\(x\\)축에 내린 수선의 발을 C라 하자. 사각형 OCBA의 둘레의 길이를 \\(g(k)\\)라 할 때, 부등식 \\(14\\le g(k)\\le78\\)을 만족시키는 모든 자연수 \\(k\\)의 값의 합을 구하시오. (단, O는 원점이다.)",
+   "answer": "15",
+   "solution": [
+    "\\(A(0,\\ k^2+4)\\)이고 \\(-x^2+2kx+k^2+4=k^2+4\\)에서 \\(x(x-2k)=0\\)이므로 \\(B(2k,\\ k^2+4)\\), \\(C(2k,\\ 0)\\)",
+    "사각형 OCBA는 가로 \\(2k\\), 세로 \\(k^2+4\\)인 직사각형이므로 \\(g(k)=2(2k+k^2+4)=2k^2+4k+8\\)",
+    "\\(14\\le2k^2+4k+8\\le78\\)에서 \\(3\\le k^2+2k\\le35\\)",
+    "\\(k^2+2k-3\\ge0\\)에서 \\(k\\ge1\\), \\(k^2+2k-35\\le0\\)에서 \\((k+7)(k-5)\\le0\\)이므로 \\(k\\le5\\)",
+    "자연수 \\(k=1,\\ 2,\\ 3,\\ 4,\\ 5\\)이고 합은 15"
+   ],
+   "family": "",
+   "images": [
+    "data:image/jpeg;base64,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"
+   ]
+  },
+  {
+   "id": "1029",
+   "num": 1029,
+   "number": "1029",
+   "diff": "mid",
+   "type": "fillin",
+   "question": "이차방정식 \\(x^2+kx-k=0\\)의 두 실근 \\(\\alpha,\\ \\beta\\)에 대하여 \\(|\\alpha-\\beta|\\le2\\sqrt{3}\\)일 때, 정수 \\(k\\)의 개수를 구하시오.",
+   "answer": "6",
+   "solution": [
+    "두 실근을 가지므로 \\(D=k^2+4k\\ge0\\)에서 \\(k\\le-4\\) 또는 \\(k\\ge0\\)",
+    "\\(\\alpha+\\beta=-k,\\ \\alpha\\beta=-k\\)이므로 \\((\\alpha-\\beta)^2=(\\alpha+\\beta)^2-4\\alpha\\beta=k^2+4k\\)",
+    "\\(|\\alpha-\\beta|\\le2\\sqrt{3}\\)에서 \\(k^2+4k\\le12\\), \\((k+6)(k-2)\\le0\\)이므로 \\(-6\\le k\\le2\\)",
+    "공통부분은 \\(-6\\le k\\le-4\\) 또는 \\(0\\le k\\le2\\)이므로 정수 \\(k\\)는 \\(-6,\\ -5,\\ -4,\\ 0,\\ 1,\\ 2\\)의 6개"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1030",
+   "num": 1030,
+   "number": "1030",
+   "diff": "high",
+   "type": "fillin",
+   "question": "이차함수 \\(f(x)=ax^2+bx+c\\)가 다음 조건을 모두 만족시킬 때, \\(\\dfrac{c}{a}\\)의 값의 범위를 구하시오. (단, \\(a,\\ b,\\ c\\)는 실수이다.)\n(가) 모든 실수 \\(x\\)에 대하여 \\(f(1+x)=f(1-x)\\)이다.\n(나) 이차방정식 \\(f(x)=0\\)의 두 근 \\(\\alpha,\\ \\beta\\)에 대하여 \\(-2<\\alpha<1<\\beta<4\\)이다.",
+   "answer": "\\(-8<\\dfrac{c}{a}<1\\)",
+   "solution": [
+    "(가)에서 축이 \\(x=1\\)이므로 \\(\\alpha+\\beta=2\\), \\(\\alpha=2-\\beta\\)",
+    "(나)에서 \\(1<\\beta<4\\)이고 \\(-2<\\alpha=2-\\beta<1\\)에서 \\(1<\\beta<4\\)로 같은 조건이다.",
+    "\\(\\dfrac{c}{a}=\\alpha\\beta=\\beta(2-\\beta)=-(\\beta-1)^2+1\\)",
+    "\\(1<\\beta<4\\)에서 \\(\\beta\\to1\\)이면 1에 가까워지고, \\(\\beta\\to4\\)이면 \\(-8\\)에 가까워지며 감소하므로 \\(-8<\\dfrac{c}{a}<1\\)"
+   ],
+   "family": "",
+   "images": []
+  },
+  {
+   "id": "1031",
+   "num": 1031,
+   "number": "1031",
+   "diff": "high",
+   "type": "mc",
+   "question": "이차방정식 \\(ax^2-(a^2-4)x-2=0\\)의 한 근은 \\(-1\\)과 0 사이에 있고, 다른 한 근은 1과 2 사이에 있을 때, 실수 \\(a\\)의 값의 범위는?",
+   "choices": [
+    "\\(-1<a<0\\)",
+    "\\(1<a<2\\)",
+    "\\(2<a<3\\)",
+    "\\(a<-2\\) 또는 \\(a>3\\)",
+    "\\(a<0\\) 또는 \\(a>2\\)"
+   ],
+   "correct": 2,
+   "answer": "\\(2<a<3\\)",
+   "solution": [
+    "\\(f(x)=ax^2-(a^2-4)x-2\\)라 하면 \\(f(0)=-2<0\\)이므로 두 근의 부호가 다르다. 두 근의 곱이 \\(-\\dfrac{2}{a}<0\\)이므로 \\(a>0\\)",
+    "\\(a>0\\)이므로 아래로 볼록하고, \\(f(-1)>0,\\ f(1)<0,\\ f(2)>0\\)이어야 한다.",
+    "\\(f(-1)=a^2+a-6>0\\)에서 \\((a+3)(a-2)>0\\)이므로 \\(a>2\\)",
+    "\\(f(1)=-a^2+a+2<0\\)에서 \\((a-2)(a+1)>0\\)이므로 \\(a>2\\)",
+    "\\(f(2)=-2a^2+4a+6>0\\)에서 \\(a^2-2a-3<0\\)이므로 \\(-1<a<3\\)",
+    "따라서 \\(2<a<3\\)"
+   ],
+   "family": "",
+   "images": []
+  }
+ ]
+}
