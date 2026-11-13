@@ -704,7 +704,8 @@
       "unit": "I. 다항식 - 01 다항식의 연산",
       "count": 18,
       "group": "tb",
-      "grade": "m1"
+      "grade": "m1",
+      "source": "쎈C 공통수학1"
     },
     {
       "id": "2611_m1_s1_senmathcc_12_factor_q256-278",
@@ -714,7 +715,8 @@
       "unit": "I. 다항식 - 02 나머지 정리와 인수분해",
       "count": 23,
       "group": "tb",
-      "grade": "m1"
+      "grade": "m1",
+      "source": "쎈C 공통수학1"
     },
     {
       "id": "2611_m1_s1_senmathcc_21_complex_q389-406",
@@ -724,7 +726,8 @@
       "unit": "II. 방정식 - 03 복소수",
       "count": 18,
       "group": "tb",
-      "grade": "m1"
+      "grade": "m1",
+      "source": "쎈C 공통수학1"
     },
     {
       "id": "2611_m1_s1_senmathcc_21_quadeq_q530-547",
@@ -734,7 +737,8 @@
       "unit": "II. 방정식 - 04 이차방정식",
       "count": 18,
       "group": "tb",
-      "grade": "m1"
+      "grade": "m1",
+      "source": "쎈C 공통수학1"
     },
     {
       "id": "2611_m1_s1_senmathcc_22_quadfunc_q643-657",
@@ -744,7 +748,8 @@
       "unit": "II. 방정식 - 05 이차방정식과 이차함수",
       "count": 15,
       "group": "tb",
-      "grade": "m1"
+      "grade": "m1",
+      "source": "쎈C 공통수학1"
     },
     {
       "id": "2611_m1_s1_senmathcc_23_multieq_q761-776",
@@ -754,7 +759,8 @@
       "unit": "II. 방정식 - 06 여러 가지 방정식",
       "count": 16,
       "group": "tb",
-      "grade": "m1"
+      "grade": "m1",
+      "source": "쎈C 공통수학1"
     },
     {
       "id": "2611_m1_s1_senmathcc_31_lineq_q868-884",
@@ -764,7 +770,8 @@
       "unit": "III. 부등식 - 07 일차부등식",
       "count": 17,
       "group": "tb",
-      "grade": "m1"
+      "grade": "m1",
+      "source": "쎈C 공통수학1"
     },
     {
       "id": "2611_m1_s1_senmathcc_32_quadineq_q1009-1031",
@@ -774,7 +781,8 @@
       "unit": "III. 부등식 - 08 이차부등식",
       "count": 23,
       "group": "tb",
-      "grade": "m1"
+      "grade": "m1",
+      "source": "쎈C 공통수학1"
     },
     {
       "id": "2611_m1_s1_senmathcc_41_permcomb_q1181-1199",
@@ -784,7 +792,8 @@
       "unit": "IV. 순열과 조합 - 09 순열과 조합",
       "count": 19,
       "group": "tb",
-      "grade": "m1"
+      "grade": "m1",
+      "source": "쎈C 공통수학1"
     },
     {
       "id": "2611_m1_s1_senmathcc_51_matrix_q1300-1316",
@@ -794,7 +803,8 @@
       "unit": "V. 행렬 - 10 행렬과 그 연산",
       "count": 17,
       "group": "tb",
-      "grade": "m1"
+      "grade": "m1",
+      "source": "쎈C 공통수학1"
     }
   ],
   "categories": {
